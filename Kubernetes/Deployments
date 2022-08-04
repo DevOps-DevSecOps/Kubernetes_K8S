@@ -1,0 +1,28 @@
+Deployments is used how to create or modify instances of the pods that hold a containerized application.
+Deployments can scale the number of replica pods, enable rollout of updated code in a controlled manner, or rollback to an earlier deployment version if necessary.
+
+[Strategies]
+● RollingUpdate
+It is the default strategy for update.
+It will delete one Pod and creates a new Pod. This will be repeated for the other Pods one-by-one.
+The update is applied Pod-by-Pod. (OR) It update one-by-one from the old Pods to the new Pods.
+It minimizes downtime. (OR) It ensuring no downtime. (OR) There is no downtime.
+
+● Recreate
+Deleting all existing Pods and creating new Pods will cause downtime to access the application to the user.
+All existing Pods are deleted before the new Pods are created.
+All old Pods are terminated before any new Pods are added.
+It causes downtime but updates quickly.
+
+● Canary
+The new version rolls out incrementally to a subset of users, then is released to all users.
+when it make new software features available to a limited selection of users ahead of a wider release.
+The new application version is available to a limited OR few selection of users before making it available to everybody.
+
+● Blue-Green
+It is two separate identical environments.
+Blue - Blue environment is running the current application version.
+Green - Green environment is running the new application version.
+
+# Links :- https://medium.com/codex/kubernetes-deployment-rolling-updates-and-rollbacks-explained-e3efa6557368
+           https://www.bluematador.com/blog/kubernetes-deployments-rolling-update-configuration

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: application-log-configs
+  namespace: default
+data:
+  log_level: WARNING
+  log_type: TEXT

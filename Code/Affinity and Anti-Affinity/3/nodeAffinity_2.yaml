@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: preferred-affinity-demo
+spec:
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: workload
+            operator: In
+            values:
+            - preprod
+  containers:
+  - name: nginx
+    image: nginx
+    imagePullPolicy: IfNotPresent

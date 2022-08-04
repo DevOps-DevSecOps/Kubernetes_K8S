@@ -1,0 +1,6 @@
+We can create a custom scheduler by making a copy of the existing default scheduler file (/etc/kubernetes/manifests/kube-scheduler.yaml), and by changing the name of the scheduler.
+The 'leader-elect' option is used when we have multiple copies of the scheduler running on different master nodes in High availability setup where you have multiple master nodes with the Kube-scheduler process running on all master nodes.
+If multiple copies of the same scheduler are running on different nodes, only one can be active at a time.
+Where a 'leader-elect' option helps in choosing a leader who will lead the scheduling activities.
+To get multiple schedulers working we must either set the leader-elect option to false, in case we don’t have multiple masters.
+Once the custom scheduler is created, we need to configure a new Pod or Deployment to use the new scheduler.

@@ -1,0 +1,8 @@
+move the hello.html file to /data directory.
+$ mv hello.html /data/
+
+$ kubectl exec -it nginx-pod1 -- ls /usr/share/nginx/html
+$ kubectl exec nginx-pod1 -- curl localhost
+
+$ kubectl exec -it nginx-pod2 -- ls /usr/share/nginx/html
+$ kubectl exec nginx-pod2 -- curl localhost

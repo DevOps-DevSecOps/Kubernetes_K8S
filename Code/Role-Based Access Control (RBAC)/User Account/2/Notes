@@ -1,0 +1,8 @@
+create a private key.
+$ openssl genrsa -out testuser.key 2048
+
+create a certificate signing request (CSR). CN is the username and O the group.
+$ openssl req -new -key testuser.key -out testuser.csr -subj “/O=testcluster/CN=testuser”
+
+sign the CSR with the Kubernetes CA.
+$ openssl x509 -req -in testuser.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out testuser.crt -days 365

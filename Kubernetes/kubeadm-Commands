@@ -1,0 +1,8 @@
+# Check the token validity
+kubeadm token list
+
+# Generating/Creating new kubeadm token
+kubeadm token create --print-join-command
+
+#
+kubeadm reset

@@ -1,0 +1,3 @@
+create a Namespaces
+
+$ kubectl create namespace demo-namespace

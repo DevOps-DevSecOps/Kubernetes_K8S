@@ -1,0 +1,2 @@
+[Parallel Pod Management]
+StatefulSet controller to launch or terminate all Pods in parallel and not to wait for Pods to become Running and Ready or completely terminated prior to launching or terminating another Pod.

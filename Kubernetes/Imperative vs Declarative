@@ -1,0 +1,5 @@
+[Imperative]
+It manage through a command-line tool to built the kubectl commands.
+
+[Declarative]
+It manage through a YAML files.

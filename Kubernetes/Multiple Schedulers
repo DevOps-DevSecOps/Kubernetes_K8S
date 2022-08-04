@@ -1,0 +1,7 @@
+Scheduler is the responsible for distributes pods across nodes.
+It can run custom schedular along with the default schedular if it does not requirement.
+Kubernetes cluster can have multiple schedulers at the same time.
+When creating a pod or a deployment you can instruct Kubernetes to have the pod scheduled by a specific scheduler.
+The default schedular will be assigned to pod by default and also custom schedular will be assigned to pod with a specific scheduler name.
+The kube-scheduler is the default scheduler for Kubernetes and runs as part of the control plane.
+The kube-scheduler is the default scheduler located in kube-system namespace.

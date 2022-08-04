@@ -1,0 +1,94 @@
+Labels are match up in the Deployment and Service.
+Labels and Selectors to control which pods go to which nodes.
+Labels can also run specific pods on selected nodes.
+
+[Labels]
+Labels are "key:value" that are attached to objects like such as pods.
+Labels are "key:value" that are attached to nodes.
+Labels are "key:value" pairs of string data type.
+Labels are expected to identify and attach the resource objects with metadata.
+They are the metadata which contain unique information of the Kubernetes objects.
+Labels can add, remove, change to objects like such as pods and nodes.
+
+[Selectors]
+Selectors used Labels to filter out by listing in different ways.
+There are two types of Selectors
+● Equality-Based Requirement
+It allow filtering by label keys and values.
+It will match the specified label and filter the resources. The supported operators are =, ==, !=.
+Example :-
+$ kubectl get po --show-labels
+NAME         READY   STATUS  RESTARTS    AGE    LABELS
+example-pod   1/1    Running    0        17h    env=prod,owner=Ashutosh,status=online,tier=backend
+example-pod1  1/1    Running    0        21m    env=prod,owner=Shovan,status=offline,tier=frontend
+example-pod2  1/1    Running    0        8m     env=dev,owner=Abhishek,status=online,tier=backend
+example-pod3  1/1    Running    0        7m     env=dev,owner=Abhishek,status=online,tier=frontend
+example-pod4  1/1    Running    0        7m     env=dev,owner=Abhishek,status=offline,tier=frontend
+$ kubectl get pods -l status=online
+NAME          READY   STATUS   RESTARTS    AGE
+example-pod    1/1    Running    0         17h
+example-pod2   1/1    Running    0         9m
+example-pod3   1/1    Running    0         9m
+$ kubectl get pods -l status!=online
+NAME          READY  STATUS   RESTARTS   AGE
+example-pod1  1/1    Running   0         25m
+example-pod4  1/1    Running   0         11m
+$ kubectl get pods -l status==offline
+NAME          READY  STATUS   RESTARTS   AGE
+example-pod1  1/1    Running   0         26m
+example-pod4  1/1    Running   0         11m
+$ kubectl get pods -l status==offline,status=online
+No resources found.
+$ kubectl get pods -l status==offline,env=prod
+NAME          READY    STATUS   RESTARTS  AGE
+example-pod1  1/1      Running  0         28m
+$ kubectl get pods -l owner=Abhishek
+NAME          READY   STATUS    RESTARTS   AGE
+example-pod2  1/1     Running   0          15m
+example-pod3  1/1     Running   0          14m
+example-pod4  1/1     Running   0          11m
+
+● Set-Based Requirement
+It allow filtering keys according to a set of values.
+Three kinds of operators are supported: in, notin, exists.
+Example :-
+$ kubectl get po --show-labels
+NAME         READY   STATUS  RESTARTS    AGE    LABELS
+example-pod   1/1    Running    0        17h    env=prod,owner=Ashutosh,status=online,tier=backend
+example-pod1  1/1    Running    0        21m    env=prod,owner=Shovan,status=offline,tier=frontend
+example-pod2  1/1    Running    0        8m     env=dev,owner=Abhishek,status=online,tier=backend
+example-pod3  1/1    Running    0        7m     env=dev,owner=Abhishek,status=online,tier=frontend
+example-pod4  1/1    Running    0        7m     env=dev,owner=Abhishek,status=offline,tier=frontend
+$ kubectl get pod -l 'env in (prod)'
+NAME          READY   STATUS   RESTARTS   AGE
+example-pod   1/1     Running  0          18h
+example-pod1  1/1     Running  0          41m
+$ kubectl get pod -l 'env in (prod,dev)'
+NAME           READY   STATUS    RESTARTS   AGE
+example-pod    1/1     Running    0         18h
+example-pod1   1/1     Running    0         41m
+example-pod2   1/1     Running    0         27m
+example-pod3   1/1     Running    0         27m
+example-pod4   1/1     Running    0         27m
+$ kubectl get pod -l 'env in (prod),tier in (backend)'
+NAME          READY   STATUS    RESTARTS   AGE
+example-pod   1/1     Running   0          18h
+$ kubectl get pod -l 'env in (qa),tier in (frontend)'
+No resources found.
+$ kubectl get pod --show-labels
+NAME          READY   STATUS    RESTARTS  AGE   LABELS
+example-pod    1/1     Running   0         18h  env=prod,owner=Ashutosh,region=central,status=online,tier=backend
+example-pod1   1/1     Running   0         54m  env=prod,owner=Shovan,region=central,status=offline,tier=frontend
+example-pod2   1/1     Running   0         40m  env=dev,owner=Abhishek,region=northern,status=online,tier=backend
+example-pod3   1/1     Running   0         40m  env=dev,owner=Abhishek,status=online,tier=frontend
+example-pod4   1/1     Running   0         40m  env=qa,owner=Atul,status=offline,tier=backend
+$ kubectl get pods -l 'region notin (central)'
+NAME           READY  STATUS    RESTARTS  AGE
+example-pod2   1/1    Running   0         42m
+example-pod3   1/1    Running   0         42m
+example-pod4   1/1    Running   0         41m
+$ kubectl get pods -l 'region,region notin (central)'
+NAME           READY   STATUS    RESTARTS  AGE
+example-pod2   1/1     Running   0         46m
+
+# Link:- https://blog.mayadata.io/openebs/kubernetes-label-selector-and-field-selector

@@ -1,0 +1,1 @@
+kubectl label node NODE_NAME disktype=ssd

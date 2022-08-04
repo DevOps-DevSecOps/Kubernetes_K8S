@@ -1,0 +1,5 @@
+If RBAC is enabled on your cluster, you must update the "system:kube-scheduler" cluster role.
+Add your scheduler name to the resourceNames of the rule applied for endpoints and leases resources.
+
+The below command to edit the clusterrole
+COMMAND:- $ kubectl edit clusterrole system:kube-scheduler

@@ -1,0 +1,5 @@
+# labels to the node
+kubectl label nodes NODE_NAME KEY=VALUE                         # add a label for existing node
+
+# nodeSelector
+kubectl label nodes NODE_NAME size=large

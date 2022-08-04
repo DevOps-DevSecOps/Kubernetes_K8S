@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rc-demo
+spec:
+  replicas: 3
+  selector:
+    app: httpd
+    tier: qa
+  template:
+    metadata:
+      name: httpd
+      labels:
+        app: httpd
+        tier: qa
+    spec:
+      containers:
+      - name: httpd
+        image: httpd
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80

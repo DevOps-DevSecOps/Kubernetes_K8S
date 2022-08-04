@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: my-pod
+ labels:
+   environment: staging
+   team: kube-team
+spec:
+ containers:
+   - name: my-container
+     image: "k8s.gcr.io/my-app:v0.1"
+     resources:
+       limits:
+        cpu: 1

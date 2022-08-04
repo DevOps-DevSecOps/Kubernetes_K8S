@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-example-pod
+spec:
+  containers:
+  - name: configmap-example-busybox
+    image: k8s.gcr.io/busybox
+    command: [ "/bin/echo", "Application Type $(APPLICATION_TYPE) - $(APPLICATION_UI_TYPE)" ]
+    env:
+    - name: APPLICATION_TYPE
+      valueFrom:
+        configMapKeyRef:
+          name: application-configs
+          key: app.type
+    - name: APPLICATION_UI_TYPE
+      valueFrom:
+        configMapKeyRef:
+          name: application-configs
+          key: app.ui
+    - name: LOG_LEVEL
+      valueFrom:
+        configMapKeyRef:
+          name: application-log-configs
+          key: log_level
+  restartPolicy: Never

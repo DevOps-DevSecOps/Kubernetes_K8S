@@ -1,0 +1,84 @@
+• Check command pod_exists is used to check existence of pods in a Kubernetes cluster.
+• Spec - pod_exists has the following variables:
+-> selector - Label selector for pods whose existence are checked
+-> podName - Name of Kubernetes pod whose existence is checked
+-> count - Number of expected Kubernetes pods
+• Execution of this command can result in following states:
+-> OK
+-> CRITICAL
+-> UNKNOWN
+
+# Tutorial
+• you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster.
+
+kubectl create namespace demo
+
+kubectl get namespaces
+NAME          STATUS    AGE
+default       Active    6h
+kube-public   Active    6h
+kube-system   Active    6h
+demo          Active    4m
+
+# Check existence of pods with matching labels
+• If a ClusterAlert will be used check existence of pods with matching labels by setting spec.vars.selector field.
+
+cat ./docs/examples/cluster-alerts/pod_exists/demo-0.yaml
+
+apiVersion: monitoring.appscode.com/v1alpha1
+kind: ClusterAlert
+metadata:
+  name: pod-exists-demo-0
+  namespace: demo
+spec:
+  check: pod_exists
+  vars:
+    selector: app=nginx
+    count: '2'
+  checkInterval: 30s
+  alertInterval: 2m
+  notifierSecretName: notifier-config
+  receivers:
+  - notifier: Mailgun
+    state: CRITICAL
+    to: ["ops@example.com"]
+    
+kubectl apply -f ./docs/examples/cluster-alerts/pod_exists/demo-0.yaml
+
+kubectl describe clusteralert -n demo pod-exists-demo-0
+
+# Check existence of a specific pod
+• If a ClusterAlert will be used check existence of a pod by name by setting spec.vars.podName field.
+
+cat ./docs/examples/cluster-alerts/pod_exists/demo-1.yaml
+
+apiVersion: monitoring.appscode.com/v1alpha1
+kind: ClusterAlert
+metadata:
+  name: pod-exists-demo-1
+  namespace: demo
+spec:
+  check: pod_exists
+  vars:
+    podName: busybox
+    count: '1'
+  checkInterval: 30s
+  alertInterval: 2m
+  notifierSecretName: notifier-config
+  receivers:
+  - notifier: Mailgun
+    state: CRITICAL
+    to: ["ops@example.com"]
+    
+kubectl apply -f ./docs/examples/cluster-alerts/pod_exists/demo-1.yaml
+
+kubectl get pods -n demo
+
+kubectl describe podalert -n demo pod-exists-demo-1
+
+# Cleaning up
+• To cleanup the Kubernetes resources
+
+kubectl delete ns demo
+
+# Link:- https://appscode.com/products/searchlight/5.1.1/guides/cluster-alerts/pod_exists/

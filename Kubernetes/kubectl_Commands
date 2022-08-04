@@ -1,0 +1,148 @@
+[Run]
+kubectl run NAME --image=IMAGE_NAME --env="DNS_DOMAIN=cluster" --env="POD_NAMESPACE=default"            # set environment variables in the container
+kubectl run NAME --image=index.docker.io/DOCKER_HUB_USER_ID/REPOSITORY_NAME --requests=cpu=500m,memory=500M --expose --port=SERVICE_PORT_NO
+
+[Pods]
+kubectl port-forward pod/mypod :5000                                            # Listen on a random host port no locally
+kubectl port-forward --address localhost,10.19.21.23 pod/mypod 8888:5000        # Listen on host port with selected IP
+
+[Deployments]
+kubectl create deployment nginx --image=nginx
+kubectl set resources deployment DEPLOYMENT_NAME --limits cpu=200m,memory=512Mi --requests cpu=100m,memory=256Mi                    # add ResourceQuota to Deployment
+kubectl set resources deployment DEPLOYMENT_NAME --limits=cpu=200m,memory=512Mi --requests=cpu=100m,memory=256Mi
+kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=NodePort
+kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=LoadBalancer
+kubectl autoscale deployment DEPLOYMENT_NAME --cpu-percent=50 --min=1 --max=10              # CPU utilization across all Pods of 50% then Pods maintains between 1 and 10 replicas
+
+[Service Accounts]
+kubectl get sa --all-namespaces | grep SERVICEACCOUNT_NAME
+
+[Logs]
+kubectl logs --since=1h POD_NAME                                                                        # show all logs from pod in the hour
+kubectl logs -l KEY=VALUE                                                                               # logs with label
+kubectl logs -l KEY=VALUE -c CONTAINER_NAME
+kubectl logs -l KEY=VALUE -c CONTAINER_NAME --tail NO                                                   # NO = 10
+kubectl logs -f -l KEY=VALUE
+kubectl logs -f -l KEY=VALUE --all-containers                                                           # logs with label
+kubectl logs --selector KEY=VALUE
+kubectl logs --selector KEY=VALUE --container CONTAINER_NAME
+kubectl logs -n NAMESPACE_NAME -l KEY=VALUE -c CONTAINER_NAME
+kubectl logs --all-containers -n NAMESPACE_NAME
+kubectl logs --all-containers -n NAMESPACE_NAME --previous
+kubectl logs -f deployment/DEPLOYMENT_NAME
+kubectl logs -f deployment/DEPLOYMENT_NAME --all-containers=true -n NAMESPACE_NAME --since=MINUTES      # MINUTES = 10m
+
+[Exec]
+$ exit                                               # quit the shell in the container
+kubectl exec -it POD_NAME printenv
+kubectl exec -it POD_NAME -- cat /FOLDER_NAME/FILE_NAME
+kubectl exec -it POD_NAME -- ls -l /FOLDER_NAME/FOLDER_NAME
+kubectl exec POD_NAME env                            # list the environment variables in the running container
+kubectl exec POD_NAME date
+kubectl exec POD_NAME ls /FOLDER_NAME/
+kubectl exec POD_NAME df /FOLDER_NAME                # mounted file systems
+kubectl exec POD_NAME cat /FOLDER_NAME/FILE_NAME     # reading file from the mounted file systems
+kubectl exec POD_NAME -c CONTAINER_NAME date
+kubectl exec POD_NAME -- printenv
+kubectl exec POD_NAME -- ps
+kubectl exec POD_NAME -- ps -ef
+kubectl exec POD_NAME -- ps -elf
+kubectl exec POD_NAME -- ps aux
+kubectl exec POD_NAME -- rm /FOLDER_NAME/FOLDER_NAME/FILE_NAME
+kubectl exec POD_NAME -- ls /
+kubectl exec POD_NAME -- ls /FOLDER_NAME/FOLDER_NAME
+kubectl exec POD_NAME -- ls -l /FOLDER_NAME/FOLDER_NAME
+kubectl exec POD_NAME -- cat /FOLDER_NAME/FOLDER_NAME/FILE_NAME
+kubectl exec POD_NAME -- cat /etc/hostname
+kubectl exec POD_NAME -- sh -c "echo $PATH"
+kubectl exec POD_NAME -- id
+kubectl exec POD_NAME -- curl https://IP_ADDRESS:PORT_NO
+kubectl exec POD_NAME -c CONTAINER_NAME -- ls /
+kubectl exec POD_NAME -c CONTAINER_NAME -- cat /FOLDER_NAME/FILE_NAME
+kubectl exec POD_NAME -c CONTAINER_NAME -- mv /FOLDER_NAME/FILE_NAME:original /FOLDER_NAME/FILE_NAME:rename
+
+[ConfigMaps]
+kubectl create configmap CONFIGMAP_NAME --from-literal=url="http://example.com"
+
+[Secrets]
+kubectl create secret generic SECRET_NAME --from-literal=username=USERNAME --from-literal=password=PASSWORD
+kubectl create secret generic SECRET_NAME --from-literal=username=USERNAME --from-literal=password='PASSWORD'
+kubectl create secret generic SECRET_NAME --from-literal='username=USERNAME' --from-literal='password=PASSWORD'
+
+[Secrets with Docker]
+kubectl create secret docker-registry SECRET_NAME --docker-server=https://index.docker.io/ --docker-username=DOCKER_HUB_USER_ID --docker-password=DOCKER_HUB_USER_PASSWORD --docker-email=DOCKER_EMAIL
+kubectl create secret docker-registry SECRET_NAME --docker-server=https://index.docker.io/v1/ --docker-username=DOCKER_HUB_USER_ID --docker-password=DOCKER_HUB_USER_PASSWORD --docker-email=DOCKER_EMAIL
+kubectl create secret docker-registry SECRET_NAME --docker-server=https://gcr.io/ --docker-username=DOCKER_HUB_USER_ID --docker-password=DOCKER_HUB_USER_PASSWORD --docker-email=DOCKER_EMAIL
+
+[Role-Based Access Control (RBAC)]
+● Role
+kubectl create role ROLE_NAME --verb=get --resource=pods
+kubectl create role ROLE_NAME --verb list --resource pods
+kubectl create role ROLE_NAME --verb list --resource namespaces
+kubectl create role ROLE_NAME --verb delete --resource pod -n NAMESPACE_NAME
+kubectl create role ROLE_NAME --verb=get --verb=list --verb=watch --resource=pods
+kubectl create role ROLE_NAME --verb=create --verb=get --verb=list --verb=update --verb=delete --resource=pods
+kubectl create role ROLE_NAME --verb=list --verb=get --resource=services -n NAMESPACE_NAME
+kubectl create role ROLE_NAME --verb=get,list,watch --resource=pods
+kubectl create role ROLE_NAME --verb=get,list,watch --resource=pods,services
+kubectl create role ROLE_NAME --verb=get --resource=pods --resource-name=POD_NAME --resource-name=POD_NAME
+kubectl create role ROLE_NAME --verb=get,list,watch,update --resource=pods --resource-name=POD_NAME
+● ClusterRole
+kubectl create clusterrole CLUSTERROLE_NAME --verb delete --resource pod
+kubectl create clusterrole CLUSTERROLE_NAME --verb list --resource node
+kubectl get clusterrole | grep CLUSTERROLE_NAME
+● ClusterRoleBinding
+kubectl get clusterrolebinding | grep CLUSTERROLEBINDING_NAME
+kubectl get clusterrolebinding -n NAMESPACE_NAME | grep CLUSTERROLEBINDING_NAME
+
+[Events]
+kubectl get events | grep NAME
+kubectl get events | head -n NO
+
+[Contexts]
+KUBECONFIG=~/.kube/config:~/.kube/config2                                       # multiple kubeconfig files at the same time and view merged config
+
+[Editing]
+KUBE_EDITOR="nano" kubectl edit svc/SERVICE_NAME
+
+[Nodes]
+kubectl taint node NODE_NAME KEY=VALUE:NoSchedule
+kubectl taint node NODE_NAME KEY=VALUE:PreferNoSchedule
+kubectl taint node NODE_NAME KEY=VALUE:NoExecute
+kubectl taint nodes NODE_NAME KEY=VALUE:NoSchedule
+kubectl taint nodes NODE_NAME KEY=VALUE:PreferNoSchedule
+kubectl taint nodes NODE_NAME KEY=VALUE:NoExecute
+kubectl taint node NODE_NAME KEY=VALUE:NoSchedule-
+kubectl taint node NODE_NAME KEY=VALUE:PreferNoSchedule-
+kubectl taint node NODE_NAME KEY=VALUE:NoExecute-
+kubectl taint nodes NODE_NAME KEY=VALUE:NoSchedule-
+kubectl taint nodes NODE_NAME KEY=VALUE:PreferNoSchedule-
+kubectl taint nodes NODE_NAME KEY=VALUE:NoExecute-
+kubectl taint node NODE_NAME KEY:NoSchedule-
+kubectl taint node NODE_NAME KEY:PreferNoSchedule-
+kubectl taint node NODE_NAME KEY:NoExecute-
+kubectl taint nodes NODE_NAME KEY:NoSchedule-
+kubectl taint nodes NODE_NAME KEY:PreferNoSchedule-
+kubectl taint nodes NODE_NAME KEY:NoExecute-
+
+[Authorization]
+kubectl auth can-i create po
+kubectl auth can-i create pods --as USER_NAME
+kubectl auth can-i create pods --as USER_NAME --namespace NAMESPACE_NAME
+kubectl auth can-i list pods
+kubectl auth can-i list pods --as USER_NAME
+kubectl auth can-i list pods --namespace NAMESPACE_NAME --as system:serviceaccount:NAMESPACE_NAME:SERVICEACCOUNT_NAME
+kubectl auth can-i get pods --as=system:serviceaccount:NAMESPACE_NAME:SERVICEACCOUNT_NAME
+kubectl auth can-i get pods -n NAMESPACE_NAME --as=system:serviceaccount:NAMESPACE_NAME:SERVICEACCOUNT_NAME
+kubectl auth can-i delete pod -n NAMESPACE_NAME --as system:serviceaccount:NAMESPACE_NAME:SERVICEACCOUNT_NAME
+kubectl auth can-i create deploy
+kubectl auth can-i create deployments
+kubectl auth can-i create deployments --namespace NAMESPACE_NAME
+kubectl auth can-i create deployments --as USER_NAME
+kubectl auth can-i list secrets
+kubectl auth can-i list secrets --namespace NAMESPACE_NAME
+kubectl auth can-i list secrets --namespace NAMESPACE_NAME --as USER_NAME
+kubectl auth can-i create pv
+kubectl auth can-i create nodes
+kubectl auth can-i list nodes -n NAMESPACE_NAME --as system:serviceaccount:NAMESPACE_NAME:SERVICEACCOUNT_NAME
+kubectl auth can-i delete nodes

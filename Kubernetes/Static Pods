@@ -1,0 +1,147 @@
+Static Pods are managed directly by the kubelet daemon on a specific node, without the API server observing them.
+Static Pods are managed by the kubelet instead of the API Server. (OR) Static Pods are created by the Kubelet. (OR) Kubelet creates a Static Pods.
+Static Pods are managed directly by the kubelet and the API server does not have any control over these pods.
+Static Pods are not dependent on the Kubernetes control plane.
+Static Pods running on a node are visible on the API server but cannot be controlled by the API Server.
+Static Pods are configured to be start at Kubelet daemon or whenever Kubelet daemon reloads itself.
+There is no health check for Static Pods.
+All Master components run as Static pod and configured to be run at start/reload of Kubelet daemon.
+Control plane is not involved in lifecycle of static pod.
+The kubelet watches each static Pod (restarts it if it fails).
+The kubelet is responsible to watch each static Pod and restart it if it crashes.
+The Kubelet also ensures that the Pod stays alive. If the application crashes, the kubelet attempts to restart it.
+The kubelet agent that allows each worker node to communicate with the API Server running on the master node.
+The kubelet agent is also responsible for setting up pod requirements, such as mounting volumes, starting containers and reporting status.
+
+The Kubelet periodically checks this directory for files, reads these files and creates Pods on the host.
+The default location path for kubelet configuration file, which periodically scans the directory and creates/deletes static Pods as YAML/JSON files.
+$ cat /var/lib/kubelet/config.yaml | grep static
+staticPodPath: /etc/kubernetes/manifests
+
+The Static Pods Yaml files for master’s major components are located at
+$ ls /etc/kubernetes/manifests/
+etcd.yaml
+kube-controller-manager.yaml
+kube-apiserver.yaml
+kube-scheduler.yaml
+
+The command to check Static Pods
+$ kubectl get po -n kube-system
+$ kubectl get pods -n kube-system
+
+create pod manifest in YAML
+$ FILE_NAME.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: static
+  name: static
+spec:
+  containers:
+  - image: nginx
+    name: static
+
+Then move pod manifest YAML into Static Pod default directory path
+$ mv FILE_NAME.yaml /etc/kubernetes/manifests/
+
+Run this command on the node where the kubelet is running
+$ systemctl restart kubelet
+
+If make changes in any of the files within the directory (/etc/kubernetes/manifests), the Kubelet recreates the Pod for those changes to take effect.
+Now the Kubelet will check for any modification OR updation in location of Static Pod YAML files.
+Then Kubelet will automatically created a Pod from /etc/kubernetes/manifests/FILE_NAME.yaml.
+
+The command to check for Pod on the master node.
+$ kubectl get pod
+$ kubectl get pods
+$ kubectl get pods -o wide
+
+Static Pod name will automatically be appended with the node name like if you created the pod with the name (eg:- web1), then it will be created pod along with node name (eg:- web1-node01).
+The name of the Pod will be like:- POD_NAME-NODE_NAME
+
+It also creates a mirror object (copy of the Static Pod from FILE_NAME.yaml) in the Kube-Apiserver.
+What you see from the Kube-Apiserver is just a read-only mirror of the Pod.
+The output of Pod will be 'nginx'.
+
+There is a modification in existing Pod which is already running
+$ kubectl edit pod POD_NAME-NODE_NAME
+-------
+-------
+-------
+spec:
+  containers:
+  - image: busybox
+    name: static
+-------
+-------
+Then save and close it.
+
+Then check breif detail of Pod
+$ kubectl describe pod POD_NAME-NODE_NAME
+-------
+-------
+-------
+Containers:
+  static:
+    Container ID:
+    Image: busybox
+    Image ID:
+-------
+-------
+
+The changes not been effected and still the output of Pod will be 'nginx'.
+
+Its only the way to delete them by modifying the files from the nodes manifest folder (/etc/kubernetes/manifests).
+
+If remove a file from the directory (/etc/kubernetes/manifests) the Pod is also deleted automatically.
+
+Can change default location path for kubelet configuration file, which periodically scans the directory and creates/deletes static Pods as YAML/JSON files.
+We can change to custom location path for Static Pod.
+$ mkdir -p /FOLDER_NAME/FOLDER_NAME
+$ vi /var/lib/kubelet/config.yaml
+-------
+-------
+-------
+staticPodPath: /FOLDER_NAME/FOLDER_NAME
+-------
+-------
+Then save and close it.
+
+$ cat /var/lib/kubelet/config.yaml | grep static
+staticPodPath: /FOLDER_NAME/FOLDER_NAME
+
+Run this command on the node where the kubelet is running
+$ systemctl restart kubelet
+
+create pod manifest in YAML
+$ FILE_NAME.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: static
+  name: static
+spec:
+  containers:
+  - image: nginx
+    name: static
+
+Then move pod manifest YAML into Static Pod custom directory path
+$ mv FILE_NAME.yaml /FOLDER_NAME/FOLDER_NAME
+
+Again, Run this command on the node where the kubelet is running
+$ systemctl restart kubelet
+
+Now the Kubelet will check for any modification OR updation in location of Static Pod YAML files.
+Then Kubelet will automatically created a Pod from /FOLDER_NAME/FOLDER_NAME/FILE_NAME.yaml.
+
+The command to check for Pod on the master node.
+$ kubectl get pod
+$ kubectl get pods
+$ kubectl get pods -o wide
+
+So the Pods that are created by the Kubelet on their own without the intervention from the API server.
+
+# Link:- https://faun.pub/static-pods-in-kubernetes-29fe8063bf96
+         https://www.howtoforge.com/static-pods-in-kuberentes/

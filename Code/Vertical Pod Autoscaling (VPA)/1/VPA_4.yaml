@@ -1,0 +1,22 @@
+apiVersion: autoscaling.k8s.io/v1beta2
+kind: VerticalPodAutoscaler
+metadata:
+  name: prometheus-recommender
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind:       Deployment
+    name:       prometheus-server
+  updatePolicy:
+    updateMode: "Off"
+  resourcePolicy:
+    containerPolicies:
+    - containerName: "prometheus"
+      minAllowed:
+        cpu: "300m"
+        memory: "512Mi"
+      maxAllowed:
+        cpu: "1800m"
+        memory: "3600Mi"
+    - containerName: "configmap-reload"
+      mode: "Off"

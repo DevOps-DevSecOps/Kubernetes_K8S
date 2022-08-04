@@ -1,0 +1,3 @@
+$ kubectl create namespace my-project-dev
+
+$ kubectl create namespace my-project-prod

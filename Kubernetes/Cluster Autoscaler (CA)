@@ -1,0 +1,3 @@
+It adjusts the number of nodes in a cluster.
+The Cluster Autoscaler automatically adds or removes nodes in a cluster when nodes have insufficient resources to run a pod (adds a node).
+When a node remains underutilized, and its pods can be assigned to another node (removes a node).

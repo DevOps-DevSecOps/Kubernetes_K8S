@@ -1,0 +1,24 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: get-pods
+rules:
+  - apiGroups: ["*"]
+    resources: ["pods"]
+    verbs: ["list","get","watch"]
+  - apiGroups: ["extensions","apps"]
+    resources: ["deployments"]
+    verbs: ["get","list","watch","create","update","patch","delete"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: magalix-get-pods
+subjects:
+- apiGroup: ""
+  kind: User
+  name: magalix
+roleRef:
+  apiGroup: ""
+  kind: Role
+  name: get-pods

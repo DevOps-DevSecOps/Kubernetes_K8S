@@ -1,0 +1,2 @@
+The pod pod-s2 has the label selector security:s1 under podAntiAffinity.
+The pod pod-s2 cannot be scheduled on the same node as pod-s1.

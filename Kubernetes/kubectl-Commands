@@ -1,0 +1,1218 @@
+[Version]
+kubectl version
+kubectl version --short
+
+[YAML]
+kubectl create -f ./FOLDER_NAME
+kubectl create -f FILE_NAME.yaml
+kubectl create -f FILE_NAME.yaml --record
+kubectl create -f FILE_NAME.yaml -n NAMESPACE_NAME
+kubectl create -f FILE_NAME.yaml --namespace=NAMESPACE_NAME
+kubectl create -f FILE_NAME.yaml --record                            # '--record=true' flag indicate allows to record current command in the annotations of the resources being created or updated, to see the commands executed in each Deployment revision
+kubectl create -f FILE_NAME.yaml --dry-run --validate
+kubectl create -f /FOLDER_NAME/FILE_NAME.yaml
+kubectl create -f HTTPS_URL_FILE_NAME.yaml
+kubectl create -f HTTPS_URL_FILE_NAME.yaml -n NAMESPACE_NAME
+kubectl apply -f .                                                  # create resources in all manifest files inside folder
+kubectl apply -f ./FOLDER_NAME                                      # create resources in all manifest files in folder
+kubectl apply -f FILE_NAME.yaml
+kubectl apply -f ./FILE_NAME.yaml
+kubectl apply -f ./FILE_NAME.yaml -f ./FILE_NAME.yaml
+kubectl apply -f FILE_NAME.yaml,FILE_NAME.yaml,FILE_NAME.yaml
+kubectl apply -f FILE_NAME.yaml --dry-run
+kubectl apply -f FILE_NAME.yaml --record
+kubectl apply -f FILE_NAME.yaml --record=true
+kubectl apply -f FILE_NAME.yaml --user=USER_NAME
+kubectl apply -f FILE_NAME.yaml --namespace=NAMESPACE_NAME
+kubectl apply -f FOLDER_NAME/FILE_NAME.yaml
+kubectl apply -f /FOLDER_NAME/FILE_NAME.yaml --namespace=NAMESPACE_NAME
+kubectl apply -f ./FOLDER_NAME/FILE_NAME.yaml
+kubectl apply -f HTTPS_URL_FILE_NAME.yaml                           # create resources from URL
+kubectl apply -f HTTPS_URL_FILE_NAME.yaml --namespace=NAMESPACE_NAME
+kubectl apply -f HTTPS_URL_/FOLDER_NAME/FILE_NAME.yaml
+kubectl apply --filename=FILE_NAME.yaml --record=true
+kubectl get -f FILE_NAME.yaml
+kubectl get -f FILE_NAME.yaml -o json
+kubectl get -f FILE_NAME.yaml -o yaml
+kubectl get -f HTTPS_URL_FILE_NAME.yaml
+kubectl get -f HTTPS_URL_FILE_NAME.yaml -o yaml
+kubectl diff -f ./FILE_NAME.yaml                                                # compares current state of cluster against the state in the manifest
+kubectl diff -f HTTPS_URL_FILE_NAME.yaml
+kubectl describe -f FILE_NAME.yaml
+kubectl update -f FILE_NAME.yaml
+kubectl replace -f FILE_NAME.yaml                                               # any changes happen in YAML file
+kubectl replace -f FILE_NAME.yaml --record
+kubectl replace -f ./FILE_NAME.yaml --force
+kubectl replace -f HTTPS_URL_FILE_NAME.yaml
+kubectl replace -f HTTPS_URL_FILE_NAME.yaml --force
+kubectl scale -f FILE_NAME.yaml --replicas=NO                                   # without modify in YAML file
+kubectl delete -f .
+kubectl delete -f ./FILE_NAME.yaml
+kubectl delete -f FILE_NAME.yaml
+kubectl delete -f FILE_NAME.yaml -f FILE_NAME.yaml
+kubectl delete -f FILE_NAME.yaml -n NAMESPACE_NAME
+kubectl delete -f ./FOLDER_NAME/FILE_NAME.yaml
+kubectl delete -f HTTPS_URL_FILE_NAME.yaml
+
+[Run]
+kubectl run NAME --image=IMAGE_NAME
+kubectl run NAME --image=IMAGE_NAME:TAG
+kubectl run NAME --image IMAGE_NAME
+kubectl run NAME --image=IMAGE_NAME --port=CONTAINER_PORT_NO                    # container expose port
+kubectl run NAME --image=IMAGE_NAME --port=CONTAINER_PORT_NO --replicas=NO
+kubectl run NAME --image=IMAGE_NAME --restart=Never
+kubectl run NAME --image=IMAGE_NAME --restart=Never --port=CONTAINER_PORT_NO
+kubectl run NAME --image=IMAGE_NAME:TAG --restart=Never -- LINUX_COMMANDS
+kubectl run NAME --image=IMAGE_NAME -n NAMESPACE_NAME
+kubectl run NAME --image=IMAGE_NAME --namespace=NAMESPACE_NAME
+kubectl run NAME --image=IMAGE_NAME --dry-run
+kubectl run NAME --image=IMAGE_NAME --dry-run -o yaml
+kubectl run NAME --image=IMAGE_NAME --dry-run=client -o yaml
+kubectl run NAME --image=IMAGE_NAME --dry-run=client -o yaml > FILE_NAME.yaml
+kubectl run NAME --image=IMAGE_NAME --replicas=NO
+kubectl run NAME --image=IMAGE_NAME --replicas=NO -n NAMESPACE_NAME
+kubectl run NAME --image=IMAGE_NAME --replicas=NO --labels="KEY=VALUE"
+kubectl run NAME --image=IMAGE_NAME --replicas=NO --labels="KEY=VALUE,KEY=VALUE"
+kubectl run NAME --image=IMAGE_NAME --replicas=NO --labels="KEY=VALUE" -o yaml
+kubectl run NAME --image=IMAGE_NAME --replicas=NO --labels="KEY=VALUE" -o yaml > FILE_NAME.yaml
+kubectl run NAME --image=IMAGE_NAME --labels=KEY=VALUE
+kubectl run NAME --image=IMAGE_NAME --labels="KEY=VALUE"
+kubectl run NAME --image=IMAGE_NAME --labels="KEY=VALUE,KEY=VALUE"
+kubectl run NAME --image=IMAGE_NAME --labels="KEY=VALUE, KEY=VALUE"
+kubectl run NAME --image=IMAGE_NAME --env="KEY=VALUE" --env="KEY=VALUE"         # set environment variables in the container
+kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME
+kubectl run NAME --image DOCKER_HUB_USER_ID/REPOSITORY_NAME --context=CONTEXT_NAME
+kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --labels KEY=VALUE --port SERVICE_PORT_NO --expose
+kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
+kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --restart=Never
+kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --dry-run=client -o yaml > FILE_NAME.yaml
+kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --dry-run=client -o yaml > FILE_NAME.yaml
+kubectl run NAME --image=index.docker.io/DOCKER_HUB_USER_ID/REPOSITORY_NAME --requests=cpu=NOm,memory=NOM --expose --port=SERVICE_PORT_NO
+kubectl run --rm -it NAME --image=IMAGE_NAME
+kubectl run --rm -it NAME --image=IMAGE_NAME:TAG --restart=Never
+kubectl run --rm -it NAME --image=IMAGE_NAME --restart=Never -- sh
+kubectl run --rm -it NAME --image=IMAGE_NAME --restart=Never -- LINUX_COMMANDS
+kubectl run --rm -it NAME --image=IMAGE_NAME:TAG --restart=Never -- LINUX_COMMANDS
+kubectl run --rm -it NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME
+kubectl run --rm -i -t NAME --image=IMAGE_NAME -- sh
+kubectl run -i --tty NAME --image IMAGE_NAME:TAG
+kubectl run -i --tty NAME --image=IMAGE_NAME -- sh                              # run pod as interactive shell
+kubectl run -i --tty NAME --image=IMAGE_NAME --restart=Never -- bash
+kubectl run -i --tty NAME --image=IMAGE_NAME:TAG --restart=Never -- bash
+kubectl run -i --tty NAME --image=IMAGE_NAME --restart=Never                    # keep it in the foreground, don't restart it if it exits
+kubectl run -i --tty NAME --image=IMAGE_NAME /bin/sh
+kubectl run -i --tty NAME --image IMAGE_NAME --command "/bin/sh"
+kubectl run -i --tty NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
+kubectl run -i --tty --rm NAME --image IMAGE_NAME:TAG --restart=Never
+kubectl run -i --tty --rm NAME --image IMAGE_NAME:TAG --restart=Never /bin/sh
+
+[All]
+kubectl get all
+kubectl get all -o wide
+kubectl get all -l KEY=VALUE
+kubectl get all --show-labels
+kubectl get all --all-namespaces
+kubectl get all --all-namespaces -o yaml
+kubectl get all --all-namespaces -o yaml > FILE_NAME.yaml
+kubectl get all -n NAMESPACE_NAME
+kubectl get all --namespace NAMESPACE_NAME
+kubectl get po,svc
+kubectl get pods,deploy
+kubectl get rc,services
+kubectl get po,svc,deploy
+kubectl get po,deploy,rs -l KEY=VALUE
+kubectl delete pods,services -l KEY=VALUE
+kubectl delete deployment,services -l KEY=VALUE
+kubectl delete configmap,service,pvc -l KEY=VALUE
+kubectl delete po,svc --all -n NAMESPACE_NAME
+kubectl delete pod,svc --all -n NAMESPACE_NAME
+kubectl delete pod,service NAME NAME                                           # delete pods and services with same names
+
+[Pods]
+kubectl explain pod
+kubectl explain pods
+kubectl attach -i POD_NAME
+kubectl attach -it POD_NAME
+kubectl attach -it POD_NAME -c CONTAINER_NAME
+kubectl edit pod POD_NAME
+kubectl edit pod POD_NAME -n NAMESPACE_NAME
+kubectl expose pod POD_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO
+kubectl expose pod POD_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO
+kubectl expose pod POD_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES
+kubectl expose pod POD_NAME --port SERVICE_PORT_NO --target-port CONTAINER_PORT_NO --type SERVICE_TYPES
+kubectl get po --kubeconfig=FILE_NAME
+kubectl get po
+kubectl get po -o wide
+kubectl get po -o yaml
+kubectl get po -l KEY
+kubectl get po -l KEY=VALUE
+kubectl get po --show-labels
+kubectl get po --all-namespaces
+kubectl get po -n NAMESPACE_NAME
+kubectl get po -n NAMESPACE_NAME -o wide
+kubectl get po -n NAMESPACE_NAME --show-labels
+kubectl get po --namespace=NAMESPACE_NAME
+kubectl get po POD_NAME
+kubectl get po POD_NAME -n NAMESPACE_NAME
+kubectl get po/POD_NAME
+kubectl get po/POD_NAME -o yaml
+kubectl get pod -A                                                             # list pods in all namespaces 
+kubectl get pod
+kubectl get pod --watch
+kubectl get pod --output=wide
+kubectl get pod -o wide
+kubectl get pod -o wide -l KEY=VALUE
+kubectl get pod -l KEY=VALUE
+kubectl get pod -l KEY=VALUE -w
+kubectl get pod -l 'KEY in (VALUE)'
+kubectl get pod -l 'KEY in (VALUE,VALUE)'
+kubectl get pod -l 'KEY in (VALUE),KEY in (VALUE)'
+kubectl get pod --all-namespaces -o wide
+kubectl get pod -n NAMESPACE_NAME
+kubectl get pod -n NAMESPACE_NAME -o wide
+kubectl get pod -n NAMESPACE_NAME --show-labels
+kubectl get pod -n NAMESPACE_NAME --show-labels -o wide
+kubectl get pod POD_NAME
+kubectl get pod POD_NAME -w
+kubectl get pod POD_NAME -o wide
+kubectl get pod POD_NAME -o wide --watch
+kubectl get pod POD_NAME -o yaml
+kubectl get pod POD_NAME -o yaml > FILE_NAME.yaml
+kubectl get pod POD_NAME -o json
+kubectl get pod POD_NAME -o yaml --export
+kubectl get pod POD_NAME --show-labels
+kubectl get pod POD_NAME -n NAMESPACE_NAME
+kubectl get pod POD_NAME -n NAMESPACE_NAME -o yaml
+kubectl get pod POD_NAME --namespace=NAMESPACE_NAME
+kubectl get pod POD_NAME --output yaml
+kubectl get pod POD_NAME --output=yaml
+kubectl get pod POD_NAME --output=yaml --namespace=NAMESPACE_NAME
+kubectl get pod/POD_NAME
+kubectl get pod/POD_NAME -o yaml
+kubectl get pods --kubeconfig FILE_NAME
+kubectl get pods --kubeconfig=FILE_NAME
+kubectl get pods --kubeconfig /FOLDER_NAME/FILE_NAME
+kubectl get pods --user=USER_NAME
+kubectl get pods --context=CONTEXT_NAME
+kubectl get pods --context=CONTEXT_NAME --namespace=NAMESPACE_NAME
+kubectl get pods
+kubectl get pods -w
+kubectl get pods --output=wide
+kubectl get pods --watch
+kubectl get pods --watch output
+kubectl get pods -o wide
+kubectl get pods -o wide -n NAMESPACE_NAME
+kubectl get pods -a -n NAMESPACE_NAME
+kubectl get pods --show-all -w
+kubectl get pods --show-labels
+kubectl get pods --selector="KEY=VALUE"
+kubectl get pods --selector="KEY=VALUE" --output=wide
+kubectl get pods --selector="KEY in (VALUE,VALUE)"
+kubectl get pods --selector="KEY in (VALUE, VALUE)"
+kubectl get pods -L KEY
+kubectl get pods -l="KEY=VALUE"
+kubectl get pods -l KEY=VALUE
+kubectl get pods -l KEY=VALUE -n=NAMESPACE_NAME
+kubectl get pods -l KEY=VALUE,KEY=VALUE
+kubectl get pods -l KEY=VALUE -l KEY=VALUE
+kubectl get pods -l KEY!=VALUE
+kubectl get pods -l KEY==VALUE
+kubectl get pods -l KEY==VALUE,KEY=VALUE
+kubectl get pods -l 'KEY in (VALUE)'
+kubectl get pods -l 'KEY in (VALUE,VALUE)'
+kubectl get pods -l 'KEY in (VALUE,VALUE)' --show-labels
+kubectl get pods -l 'KEY in (VALUE, VALUE)'
+kubectl get pods -l 'KEY in (VALUE),KEY in (VALUE)'
+kubectl get pods -l 'KEY notin (VALUE)'
+kubectl get pods -l 'KEY notin (VALUE, VALUE)'
+kubectl get pods -l 'KEY,KEY notin (VALUE)'
+kubectl get pods -l 'KEY,KEY notin (VALUE)' --show-labels
+kubectl get pods -l KEY=VALUE -o wide
+kubectl get pods -l KEY=VALUE -o wide -n NAMESPACE_NAME
+kubectl get pods -l KEY=VALUE -o yaml
+kubectl get pods -l KEY=VALUE -w
+kubectl get pods -l KEY=VALUE --watch
+kubectl get pods -l KEY=VALUE --output=yaml
+kubectl get pods -l KEY=VALUE -n=NAMESPACE_NAME
+kubectl get pods -n NAMESPACE_NAME
+kubectl get pods -n=NAMESPACE_NAME
+kubectl get pods -n NAMESPACE_NAME -w
+kubectl get pods -n NAMESPACE_NAME --watch
+kubectl get pods -n NAMESPACE_NAME --selector KEY=VALUE
+kubectl get pods --namespace NAMESPACE_NAME
+kubectl get pods --namespace=NAMESPACE_NAME
+kubectl get pods --all-namespaces
+kubectl get pods --all-namespaces -o wide
+kubectl get pods --all-namespaces -o json
+kubectl get pods POD_NAME
+kubectl get pods POD_NAME -o yaml
+kubectl get pods/POD_NAME -o yaml
+kubectl describe po
+kubectl describe po -n NAMESPACE_NAME
+kubectl describe po POD_NAME
+kubectl describe po POD_NAME -n NAMESPACE_NAME
+kubectl describe pod POD_NAME
+kubectl describe pod POD_NAME POD_NAME
+kubectl describe pod/POD_NAME
+kubectl describe pod POD_NAME -n NAMESPACE_NAME
+kubectl describe pod POD_NAME --namespace NAMESPACE_NAME
+kubectl describe pod POD_NAME --namespace=NAMESPACE_NAME
+kubectl describe pod POD_NAME | grep -i toleration
+kubectl describe pods
+kubectl describe pods --all-namespaces
+kubectl describe pods POD_NAME
+kubectl describe pods/POD_NAME
+kubectl describe pods POD_NAME -n NAMESPACE_NAME
+kubectl describe pods POD_NAME --namespace NAMESPACE_NAME
+kubectl label po POD_NAME KEY=VALUE -n NAMESPACE_NAME
+kubectl label pod POD_NAME KEY=VALUE                                            # add a label for existing pod
+kubectl label pod POD_NAME KEY=VALUE KEY=VALUE
+kubectl label pod POD_NAME KEY=VALUE --overwrite                                # change a new VALUE to existing KEY for existing pod
+kubectl label pod POD_NAME KEY-                                                 # removing a label for existing pod
+kubectl label pods POD_NAME KEY=VALUE                                           # add a label for existing pod
+kubectl label pods POD_NAME KEY=VALUE --overwrite                               # change a new VALUE to existing KEY for existing pod
+kubectl label pods POD_NAME KEY-                                                # removing a label for existing pod
+kubectl annotate pod POD_NAME KEY=VALUE                                         # add a annotation for existing pod
+kubectl annotate pod POD_NAME KEY=VALUE --overwrite                             # change a new VALUE to existing KEY for existing pod
+kubectl annotate pod POD_NAME KEY-                                              # removing a annotation for existing pod
+kubectl annotate pods POD_NAME KEY=VALUE                                        # add a annotation for existing pod
+kubectl logs POD_NAME
+kubectl logs POD_NAME -n NAMESPACE_NAME
+kubectl logs POD_NAME --namespace NAMESPACE_NAME
+kubectl logs POD_NAME --namespace=NAMESPACE_NAME
+kubectl logs POD_NAME --previous
+kubectl logs POD_NAME --since=TIME_HOUR                                         # TIME_HOUR=1h, show all logs from pod in the hour
+kubectl logs POD_NAME --tail NO
+kubectl logs POD_NAME --tail=NO
+kubectl logs POD_NAME > FILE_NAME
+kubectl logs POD_NAME -c CONTAINER_NAME
+kubectl logs POD_NAME -c CONTAINER_NAME --previous
+kubectl logs POD_NAME -c CONTAINER_NAME -n NAMESPACE_NAME --previous
+kubectl logs -f POD_NAME
+kubectl logs -f POD_NAME -c CONTAINER_NAME
+kubectl logs -f POD_NAME --tail NO
+kubectl logs -f POD_NAME --tail NO -c CONTAINER_NAME
+kubectl logs -p POD_NAME -n NAMESPACE_NAME
+kubectl logs pod/POD_NAME
+kubectl logs pod/POD_NAME -n NAMESPACE_NAME
+kubectl logs pod/POD_NAME -c CONTAINER_NAME
+kubectl logs pod/POD_NAME -c CONTAINER_NAME -n NAMESPACE_NAME
+kubectl top po
+kubectl top pod
+kubectl top pod --all-namespaces --containers=true
+kubectl top pod POD_NAME
+kubectl top pod POD_NAME --containers                                                                   # show metrics for a given pod and its containers
+kubectl top pod POD_NAME --sort-by=cpu                                                                  # show metrics for a given pod and sort it by 'cpu' or 'memory'
+kubectl top pod POD_NAME --namespace=NAMESPACE_NAME
+kubectl top pods
+kubectl top pods -n NAMESPACE_NAME
+kubectl top pods --all-namespaces
+kubectl top pods POD_NAME -n NAMESPACE_NAME
+kubectl port-forward POD_NAME HOST_PORT_NO:SERVICE_PORT_NO
+kubectl port-forward POD_NAME HOST_PORT_NO:SERVICE_PORT_NO --namespace NAMESPACE_NAME
+kubectl port-forward POD_NAME HOST_PORT_NO:SERVICE_PORT_NO --namespace=NAMESPACE_NAME
+kubectl port-forward pod/POD_NAME :SERVICE_PORT_NO                                                      # Listen on a random host port no locally
+kubectl port-forward --address 0.0.0.0 pod/POD_NAME HOST_PORT_NO:SERVICE_PORT_NO                        # Listen on host port on all addresses
+kubectl port-forward --address localhost,IP_ADDRESS pod/POD_NAME HOST_PORT_NO:SERVICE_PORT_NO           # Listen on host port with selected IP
+kubectl port-forward pod/POD_NAME HOST_PORT_NO:SERVICE_PORT_NO
+kubectl port-forward pods/POD_NAME HOST_PORT_NO:SERVICE_PORT_NO
+kubectl delete po --all                                                                                 # delete all pods in the default namespace
+kubectl delete po --all --force
+kubectl delete po --all -n NAMESPACE_NAME                                                               # delete all pods in namespace
+kubectl delete po POD_NAME
+kubectl delete po POD_NAME --force
+kubectl delete pod -l KEY=VALUE
+kubectl delete pod POD_NAME
+kubectl delete pod POD_NAME POD_NAME
+kubectl delete pod POD_NAME -n=NAMESPACE_NAME
+kubectl delete pod POD_NAME --namespace=NAMESPACE_NAME
+kubectl delete pod/POD_NAME
+kubectl delete pod/POD_NAME -n NAMESPACE_NAME
+kubectl delete pods --all
+kubectl delete pods --all --force
+kubectl delete pods POD_NAME --user=USER_NAME
+kubectl delete pods POD_NAME
+kubectl delete pods/POD_NAME
+KUBECONFIG=FILE_NAME kubectl get pods
+
+[Deployments]
+kubectl explain deploy
+kubectl explain deployment
+kubectl create deploy DEPLOYMENT_NAME --image=IMAGE_NAME
+kubectl create deploy DEPLOYMENT_NAME --image=IMAGE_NAME --replicas=NO
+kubectl create deploy DEPLOYMENT_NAME --image=IMAGE_NAME --dry-run -o yaml > FILE_NAME.yaml
+kubectl create deploy DEPLOYMENT_NAME --image=index.docker.io/DOCKER_HUB_USER_ID/REPOSITORY_NAME
+kubectl create deploy DEPLOYMENT_NAME --image=index.docker.io/DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
+kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME
+kubectl create deployment DEPLOYMENT_NAME --image IMAGE_NAME
+kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME:TAG
+kubectl create deployment DEPLOYMENT_NAME --image IMAGE_NAME:TAG
+kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME --replicas=NO
+kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME --replicas=NO --dry-run=client -o yaml
+kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME --replicas=NO --dry-run=client -o yaml > FILE_NAME.yaml
+kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME -n=NAMESPACE_NAME
+kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME -n=NAMESPACE_NAME --replicas=NO
+kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME --namespace=NAMESPACE_NAME --replicas=NO
+kubectl create deployment DEPLOYMENT_NAME --image IMAGE_NAME --dry-run
+kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME --dry-run=client -o yaml
+kubectl create deployment DEPLOYMENT_NAME --image IMAGE_NAME --dry-run -o yaml
+kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME --dry-run -o yaml
+kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME --dry-run -o yaml > FILE_NAME.yaml
+kubectl create deployment DEPLOYMENT_NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME
+kubectl create deployment DEPLOYMENT_NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
+kubectl create deployment DEPLOYMENT_NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --replicas=NO
+kubectl set env deployment/DEPLOYMENT_NAME NAME=VALUE                                           #
+kubectl set image deploy DEPLOYMENT_NAME CONTAINER_NAME=IMAGE_NAME
+kubectl set image deploy DEPLOYMENT_NAME CONTAINER_NAME=IMAGE_NAME:TAG
+kubectl set image deployment DEPLOYMENT_NAME CONTAINER_NAME=IMAGE_NAME:TAG
+kubectl set image deployment DEPLOYMENT_NAME CONTAINER_NAME=IMAGE_NAME:TAG --record
+kubectl set image deployment DEPLOYMENT_NAME CONTAINER_NAME=IMAGE_NAME:TAG --namespace NAMESPACE_NAME --record=true
+kubectl set image deployment/DEPLOYMENT_NAME CONTAINER_NAME=IMAGE_NAME:TAG                      # rolling update containers of deployment, updating the image
+kubectl set image deployment/DEPLOYMENT_NAME CONTAINER_NAME=IMAGE_NAME:TAG --record
+kubectl set image deployment/DEPLOYMENT_NAME CONTAINER_NAME=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
+kubectl set image deployments/DEPLOYMENT_NAME CONTAINER_NAME=IMAGE_NAME:TAG
+kubectl set image deployments/DEPLOYMENT_NAME CONTAINER_NAME=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
+kubectl set resources deployment DEPLOYMENT_NAME --limits cpu=NOm,memory=NOMi --requests cpu=NOm,memory=NOMi            # add ResourceQuota to Deployment
+kubectl set resources deployment DEPLOYMENT_NAME --limits=cpu=NOm,memory=NOMi --requests=cpu=NOm,memory=NOMi
+kubectl set resources deployment/DEPLOYMENT_NAME -c=CONTAINER_NAME --limits=cpu=NOm,memory=NOMi
+kubectl set resources deployment DEPLOYMENT_NAME --limits cpu=0,memory=0 --requests cpu=0,memory=0                      # remove ResourceQuota for Deployment
+kubectl expose deploy DEPLOYMENT_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES
+kubectl expose deployment DEPLOYMENT_NAME --type=SERVICE_TYPES
+kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=SERVICE_TYPES
+kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=SERVICE_TYPES --external-ip=IP_ADDRESS
+kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO
+kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO
+kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=SERVICE_TYPES
+kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO
+kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES
+kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=SERVICE_TYPES
+kubectl expose deployment DEPLOYMENT_NAME --port SERVICE_PORT_NO --target-port CONTAINER_PORT_NO --type SERVICE_TYPES
+kubectl expose deployment/DEPLOYMENT_NAME --name=SERVICE_NAME --type=SERVICE_TYPES
+kubectl expose deployment/DEPLOYMENT_NAME
+kubectl scale deploy DEPLOYMENT_NAME --replicas=NO
+kubectl scale deploy DEPLOYMENT_NAME --replicas NO
+kubectl scale deploy/DEPLOYMENT_NAME --replicas=NO
+kubectl scale deploy/DEPLOYMENT_NAME --replicas NO
+kubectl scale deployment DEPLOYMENT_NAME --replicas=NO
+kubectl scale deployment/DEPLOYMENT_NAME --replicas=NO
+kubectl scale deployment DEPLOYMENT_NAME --replicas=NO -n NAMESPACE_NAME
+kubectl scale deployment DEPLOYMENT_NAME --replicas=NO -n=NAMESPACE_NAME
+kubectl scale deployment DEPLOYMENT_NAME --replicas=NO --namespace=NAMESPACE_NAME
+kubectl scale --current-replicas=NO --replicas=NO deployment/DEPLOYMENT_NAME                    # deployment current size is NO, scale to NO
+kubectl autoscale deployment DEPLOYMENT_NAME --cpu-percent=PERCENTAGE_NO --min=NO --max=NO      # Horizontal Pod Autoscaler
+kubectl autoscale deployment/DEPLOYMENT_NAME --cpu-percent=PERCENTAGE_NO --min=NO --max=NO
+kubectl autoscale deployment/DEPLOYMENT_NAME --min=NO --max=NO
+kubectl edit deploy DEPLOYMENT_NAME
+kubectl edit deploy/DEPLOYMENT_NAME
+kubectl edit deployment DEPLOYMENT_NAME
+kubectl edit deployment DEPLOYMENT_NAME --record
+kubectl edit deployment DEPLOYMENT_NAME -n NAMESPACE_NAME
+kubectl edit deployment/DEPLOYMENT_NAME
+kubectl get deploy
+kubectl get deploy -o wide
+kubectl get deploy -o yaml
+kubectl get deploy -n NAMESPACE_NAME
+kubectl get deploy --all-namespaces -o yaml > FILE_NAME.yaml
+kubectl get deploy DEPLOYMENT_NAME
+kubectl get deploy DEPLOYMENT_NAME -o yaml > FILE_NAME.yaml
+kubectl get deploy/DEPLOYMENT_NAME -n NAMESPACE_NAME
+kubectl get deployment
+kubectl get deployment -o wide
+kubectl get deployment -l KEY=VALUE
+kubectl get deployment -l KEY=VALUE --show-labels
+kubectl get deployment -n NAMESPACE_NAME
+kubectl get deployment -n=NAMESPACE_NAME
+kubectl get deployment DEPLOYMENT_NAME
+kubectl get deployment DEPLOYMENT_NAME --show-labels
+kubectl get deployment DEPLOYMENT_NAME -o wide
+kubectl get deployment DEPLOYMENT_NAME -n NAMESPACE_NAME
+kubectl get deployment DEPLOYMENT_NAME -o yaml
+kubectl get deployment DEPLOYMENT_NAME -o yaml > FILE_NAME.yaml
+kubectl get deployment DEPLOYMENT_NAME --output yaml
+kubectl get deployment DEPLOYMENT_NAME -n NAMESPACE_NAME -o yaml
+kubectl get deployment DEPLOYMENT_NAME -n NAMESPACE_NAME -o yaml > FILE_NAME.yaml
+kubectl get deployment DEPLOYMENT_NAME --namespace=NAMESPACE_NAME --output=yaml
+kubectl get deployment/DEPLOYMENT_NAME -o yaml > FILE_NAME.yaml
+kubectl get deployments
+kubectl get deployments -w
+kubectl get deployments -o wide
+kubectl get deployments --show-labels
+kubectl get deployments --all-namespaces
+kubectl get deployments DEPLOYMENT_NAME
+kubectl get deployments DEPLOYMENT_NAME -o yaml
+kubectl describe deploy
+kubectl describe deploy DEPLOYMENT_NAME
+kubectl describe deployment
+kubectl describe deployment DEPLOYMENT_NAME
+kubectl describe deployment DEPLOYMENT_NAME > FILE_NAME.yaml
+kubectl describe deployments
+kubectl describe deployments DEPLOYMENT_NAME
+kubectl logs deploy/DEPLOYMENT_NAME                                                         # Pod logs for a Deployment (single-container)
+kubectl logs deploy/DEPLOYMENT_NAME -c CONTAINER_NAME                                       # Pod logs for a Deployment (multi-container)
+kubectl logs deployment/DEPLOYMENT_NAME
+kubectl logs -f deployment/DEPLOYMENT_NAME
+kubectl port-forward deploy/DEPLOYMENT_NAME HOST_PORT_NO:SERVICE_PORT_NO
+kubectl port-forward deployment/DEPLOYMENT_NAME HOST_PORT_NO:SERVICE_PORT_NO
+kubectl port-forward deployment/DEPLOYMENT_NAME :SERVICE_PORT_NO                            # listen on a random host port no locally
+kubectl rollout history deploy DEPLOYMENT_NAME                                              # list of revision no's
+kubectl rollout history deploy DEPLOYMENT_NAME -n NAMESPACE_NAME
+kubectl rollout history deploy DEPLOYMENT_NAME --revision=NO                                # detail information of specific revision NO
+kubectl rollout history deploy/DEPLOYMENT_NAME
+kubectl rollout history deployment DEPLOYMENT_NAME
+kubectl rollout history deployment DEPLOYMENT_NAME --revision=NO
+kubectl rollout history deployment DEPLOYMENT_NAME --revision NO
+kubectl rollout history deployment/DEPLOYMENT_NAME
+kubectl rollout history deployment/DEPLOYMENT_NAME --revision=NO
+kubectl rollout history deployments DEPLOYMENT_NAME
+kubectl rollout history deployments DEPLOYMENT_NAME --revision=NO
+kubectl rollout pause deploy DEPLOYMENT_NAME
+kubectl rollout pause deployment DEPLOYMENT_NAME
+kubectl rollout pause deployment/DEPLOYMENT_NAME
+kubectl rollout resume deploy DEPLOYMENT_NAME
+kubectl rollout resume deploy/DEPLOYMENT_NAME
+kubectl rollout resume deployment DEPLOYMENT_NAME
+kubectl rollout resume deployment/DEPLOYMENT_NAME
+kubectl rollout status deploy/DEPLOYMENT_NAME
+kubectl rollout status deployment DEPLOYMENT_NAME
+kubectl rollout status deployment/DEPLOYMENT_NAME
+kubectl rollout status deployment/DEPLOYMENT_NAME -w
+kubectl rollout status deployment/DEPLOYMENT_NAME --namespace=NAMESPACE_NAME
+kubectl rollout status deployments DEPLOYMENT_NAME
+kubectl rollout undo deploy DEPLOYMENT_NAME
+kubectl rollout undo deploy DEPLOYMENT_NAME -n NAMESPACE_NAME
+kubectl rollout undo deploy DEPLOYMENT_NAME --to-revision=NO
+kubectl rollout undo deploy DEPLOYMENT_NAME --to-revision=NO -n NAMESPACE_NAME
+kubectl rollout undo deploy/DEPLOYMENT_NAME --to-revision=NO
+kubectl rollout undo deployment DEPLOYMENT_NAME
+kubectl rollout undo deployment DEPLOYMENT_NAME -n NAMESPACE_NAME
+kubectl rollout undo deployment/DEPLOYMENT_NAME                                             # rollback to previous revision
+kubectl rollout undo deployment DEPLOYMENT_NAME --to-revision=NO
+kubectl rollout undo deployment DEPLOYMENT_NAME --to-revision NO
+kubectl rollout undo deployment/DEPLOYMENT_NAME --to-revision=NO                            # rollback to a specific revision
+kubectl rollout undo deployments DEPLOYMENT_NAME
+kubectl rollout undo deployments DEPLOYMENT_NAME --to-revision=NO
+kubectl rollout restart deployment DEPLOYMENT_NAME
+kubectl rollout restart deployment/DEPLOYMENT_NAME
+kubectl rollout restart deployment DEPLOYMENT_NAME -n NAMESPACE_NAME
+kubectl delete deploy --all
+kubectl delete deploy DEPLOYMENT_NAME
+kubectl delete deploy DEPLOYMENT_NAME -n NAMESPACE_NAME
+kubectl delete deploy/DEPLOYMENT_NAME -n NAMESPACE_NAME
+kubectl delete deployment -l KEY=VALUE
+kubectl delete deployment DEPLOYMENT_NAME
+kubectl delete deployment DEPLOYMENT_NAME -n NAMESPACE_NAME
+kubectl delete deployment/DEPLOYMENT_NAME
+kubectl delete deployments DEPLOYMENT_NAME
+kubectl delete deployments/DEPLOYMENT_NAME
+
+[ReplicaSets]
+kubectl autoscale rs REPLICASET_NAME --cpu-percent=PERCENTAGE_NO --min=NO --max=NO
+kubectl autoscale replicaset REPLICASET_NAME --max=NO
+kubectl scale rs REPLICASET_NAME --replicas=NO
+kubectl scale rs/REPLICASET_NAME --replicas=NO
+kubectl scale rs/REPLICASET_NAME rs/REPLICASET_NAME rs/REPLICASET_NAME --replicas=NO
+kubectl scale replicaset REPLICASET_NAME --replicas=NO
+kubectl get rs
+kubectl get rs -w
+kubectl get rs -o wide
+kubectl get rs -o yaml
+kubectl get rs --show-labels
+kubectl get rs --all-namespaces
+kubectl get rs --selector=KEY=VALUE
+kubectl get rs REPLICASET_NAME
+kubectl get rs REPLICASET_NAME -o wide
+kubectl get rs REPLICASET_NAME --output=yaml
+kubectl get rs/REPLICASET_NAME
+kubectl get replicaset
+kubectl get replicaset -o wide
+kubectl get replicaset -l KEY=VALUE
+kubectl get replicaset REPLICASET_NAME -o yaml
+kubectl get replicasets
+kubectl get replicasets -w
+kubectl get replicasets REPLICASET_NAME -n NAMESPACE_NAME -o json
+kubectl describe rs
+kubectl describe rs REPLICASET_NAME
+kubectl describe rs/REPLICASET_NAME
+kubectl describe replicaset
+kubectl describe replicasets
+kubectl port-forward rs/REPLICASET_NAME HOST_PORT_NO:SERVICE_PORT_NO
+kubectl port-forward replicaset/REPLICASET_NAME HOST_PORT_NO:SERVICE_PORT_NO
+kubectl delete rs REPLICASET_NAME
+kubectl delete rs/REPLICASET_NAME
+kubectl delete replicaset REPLICASET_NAME
+
+[ReplicationController]
+kubectl scale rc REPLICATIONCONTROLLER_NAME --replicas=NO
+kubectl scale rc/REPLICATIONCONTROLLER_NAME rc/REPLICATIONCONTROLLER_NAME rc/REPLICATIONCONTROLLER_NAME --replicas=NO
+kubectl scale replicationcontroller REPLICATIONCONTROLLER_NAME --replicas=NO
+kubectl get rc
+kubectl get rc -o wide
+kubectl get rc REPLICATIONCONTROLLER_NAME
+kubectl get rc/REPLICATIONCONTROLLER_NAME
+kubectl get rc/REPLICATIONCONTROLLER_NAME -o wide
+kubectl get rc/REPLICATIONCONTROLLER_NAME -o yaml
+kubectl get rc/REPLICATIONCONTROLLER_NAME -o json
+kubectl get replicationcontroller
+kubectl get replicationcontroller REPLICATIONCONTROLLER_NAME
+kubectl get replicationcontrollers REPLICATIONCONTROLLER_NAME
+kubectl describe rc REPLICATIONCONTROLLER_NAME
+kubectl describe rc/REPLICATIONCONTROLLER_NAME
+kubectl describe replicationcontrollers REPLICATIONCONTROLLER_NAME
+kubectl describe replicationcontrollers/REPLICATIONCONTROLLER_NAME
+kubectl delete rc REPLICATIONCONTROLLER_NAME
+kubectl delete replicationcontrollers REPLICATIONCONTROLLER_NAME
+
+[DaemonSet]
+kubectl edit ds DAEMONSET_NAME -n NAMESPACE_NAME
+kubectl edit ds/DAEMONSET_NAME
+kubectl edit daemonset DAEMONSET_NAME
+kubectl edit daemonset DAEMONSET_NAME -n NAMESPACE_NAME
+kubectl set image ds DAEMONSET_NAME CONTAINER_NAME=IMAGE_NAME -n NAMESPACE_NAME
+kubectl get ds
+kubectl get ds --all-namespaces
+kubectl get ds -n NAMESPACE_NAME
+kubectl get ds --namespace=NAMESPACE_NAME
+kubectl get ds DAEMONSET_NAME -n NAMESPACE_NAME -o yaml
+kubectl get daemonset -A                                                                  # list pods in all namespaces
+kubectl get daemonset
+kubectl get daemonset -n NAMESPACE_NAME
+kubectl get daemonsets
+kubectl get daemonsets/DAEMONSET_NAME
+kubectl describe ds -n NAMESPACE_NAME
+kubectl describe ds DAEMONSET_NAME
+kubectl describe ds DAEMONSET_NAME -n NAMESPACE_NAME
+kubectl describe daemonset DAEMONSET_NAME -n NAMESPACE_NAME
+kubectl describe daemonset/DAEMONSET_NAME
+kubectl describe daemonsets DAEMONSET_NAME
+kubectl rollout status ds/DAEMONSET_NAME
+kubectl rollout status ds/DAEMONSET_NAME -n NAMESPACE_NAME
+kubectl rollout history daemonset DAEMONSET_NAME
+kubectl rollout history daemonset DAEMONSET_NAME --revision=NO
+kubectl rollout undo daemonset DAEMONSET_NAME --to-revision=NO
+kubectl delete ds DAEMONSET_NAME
+kubectl delete ds DAEMONSET_NAME -n NAMESPACE_NAME
+
+[StatefulSets]
+kubectl edit statefulset STATEFULSET_NAME
+kubectl edit statefulsets STATEFULSET_NAME
+kubectl set image sts STATEFULSET_NAME CONTAINER_NAME=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --record
+kubectl set image statefulset STATEFULSET_NAME CONTAINER_NAME=IMAGE_NAME:TAG
+kubectl scale sts STATEFULSET_NAME --replicas=NO
+kubectl scale sts/STATEFULSET_NAME --replicas=NO
+kubectl scale statefulset STATEFULSET_NAME --replicas=NO
+kubectl scale statefulset/STATEFULSET_NAME --replicas=NO
+kubectl get sts
+kubectl get sts STATEFULSET_NAME -o yaml
+kubectl get statefulset
+kubectl get statefulset STATEFULSET_NAME
+kubectl describe sts STATEFULSET_NAME
+kubectl describe statefulset STATEFULSET_NAME
+kubectl describe statefulset STATEFULSET_NAME > FILE_NAME.yaml
+kubectl rollout status sts/STATEFULSET_NAME                                                   # watch the status of the update
+kubectl rollout status sts/STATEFULSET_NAME --namespace=NAMESPACE_NAME
+kubectl rollout status sts STATEFULSET_NAME
+kubectl rollout history sts/STATEFULSET_NAME                                                  # view a history or previous configurations
+kubectl rollout undo sts/STATEFULSET_NAME                                                     # command to roll back the modification
+kubectl delete sts STATEFULSET_NAME
+kubectl delete sts/STATEFULSET_NAME
+kubectl delete sts/STATEFULSET_NAME --cascade=false
+kubectl delete statefulset STATEFULSET_NAME
+kubectl delete statefulsets STATEFULSET_NAME
+
+[CronJob]
+kubectl get cronjob
+kubectl get cronjob -o wide
+kubectl get cronjobs
+kubectl get cronjob CRONJOB_NAME
+kubectl delete cronjob CRONJOB_NAME
+
+[Jobs]
+kubectl get job
+kubectl get job JOB_NAME
+kubectl get job JOB_NAME -o yaml
+kubectl get jobs
+kubectl get jobs -o wide
+kubectl get jobs --watch
+kubectl get jobs -l KEY=VALUE
+kubectl get jobs/JOB_NAME
+kubectl get jobs/JOB_NAME -o yaml
+kubectl describe job JOB_NAME
+kubectl describe jobs/JOB_NAME
+kubectl logs -f JOB_NAME
+kubectl delete job -l KEY=VALUE
+kubectl delete job JOB_NAME
+kubectl delete jobs JOB_NAME
+kubectl delete jobs/JOB_NAME
+
+[Exec]
+kubectl exec -it POD_NAME sh
+kubectl exec -it POD_NAME bash
+kubectl exec -it POD_NAME /bin/sh
+kubectl exec -it POD_NAME /bin/bash
+kubectl exec -it POD_NAME LINUX_COMMANDS
+kubectl exec -it POD_NAME -c CONTAINER_NAME bash
+kubectl exec -it POD_NAME -- sh
+kubectl exec -it POD_NAME -- /bin/sh
+kubectl exec -it POD_NAME -- /bin/bash
+kubectl exec -it POD_NAME -- LINUX_COMMANDS
+kubectl exec -it POD_NAME -c CONTAINER_NAME -- sh
+kubectl exec -it POD_NAME -c CONTAINER_NAME -- /bin/sh
+kubectl exec -it POD_NAME -c CONTAINER_NAME -- /bin/bash
+kubectl exec -it POD_NAME -c CONTAINER_NAME -- LINUX_COMMANDS
+kubectl exec -it POD_NAME --container CONTAINER_NAME -- sh
+kubectl exec -i -t POD_NAME -- /bin/sh -c 'LINUX_COMMANDS'
+kubectl exec -i -t POD_NAME -- /bin/bash
+kubectl exec -i -t POD_NAME -c CONTAINER_NAME -- bash
+kubectl exec -i -t POD_NAME --container CONTAINER_NAME -- /bin/bash
+kubectl exec --stdin --tty POD_NAME -- sh
+kubectl exec --stdin --tty POD_NAME -- /bin/sh
+kubectl exec --stdin --tty POD_NAME -- /bin/bash
+kubectl exec -i -n NAMESPACE_NAME POD_NAME -- LINUX_COMMANDS
+kubectl exec -it --namespace NAMESPACE_NAME POD_NAME -- bash
+kubectl exec -it --namespace=NAMESPACE_NAME POD_NAME -- bash
+kubectl exec -it --namespace NAMESPACE_NAME POD_NAME -- bash -c CONTAINER_NAME
+kubectl exec -it --namespace=NAMESPACE_NAME POD_NAME -- bash -c CONTAINER_NAME
+kubectl exec POD_NAME LINUX_COMMANDS
+kubectl exec POD_NAME -c CONTAINER_NAME LINUX_COMMANDS
+kubectl exec POD_NAME -- LINUX_COMMANDS
+kubectl exec -n NAMESPACE_NAME POD_NAME -- LINUX_COMMANDS
+kubectl exec POD_NAME -c CONTAINER_NAME -- LINUX_COMMANDS
+kubectl exec deploy/DEPLOYMENT_NAME -- LINUX_COMMANDS
+kubectl exec -it deploy/DEPLOYMENT_NAME -n NAMESPACE_NAME -- /bin/bash
+
+[ResourceQuota]
+kubectl get resourcequota
+kubectl get resourcequota -n NAMESPACE_NAME
+kubectl get resourcequotas -n NAMESPACE_NAME
+kubectl get resourcequota RESOURCEQUOTA_NAME
+kubectl get resourcequota RESOURCEQUOTA_NAME --namespace=NAMESPACE_NAME
+kubectl get resourcequota RESOURCEQUOTA_NAME --namespace=NAMESPACE_NAME --output=yaml
+kubectl describe resourcequota/RESOURCEQUOTA_NAME --namespace NAMESPACE_NAME
+kubectl delete resourcequotas RESOURCEQUOTA_NAME
+kubectl delete resourcequotas RESOURCEQUOTA_NAME -n NAMESPACE_NAME
+kubectl describe quota
+kubectl describe quota --namespace=NAMESPACE_NAME
+kubectl get limitrange
+
+[Namespaces]
+kubectl explain ns
+kubectl edit ns NAMESPACE_NAME
+kubectl create ns NAMESPACE_NAME
+kubectl create ns NAMESPACE_NAME --dry-run=client -o yaml > FILE_NAME.yaml
+kubectl create namespace NAMESPACE_NAME
+kubectl create namespace NAMESPACE_NAME --dry-run -o yaml
+kubectl label ns NAMESPACE_NAME KEY=VALUE
+kubectl label namespace/NAMESPACE_NAME KEY=VALUE
+kubectl get ns
+kubectl get ns -o wide
+kubectl get ns -o yaml
+kubectl get ns --show-labels
+kubectl get ns NAMESPACE_NAME
+kubectl get namespace
+kubectl get namespace NAMESPACE_NAME
+Kubectl get namespaces
+kubectl get namespaces NAMESPACE_NAME
+kubectl get namespaces --show-labels
+kubectl describe ns
+kubectl describe ns NAMESPACE_NAME
+kubectl describe ns NAMESPACE_NAME NAMESPACE_NAME
+kubectl describe namespace
+kubectl describe namespace NAMESPACE_NAME
+kubectl describe namespaces NAMESPACE_NAME
+kubectl delete ns NAMESPACE_NAME
+kubectl delete ns NAMESPACE_NAME NAMESPACE_NAME
+kubectl delete namespace NAMESPACE_NAME
+kubectl delete namespaces NAMESPACE_NAME
+
+[Persistent Volumes (PV)]
+kubectl get pv
+kubectl get pv --show-labels
+kubectl describe pv
+kubectl describe pv PV_NAME
+kubectl describe pv/PV_NAME
+kubectl delete pv PV_NAME
+kubectl delete pv PV_NAME --force --namespace NAMESPACE_NAME
+
+[PersistentVolumeClaim (PVC)]
+kubectl get pvc
+kubectl get pvc -l KEY=VALUE
+kubectl get pvc -n NAMESPACE_NAME
+kubectl get pvc --namespace NAMESPACE_NAME
+kubectl get pvc --namespace=NAMESPACE_NAME
+kubectl get persistentvolumeclaims --namespace=NAMESPACE_NAME
+kubectl describe pvc
+kubectl describe pvc PVC_NAME
+kubectl delete pvc -l KEY=VALUE
+kubectl delete pvc PVC_NAME
+kubectl delete pvc PVC_NAME --force --namespace NAMESPACE_NAME
+
+[Storage Classes]
+kubectl get sc
+kubectl get sc -o yaml
+kubectl get storageclass
+kubectl delete storageclass STORAGECLASS_NAME
+kubectl delete storageclass STORAGECLASS_NAME --force --namespace NAMESPACE_NAME
+
+[Service]
+kubectl explain svc
+kubectl create service clusterip SERVICE_NAME --clusterip="None" -o yaml --dry-run=client > /FOLDER_NAME/FILE_NAME.yaml
+kubectl create service nodeport SERVICE_NAME
+kubectl edit svc SERVICE_NAME
+kubectl edit svc/SERVICE_NAME
+kubectl edit svc SERVICE_NAME -n NAMESPACE_NAME
+kubectl edit service SERVICE_NAME
+kubectl edit service SERVICE_NAME -n NAMESPACE_NAME
+kubectl get svc
+kubectl get svc -o wide
+kubectl get svc -o yaml
+kubectl get svc --show-labels
+kubectl get svc --all-namespaces
+kubectl get svc -l KEY=VALUE
+kubectl get svc -n NAMESPACE_NAME
+kubectl get svc SERVICE_NAME
+kubectl get svc/SERVICE_NAME
+kubectl get svc SERVICE_NAME -o yaml
+kubectl get svc SERVICE_NAME -n NAMESPACE_NAME
+kubectl get svc SERVICE_NAME -n NAMESPACE_NAME -o json
+kubectl get service
+kubectl get service --all-namespaces
+kubectl get service --all-namespaces -o yaml > FILE_NAME.yaml
+kubectl get service SERVICE_NAME
+kubectl get service SERVICE_NAME --watch
+kubectl get service SERVICE_NAME -o yaml
+kubectl get service SERVICE_NAME -n NAMESPACE_NAME
+kubectl get service SERVICE_NAME -n NAMESPACE_NAME -o yaml
+kubectl get service SERVICE_NAME -n NAMESPACE_NAME -o yaml > FILE_NAME.yaml
+kubectl get services
+kubectl get services -n NAMESPACE_NAME
+kubectl get services --namespace NAMESPACE_NAME
+kubectl get services --namespace=NAMESPACE_NAME
+kubectl get services --all-namespaces
+kubectl get services SERVICE_NAME
+kubectl get services SERVICE_NAME --namespace=NAMESPACE_NAME
+kubectl describe svc
+kubectl describe svc -l KEY=VALUE
+kubectl describe svc SERVICE_NAME
+kubectl describe service
+kubectl describe service SERVICE_NAME
+kubectl describe service SERVICE_NAME --namespace NAMESPACE_NAME
+kubectl describe service/SERVICE_NAME
+kubectl describe services SERVICE_NAME
+kubectl logs -f service/SERVICE_NAME
+kubectl port-forward svc/SERVICE_NAME HOST_PORT_NO:SERVICE_PORT_NO
+kubectl port-forward service/SERVICE_NAME HOST_PORT_NO:SERVICE_PORT_NO
+kubectl delete svc SERVICE_NAME
+kubectl delete svc SERVICE_NAME -n NAMESPACE_NAME
+kubectl delete svc/SERVICE_NAME
+kubectl delete svc -l KEY=VALUE
+kubectl delete service SERVICE_NAME
+kubectl delete service/SERVICE_NAME
+kubectl delete service -l KEY=VALUE
+kubectl delete services SERVICE_NAME
+kubectl delete services/SERVICE_NAME
+
+[Endpoints]
+kubectl get ep
+kubectl get ep SERVICE_NAME
+kubectl get endpoints
+
+[Ingress]
+kubectl get ing
+kubectl get ing --all-namespaces
+kubectl get ingress
+kubectl get ingress --watch
+kubectl get ingress -n NAMESPACE_NAME
+kubectl get ingress --namespace NAMESPACE_NAME
+kubectl get ingresses --namespace NAMESPACE_NAME
+kubectl describe ingress INGRESS_NAME
+kubectl describe ingress INGRESS_NAME -n NAMESPACE_NAME
+kubectl delete ing INGRESS_NAME
+kubectl delete ingress INGRESS_NAME
+
+[Network Policies]
+kubectl edit networkpolicy NETWORKPOLICY_NAME
+kubectl edit networkpolicy NETWORKPOLICY_NAME -n NAMESPACE_NAME
+kubectl get netpol
+kubectl describe networkpolicy
+kubectl describe networkpolicy -n NAMESPACE_NAME
+kubectl describe networkpolicy NETWORKPOLICY_NAME
+kubectl describe networkpolicy NETWORKPOLICY_NAME -n NAMESPACE_NAME
+
+[ConfigMaps]
+kubectl create cm CONFIGMAP_NAME --from-literal=KEY=VALUE
+kubectl create cm CONFIGMAP_NAME --from-literal=KEY=VALUE --from-literal=KEY=VALUE --dry-run=client -o yaml > FILE_NAME.yaml
+kubectl create cm CONFIGMAP_NAME --from-file=FILE_NAME
+kubectl create cm CONFIGMAP_NAME --from-file=FILE_NAME -o yaml > FILE_NAME.yaml
+kubectl create cm CONFIGMAP_NAME --from-file=FOLDER_NAME/FILE_NAME -o yaml > FILE_NAME.yaml
+kubectl create cm CONFIGMAP_NAME --from-file=KEY=FILE_NAME
+kubectl create cm CONFIGMAP_NAME --from-env-file=FILE_NAME
+kubectl create configmap CONFIGMAP_NAME --from-literal=KEY=VALUE
+kubectl create configmap CONFIGMAP_NAME --from-literal=KEY="VALUE"
+kubectl create configmap CONFIGMAP_NAME --from-literal=KEY=VALUE --from-literal=KEY=VALUE
+kubectl create configmap CONFIGMAP_NAME --from-file=FILE_NAME
+kubectl create configmap CONFIGMAP_NAME --from-file=FOLDER_NAME/FILE_NAME
+kubectl create configmap CONFIGMAP_NAME --from-file=FOLDER_NAME/FILE_NAME --namespace NAMESPACE_NAME
+kubectl create configmap CONFIGMAP_NAME --from-file=FOLDER_NAME/FILE_NAME --namespace NAMESPACE_NAME --dry-run -o yaml
+kubectl create configmap CONFIGMAP_NAME --from-env-file=FOLDER_NAME/FILE_NAME
+kubectl create configmap CONFIGMAP_NAME --from-env-file=FOLDER_NAME/FILE_NAME --from-env-file=FOLDER_NAME/FILE_NAME
+kubectl edit cm CONFIGMAP_NAME
+kubectl edit configmap CONFIGMAP_NAME
+kubectl get cm
+kubectl get cm --all-namespaces
+kubectl get cm --all-namespaces -o yaml
+kubectl get cm CONFIGMAP_NAME -o yaml
+kubectl get cm CONFIGMAP_NAME -o yaml -n NAMESPACE_NAME
+kubectl get configmap
+kubectl get configmap -o yaml
+kubectl get configmap CONFIGMAP_NAME
+kubectl get configmap CONFIGMAP_NAME -o yaml
+kubectl get configmaps
+kubectl get configmaps CONFIGMAP_NAME -o yaml
+kubectl describe cm CONFIGMAP_NAME
+kubectl describe configmap CONFIGMAP_NAME
+kubectl describe configmap/CONFIGMAP_NAME
+kubectl describe configmaps
+kubectl describe configmaps CONFIGMAP_NAME
+kubectl delete cm --all
+kubectl delete cm CONFIGMAP_NAME
+kubectl delete cm CONFIGMAP_NAME -n NAMESPACE_NAME
+kubectl delete configmaps CONFIGMAP_NAME
+
+[Secrets]
+kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE                                      
+kubectl create secret generic SECRET_NAME --from-literal=KEY='VALUE'
+kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE --from-literal=KEY=VALUE
+kubectl create secret generic SECRET_NAME --from-literal=KEY='VALUE' --from-literal=KEY='VALUE'
+kubectl create secret generic SECRET_NAME --from-literal='KEY=VALUE' --from-literal='KEY=VALUE'
+kubectl create secret generic SECRET_NAME --from-file=./FILE_NAME
+kubectl create secret generic SECRET_NAME --from-file=FILE_NAME --from-file=FILE_NAME
+kubectl create secret generic SECRET_NAME --from-file=./FILE_NAME --from-file=./FILE_NAME
+kubectl create secret generic SECRET_NAME --from-file=KEY=FILE_NAME --from-file=KEY=FILE_NAME
+kubectl create secret generic SECRET_NAME --from-env-file=./FILE_NAME
+kubectl edit secret SECRET_NAME
+kubectl edit secret SECRET_NAME -n NAMESPACE_NAME
+kubectl edit secrets SECRET_NAME
+kubectl get secret
+kubectl get secret -n NAMESPACE_NAME
+kubectl get secret SECRET_NAME
+kubectl get secret SECRET_NAME -o yaml
+kubectl get secret SECRET_NAME -o json
+kubectl get secret SECRET_NAME --output=yaml
+kubectl get secret SECRET_NAME --export -o yaml > FILE_NAME.yaml                # export the secret and store the secret config data in a file
+kubectl get secret SECRET_NAME -n NAMESPACE_NAME
+kubectl get secret SECRET_NAME --namespace NAMESPACE_NAME
+kubectl get secret/SECRET_NAME
+kubectl get secret/SECRET_NAME -o yaml
+kubectl get secrets
+kubectl get secrets -o yaml
+kubectl get secrets --all-namespaces
+kubectl get secrets --namespace NAMESPACE_NAME
+kubectl get secrets SECRET_NAME
+kubectl get secrets SECRET_NAME -o yaml
+kubectl get secrets/SECRET_NAME
+kubectl describe secret
+kubectl describe secret -n NAMESPACE_NAME
+kubectl describe secret SECRET_NAME
+kubectl describe secret SECRET_NAME --namespace NAMESPACE_NAME
+kubectl describe secret/SECRET_NAME
+kubectl describe secrets
+kubectl describe secrets SECRET_NAME
+kubectl describe secrets/SECRET_NAME
+kubectl delete secret SECRET_NAME
+kubectl delete secret SECRET_NAME -n NAMESPACE_NAME
+
+[Secrets with Docker]
+kubectl create secret docker-registry SECRET_NAME --docker-server=DOCKER_REGISTRY_SERVER --docker-username=DOCKER_HUB_USER_ID --docker-password=DOCKER_HUB_USER_PASSWORD --docker-email=DOCKER_EMAIL
+kubectl create secret docker-registry SECRET_NAME --docker-server=REGISTRY_HOSTNAME_IPADDRESS:REGISTRY_PORT --docker-username=DOCKER_HUB_USER_ID --docker-password=DOCKER_HUB_USER_PASSWORD --docker-email=DOCKER_EMAIL
+kubectl create secret docker-registry SECRET_NAME -n NAMESPACE_NAME --docker-server=DOCKER_REGISTRY_SERVER --docker-username=DOCKER_HUB_USER_ID --docker-password=DOCKER_HUB_USER_PASSWORD --docker-email=DOCKER_EMAIL
+kubectl create secret docker-registry SECRET_NAME --namespace NAMESPACE_NAME --docker-server=DOCKER_REGISTRY_SERVER --docker-username=DOCKER_HUB_USER_ID --docker-password=DOCKER_HUB_USER_PASSWORD --docker-email=DOCKER_EMAIL
+kubectl create secret docker-registry SECRET_NAME --from-file=.dockerconfigjson=$HOME/.docker/config.json
+kubectl create secret docker-registry SECRET_NAME --from-file=.dockerconfigjson=/home/USER_NAME/.docker/config.json
+kubectl create secret generic SECRET_NAME --from-file=.dockerconfigjson=$HOME/.docker/config.json
+kubectl create secret generic SECRET_NAME --from-file=.dockerconfigjson=$HOME/.docker/config.json --type=kubernetes.io/dockerconfigjson
+kubectl create secret generic SECRET_NAME --from-file=.dockerconfigjson=/home/USER_NAME/.docker/config.json --type=kubernetes.io/dockerconfigjson
+
+[Secrets with TLS]
+kubectl create secret tls SECRET_NAME --cert FILE_NAME.crt --key FILE_NAME.pem
+kubectl create secret tls SECRET_NAME --cert=FILE_NAME.crt --key=FILE_NAME.pem
+kubectl create secret tls SECRET_NAME --cert FILE_NAME.crt --key FILE_NAME.key
+kubectl create secret tls SECRET_NAME --key /FOLDER_NAME/FILE_NAME.key --cert /FOLDER_NAME/FILE_NAME.crt
+
+[Role-Based Access Control (RBAC)]
+kubectl get roles,rolebindings -n NAMESPACE_NAME
+● Role
+kubectl create role ROLE_NAME --verb=VERBS_TYPES --resource=OBJECTS_NAME
+kubectl create role ROLE_NAME --verb VERBS_TYPES --resource OBJECTS_NAME
+kubectl create role ROLE_NAME --verb VERBS_TYPES --resource OBJECTS_NAME -n NAMESPACE_NAME
+kubectl create role ROLE_NAME --verb=VERBS_TYPES,VERBS_TYPES,VERBS_TYPES --resource=OBJECTS_NAME
+kubectl create role ROLE_NAME --verb=VERBS_TYPES,VERBS_TYPES,VERBS_TYPES --resource=OBJECTS_NAME,OBJECTS_NAME
+kubectl create role ROLE_NAME --verb=VERBS_TYPES --verb=VERBS_TYPES --verb=VERBS_TYPES --resource=OBJECTS_NAME
+kubectl create role ROLE_NAME --verb=VERBS_TYPES --verb=VERBS_TYPES --verb=VERBS_TYPES --resource=OBJECTS_NAME -n NAMESPACE_NAME
+kubectl create role ROLE_NAME --verb=VERBS_TYPES --resource=OBJECTS_NAME --resource-name=OBJECTS_RESOURCE_NAME
+kubectl create role ROLE_NAME --verb=VERBS_TYPES --resource=OBJECTS_NAME --resource-name=OBJECTS_RESOURCE_NAME --resource-name=OBJECTS_RESOURCE_NAME
+kubectl create role ROLE_NAME --verb=VERBS_TYPES,VERBS_TYPES,VERBS_TYPES --resource=OBJECTS_NAME --resource-name=OBJECTS_RESOURCE_NAME
+kubectl get roles
+kubectl get roles -n NAMESPACE_NAME
+kubectl get roles --all-namespaces
+kubectl get roles --all-namespaces -o yaml
+kubectl get role ROLE_NAME -o yaml
+kubectl get role ROLE_NAME -o yaml > FILE_NAME.yaml
+kubectl get role ROLE_NAME -n NAMESPACE_NAME -o yaml
+kubectl describe role ROLE_NAME
+kubectl delete role ROLE_NAME -n NAMESPACE_NAME
+● RoleBinding
+kubectl create rolebinding ROLEBINDING_NAME --role=ROLE_NAME --user=USER_NAME
+kubectl create rolebinding ROLEBINDING_NAME --role ROLE_NAME --user USER_NAME
+kubectl create rolebinding ROLEBINDING_NAME --role=ROLE_NAME --serviceaccount=NAMESPACE_NAME:SERVICEACCOUNT_NAME
+kubectl create rolebinding ROLEBINDING_NAME --role=ROLE_NAME --serviceaccount=NAMESPACE_NAME:SERVICEACCOUNT_NAME -n NAMESPACE_NAME
+kubectl create rolebinding ROLEBINDING_NAME --role ROLE_NAME --serviceaccount NAMESPACE_NAME:SERVICEACCOUNT_NAME -n NAMESPACE_NAME
+kubectl create rolebinding ROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --user=USER_NAME --namespace=NAMESPACE_NAME
+kubectl create rolebinding ROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --serviceaccount=NAMESPACE_NAME:SERVICEACCOUNT_NAME
+kubectl create rolebinding ROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --serviceaccount=NAMESPACE_NAME:SERVICEACCOUNT_NAME -n NAMESPACE_NAME
+kubectl create rolebinding ROLEBINDING_NAME --clusterrole CLUSTERROLE_NAME --serviceaccount NAMESPACE_NAME:SERVICEACCOUNT_NAME -n NAMESPACE_NAME
+kubectl create rolebinding ROLEBINDING_NAME --clusterrole CLUSTERROLE_NAME --serviceaccount NAMESPACE_NAME:SERVICEACCOUNT_NAME -n NAMESPACE_NAME --dry-run -o yaml > FILE_NAME.yaml
+kubectl create rolebinding ROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --serviceaccount=NAMESPACE_NAME:SERVICEACCOUNT_NAME --namespace=NAMESPACE_NAME
+kubectl create rolebinding ROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --group=system:serviceaccounts:NAMESPACE_NAME --namespace=NAMESPACE_NAME                                 # grant permission within "NAMESPACE_NAME" to all service accounts in that namespace
+kubectl get rolebinding
+kubectl get rolebindings
+kubectl describe rolebinding ROLEBINDING_NAME
+kubectl delete rolebinding ROLEBINDING_NAME -n NAMESPACE_NAME
+● ClusterRole
+kubectl create clusterrole CLUSTERROLE_NAME --verb VERBS_TYPES --resource OBJECTS_NAME
+kubectl create clusterrole CLUSTERROLE_NAME --verb=VERBS_TYPES,VERBS_TYPES,VERBS_TYPES --resource=OBJECTS_NAME
+kubectl create clusterrole CLUSTERROLE_NAME --verb=VERBS_TYPES,VERBS_TYPES,VERBS_TYPES --resource=OBJECTS_NAME,OBJECTS_NAME
+kubectl create clusterrole CLUSTERROLE_NAME --verb VERBS_TYPES --resource OBJECTS_NAME --dry-run -o yaml > FILE_NAME.yaml
+kubectl create clusterrole CLUSTERROLE_NAME --verb=VERBS_TYPES --verb=VERBS_TYPES --verb=VERBS_TYPES --resource=OBJECTS_NAME
+kubectl create clusterrole CLUSTERROLE_NAME --verb=VERBS_TYPES --resource=OBJECTS_NAME --resource-name=OBJECTS_RESOURCE_NAME --resource-name=OBJECTS_RESOURCE_NAME
+kubectl edit clusterrole CLUSTERROLE_NAME
+kubectl get clusterrole
+kubectl get clusterrole -n NAMESPACE_NAME
+kubectl get clusterrole CLUSTERROLE_NAME
+kubectl get clusterrole CLUSTERROLE_NAME -o yaml
+kubectl get clusterrole CLUSTERROLE_NAME -n NAMESPACE_NAME -o yaml
+kubectl get clusterroles
+kubectl get clusterroles -n NAMESPACE_NAME
+kubectl get clusterroles --namespace=NAMESPACE_NAME
+kubectl get clusterroles CLUSTERROLE_NAME -o yaml
+kubectl describe clusterrole CLUSTERROLE_NAME
+kubectl delete clusterrole CLUSTERROLE_NAME -n NAMESPACE_NAME
+● ClusterRoleBinding
+kubectl create clusterrolebinding CLUSTERROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --group=system:serviceaccounts
+kubectl create clusterrolebinding CLUSTERROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --group=system:serviceaccounts --namespace=NAMESPACE_NAME
+kubectl create clusterrolebinding CLUSTERROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --user=USER_NAME --user=USER_NAME --group=system:serviceaccounts
+kubectl create clusterrolebinding CLUSTERROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --user=USER_NAME
+kubectl create clusterrolebinding CLUSTERROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --serviceaccount=NAMESPACE_NAME:SERVICEACCOUNT_NAME
+kubectl create clusterrolebinding CLUSTERROLEBINDING_NAME --clusterrole CLUSTERROLE_NAME --serviceaccount NAMESPACE_NAME:SERVICEACCOUNT_NAME
+kubectl create clusterrolebinding CLUSTERROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --serviceaccount=NAMESPACE_NAME:SERVICEACCOUNT_NAME -n NAMESPACE_NAME
+kubectl get clusterrolebinding
+kubectl describe clusterrolebinding CLUSTERROLEBINDING_NAME
+kubectl delete clusterrolebinding CLUSTERROLEBINDING_NAME -n NAMESPACE_NAME
+
+[Service Accounts]
+kubectl create sa SERVICEACCOUNT_NAME
+kubectl create sa SERVICEACCOUNT_NAME -n=NAMESPACE_NAME
+kubectl create sa SERVICEACCOUNT_NAME -n NAMESPACE_NAME
+kubectl create serviceaccount SERVICEACCOUNT_NAME
+kubectl create serviceaccount SERVICEACCOUNT_NAME -n NAMESPACE_NAME
+kubectl create serviceaccount SERVICEACCOUNT_NAME --namespace NAMESPACE_NAME
+kubectl get sa
+kubectl get sa -n=NAMESPACE_NAME
+kubectl get sa -n NAMESPACE_NAME
+kubectl get sa -o yaml
+kubectl get sa --all-namespaces
+kubectl get sa SERVICEACCOUNT_NAME -o yaml
+kubectl get serviceaccount
+kubectl get serviceaccount --namespace NAMESPACE_NAME
+kubectl get serviceaccount SERVICEACCOUNT_NAME -o yaml
+kubectl get serviceaccount SERVICEACCOUNT_NAME -o json
+kubectl get serviceaccounts
+kubectl get serviceaccounts SERVICEACCOUNT_NAME -o yaml
+kubectl get serviceaccounts SERVICEACCOUNT_NAME -o yaml > ./FILE_NAME.yaml
+kubectl get serviceaccounts/SERVICEACCOUNT_NAME
+kubectl get serviceaccounts/SERVICEACCOUNT_NAME -o yaml
+kubectl describe sa SERVICEACCOUNT_NAME
+kubectl describe serviceaccount SERVICEACCOUNT_NAME
+kubectl describe serviceaccount SERVICEACCOUNT_NAME --namespace NAMESPACE_NAME
+kubectl replace serviceaccount SERVICEACCOUNT_NAME -f ./FILE_NAME.yaml
+kubectl edit sa SERVICEACCOUNT_NAME
+kubectl edit serviceaccounts SERVICEACCOUNT_NAME
+kubectl delete sa SERVICEACCOUNT_NAME
+kubectl delete sa SERVICEACCOUNT_NAME -n NAMESPACE_NAME
+kubectl delete serviceaccount SERVICEACCOUNT_NAME -n NAMESPACE_NAME
+kubectl delete serviceaccount/SERVICEACCOUNT_NAME
+
+[Events]
+kubectl get event -n NAMESPACE_NAME
+kubectl get event --namespace=NAMESPACE_NAME
+kubectl get events
+kubectl get events -w
+kubectl get events --all-namespaces
+kubectl get events -n NAMESPACE_NAME
+kubectl get events --namespace=NAMESPACE_NAME
+
+[Nodes]
+kubectl edit node NODE_NAME
+kubectl get no
+kubectl get no -o wide
+kubectl get no -o yaml
+kubectl get node
+kubectl get node -L KEY
+kubectl get node -L KEY,KEY
+kubectl get node minikube
+kubectl get node NODE_NAME
+kubectl get node minikube -o json
+kubectl get node NODE_NAME -o yaml
+kubectl get nodes --kubeconfig FILE_NAME
+kubectl get nodes --context=CONTEXT_NAME
+kubectl get nodes
+kubectl get nodes -o wide
+kubectl get nodes -o yaml
+kubectl get nodes --show-labels
+kubectl get nodes -l KEY=VALUE
+kubectl get nodes minikube -o json
+kubectl get nodes NODE_NAME --show-labels
+kubectl describe no
+kubectl describe node
+kubectl describe node minikube
+kubectl describe node NODE_NAME
+kubectl describe node NODE_NAME | grep Labels
+kubectl describe node NODE_NAME | grep -i taint
+kubectl describe nodes
+kubectl describe nodes NODE_NAME
+kubectl describe nodes NODE_NAME | grep -i taint
+kubectl describe nodes NODE_NAME | grep -i taints
+kubectl label node minikube KEY=VALUE                           # add a label for existing node
+kubectl label node NODE_NAME KEY=VALUE                          # add a label for existing node
+kubectl label node NODE_NAME KEY=VALUE --overwrite              # change a new VALUE to existing KEY for existing node
+kubectl label nodes NODE_NAME KEY=VALUE                         # add a label for existing node
+kubectl drain NODE_NAME                                         # node in preparation for maintenance
+kubectl drain NODE_NAME --force
+kubectl cordon NODE_NAME                                        # unschedulable (OR) stops scheduling new Pods to these node
+kubectl uncordon NODE_NAME                                      # schedulable new Pods to these node
+kubectl top node
+kubectl top node NODE_NAME
+kubectl taint node NODE_NAME KEY=VALUE:TAINTS_EFFECT           # add taints to node with key=value and taints_effect
+kubectl taint node NODE_NAME KEY=VALUE:TAINTS_EFFECT-          # remove taints from node with key=value and taints_effect
+kubectl taint nodes NODE_NAME KEY=VALUE:TAINTS_EFFECT          # add taints to node with key=value and taints_effect
+kubectl taint nodes NODE_NAME KEY=VALUE:TAINTS_EFFECT-         # remove taints from node with key=value and taints_effect
+kubectl taint node NODE_NAME KEY-                              # remove taints from node with key
+kubectl taint nodes NODE_NAME KEY-                             # remove taints from node with key
+kubectl taint node NODE_NAME KEY:TAINTS_EFFECT-                # remove taints from node with key and taints_effect
+kubectl taint nodes NODE_NAME KEY:TAINTS_EFFECT-               # remove taints from node with key and taints_effect
+kubectl delete node NODE_NAME
+
+[Horizontal Pod Autoscaling (HPA)]
+kubectl get hpa
+kubectl get hpa -w
+kubectl get hpa HPA_NAME
+kubectl get hpa HPA_NAME --watch
+kubectl get hpa HPA_NAME -o yaml
+kubectl get hpa HPA_NAME -o yaml > /FOLDER_NAME/FILE_NAME.yaml
+kubectl describe hpa HPA_NAME
+kubectl delete hpa HPA_NAME
+
+[Vertical Pod Autoscaling (VPA)]
+kubectl get vpa
+kubectl describe vpa VPA_NAME
+kubectl describe vpa/VPA_NAME
+
+[Pod Disruption Budget (PDB)]
+kubectl get pdb
+kubectl get pdb PDB_NAME
+
+[Cluster Information]
+kubectl cluster-info
+kubectl cluster-info dump
+kubectl cluster-info dump --output-directory=/FOLDER_NAME/FOLDER_NAME                       # dump current cluster state to Folder
+kubectl cluster-info --kubeconfig FILE_NAME
+kubectl get componentstatus
+kubectl get componentstatuses
+
+[Contexts]
+kubectl config view                                                 # it looks for a file named "config" in the "$HOME/.kube" directory (OR) "~/.kube/config" 
+kubectl config view --minify                                        # configuration information associated with the current context
+kubectl config get-contexts                                         # list of contexts
+kubectl config current-context                                      # display the current context
+kubectl config use-context CONTEXT_NAME                             # switch to different context
+kubectl config set-context --current --user=USER_NAME
+kubectl config set-context --current --user USER_NAME
+kubectl config set-context --current --user=SERVICEACCOUNT_NAME
+kubectl config set-context --current --user SERVICEACCOUNT_NAME
+kubectl config set-context --current --namespace=NAMESPACE_NAME
+kubectl config set-context --current --namespace NAMESPACE_NAME
+kubectl config set-context CONTEXT_NAME --namespace=NAMESPACE_NAME
+kubectl config set-context CONTEXT_NAME --namespace=NAMESPACE_NAME --user=USER_NAME
+kubectl config set-context CONTEXT_NAME --namespace=NAMESPACE_NAME --user=SERVICEACCOUNT_NAME
+kubectl config set-context CONTEXT_NAME --cluster=CLUSTER_NAME --user=USER_NAME
+kubectl config set-context CONTEXT_NAME --cluster CLUSTER_NAME --user USER_NAME
+kubectl config set-context CONTEXT_NAME --cluster=CLUSTER_NAME --user=SERVICEACCOUNT_NAME
+kubectl config set-context CONTEXT_NAME --cluster CLUSTER_NAME --user SERVICEACCOUNT_NAME
+kubectl config set-context CONTEXT_NAME --cluster=CLUSTER_NAME --namespace=NAMESPACE_NAME --user=USER_NAME
+kubectl config set-context CONTEXT_NAME --cluster=CLUSTER_NAME --namespace=NAMESPACE_NAME --user=SERVICEACCOUNT_NAME
+kubectl config set-credentials SERVICEACCOUNT_NAME --token=$TOKEN                                       # set SECRET-NAME_TOKEN-ID_SERVICEACCOUNT-NAME value to TOKEN variable (TOKEN=SECRET-NAME_TOKEN-ID_SERVICEACCOUNT-NAME), here $TOKEN variable read value assign to --token 
+kubectl config set-credentials SERVICEACCOUNT_NAME --token=SECRET-NAME_TOKEN-ID_SERVICEACCOUNT-NAME
+kubectl config set-credentials USER_NAME --username=USER_NAME --password=USER_PASSWORD
+kubectl config set-credentials USER_NAME --client-certificate=FILE_NAME.crt --client-key=FILE_NAME.key
+kubectl config set-credentials USER_NAME --client-certificate FILE_NAME.crt --client-key FILE_NAME.key
+kubectl config set-credentials USER_NAME --client-certificate=FILE_NAME.crt --client-key=FILE_NAME.key --embed-certs
+kubectl config set-credentials USER_NAME --client-certificate=FILE_NAME.crt --client-key=FILE_NAME.key --embed-certs=true
+kubectl config set-credentials USER_NAME --client-certificate=/FOLDER_NAME/FOLDER_NAME/FILE_NAME.crt --client-key=/FOLDER_NAME/FOLDER_NAME/FILE_NAME.key
+kubectl config unset users.USER_NAME                                # delete user
+kubectl config delete-context CONTEXT_NAME
+kubectl config --kubeconfig=FILE_NAME view
+kubectl config --kubeconfig=FILE_NAME view --minify
+kubectl config --kubeconfig=FILE_NAME use-context CONTEXT_NAME
+kubectl config --kubeconfig=FILE_NAME set-context CONTEXT_NAME --cluster=CLUSTER_NAME --namespace=NAMESPACE_NAME --user=USER_NAME
+kubectl config --kubeconfig=FILE_NAME set-context CONTEXT_NAME --cluster=CLUSTER_NAME --namespace=NAMESPACE_NAME --user=SERVICEACCOUNT_NAME
+kubectl config --kubeconfig=FILE_NAME set-credentials SERVICEACCOUNT_NAME --token=$TOKEN
+kubectl config --kubeconfig=FILE_NAME set-credentials SERVICEACCOUNT_NAME --token=SECRET-NAME_TOKEN-ID_SERVICEACCOUNT-NAME
+kubectl config --kubeconfig=FILE_NAME set-credentials USER_NAME --username=USER_NAME --password=USER_PASSWORD
+kubectl config --kubeconfig=FILE_NAME set-credentials USER_NAME --client-certificate=FILE_NAME.crt --client-key=FILE_NAME.key
+kubectl config --kubeconfig=FILE_NAME unset users.USER_NAME         # delete a user
+kubectl config --kubeconfig=FILE_NAME unset clusters.CLUSTER_NAME   # remove a cluster
+kubectl config --kubeconfig=FILE_NAME unset contexts.CONTEXT_NAME   # remove a context
+KUBECONFIG=FILE_NAME kubectl config view --minify --flatten --context=CONTEXT_NAME > FILE_NAME.yaml
+KUBECONFIG=FILE_NAME:FILE_NAME:FILE_NAME kubectl config view --merge --flatten > FILE_NAME.yaml                 # Merging no of kubeconfig files redirection the output into a file.yaml 
+
+[Authorization]
+kubectl auth can-i VERBS_TYPES po
+kubectl auth can-i VERBS_TYPES pods
+kubectl auth can-i VERBS_TYPES pods --as USER_NAME
+kubectl auth can-i VERBS_TYPES pods --as USER_NAME --namespace NAMESPACE_NAME
+kubectl auth can-i VERBS_TYPES pods --as=system:serviceaccount:NAMESPACE_NAME:SERVICEACCOUNT_NAME
+kubectl auth can-i VERBS_TYPES pod -n NAMESPACE_NAME --as system:serviceaccount:NAMESPACE_NAME:SERVICEACCOUNT_NAME
+kubectl auth can-i VERBS_TYPES pods -n NAMESPACE_NAME --as=system:serviceaccount:NAMESPACE_NAME:SERVICEACCOUNT_NAME
+kubectl auth can-i VERBS_TYPES pods --namespace NAMESPACE_NAME --as system:serviceaccount:NAMESPACE_NAME:SERVICEACCOUNT_NAME
+kubectl auth can-i VERBS_TYPES deploy
+kubectl auth can-i VERBS_TYPES deployments
+kubectl auth can-i VERBS_TYPES deployments --namespace NAMESPACE_NAME
+kubectl auth can-i VERBS_TYPES deployments --as USER_NAME
+kubectl auth can-i VERBS_TYPES secrets
+kubectl auth can-i VERBS_TYPES secrets --namespace NAMESPACE_NAME
+kubectl auth can-i VERBS_TYPES secrets --namespace NAMESPACE_NAME --as USER_NAME
+kubectl auth can-i VERBS_TYPES pv
+kubectl auth can-i VERBS_TYPES nodes
+kubectl auth can-i VERBS_TYPES nodes -n NAMESPACE_NAME --as system:serviceaccount:NAMESPACE_NAME:SERVICEACCOUNT_NAME
+
+[Certificate Signing Requests (CSR)]
+kubectl explain csr
+kubectl get csr
+kubectl describe csr
+kubectl certificate approve CSR_NAME
+kubectl certificate deny CSR_NAME
+
+[API]
+kubectl get apiservices
+kubectl api-resources
+kubectl api-resources -o name                                       # all resources with simple output (only the resource name)
+kubectl api-resources -o wide                                       # all resources with expanded
+kubectl api-resources --namespaced=true                             # all namespaced resources, In a namespace
+kubectl api-resources --namespaced=false                            # all non-namespaced resources, Not in a namespace
+kubectl api-resources --verbs=list,get                              # all resources that support the "list" and "get" request verbs
+kubectl api-resources --api-group=extensions                        # all resources in the "extensions" API group
+kubectl api-versions
+
+[Help]
+kubectl -h
+kubectl run -h
+kubectl create -h

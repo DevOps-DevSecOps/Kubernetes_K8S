@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Config
+
+clusters:
+- name: CLUSTER_NAME
+  cluster:
+    certificate-authority: FILE_NAME.crt
+    server: https://MASTER_CONTROL-PLANE_NODE_IP_ADDRESS:API_PORT_NO                        # default API_PORT_NO : 6443
+
+contexts:
+- name: CONTEXT_NAME
+  context:
+    cluster: CLUSTER_NAME
+    user: USER_NAME
+    namespace: NAMESPACE_NAME
+
+users:
+- name: USER_NAME
+  user:
+    client-certificate: FILE_NAME.crt
+    client-key: FILE_NAME.key

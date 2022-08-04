@@ -1,0 +1,44 @@
+Create a directory inside '.kube'.
+$ mkdir -p  ~/.kube/users                           
+
+Then change directory into '.kube/users' directory.
+$ cd ~/.kube/users
+
+Generate the user's private key.
+$ openssl genrsa -out kim.key 2048                          
+
+Create new Private Key and Certification Signing Request (CSR).
+* Now create a Certification Signing Request (CSR) for each of the users.
+* CN - This will be set as username (USER_NAME).
+* O - Org name. This is actually used as a group by kubernetes while authenticating/authorizing users.
+$ openssl req -new -key kim.key -out kim.csr -subj "/CN=kim/O=dev/O=example.org"
+
+sign the CSR with the Kubernetes CA.
+$ openssl x509 -req -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -days 730 -in kim.csr -out kim.crt
+
+create the user inside Kubernetes.
+$ kubectl config set-credentials kim --client-certificate=/root/.kube/users/kim.crt --client-key=/root/.kube/users/kim.key
+
+create a context for the user.
+● kim-kubernetes : name of the context.
+● kubernetes : name of the cluster you set while creating it.
+● kim : user you created and configured above to connect to the cluster.
+$ kubectl config set-context kim-kubernetes --cluster=kubernetes  --user=kim --namespace=instavote
+
+verify the configs.
+$ kubectl config get-contexts
+CURRENT     NAME                           CLUSTER        AUTHINFO            NAMESPACE
+            kim-kubernetes                 kubernetes     kim                 instavote
+*           kubernetes-admin@kubernetes    kubernetes     kubernetes-admin    instavote
+
+verify the 'config' in the '.kube' directory.
+$ kubectl config view
+
+switch to different context.
+$ kubectl config use-context kim-kubernetes
+
+verify the configs.
+$ kubectl config get-contexts
+CURRENT    NAME                           CLUSTER       AUTHINFO            NAMESPACE
+*          kim-kubernetes                 kubernetes    kim                 instavote
+           kubernetes-admin@kubernetes    kubernetes    kubernetes-admin    instavote

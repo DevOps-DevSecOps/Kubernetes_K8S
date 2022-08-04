@@ -1,0 +1,18 @@
+apiVersion: batch/v1beta1            ## The version of the Kubernetes API
+kind: CronJob                        ## The type of object for Cron jobs
+metadata:
+  name: cron-test
+spec:
+  schedule: "*/1 * * * *"            ## Defined schedule using the *nix style cron syntax
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: cron-test
+            image: busybox            ## Image used
+            args:
+            - /bin/sh
+            - -c
+            - date; echo Hello this is Cron test
+          restartPolicy: OnFailure    ##  Restart Policy in case container failed

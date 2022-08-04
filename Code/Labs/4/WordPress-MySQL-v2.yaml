@@ -1,0 +1,101 @@
+apiVersion: v1
+data:
+  password: YWRtaW4=
+kind: Secret
+metadata:
+  labels:
+    app: my-wordpress
+  name: mysql-pass
+type: Opaque
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: my-wordpress
+  name: mysql
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: my-wordpress
+  type: NodePort  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: my-wordpress
+  name: wordpress
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: my-wordpress
+  type: NodePort
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  labels:
+    app: my-wordpress
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      app: my-wordpress
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: my-wordpress
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: mysql-pass
+        image: mysql:5.6
+        name: mysql
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: mysql-persistent-storage
+      volumes:
+      - emptyDir: {}
+        name: mysql-persistent-storage
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  labels:
+    app: my-wordpress
+  name: wordpress
+spec:
+  selector:
+    matchLabels:
+      app: my-wordpress
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: my-wordpress
+    spec:
+      containers:
+      - image: wordpress:4.8-apache
+        name: wordpress
+        ports:
+        - containerPort: 80
+          name: wordpress
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: wordpress-persistent-storage
+      volumes:
+      - emptyDir: {}
+        name: wordpress-persistent-storage

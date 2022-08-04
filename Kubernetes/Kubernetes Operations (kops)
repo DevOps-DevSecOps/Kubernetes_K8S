@@ -1,0 +1,5 @@
+kops helps you create, destroy, upgrade and maintain production-grade, highly available, Kubernetes clusters from the command line.
+Automates the provisioning of Kubernetes clusters in AWS.
+Deploys Highly Available (HA) Kubernetes Masters.
+YAML Manifest Based API Configuration.
+Templating and dry-run modes for creating Manifests.

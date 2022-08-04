@@ -1,0 +1,6 @@
+$ kubectl auth can-i get pods -n test4 --as=system:serviceaccount:test:myaccount
+yes
+
+$ kubectl auth can-i get namespaces --as=system:serviceaccount:test:myaccount
+Warning: resource 'namespaces' is not namespace scoped
+yes

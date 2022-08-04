@@ -1,0 +1,93 @@
+[Version]
+kops version
+
+[Cluster]
+# EXAMPLE 1:- Create a cluster in AWS in a single zone
+kops create cluster --name=CLUSTER_NAME --state=s3://BUCKET_NAME --zones=AVAILABILITY_ZONE --node-count=NO
+
+# EXAMPLE 2:- Create a cluster
+export KOPS_STATE_STORE="s3://BUCKET_NAME"
+export ZONES="AVAILABILITY_ZONE"
+kops create cluster CLUSTER_NAME --cloud aws --zones $ZONES --master-zones $ZONES --node-count NO --yes
+
+# EXAMPLE 3:- Create a cluster in AWS with High Availability
+export KOPS_STATE_STORE="s3://BUCKET_NAME"
+export MASTER_SIZE="INSTANCE_TYPES"
+export NODE_SIZE="INSTANCE_TYPES"
+export ZONES="AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3"
+kops create cluster CLUSTER_NAME --node-count NO --zones $ZONES --node-size $NODE_SIZE --master-size $MASTER_SIZE --master-zones $ZONES --bastion="true" --yes
+
+# EXAMPLE 4:- Generate a cluster spec to apply later
+kops create cluster --name=CLUSTER_NAME --state=s3://BUCKET_NAME --zones=AVAILABILITY_ZONE --node-count=NO --dry-run -o yaml > FILE_NAME.yaml
+
+# EXAMPLE 5:- 
+export KOPS_CLUSTER_NAME=CLUSTER_NAME
+export KOPS_STATE_STORE=s3://BUCKET_NAME
+kops create cluster --cloud=aws --zones=AVAILABILITY_ZONE --node-count=NO --node-size=INSTANCE_TYPES --master-size=INSTANCE_TYPES --name=${KOPS_CLUSTER_NAME}
+
+[YAML]
+kops create -f FILE_NAME.yaml
+kops delete -f FILE_NAME.yaml
+kops replace -f FILE_NAME.yaml
+kops replace -f FILE_NAME.yaml --force
+
+[Get]
+kops get CLUSTER_NAME
+kops get CLUSTER_NAME -o yaml
+kops get CLUSTER_NAME -o yaml > FILE_NAME.yaml
+kops get cluster
+kops get cluster CLUSTER_NAME
+kops get cluster CLUSTER_NAME -o yaml
+kops get cluster CLUSTER_NAME -o yaml > FILE_NAME.yaml
+kops get clusters
+kops get instances --name CLUSTER_NAME
+kops get secrets
+kops get secrets admin -o plaintext
+kops get secrets admin -o plaintext --name CLUSTER_NAME
+
+[Edit]
+kops edit cluster CLUSTER_NAME
+kops edit cluster CLUSTER_NAME --state s3://BUCKET_NAME
+kops edit cluster CLUSTER_NAME --state=s3://BUCKET_NAME
+
+[Update]
+kops update cluster --name CLUSTER_NAME
+kops update cluster --name CLUSTER_NAME --yes
+kops update cluster --name CLUSTER_NAME --yes --admin
+kops update cluster --name CLUSTER_NAME --state s3://BUCKET_NAME --yes
+kops update cluster CLUSTER_NAME --state s3://BUCKET_NAME --yes
+kops update cluster CLUSTER_NAME --yes --state=s3://BUCKET_NAME --yes
+
+[Validate]
+kops validate cluster
+kops validate cluster --state s3://BUCKET_NAME
+kops validate cluster CLUSTER_NAME --state s3://BUCKET_NAME
+kops validate cluster --wait MINUTES                                                        # MINUTES = 10m, Kops will try for 10 minutes to validate the cluster
+kops validate cluster --wait MINUTES --count NO                                             # MINUTES = 10m & NO = 3, Kops will try for 10 minutes to validate the cluster 3 times
+
+[Upgrade]
+# Upgrade a kubernetes cluster, After this command is run, use "kops update cluster" and "kops rolling-update cluster" to finish a cluster upgrade
+kops upgrade cluster CLUSTER_NAME --yes --state=s3://BUCKET_NAME
+
+[Rolling Update]
+kops rolling-update cluster
+kops rolling-update cluster --yes
+kops rolling-update cluster CLUSTER_NAME --yes --fail-on-validate-error="false"
+kops rolling-update cluster CLUSTER_NAME --yes --cloudonly --force
+
+[Delete]
+kops delete cluster --name CLUSTER_NAME
+kops delete cluster --name CLUSTER_NAME --yes
+kops delete cluster --name=CLUSTER_NAME --yes
+kops delete cluster --name CLUSTER_NAME --state s3://BUCKET_NAME --yes
+kops delete cluster CLUSTER_NAME --state s3://BUCKET_NAME --yes
+kops delete instance INSTANCE_ID --yes                                                  # INSTANCE_ID = EC2 Instance ID: i-0a5ed581b862d3425
+kops delete instance HOST_NAME --yes                                                    # HOST_NAME = ip-xx.xx.xx.xx.ec2.internal
+kops delete instance --cloudonly INSTANCE_ID --yes
+kops delete secret SECRET_NAME
+
+[Help]
+kops create -h
+kops create --help
+kops create cluster -h
+kops create cluster --help

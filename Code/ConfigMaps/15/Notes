@@ -1,0 +1,3 @@
+$ kubectl exec -it nginx -- cat /tmp/config/nginx.conf
+
+$ kubectl exec -it nginx -- cat /mnt/virtualhost.conf

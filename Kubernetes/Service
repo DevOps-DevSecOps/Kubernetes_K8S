@@ -1,0 +1,11 @@
+# HostPort
+apiVersion: v1
+kind: Pod
+metadata:
+  name: <Pod name>
+spec:
+  containers:
+  - name: <container name>
+    image: <image>
+    ports:
+    - hostPort: <port>

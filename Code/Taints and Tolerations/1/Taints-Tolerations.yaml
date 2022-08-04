@@ -1,0 +1,19 @@
+apiVersion: v1
+metadata:
+  name: esearch
+spec:
+  containers:
+  – name: esearch
+    image: your-es-container
+    resources:
+      requests:
+        cpu: 0.8
+        memory: 4Gi
+      limits:
+        cpu: 3.0
+        memory: 22Gi
+  tolerations:
+  – key: “storage”
+    operator: “Equal”
+    value: “ssd”
+    effect: “NoSchedule”

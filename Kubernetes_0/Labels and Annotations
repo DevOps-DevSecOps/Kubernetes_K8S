@@ -1,0 +1,12 @@
+Kubernetes Labels and Kubernetes Annotations are used to add the metadata to our Kubernetes objects.
+
+[Labels]
+Kubernetes Labels are used for adding identifying metadata to Kubernetes objects.
+Kubernetes Labels allow us to do a grouping of our objects so that we can perform queries for viewing and operating.
+Kubernetes Labels are used within selector sections.
+
+[Annotations]
+Kubernetes Annotations are used for adding non-identifying metadata to Kubernetes objects.
+This metadata information is only for the user.
+Annotations can hold any kind of information that is useful and can provide context to DevOps teams.
+Kubernetes Annotations can’t specify selector sections.

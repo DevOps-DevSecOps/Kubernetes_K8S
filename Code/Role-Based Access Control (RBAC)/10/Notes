@@ -1,0 +1,28 @@
+create a user on the master machine then go into its home directory.
+$ useradd jean && cd /home/jean
+
+create a private key.
+$ openssl genrsa -out jean.key 2048
+
+create a certificate signing request (CSR). CN is the username and O the group.
+● Without Group
+$ openssl req -new -key jean.key -out jean.csr -subj "/CN=jean"
+● With a Group where $group is the group name
+$ openssl req -new -key jean.key -out jean.csr -subj "/CN=jean/O=$group"
+● If the user has multiple groups
+$ openssl req -new -key jean.key -out jean.csr -subj "/CN=jean/O=$group1/O=$group2/O=$group3"
+
+sign the CSR with the Kubernetes CA.
+$ openssl x509 -req -in jean.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out jean.crt -days 500
+
+create a “.certs” directory where we are going to store the user public and private key.
+$ mkdir .certs && mv jean.crt jean.key .certs
+
+create the user inside Kubernetes.
+$ kubectl config set-credentials jean --client-certificate=/home/jean/.certs/jean.crt --client-key=/home/jean/.certs/jean.key
+
+create a context for the user.
+$ kubectl config set-context jean-context --cluster=kubernetes --user=jean
+
+we need to copy the 'config' in the '.kube' directory.
+$ mkdir .kube && vi .kube/config

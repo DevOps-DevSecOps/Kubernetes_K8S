@@ -1,0 +1,57 @@
+operators: In, NotIn, Exists, DoesNotExist, Gt, Lt.
+-> In - The label value must be in the values list.
+-> NotIn - The label value is not in a list.
+-> Exists - A specific label exists.
+-> DoesNotExist - A specific label does not exist.
+-> Gt - The label value is greater than a specified value (string comparison).
+-> Lt - The label value is less than a specified value (string comparison).
+
+Create own custom node labels (KEY=VALUE).
+The some default built-in node labels such as
+-> kubernetes.io/hostname
+-> failure-domain.beta.kubernetes.io/zone
+-> failure-domain.beta.kubernetes.io/region
+-> topology.kubernetes.io/zone
+-> topology.kubernetes.io/region
+-> beta.kubernetes.io/instance-type
+-> node.kubernetes.io/instance-type
+-> kubernetes.io/os
+-> kubernetes.io/arch
+The values of these labels may vary depending on the environment (eg: OS), Cloud Provider, etc.
+
+There are two types of affinity.
+● requiredDuringSchedulingIgnoredDuringExecution
+It is an 'Hard' rule.
+Selector has to match a Node label to an schedule.
+The existing Pods running before affinity is applied will not be evicted if no affinity.
+Pods will be in pending state when no node with matching label.
+Pod cannot be scheduled on a node unless it matches the affinity configuration, even if there are no nodes that match.
+* requiredDuringScheduling - The pod must be scheduled to node(s) that match the expressions listed under matchExpressions.
+                             The rule must be met for a pod to be scheduled onto a node.
+* IgnoredDuringExecution - It indicates that the node affinity only applies during pod scheduling, it doesn’t apply to already running pods.
+                           If labels on a node change at runtime such that the node affinity rules on a pod are no longer met, the pod will still continue to run on the node.
+● preferredDuringSchedulingIgnoredDuringExecution
+It is an 'Soft' rule.
+Pods will be scheduled to any eligible node if a node with a matching label is not found.
+The existing Pods running before the affinity is applied will not be evicted if no affinity.
+The scheduler will attempt to schedule the pod on a node matching the affinity configuration, but if it is unable to do so the pod will still be scheduled on another node.
+The 'weight' field in above is in the range 1-100. This value is used to calculate the priority of nodes to take Pods for scheduling.
+
+[Node]
+The Node Affinity rules work with the node labels.
+The Node Affinity allows scheduling Pods to specific nodes.
+The Nodes that can receive a Pod by matching labels of those Nodes.
+It supports only Node Affinity and no nothing Node Anti-Affinity. 
+* Node Affinity - It similar to a nodeSelector as it allows which nodes your pod is eligible to be scheduled on based on node labels.
+                  The pods to be scheduled on a specific node using node labels.
+
+[Pod]
+The Nodes that can receive a Pod by matching labels of the existing Pods already running on each of those Nodes.
+It define whether a given Pod should or should not be scheduled onto a particular node based on labels of other Pods already running on that node.
+The 'topologyKey' field specifies Node Labels Key (topologyKey: NODE_LABELS_KEY) will match with any of the value.
+The Inter-Pod supports both Affinity and Anti-Affinity.
+* Pod Affinity - It specify that a pod should be scheduled on the same node as another pod.
+                 The 'topologyKey' match with these node already running with existing pod labels (KEY & VALUE) are matched with Anti-Affinity new pod labels (KEY & VALUE) it will scheduled on the same node.
+* Pod Anti-Affinity - It allows you to specify that a set of pods should be scheduled away from one another on different nodes (one replica per node).
+                      It works with 'topologyKey: NODE_LABELS_KEY', the no of Cluster Nodes make in same node label (KEY & VALUE).    
+                      The 'topologyKey' match with these node already running with existing pod labels (KEY & VALUE) are matched with Anti-Affinity new pod labels (KEY & VALUE) it won't schedule on that node, so the 'topologyKey' match with another node with some other existing pod labels (KEY & VALUE) are not matched with Anti-Affinity new pod labels (KEY & VALUE) it will scheduled on that node.

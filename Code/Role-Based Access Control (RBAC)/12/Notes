@@ -1,0 +1,23 @@
+create a Namespaces.
+$ kubectl create namespace office
+
+create a private key.
+$ openssl genrsa -out employee.key 2048
+
+create a certificate signing request (CSR). CN is for the username and O for the group.
+$ openssl req -new -key employee.key -out employee.csr -subj "/CN=employee/O=bitnami"
+
+sign the CSR with the Kubernetes CA.
+$ openssl x509 -req -in employee.csr -CA CA_LOCATION/ca.crt -CAkey CA_LOCATION/ca.key -CAcreateserial -out employee.crt -days 500
+
+create the user inside Kubernetes.
+$ kubectl config set-credentials employee --client-certificate=/home/employee/.certs/employee.crt --client-key=/home/employee/.certs/employee.key
+
+create a context for the user.
+$ kubectl config set-context employee-context --cluster=minikube --namespace=office --user=employee
+
+kubectl CLI with this configuration file.
+$ kubectl --context=employee-context get pods
+$ kubectl --context=employee-context run --image bitnami/dokuwiki mydokuwiki
+$ kubectl --context=employee-context get pods
+$ kubectl --context=employee-context get pods --namespace=default

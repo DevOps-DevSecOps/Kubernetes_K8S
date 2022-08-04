@@ -1,0 +1,8 @@
+$ cat app.properties
+driver=jdbc
+database=postgres
+lookandfeel=1
+otherparams=xyz
+param.with.hierarchy=xyz
+
+$ kubectl create configmap app-config --from-file=app.properties

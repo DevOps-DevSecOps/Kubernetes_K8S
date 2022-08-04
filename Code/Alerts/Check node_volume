@@ -1,0 +1,117 @@
+• Check command node_volume is used to check percentage of available space in Kubernetes Nodes.
+• Spec - node_volume check command has the following variables:
+-> mountpoint - Mountpoint of volume whose usage stats will be checked
+-> secretName - Name of Kubernetes Secret used to pass hostfacts auth info
+-> warning - Warning level value (usage percentage defaults to 80.0)
+-> critical - Critical level value (usage percentage defaults to 95.0)
+• Execution of this command can result in following states:
+-> OK
+-> WARNING
+-> CRITICAL
+-> UNKNOWN
+
+# Tutorial
+• you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster.
+
+kubectl create namespace demo
+
+kubectl get namespaces
+NAME          STATUS    AGE
+default       Active    6h
+kube-public   Active    6h
+kube-system   Active    6h
+demo          Active    4m
+
+# Check volume status of all nodes
+• we are going to create a NodeAlert to check volume stats of all nodes.
+
+cat ./docs/examples/node-alerts/node_volume/demo-0.yaml
+
+apiVersion: monitoring.appscode.com/v1alpha1
+kind: NodeAlert
+metadata:
+  name: node-volume-demo-0
+  namespace: demo
+spec:
+  check: node_volume
+  vars:
+    mountpoint: /mnt/sda1
+    warning: '70'
+    critical: '95'
+  checkInterval: 5m
+  alertInterval: 3m
+  notifierSecretName: notifier-config
+  receivers:
+  - notifier: Mailgun
+    state: CRITICAL
+    to: ["ops@example.com"]
+    
+kubectl apply -f ./docs/examples/node-alerts/node_volume/demo-0.yaml
+
+kubectl describe nodealert -n demo node-volume-demo-0
+
+# Check volume status of nodes with matching labels
+• If a NodeAlert will be used check volume stats of nodes with matching labels by setting spec.selector field.
+
+cat ./docs/examples/node-alerts/node_volume/demo-1.yaml
+
+apiVersion: monitoring.appscode.com/v1alpha1
+kind: NodeAlert
+metadata:
+  name: node-volume-demo-1
+  namespace: demo
+spec:
+  selector:
+    beta.kubernetes.io/os: linux
+  check: node_volume
+  vars:
+    mountpoint: /mnt/sda1
+    warning: '70'
+    critical: '95'
+  checkInterval: 5m
+  alertInterval: 3m
+  notifierSecretName: notifier-config
+  receivers:
+  - notifier: Mailgun
+    state: CRITICAL
+    to: ["ops@example.com"]
+    
+kubectl apply -f ./docs/examples/node-alerts/node_volume/demo-1.yaml
+
+kubectl describe nodealert -n demo node-volume-demo-1
+
+# Check volume status of a specific node
+• If a NodeAlert will be used check volume stats of a node by name by setting spec.nodeName field.
+
+cat ./docs/examples/node-alerts/node_volume/demo-2.yaml
+
+apiVersion: monitoring.appscode.com/v1alpha1
+kind: NodeAlert
+metadata:
+  name: node-volume-demo-2
+  namespace: demo
+spec:
+  nodeName: minikube
+  check: node_volume
+  vars:
+    mountpoint: /mnt/sda1
+    warning: '70'
+    critical: '95'
+  checkInterval: 5m
+  alertInterval: 3m
+  notifierSecretName: notifier-config
+  receivers:
+  - notifier: Mailgun
+    state: CRITICAL
+    to: ["ops@example.com"]
+    
+kubectl apply -f ./docs/examples/node-alerts/node_volume/demo-2.yaml
+
+kubectl describe nodealert -n demo node-volume-demo-2
+
+# Cleaning up
+• To cleanup the Kubernetes resources
+
+kubectl delete ns demo
+
+# Link:- https://appscode.com/products/searchlight/5.1.1/guides/node-alerts/node_volume/

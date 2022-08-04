@@ -1,0 +1,4 @@
+ports:
+- name: Container-Port
+  containerPort: 8080
+  hostPort: 8080

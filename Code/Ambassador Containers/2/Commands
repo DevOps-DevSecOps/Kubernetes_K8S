@@ -1,0 +1,4 @@
+create a Secret with the API key.
+$ kubectl create secret generic themoviedb --from-literal=apikey=<INSERT YOUR API KEY HERE>
+
+$ kubectl exec -it themoviedb -c main -- curl localhost:8080/movies

@@ -1,0 +1,8 @@
+Autoscaling is a method that dynamically scales up / down the number of computing resources that are being allocated to your application based on its needs.
+
+Horizontal Pod Autoscaler controls the scale of a Deployment and ReplicaSet.
+Horizontal Pod Autoscaler scales the number of Pods in a Deployment.
+It work based on CPU/Memory utilization (OR) any installed custom Metrics in server exposed by application.
+If CPU/Memory utilization threshold that crossed and HPA updates the number of pod keeps on increasing/decreasing the replicas count.
+
+HPA allocates pod replicas in order to manage resources.

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-pod
+  labels:
+    app: sample
+    type: nginx-server
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+
+  schedulerName: custom-scheduler

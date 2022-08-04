@@ -1,0 +1,15 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: test
+spec:
+  tolerations:
+  - key: node.kubernetes.io/network-unavailable
+    operator: Exists
+    effect: NoSchedule
+  - key: node.kubernetes.io/notReady
+    operator: Exists
+    effect: NoSchedule
+  containers:
+  - name: nginx
+    image: nginx

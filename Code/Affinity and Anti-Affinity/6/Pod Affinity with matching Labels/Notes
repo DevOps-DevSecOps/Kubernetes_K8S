@@ -1,0 +1,2 @@
+The pod team4a has the label selector team:4 under podAffinity.
+The team4a pod is scheduled on the same node as the team4 pod.

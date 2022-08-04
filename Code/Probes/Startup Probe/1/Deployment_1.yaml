@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-dep
+  labels:
+    app: aspnet-core-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: web
+  template:
+    metadata:
+      labels:
+        component: web
+    spec:
+      containers:
+        - name: csimpleweb
+          image: simpleweb
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+          startupProbe:
+            httpGet:
+              path: /health/SP
+              port: 80
+            failureThreshold: 25
+            periodSeconds: 10

@@ -1,0 +1,9 @@
+[Edit]
+kops edit cluster ${NAME}
+
+[Update]
+kops update cluster ${NAME} --yes
+
+[Delete]
+kops delete cluster --name ${NAME}
+kops delete cluster --name ${NAME} --yes

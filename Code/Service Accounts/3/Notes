@@ -1,0 +1,12 @@
+Create an Service Account in the 'default' namespace.
+So the 'testsa' Service Account is created in the 'default' Namespace.
+COMMAND :-
+$ kubectl create serviceaccount testsa
+serviceaccount/testsa created
+
+So check the token has generated using Secrets for above 'testsa' Service Account.
+COMMAND :-
+$ kubectl get secrets
+NAME                        TYPE                                         DATA            AGE
+default-token-pxzf7         kubernetes.io/service-account-token          3               16h
+testsa-token-zwhvm          kubernetes.io/service-account-token          3               11s

@@ -1,0 +1,12 @@
+  apiVersion: v1
+  kind: Pod
+  metadata:
+      name: <Pod name>
+      annotations:
+          imageregistry: "https://hub.docker.com/"
+  spec:
+      containers:
+      -  name: <Container name>
+         image: <image name>
+         ports:
+         -  containerPort: 80

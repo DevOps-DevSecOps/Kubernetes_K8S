@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-cmd
+spec:
+  containers:
+  - name: cmd-arg-demo
+    image: debian
+    command: ["printenv"]
+    args: ["KUBECONFIG"]
+  restartPolicy: OnFailure

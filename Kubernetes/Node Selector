@@ -1,0 +1,5 @@
+It scheduling a pod on a specific node.
+It specifies a map of 'KEY=VALUE' pairs.
+The Node should have each of 'KEY=VALUE' pairs labels as used for the Pod.
+For a Node need to configure 'KEY=VALUE' pairs Labels. 
+The Node 'KEY=VALUE' pairs labels are mapped/configured with Pod.

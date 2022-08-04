@@ -1,0 +1,20 @@
+[Master Node - Control Plane]
+● API Server
+It is the Gatekeeper of the cluster by providing Authentication, Authorization, Validation of all requests to perform CRUD (create, read, update, delete) functions in the cluster.
+It responds to requests from the worker nodes.
+● ETCD
+It stores information about the state of the Cluster, the information Nodes and every other resources created with in the cluster.
+It uses key-value pairs to store cluster data.
+ETCD Storage is a key-value data store that can be accessed by all nodes in the cluster. It stores configuration data about the cluster’s state.
+● Controller Manager
+● Scheduler
+It monitors resource utilization across the cluster and schedules pods of containers accordingly.
+
+[Worker Node]
+● Kubelet
+It maintain to register the node with the cluster.
+It will send periodic health check so that the API server know that compute nodes (worker nodes) are healthy.
+It will also create and destroy workloads as directed by Kube API server.
+● Kube Proxy
+●
+●

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rs-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      env: qa
+    matchExpressions:
+    - { key: tier, operator: In, values: [front-end] }
+  template:
+    metadata:
+      name: httpd
+      labels:
+        env: qa
+        tier: front-end
+    spec:
+      containers:
+      - name: httpd
+        image: httpd
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80

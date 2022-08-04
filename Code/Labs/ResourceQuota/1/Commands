@@ -1,0 +1,5 @@
+create a new namespace.
+$ kubectl create namespace demo
+
+delete the namespace.
+$ kubectl delete namespace demo

@@ -1,0 +1,5 @@
+By default there is no limit on how much resource a pod and its container can consume.
+Requests and Limits are the mechanism used by kubernetes to control CPU and Memory consumed by containers in pod.
+Requests and Limits are set on a per container basis.
+
+Resource Quotas can also be set for Kubernetes Objects with in a Namespaces.

@@ -1,0 +1,15 @@
+# Overriding Pod Security Context in the Container
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: override-security-demo
+spec:
+  securityContext:
+    runAsUser: 3000
+  containers:
+  - name: override-security-cont
+    image: supergiantkir/k8s-liveliness
+    securityContext:
+      runAsUser: 2000
+      allowPrivilegeEscalation: false

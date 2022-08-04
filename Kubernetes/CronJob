@@ -1,0 +1,6 @@
+Cron jobs are useful for creating periodic and recurring tasks, like running backups or sending emails.
+Cron jobs can also schedule individual tasks for a specific time.
+It runs a job periodically on a given schedule, written in Cron format.
+
+['failedJobHistoryLimit' & 'successfulJobsHistoryLimit']
+It will deletes the failed and successful job history based on the retention number that provide.

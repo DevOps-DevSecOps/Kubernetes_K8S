@@ -1,0 +1,4 @@
+The pod pod-s2 has the label selector security:s2.
+
+The pod pod-s2 is not scheduled unless there is a node with a pod that has the security:s2 label.
+If there is no other pod with that label, then new pod will be created.

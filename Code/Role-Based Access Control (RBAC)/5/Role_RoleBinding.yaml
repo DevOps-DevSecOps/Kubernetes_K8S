@@ -1,0 +1,23 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: data-engineering
+  name: umbrella:data-engineering-app
+rules:
+- apiGroups: [""]
+  resources: ["configmaps"]
+  resourceNames: ["data-engineering-app-configmap"]
+  verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  name: umbrella:data-engineering-app
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: umbrella:data-engineering-app
+subjects:
+- kind: ServiceAccount
+  name: data-engineering-app
+  namespace: data-engineering

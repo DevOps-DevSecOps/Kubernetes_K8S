@@ -1,0 +1,1 @@
+The scheduler to place the pod only on nodes with the label that has a key kubernetes.io/cp-az-name and values cp-1a or cp-1b.

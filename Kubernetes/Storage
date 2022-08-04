@@ -1,0 +1,4 @@
+Pods are ephemeral and stateless.
+Volumes bring persistence to pods.
+Containers has access to volume with in a same pod.
+It support many types of Storage's.

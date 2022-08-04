@@ -1,0 +1,27 @@
+• Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called namespaces.
+• Namespaces allow you to create virtual clusters within the same physical cluster.
+• Namespaces are intended for use in environments with many users spread across multiple teams, or projects.
+• Can have multiple namespaces inside a single Kubernetes cluster, and they are all logically isolated from each other.
+• By default, all resources in a Kubernetes cluster are created in a 'default' namespace.
+• Namespaces are a way to divide cluster resources between multiple users via resource quotas.
+• The default namespace in Kubernetes are
+
+$ kubectl get namespace (OR) $ kubectl get namespaces
+NAME              STATUS   AGE
+default           Active   1d
+kube-node-lease   Active   1d
+kube-public       Active   1d
+kube-system       Active   1d
+
+• Kubernetes starts with four initial namespaces:
+-> default = The default namespace for any objects with no other namespace.
+-> kube-system = The namespace for objects created by the Kubernetes system.
+-> kube-public = This namespace is created automatically and is readable by all users (including those not authenticated). This namespace is mostly reserved for cluster usage, in case that some resources should be visible and readable publicly throughout the whole cluster. The public aspect of this namespace is only a convention, not a requirement. (OR) Used for public resources. Not recommended for use by users.
+-> kube-node-lease = This namespace holds Lease objects associated with each node. Node leases allow the kubelet to send heartbeats so that the control plane can detect node failure.
+
+# Using Kubernetes Namespaces to Manage Environments
+• Kubernetes provides is the ability to manage various environments easier and better than traditional deployment strategies.
+• The applications, you have test, staging, and production environments. 
+• You can spin up a separate cluster of resources, such as VMs, with the same configuration in staging and production, but that can be costly and managing the differences between the environments can be difficult.
+• Kubernetes includes a cool feature called Namespaces, which enable you to manage different environments within the same cluster.
+• For example, you can have different test and staging environments in the same cluster of machines, potentially saving resources. You can also run different types of server, batch, or other jobs in the same cluster without worrying about them affecting each other.

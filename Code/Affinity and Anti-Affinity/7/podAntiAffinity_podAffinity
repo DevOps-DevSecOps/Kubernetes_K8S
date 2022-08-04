@@ -1,0 +1,3 @@
+The web-server creates replicas with the label app=web-store.
+The Pod affinity rule tells the scheduler to place each replica on a node that has a Pod with the label app=store.
+The Pod anti-affinity rule tells the scheduler to avoid placing multiple app=web-store servers on a single node.

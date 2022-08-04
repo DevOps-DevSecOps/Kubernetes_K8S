@@ -1,0 +1,81 @@
+• Check command pod_status is used to check status of Kubernetes pods.
+• Returns OK if status.phase of a pod is Succeeded or Running, otherwise, returns CRITICAL.
+• Spec - pod_status check command has no variables. Execution of this command can result in following states:
+-> OK
+-> CRITICAL
+-> UNKNOWN
+
+# Tutorial
+• you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster.
+
+kubectl create namespace demo
+
+kubectl get namespaces
+NAME          STATUS    AGE
+default       Active    6h
+kube-public   Active    6h
+kube-system   Active    6h
+demo          Active    4m
+
+# Check status of pods with matching labels
+• If a PodAlert will be used check status of pods with matching labels by setting spec.selector field.
+
+cat ./docs/examples/pod-alerts/pod_status/demo-0.yaml
+
+apiVersion: monitoring.appscode.com/v1alpha1
+kind: PodAlert
+metadata:
+  name: pod-status-demo-0
+  namespace: demo
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  check: pod_status
+  checkInterval: 30s
+  alertInterval: 2m
+  notifierSecretName: notifier-config
+  receivers:
+  - notifier: Mailgun
+    state: CRITICAL
+    to: ["ops@example.com"]
+    
+kubectl apply -f ./docs/examples/pod-alerts/pod_status/demo-0.yaml
+
+kubectl get pods -n demo
+
+kubectl describe podalert -n demo pod-status-demo-0
+
+# Check status of a specific pod
+• If a PodAlert will be used check status of a pod by name by setting spec.podName field.
+
+cat ./docs/examples/pod-alerts/pod_status/demo-1.yaml
+
+apiVersion: monitoring.appscode.com/v1alpha1
+kind: PodAlert
+metadata:
+  name: pod-status-demo-1
+  namespace: demo
+spec:
+  podName: busybox
+  check: pod_status
+  checkInterval: 30s
+  alertInterval: 2m
+  notifierSecretName: notifier-config
+  receivers:
+  - notifier: Mailgun
+    state: CRITICAL
+    to: ["ops@example.com"]
+    
+kubectl apply -f ./docs/examples/pod-alerts/pod_status/demo-1.yaml
+
+kubectl get pods -n demo
+
+kubectl describe podalert -n demo pod-status-demo-1
+
+# Cleaning up
+• To cleanup the Kubernetes resources
+
+kubectl delete ns demo
+
+# Link:- https://appscode.com/products/searchlight/5.1.1/guides/pod-alerts/pod_status/

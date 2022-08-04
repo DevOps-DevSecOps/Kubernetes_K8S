@@ -1,0 +1,6 @@
+create a Namespaces
+
+$ kubectl create namespace test
+$ kubectl create namespace test2
+$ kubectl create namespace test3
+$ kubectl create namespace test4

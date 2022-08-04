@@ -1,0 +1,17 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: rsa1
+  namespace: default
+rules:
+- apiGroups:
+  - ""  
+  - "apps"
+  resources:
+  - pods
+  - services
+  - deployments
+  verbs:
+  - get
+  - list
+  - delete

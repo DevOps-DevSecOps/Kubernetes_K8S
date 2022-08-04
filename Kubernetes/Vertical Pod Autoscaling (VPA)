@@ -1,0 +1,34 @@
+Autoscaling is a method that dynamically scales up / down the number of computing resources that are being allocated to your application based on its needs.
+
+Vertical Pod Autoscaler (VPA) simply allocates more OR less CPUs and Memory to existing pods.
+Vertical Pod Autoscaler (VPA) automatically adjusts the CPU and Memory attributes for Pods.
+It work based on CPU/Memory utilization.
+Vertical Pod Autoscaler (VPA) will automatically recreate your pod with the suitable CPU and Memory attributes.
+This will free up the CPU and Memory for the other pods and help you better utilize your Kubernetes cluster.
+Vertical Pod Autoscaler (VPA) can suggest the Memory/CPU Requests and Limits and it can also automatically update it if enabled by the user.
+
+[updatePolicy]
+● updateMode: "Auto"
+It is the default for VPA.
+This option is used to enable the autoscaling.
+It recreates the pod based on the recommendation.
+The VPA assigns resources on pod creation and can update them during the lifetime of the pod, including evicting or rescheduling the pod.
+Apply the recommendations directly by updating/recreating the pods (updateMode = auto).
+*The updateMode = auto is ok to use in testing OR staging environments but not in production.
+*The reason is that the pod restarts when VPA applies the change, which causes a workload disruption.
+● updateMode: "Off"
+The VPA never changes the pod resources.
+The recommender sets the recommended resources in the VPA object.
+Use this option for a 'dry run' (updateMode = off).
+*It should set updateMode = off in production, feed the recommendations to a capacity monitoring dashboard such as Grafana.
+● updateMode: "Initial"
+The VPA only assigns resources on pod creation and doesn’t change them during the lifetime of the pod.
+VPA only assigns resource requests on pod creation and never changes them later.
+Apply the recommended values to newly created pods only (updateMode = initial).
+
+[mode]
+● mode: "Off"
+Lets say, I has 2 containers in a Pod:
+1st Container is an Application container and 2nd Container is an Sidecar container.
+I don’t want to have autoscaling for the 2nd Container as Sidecar container, that means it never autoscale the Sidecar container (mode: "Off").
+For 1st Container as Application container need to set options like 'minAllowed (CPU/Memory) & maxAllowed (CPU/Memory)'.

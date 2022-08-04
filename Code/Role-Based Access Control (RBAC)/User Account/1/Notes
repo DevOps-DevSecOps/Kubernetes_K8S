@@ -1,0 +1,14 @@
+create a private key.
+$ openssl genrsa -out example.key 2048
+
+create a certificate signing request (CSR).
+$ openssl req -out example.csr -newkey rsa:2048 -new -nodes -keyout privateKey.key
+
+sign the CSR with the Kubernetes CA.
+$ openssl x509 -req -in example.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out example.crt -days 30
+
+create the user inside Kubernetes.
+$ kubectl config set-credentials example --client-key=example.key --client-certificate=example.crt
+
+create a context for the user.
+$ kubectl config set-context example-context --cluster=kubernetes --namespace=your_namespace --user=example

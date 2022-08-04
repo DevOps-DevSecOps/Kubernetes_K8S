@@ -1,0 +1,4 @@
+kubectl get pod -n kube-system
+kubectl get pod kube-scheduler -n kube-system
+kubectl get pod kube-scheduler -n kube-system -o yaml
+kubectl get pod kube-scheduler -n kube-system -o yaml > FILE_NAME.yaml

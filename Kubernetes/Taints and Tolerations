@@ -1,0 +1,117 @@
+Taints and Tolerations allow the node to control which pods should OR should not be scheduled.
+Taints and Tolerations can help you control the scheduling of pods to specific nodes.
+Taints and tolerations works together to ensure that Pods are not scheduled onto inappropriate Nodes.
+It doesn't tell the pod to go to a particular node, it tells the node to only accept pod with certain toleration.
+Without a toleration, no Pod can be scheduled onto a node with a taint.
+By default, Kubernetes Cluster will not schedule pods on the control-plane (master) node for security reasons.
+If want to be able to schedule pods on the Kubernetes control-plane (master) node, need to remove a 'taint' on the master nodes.
+
+[Taints]
+Taints can be applied to a Nodes.
+If one or more Taints are applied to a node, this marks that the node should not accept any pods that do not Tolerate the Taints.
+It can restrict what pods are placed on what nodes.
+
+[Tolerations]
+Tolerations are applied to a Pods.
+It allow the pods to schedule onto nodes with matching Taints.
+
+[Taints - Effect]
+● NoSchedule
+The Kubernetes scheduler will only allow scheduling pods that have tolerations for the tainted nodes.
+The pods without toleration will not be scheduled in the node.
+The pods that do not tolerate this taint are not scheduled on the node; existing Pods are not evicted from the node.
+The new pods that do not match toleration with the taint are not scheduled onto that node. Existing pods on the node remain when before and after apply taint to node. 
+If we apply this taint effect to a node then it will only allow the pods which have a toleration effect equal to NoSchedule. But if a pod is already scheduled in a node and then you apply taint to the node having effect NoSchedule, then the pod will remain scheduled in the node.
+● PreferNoSchedule
+The Kubernetes scheduler will try to avoid scheduling pods that don’t have toleration for the taint onto the nodes.
+The PreferNoSchedule taint effect is applied, the kube-scheduler will try not to place the pod without the required toleration onto the tainted node.
+It will schedule only if no other node available.
+The new pods that do not match toleration with the taint might be scheduled onto that node, but the scheduler tries not to. Existing pods on the node remain when before and after apply taint to node.
+● NoExecute
+The Kubernetes will evict the running pods from the nodes if the pods don’t have tolerations for the tainted nodes.
+The NoExecute effect causes eviction of all pods without certain toleration from the node.
+The pod without toleration will not be scheduled and evicted if already running on the node.
+The new pods that do not match toleration with the taint cannot be scheduled onto that node. Existing pods on the node that do not have a matching toleration are removed after apply taint to node.
+This effect will not only restrict the pod to get scheduled in the node but also if a pod is already scheduled a specific node and we have applied a taint of effect NoExecute to the specific node, it will immediately throw out the pod outside the node.
+The pods that do not tolerate the taint are evicted immediately.
+
+[Tolerations - Syntax]
+● Equal
+tolerations:
+- key: "key"                                          # key should match with Taint Node 'key'
+  operator: "Equal"                                   # operator should match with Taint Node '='
+  value: "value"                                      # value should match with Taint Node 'value'
+  effect: "TAINTS_EFFECT"                             # TAINTS_EFFECT should match with Taint Node 'TAINTS_EFFECT'
+If the Pod Toleration match with Node Taint - then Pod will be scheduled on the Node.
+● Exists
+tolerations:
+- key: "key"                                          # key should match with Taint Node 'key'
+  operator: "Exists"                                  
+  effect: "TAINTS_EFFECT"                             # TAINTS_EFFECT should match with Taint Node 'TAINTS_EFFECT'
+In this case no 'value' should be specified.
+The toleration with the empty value in this Pod will match all values with the key “key”.
+● Exists
+tolerations:
+- operator: "Exists"
+Here the 'key, value, effect' fields of this Pod’s toleration are empty.
+This toleration will match all 'keys, values, and effects' then it will tolerate any node.
+● Exists
+tolerations:
+- key: "key"                                          # key should match with Taint Node 'key'
+  operator: "Exists"
+The toleration with the empty effect in this Pod will match all effects with the key “key”.
+The toleration with the empty value in this Pod will match all values with the key “key”.
+
+[tolerationSeconds]
+The pods that tolerate the taint without specifying 'tolerationSeconds' in their toleration specification remain bound forever.
+The pods that tolerate the taint with a specified 'tolerationSeconds' remain bound for the specified amount of time.
+The 'tolerationSeconds' parameter specifies how long a pod can remain bound to a node after the taint is added.
+The pod is running and a matching taint is added to the node, then the pod will stay bound to the node for 'tolerationSeconds' (eg:- 300, 3600, 6000), and then be evicted.
+If the taint is removed before that time, the pod will not be evicted.
+# Example 1
+tolerations:
+- key: "key1" 
+  operator: "Equal" 
+  value: "value1" 
+  effect: "NoSchedule" 
+  tolerationSeconds: 300 
+# Example 2
+tolerations:
+- key: "key1"
+  operator: "Exists"
+  effect: "NoSchedule"
+  tolerationSeconds: 300
+# Example 3
+tolerations:
+- key: "key1" 
+  operator: "Equal" 
+  value: "value1" 
+  effect: "PreferNoSchedule" 
+  tolerationSeconds: 3600 
+# Example 4
+tolerations:
+- key: "key1"
+  operator: "Exists"
+  effect: "PreferNoSchedule"
+  tolerationSeconds: 3600
+# Example 5
+tolerations:
+- key: "key1" 
+  operator: "Equal" 
+  value: "value1" 
+  effect: "NoExecute" 
+  tolerationSeconds: 6000 
+# Example 6
+tolerations:
+- key: "key1"
+  operator: "Exists"
+  effect: "NoExecute"
+  tolerationSeconds: 6000
+
+[Notes]
+# If Pod_1 has Toleration, Pod_2 has no Toleration and then Node_1 has no Taint ?
+The Pod_1 and Pod_2 will be scheduled on the Node_1 because still Node_1 has no Taint.
+# If Pod_1 has Toleration, Pod_2 has no Toleration and then Node_1 has Taint ?
+The Pod_1 Toleration matched with Node_1 Taint - then Pod_1 will be scheduled on the Node_1.
+# If Pod_1 has no Toleration, Pod_2 has no Toleration and then Node_1 has Taint ?
+The Pod_1 Toleration and Pod_2 Toleration not matched with Node_1 Taint - then Pod_1 and Pod_2 will not be scheduled on the Node_1.

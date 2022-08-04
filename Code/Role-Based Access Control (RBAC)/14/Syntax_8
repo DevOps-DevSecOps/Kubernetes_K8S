@@ -1,0 +1,6 @@
+# For the default service account in the "kube-system" namespace:
+
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: kube-system

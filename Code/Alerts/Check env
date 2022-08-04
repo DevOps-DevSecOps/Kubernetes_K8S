@@ -1,0 +1,49 @@
+• Check command env prints the list of environment variables.
+• Spec - env check command has no variables. Execution of this command can result in following states:
+-> OK
+-> WARNING
+-> CRITICAL
+-> UNKNOWN
+
+# Tutorial
+• you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster.
+
+kubectl create namespace demo
+
+kubectl get namespaces
+NAME          STATUS    AGE
+default       Active    6h
+kube-public   Active    6h
+kube-system   Active    6h
+demo          Active    4m
+
+# Create Alert
+• we are going to create an alert to check env.
+
+cat ./docs/examples/cluster-alerts/env/demo-0.yaml
+
+apiVersion: monitoring.appscode.com/v1alpha1
+kind: ClusterAlert
+metadata:
+  name: env-demo-0
+  namespace: demo
+spec:
+  check: env
+  checkInterval: 30s
+  alertInterval: 2m
+  notifierSecretName: notifier-config
+  receivers:
+  - notifier: Mailgun
+    state: CRITICAL
+    to: ["ops@example.com"]
+    
+kubectl apply -f ./docs/examples/cluster-alerts/env/demo-0.yaml
+
+kubectl describe clusteralert env-demo-0 -n demo
+
+# Cleaning up
+• To cleanup the Kubernetes resources
+
+kubectl delete ns demo
+
+# Link:- https://appscode.com/products/searchlight/5.1.1/guides/cluster-alerts/env/

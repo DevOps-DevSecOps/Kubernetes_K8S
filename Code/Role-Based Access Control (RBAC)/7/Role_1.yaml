@@ -1,0 +1,22 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: viewer
+rules: # Authorization rules
+  - apiGroups: # 1st API group
+      - '' # An empty string designates the core API group.
+    resources:
+      - pods
+      - pods/logs
+      - serviceaccounts
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups: # another API group
+      - cilium.io # Custom APIGroup
+    resources:
+      - ciliumnetworkpolicies
+      - ciliumnetworkpolicies/status
+    verbs:
+      - get

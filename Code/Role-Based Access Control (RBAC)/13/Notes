@@ -1,0 +1,21 @@
+create a private key.
+$ openssl genrsa -out magalix.key 2048
+
+create a certificate signing request (CSR). CN part of the subject must contain the username.
+$ openssl req -new -key magalix.key -out magalix.csr -subj "/CN=magalix"
+
+sign the CSR with the Kubernetes CA.
+$ openssl x509 -req -in magalix.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out magalix.crt -days 300
+
+create the user inside Kubernetes kubeconfig file.
+$ kubectl config set-credentials magalix --client-certificate=magalix.crt --client-key=magalix.key
+
+create a context for the user.
+$ kubectl config set-context magalix-context --cluster=docker-for-desktop-cluster --user=magalix
+
+Finally have a look at the ~/.kube/config file able to see the new user data added to the file.
+
+kubectl CLI with this configuration file.
+$ kubectl --user=magalix get pods
+$ kubectl --user=magalix delete pods POD_NAME
+$ kubectl --user=magalix apply -f FILE_NAME.yaml

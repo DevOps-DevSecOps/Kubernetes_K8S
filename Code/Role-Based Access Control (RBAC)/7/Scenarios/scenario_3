@@ -1,0 +1,8 @@
+$ kubectl auth can-i get pods -n test3 --as=system:serviceaccount:test:myaccount
+yes
+
+$ kubectl auth can-i get pods -n test4 --as=system:serviceaccount:test:myaccount
+no
+
+$ kubectl auth can-i get pods --as=system:serviceaccount:test:myaccount
+no

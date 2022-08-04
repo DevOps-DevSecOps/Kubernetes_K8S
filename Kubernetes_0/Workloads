@@ -1,0 +1,43 @@
+● maxUnavailable
+The maximum number of Pods that can be unavailable during the update process using number or percentage %.
+It specifies the maximum number of unavailable pods during an update.
+It can be specified through a percentage or an absolute number.
+The default value is 25%.
+# EXAMPLE :-
+replicas: 4                                     # Deployment of pods is 4
+maxUnavailable: 25% (OR) maxUnavailable: 1      # It ensures at most 75% of the desired number of Pods are up and running. Assume replicas have 4 pods. So the 25% is equal to one Pod. It ensures a minimum of 3 (4 replicas pods - 1 maxUnavailable pod) Pods are up and running always.
+
+● maxSurge
+The maximum number of Pods that can be created over the desired number of Pods using number or percentage %.
+It specifies the maximum number of pods to be created beyond the desired state during the upgrade.
+It can be specified through a percentage or an absolute number.
+It specifies the maximum number OR percentage of pods that specified number of replicas in the yaml file.
+The default value is 25%.
+# EXAMPLE :-
+replicas: 4                                     # Deployment of pods is 4
+maxSurge: 25% (OR) maxSurge: 1                  # It ensures at most 125% of the desired number of Pods are up and running. Assume replicas have 4 pods. So the 25% is equal to one Pod. It ensures 5 (4 replicas pods + 1 maxSurge pod) Pods are up and running if the traffic increases.
+
+● timeoutSeconds
+The time (in seconds) that waits for the rolling event to timeout.
+On reaching the specified time, it automatically rolls back to the previous deployment.
+The default value is assumed to be 600 seconds.
+
+● intervalSeconds
+It specifies the time gap in seconds after an update.
+The default value is assumed to be 1 second.
+
+● updatePeriodSeconds
+The time to wait between individual pods migrations or updates.
+The default value is assumed to be 1 second.
+
+● revisionHistoryLimit
+It maintain and manage number of previous deployment revisions ReplicaSets to retain.
+The each Deployment revision is stored in its ReplicaSets.
+The default value is 10.
+
+● minReadySeconds
+The bootup time of your application, Kubernetes waits specific time til the next pod creation.
+It tells Kubernetes how long it should wait until it creates the next pod. This property ensures that all application pods are in the ready state during the update.
+It can specify the amount of time a pod is ready before the pod is declared as available for use.
+It specifies the minimum number of seconds for which a newly created Pod should be ready without any of its containers crashing, for it to be considered available.
+The default value is 0.

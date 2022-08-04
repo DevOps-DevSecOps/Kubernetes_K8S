@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-affinity
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        – matchExpressions:
+          – key: kubernetes.io/cp-az-name
+            operator: In
+            values:
+            – cp-1a
+            – cp-1b
+      preferredDuringSchedulingIgnoredDuringExecution:
+      – weight: 7
+        preference:
+          matchExpressions:
+          – key: custom-key
+            operator: In
+            values:
+            – custom-value
+  containers:
+  – name: node-affinity
+    image: your-container-image

@@ -1,0 +1,18 @@
+create a private key.
+$ openssl genrsa -out developer.key 2048
+
+create a certificate signing request (CSR). CN is the username and O the group.
+$ openssl req -new -key developer.key -out developer.csr -subj "/CN=developer/O=javadeveloper"
+
+sign the CSR with the Kubernetes CA.
+$ openssl x509 -req -in developer.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out developer.crt -days 500
+
+list the certificates.
+$ ls
+developer.crt developer.csr developer.key
+
+create the user inside Kubernetes.
+$ kubectl config set-credentials developer --client-certificate=/root/developer/developer.crt --client-key=/root/developer/developer.key
+
+create a context for the user.
+$ kubectl config set-context developer-context --cluster=kubernetes --namespace=javaproject --user=developer

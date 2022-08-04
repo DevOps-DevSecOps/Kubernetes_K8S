@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  gpu
+  labels:
+    app:  gpu
+spec:
+  selector:
+    matchLabels:
+      app: gpu
+  replicas: 10
+  template:
+    metadata:
+      labels:
+        app:  gpu
+    spec:
+      containers:
+      - image:  nginx:alpine
+        name:  gpu
+        resources:
+          requests:
+            cpu:  100m
+            memory:  200Mi
+          limits:
+            cpu:  100m
+            memory:  200Mi
+      imagePullSecrets:
+      - name: default-secret
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 80 
+            preference: 
+              matchExpressions: 
+              - key: failure-domain.beta.kubernetes.io/zone
+                operator: In 
+                values: 
+                - cn-east-3a
+          - weight: 20 
+            preference: 
+              matchExpressions: 
+              - key: gpu
+                operator: In 
+                values: 
+                - "true"

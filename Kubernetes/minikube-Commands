@@ -1,0 +1,23 @@
+minikube version
+
+minikube start
+
+minikube start --cpus NO --memory NOg --driver=virtualbox
+
+minikube status
+
+minikube stop
+
+minikube ip
+
+minikube logs
+
+minikube dashboard
+
+minikube dashboard --url
+
+minikube service SERVICE_NAME
+
+minikube service SERVICE_NAME --url --namespace NAMESPACE_NAME
+
+minikube addons list

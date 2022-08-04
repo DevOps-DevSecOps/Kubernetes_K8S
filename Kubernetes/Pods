@@ -1,0 +1,40 @@
+Pods that run a single container. The "one-Container-per-Pod" model in Kubernetes.
+The each Pod has its own unique IP address.
+The IP address of a Pod is reachable with in cluster from any nodes.
+The Pod can communicate with other Pod from any nodes with in cluster.
+Typically, a Pod contains a single container.
+Containers in a Pod share the IP address and port.
+Containers with in same Pod can communicate with each other using Pod localhost.
+All the containers with in a pod share the same pod IP address.
+However, multiple containers can be placed in the same Pod also. (OR) Pod can be a group one or more application containers.
+All containers running on the same Pod share the same volume and share the network interface of the Pod.
+After the Node (OR) Pod is restarted, then all Pods containers are started on the node with new IP addresses.
+
+[Status]
+● Pending
+The Pod has been created and accepted by the Kubernetes cluster but not assigned to a node, but one or more of the Container images has not been created.
+This includes time before being scheduled as well as time spent downloading images over the network, which could take a while.
+● Running
+The pod is scheduled on a node and all its containers are created and at-least one container is in Running state.
+● Succeeded
+All Containers in the Pod have terminated in success, and will not be restarted.
+All containers in the Pod have exited with status 0 and will not be restarted. 
+● Failed
+All Containers in the Pod have terminated, and at least one Container has terminated in failure. 
+The Container either exited with non-zero status or was terminated by the system.
+All containers of the Pod have exited and at least one container has returned a non-zero status.
+● Unknown
+For some reason the state of the Pod could not be obtained, typically due to an error in communicating with the host of the Pod.
+● CrashLoopBackoff
+The container fails to start and is tried again and again.
+
+[Conditions]
+● PodScheduled
+Pod is scheduled on an node.
+● ContainersReady
+All containers in the Pod are ready.
+● Initialized
+All init containers have completed successfully.
+● Ready
+Pod is ready to receive traffic (readiness probe).
+Pod is able to serve requests and should be added to the load balancing pools of all matching Services.

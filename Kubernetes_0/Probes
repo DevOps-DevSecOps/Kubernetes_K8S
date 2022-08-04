@@ -1,0 +1,52 @@
+[Probes Handlers]
+
+HTTP probes (httpGet)
+● Readiness Probe
+readinessProbe:
+  httpGet:
+    path: /healthz
+    port: 8080
+● Liveness Probe
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: 8080
+● Startup Probe
+startupProbe:
+  httpGet:
+    path: /healthz
+    port: 80
+
+TCP probes (tcpSocket)
+● Readiness Probe
+readinessProbe:
+  tcpSocket:
+    port: 8080
+● Liveness Probe
+livenessProbe:
+  tcpSocket:
+    port: 8080
+● Startup Probe
+startupProbe:
+  tcpSocket:
+    port: 80
+
+Command probes (exec)
+● Readiness Probe
+readinessProbe:
+  exec:
+    command:
+    - cat
+    - /tmp/healthy
+● Liveness Probe
+livenessProbe:
+  exec:
+    command:
+    - cat
+    - /tmp/healthy
+● Startup Probe
+startupProbe:
+  exec:
+    command:
+    - cat
+    - /tmp/healthy

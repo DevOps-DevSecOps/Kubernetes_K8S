@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: demo
+spec:
+  hard:
+    requests.cpu: 508m
+    requests.memory: 166Mib
+    limits.cpu: 768m
+    limits.memory: 500Mib

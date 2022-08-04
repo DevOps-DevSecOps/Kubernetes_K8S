@@ -1,0 +1,8 @@
+check if volume for the secret is properly mounted.
+$ kubectl exec -it redis cat /redis-master/redis.conf
+$ kubectl exec redis cat /redis-master/redis.conf
+maxmemory 2mb
+maxmemory-policy allkeys-lru
+
+check if env (environment variable) for the secret is properly assigned.
+$ kubectl exec -it cm-pod printenv

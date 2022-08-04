@@ -1,0 +1,72 @@
+• Check command component_status is used to check status of Kubernetes components. Returns OK if components are Healthy, otherwise, returns CRITICAL.
+• Spec - component_status has the following variables:
+-> selector - Label selector for components whose existence are checked
+-> componentName - Name of Kubernetes component whose existence is checked
+• Execution of this command can result in following states:
+-> OK
+-> CRITICAL
+-> UNKNOWN
+
+# Tutorial
+• you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster.
+
+kubectl create namespace demo
+
+kubectl get namespaces
+
+# Check status of all components
+• we are going to create a ClusterAlert to check status of all components.
+
+cat ./docs/examples/cluster-alerts/component_status/demo-0.yaml
+
+apiVersion: monitoring.appscode.com/v1alpha1
+kind: ClusterAlert
+metadata:
+  name: component-status-demo-0
+  namespace: demo
+spec:
+  check: component_status
+  checkInterval: 30s
+  alertInterval: 2m
+  notifierSecretName: notifier-config
+  receivers:
+  - notifier: Mailgun
+    state: CRITICAL
+    to: ["ops@example.com"]
+    
+kubectl apply -f ./docs/examples/cluster-alerts/component_status/demo-0.yaml
+
+kubectl describe clusteralert -n demo component-status-demo-0
+
+# Check status of a specific component
+• If a ClusterAlert will be used check status of a component by name by setting spec.componentName field.
+
+cat ./docs/examples/cluster-alerts/component_status/demo-1.yaml
+
+apiVersion: monitoring.appscode.com/v1alpha1
+kind: ClusterAlert
+metadata:
+  name: component-status-demo-1
+  namespace: demo
+spec:
+  check: component_status
+  vars:
+    componentName: etcd-0
+  checkInterval: 30s
+  alertInterval: 2m
+  notifierSecretName: notifier-config
+  receivers:
+  - notifier: Mailgun
+    state: CRITICAL
+    to: ["ops@example.com"]
+    
+kubectl apply -f ./docs/examples/cluster-alerts/component_status/demo-1.yaml
+
+kubectl describe clusteralert -n demo component-status-demo-1
+
+# Cleaning up
+• To cleanup the Kubernetes resources
+
+kubectl delete ns demo
+
+# Link:- https://appscode.com/products/searchlight/5.1.1/guides/cluster-alerts/component_status/

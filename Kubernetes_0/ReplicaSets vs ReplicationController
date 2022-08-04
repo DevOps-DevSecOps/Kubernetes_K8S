@@ -1,0 +1,36 @@
+ReplicaSets is next generation ReplicationController.
+
+[ReplicaSets]
+It is Set-Based Selectors.
+In code there will be difference in the syntax. ReplicaSet which contains 'matchLabels' field under the 'selector'.
+#----------CODE----------#
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: REPLICASET_NAME
+spec:
+  replicas: NO
+  selector:
+    matchLabels:                                                # This option was added
+      KEY: VALUE
+........
+........
+........
+#------------------------#
+
+[ReplicationController]
+It is Equality-Based Selectors.
+In code there will be difference in the syntax. ReplicationController which doesn't contains 'matchLabels' field under the 'selector'.
+#----------CODE----------#
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: REPLICATIONCONTROLLER_NAME
+spec:
+  replicas: NO
+  selector:
+    KEY: VALUE
+........
+........
+........
+#------------------------#

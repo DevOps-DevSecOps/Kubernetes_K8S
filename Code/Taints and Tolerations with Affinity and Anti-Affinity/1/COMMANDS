@@ -1,0 +1,7 @@
+[Taints]
+kubectl taint nodes NODE_NAME-1 dedicated=devs:NoSchedule
+kubectl taint nodes NODE_NAME-2 dedicated=devs:NoSchedule
+
+[Labels]
+kubectl label nodes NODE_NAME-1 dedicated=devs
+kubectl label nodes NODE_NAME-2 dedicated=devs

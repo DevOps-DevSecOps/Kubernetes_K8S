@@ -1,0 +1,10 @@
+check if volume for the secret is properly mounted.
+$ kubectl exec jsl -- ls /config
+ww.config
+$ kubectl exec jsl -- cat /config/ww.config
+superman: flight
+batman: smartness
+
+check if env (environment variable) for the secret is properly assigned.
+$ kubectl exec avengers -- env | grep -i vision
+vision=wanda

@@ -1,0 +1,35 @@
+[Stateful Applications]
+Stateful applications are applications that store data and keep tracking it.
+All databases such as MySQL, Oracle, PostgreSQL are examples of stateful applications.
+
+[Stateless Applications]
+Stateless applications are applications that do not keep the data.
+Node.js and Nginx are examples of stateless applications.
+For each request, the stateless application will receive new data and process it.
+
+[Integration with Stateful Applications & Stateless Applications]
+In a modern web application, the stateless application connects with stateful applications to serve the user’s request.
+A Node.js application is a stateless application that receives new data on each request from the user.
+This application is then connected with a stateful application such as a MySQL database to process the data.
+MySQL stores data and keeps updating the data based on the user’s request.
+
+# EXAMPLE 1 :-
+User (PC)   <----->   Node.js application   <----->   MySQL
+ Browser              Stateless Applications          Stateful Applications
+
+# EXAMPLE 2 :-
+                                Load Balancer
+                                       |
+                                       |
+                      -----------------|-----------------
+                      |                |                |
+                      |                |                |
+                      |                |                |
+                     Web              Web              Web
+                 Application      Application      Application
+                 (Stateless)      (Stateless)      (Stateless)
+                      |                |                |
+                      |                |                |
+                      |                |                |
+                   Database         Database         Database
+                  (Stateful)       (Stateful)       (Stateful)

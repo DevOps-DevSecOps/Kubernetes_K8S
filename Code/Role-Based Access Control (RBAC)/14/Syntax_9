@@ -1,0 +1,6 @@
+# For all service accounts in the "qa" namespace:
+
+subjects:
+- kind: Group
+  name: system:serviceaccounts:qa
+  apiGroup: rbac.authorization.k8s.io

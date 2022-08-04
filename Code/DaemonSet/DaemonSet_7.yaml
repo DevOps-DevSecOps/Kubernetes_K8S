@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: secapp
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      app: appsec
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: appsec
+    spec:
+      containers:
+      - name: sec
+        image: nginx

@@ -1,0 +1,14 @@
+[Base64 (Encode & Decode)]
+$ echo -n 'KubernetesRocks!' | base64
+S3ViZXJuZXRlc1JvY2tzIQ==
+
+[Secrets]
+$ kubectl create secret generic mariadb-user-creds --from-literal=MYSQL_USER=kubeuser --from-literal=MYSQL_PASSWORD=kube-still-rocks
+
+[Cat]
+$ cat max_allowed_packet.cnf
+[mysqld]
+max_allowed_packet = 64M
+
+[ConfigMaps]
+$ kubectl create configmap mariadb-config --from-file=max_allowed_packet.cnf

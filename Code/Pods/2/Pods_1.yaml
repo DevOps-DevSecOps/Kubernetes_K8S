@@ -1,0 +1,39 @@
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    labels:
+      app: db
+    name: redis
+    namespace: default
+  spec:
+    containers:
+    - image: redis
+      imagePullPolicy: Always
+      name: redis
+---
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    labels:
+      run: test2
+      tier: dev
+    name: test2
+  spec:
+    containers:
+    - image: nginx
+      imagePullPolicy: Always
+      name: test2
+---  
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    labels:
+      app: web
+      run: test3
+      tier: prod
+    name: test3
+  spec:
+    containers:
+    - image: nginx
+      imagePullPolicy: Always
+      name: test3

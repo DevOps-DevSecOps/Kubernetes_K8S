@@ -1,0 +1,90 @@
+# Pod One - Application Server and Nginx
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: my-application-web
+  name: my-application-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-application-web
+  template:
+    metadata:
+      labels:
+        app: my-application-web
+    spec:
+      containers:
+      - image: quay.io/<username>/my-application-nginx:latest
+        name: my-application-nginx
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8443
+          protocol: TCP
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - "[ -f /run/nginx.pid ] && ps -A | grep nginx"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            scheme: HTTPS
+            path: /index.html
+            port: 8443
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      - image: quay.io/<username>/my-application-app-server:latest
+        name: my-application-app-server
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - "/usr/bin/my-application-web --alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+---
+# Pod Two - Jobs Server
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: my-application-jobs
+  name: my-application-jobs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-application-jobs
+  template:
+    metadata:
+      labels:
+        app: my-application-jobs
+    spec:
+      containers:
+      - image: quay.io/<username>/my-application-jobs:latest
+        name: my-application-jobs
+        imagePullPolicy: Always
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - "/usr/bin/my-application-jobs --alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5

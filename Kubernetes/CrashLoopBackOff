@@ -1,0 +1,74 @@
+CrashLoopBackOff is a common error in Kubernetes, indicating a pod constantly crashing in an endless loop.
+You can identify this error by running the "kubectl get pods" command – the pod status will show the error like this:
+
+$ kubectl get pods
+NAME        READY    STATUS              RESTARTS    AGE
+POD_NAME    0/1      CrashLoopBackOff    2           1m44s
+
+The CrashLoopBackOff error can be caused by a variety of issues, including:
+● Insufficient resources
+The lack of resources prevents the container from loading.
+● Locked file
+A file was already locked by another container.
+● Locked database
+The database is being used and locked by other pods.
+● Failed reference
+It reference to scripts or binaries that are not present on the container.
+● Setup error
+An issue with the init-container setup in Kubernetes.
+● Config loading error
+A server cannot load the configuration file.
+● Misconfigurations
+A general file system misconfiguration.
+● Connection issues
+DNS or kube-DNS is not able to connect to a third-party service.
+● Deploying failed services
+An attempt to deploy services/applications that have already failed (e.g. due to a lack of access to other services).
+● If you get a Liveness probe failed and Back-off restarting failed container messages from the kubelet, as shown below, this indicates the container is not responding and is in the process of restarting.
+
+Exit Codes
+Exit codes are used by container engines, when a container terminates, to report why it was terminated.
+If you are a Kubernetes user, container failures are one of the most common causes of pod exceptions, and understanding container exit codes can help you get to the root cause of pod failures.
+Exit Code 255Exit Status Out Of RangeThe container exited, returning an exit code outside the acceptable range of 0-255.
+●  Exit Code 0 - Purposely stopped
+Used by developers to indicate that the container was automatically stopped.
+Exit Code 0 is triggered by developers when they purposely stop their container after a task completes.
+Exit Code 0 means that the foreground process is not attached to a specific container.
+This exit code implies that the specified container command completed ‘sucessfully’, but too often for Kubernetes to accept as working.
+Examine the logs in describe pod.
+● Exit Code 1 - Application error
+Container was stopped due to application error or incorrect reference in the image specification.
+The simple programming error in code run by the container, such as “divide by zero” or advanced errors related to the runtime environment such as Java, Python.
+The container failed to run its command successfully, and returned an exit code of 1. 
+This is an application failure within the process that was started, but return with a failing exit code some time after.
+If this is happening only with all pods running on your cluster, then there may be a problem with your nodes.
+Check nodes are OK on your cluster with: "kubectl get nodes -o wide".
+Examine the logs in describe pod.
+● Exit Code 2
+An exit code of 2 indicates either that the application chose to return that error code, or (by convention) there was a misuse of a shell builtin.
+Check your pod’s command specification to ensure that the command is correct.
+If you think it is correct, try running the image locally with a shell and run the command directly.
+● Exit Code 128
+An exit code of 128 indicates that the container could not run.
+Check this by examining the logs in describe pod.
+output to see whether the 'LastState Reason is: ContainerCannotRun'.
+● Exit Code 137
+The container has received a SIGKILL signal from the host operating system.
+Container was immediately terminated by the operating system via SIGKILL signal.
+This indicates that the container was killed with signal 9.
+This can be due to one of the following reasons:
+=> Container ran out of memory
+This may be because your application needs more resources than it’s allowed to use, or your application is using more than it should.
+=> The OOMKiller killed the container
+Every pod has a specified memory space and when it tries to consume more memory than what has been allocated to it, the pod will keep crashing.
+This can occur if the pod is allocated less memory than it actually requires to run or if there an error in the pod and it keeps on consuming all the memory space while in its run state.
+When you take a look at the events log, you will notice that there is an ‘OOM killed event’ error displayed which will clearly indicate that the pod crashed because it used up all the RAM designated to it.
+To solve this error, you can increase the ram allocated to the pod.
+You will also likely see 'Reason: OOM' in the container in the describe pod output.
+=> The liveness probe failed
+If you see a warning like this in the Events output in the describe pod.
+'Warning  Unhealthy  13s (x3 over 23s)  kubelet, dali      Liveness probe failed: cat: can't open '/tmp/healthy': No such file or directory'
+If these are too short for the application initialization time, then Kubernetes may be killing the application too early.
+
+# Links:- https://containersolutions.github.io/runbooks/posts/kubernetes/crashloopbackoff/
+          https://komodor.com/learn/exit-codes-in-containers-and-kubernetes-the-complete-guide/

@@ -1,0 +1,2 @@
+kubectl taint nodes NODE_NAME app=blue:NoSchedule
+kubectl taint nodes NODE_NAME app=blue:NoSchedule-

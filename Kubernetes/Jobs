@@ -1,0 +1,54 @@
+Jobs help us to perform a particular task which we assigned to them.
+Jobs will perform a given task and once it’s completed it will stop the process.
+
+* completions
+The 'completions' count number will create replicas for Pods. 
+If it fails to create one of the Pod then desired 'completions' count number will make sure to create another Pods until successfully. 
+Jobs can initiate several OR multiple Pods by using 'completions'.
+The several OR multiple Pods will created one after the other based on 'completions' count number.
+Syntax:->               completions: NO
+Example:->              completions: 2                          # two pods are created one after the other
+
+* parallelism
+The 'parallelism' will depend on 'completions' count number will create replicas for Pods.
+To create several OR multiple Pods at once same time parallely based on 'parallelism' count number, it doesn't create the Pods one after the other.
+Syntax:->               parallelism: NO
+Example:->              parallelism: 2                          # two pods are created at once same time parallely
+
+# Example :- The 'completions' and 'parallelism'
+completions: 6
+parallelism: 2
+The above syntax a job if want to run 6 pods and run 2 pods in parallel.
+The job will run 2 pods in parallell for 3 times to achieve 6 completions.
+
+* backoffLimit
+If it fails to create a Pod, then depend on 'backoffLimit' count number will tell to re-create another Pod until either successfully OR failure.
+It help us to limit the pod creation when job fails to create successfully.
+When a pod doesn’t create properly, it will go to the Error status and initiate another pod and this process continues until you get a successfully created pod.
+Suppose if job contains something(ex: command error) that doesn’t allow your job to create successfully, it tries creating pods continuously.
+The 'backoffLimit' is set by default to 6 (Defaults to 6).
+The 'backoffLimit' can limit the number of pods created continuously.
+Syntax:->               backoffLimit: NO
+Example:->              backoffLimit: 2                         # if pod fail to create very 1st time, then it will re-create another pod 2nd last time
+
+* activeDeadlineSeconds
+The 'activeDeadlineSeconds' means once task is completed either successfully OR failure automatically the Pods will terminated and Job status will be down.
+The 'activeDeadlineSeconds' specify the number of seconds after which a completed Job gets terminate together with its pods.
+It's way to terminate a Job is by setting an 'activeDeadlineSeconds'.
+Once the running Pods are terminated and the Job status will become "type: Failed" with "reason: DeadlineExceeded".
+Still the terminated Pods and the Job will not deleted from the system.
+It help us to decide how many seconds should the job run.
+Syntax:->               activeDeadlineSeconds: NO
+Example:->              activeDeadlineSeconds: 15               # it can terminate the job after 15 seconds, but it will not be deleted from system
+
+* ttlSecondsAfterFinished
+The 'ttlSecondsAfterFinished' means once task is completed either successfully OR failure automatically the Pods and the Job will terminated and deleted from the system.
+The 'ttlSecondsAfterFinished' specify the number of seconds after which a completed Job gets deleted together with its pods.
+The 'ttlSecondsAfterFinished: 0', If the field is set to 0 the Job will be eligible to be automatically deleted immediately after it finishes.
+Finished Jobs are usually no longer needed in the system.
+It's way to clean up finished Jobs either successfully OR failure.
+Syntax:->               ttlSecondsAfterFinished: NO
+Example:->              ttlSecondsAfterFinished: 100            # it will automatically deleted the job 100 seconds after it finishes
+                        ttlSecondsAfterFinished: 0              # it will automatically deleted the job immediately after it finishes
+
+# Link:- https://levelup.gitconnected.com/understanding-jobs-in-kubernetes-68ac21b272d8

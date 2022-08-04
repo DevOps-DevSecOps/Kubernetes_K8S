@@ -1,0 +1,6 @@
+It ensures that all Nodes in a cluster run a copy of a Pod.
+It maintain and make sure a copy of a Pod in each and every Nodes with in a cluster.
+As new Nodes are added to the cluster, Pods are added to them.
+When add a new node to the cluster, a pod gets added to match the nodes.
+As nodes are removed from the cluster, those Pods are garbage collected.
+To scale a DaemonSet to meet a desired state by looking for appropriate no of nodes and deploying pods on them.

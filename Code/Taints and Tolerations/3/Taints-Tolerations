@@ -1,0 +1,2 @@
+[COMMAND]
+kubectl taint nodes NODE_NAME test-environment=true:NoSchedule

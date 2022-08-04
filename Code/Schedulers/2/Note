@@ -1,0 +1,12 @@
+The "leader-elect" option is used when you have multiple copies of the scheduler running on different master nodes.
+If multiple copies of the same scheduler are running on different nodes, only one can be active at a time.
+That’s where the "leader-elect" option helps in choosing a leader who will lead scheduling activities.
+To get multiple schedulers working, you must either set the leader-elect option to false, in case where you don’t have multiple masters.
+--leader-elect=true
+--scheduler-name=SCHEDULER_NAME
+--lock-object-name=SCHEDULER_NAME
+
+Verifying that the pods were scheduled using the desired schedulers
+The below command to check which scheduler assigned to pod
+COMMAND:- $ kubectl get events
+          $ kubectl describe pod POD_NAME

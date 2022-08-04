@@ -1,0 +1,2 @@
+kubectl label nodes NODE_NAME workload=staging
+kubectl get pods -o wide

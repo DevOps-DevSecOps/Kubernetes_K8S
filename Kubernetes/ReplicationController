@@ -1,0 +1,3 @@
+It ensures that a specified number of pod replicas are running.
+It ensures how many replica of pod should be running in a node.
+The count of replicas should not be zero (replicas: 0), it will be cleaned up.

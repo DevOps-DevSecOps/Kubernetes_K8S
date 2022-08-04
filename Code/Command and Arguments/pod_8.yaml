@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: Pod
+spec:
+  containers:
+  - name: main
+    image: alpine
+    command:
+    - sh
+    - -c
+    - 'echo "Hostname is $HOSTNAME."; sleep infinity'

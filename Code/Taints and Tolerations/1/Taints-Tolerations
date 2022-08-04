@@ -1,0 +1,8 @@
+[COMMAND]
+kubectl taint nodes NODE_NAME storage=ssd:NoSchedule
+
+[Notes]
+I added the toleration for the above taint using the “Equal” operator.
+I could also use the “Exists” operator, which will apply toleration to any node matching the key of the taint.
+However, the value doesn’t need to be specified.
+In this case, I’ll use the taint “storage=ssd: NoSchedule” to schedule the pod we define above to the node.

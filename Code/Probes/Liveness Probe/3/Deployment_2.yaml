@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: application-nginx
+  name: application-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: application-nginx
+  template:
+    metadata:
+      labels:
+        app: application-nginx
+    spec:
+      containers:
+      - image: quay.io/<username>/my-application-jobs:latest
+        name: my-application-jobs
+        imagePullPolicy: Always
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - "/usr/bin/my-application-jobs --alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5

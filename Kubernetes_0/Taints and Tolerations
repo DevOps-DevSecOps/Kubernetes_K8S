@@ -1,0 +1,96 @@
+[Taints - Effect]
+● NoSchedule
+If the Pods Toleration will match with any Node Taint, then Pods will be scheduled on a Node.
+If the Pods Toleration will not match with any Node Taint, then pods will not be scheduled (pending) on a Node.
+The existing Pods on the Node will be remain.
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+# Example 1
+-> Syntax
+tolerations:
+- key: "key1"
+  operator: "Equal"
+  value: "value1"
+  effect: "NoSchedule"
+-> COMMAND
+kubectl taint nodes NODE_NAME key1=value1:NoSchedule
+
+# Example 2
+-> Syntax
+tolerations:
+- key: "key1"
+  operator: "Exists"
+  effect: "NoSchedule"
+-> COMMAND
+kubectl taint nodes NODE_NAME-1 key1=value1:NoSchedule
+kubectl taint nodes NODE_NAME-2 key1=value2:NoSchedule
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+● PreferNoSchedule
+If the Pods Toleration will match with any Node Taint, then Pods will be scheduled on a Node.
+If the Pods Toleration will not match with any Node Taint, then pods will be scheduled on a Node only if no other Node available.
+The existing Pods on the Node will be remain.
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+# Example 1
+-> Syntax
+tolerations:
+- key: "key1"
+  operator: "Equal"
+  value: "value1"
+  effect: "PreferNoSchedule"
+-> COMMAND
+kubectl taint nodes NODE_NAME key1=value1:PreferNoSchedule
+
+# Example 2
+-> Syntax
+tolerations:
+- key: "key1"
+  operator: "Exists"
+  effect: "PreferNoSchedule"
+-> COMMAND
+kubectl taint nodes NODE_NAME-1 key1=value1:PreferNoSchedule
+kubectl taint nodes NODE_NAME-2 key1=value2:PreferNoSchedule
+
+# Example 3
+-> Syntax
+tolerations:
+- key: "key1"
+  operator: "Equal"
+  value: "value1"
+  effect: "PreferNoSchedule"
+-> COMMAND
+kubectl taint nodes NODE_NAME key1=value1:NoSchedule
+
+# Example 4
+-> Syntax
+tolerations:
+- key: "key1"
+  operator: "Exists"
+  effect: "PreferNoSchedule"
+-> COMMAND
+kubectl taint nodes NODE_NAME-1 key1=value1:NoSchedule
+kubectl taint nodes NODE_NAME-2 key1=value2:NoSchedule
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+● NoExecute
+If the Pods Toleration will match with any Node Taint, then Pods will be scheduled on a Node.
+If the Pods Toleration will not match with any Node Taint, then pods will not be scheduled (pending) on a Node.
+The existing pods on the node that do not have a matching Pods Toleration for Node Taint will be removed.
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+# Example 1
+-> Syntax
+tolerations:
+- key: "key1"
+  operator: "Equal"
+  value: "value1"
+  effect: "NoExecute"
+-> COMMAND
+kubectl taint nodes NODE_NAME key1=value1:NoExecute
+
+# Example 2
+-> Syntax
+tolerations:
+- key: "key1"
+  operator: "Exists"
+  effect: "NoExecute"
+-> COMMAND
+kubectl taint nodes NODE_NAME-1 key1=value1:NoExecute
+kubectl taint nodes NODE_NAME-2 key1=value2:NoExecute
+-----------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: application-nginx
+  name: application-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: application-nginx
+  template:
+    metadata:
+      labels:
+        app: application-nginx
+    spec:
+      containers:
+      - image: quay.io/<username>/nginx:latest
+        name: application-nginx
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8443
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            scheme: HTTPS
+            path: /index.html
+            port: 8443
+          initialDelaySeconds: 10
+          periodSeconds: 5

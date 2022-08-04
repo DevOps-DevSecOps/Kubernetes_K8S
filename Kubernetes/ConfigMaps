@@ -1,0 +1,2 @@
+ConfigMaps are used for non-sensitive data inside Kubernetes cluster.
+It can be used to store non-sensitive data as key-value pairs.

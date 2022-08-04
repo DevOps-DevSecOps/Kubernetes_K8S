@@ -1,0 +1,16 @@
+Ephemeral Volumes is a temporary space.
+Ephemeral Volumes in the sense that it is cleaned up when the workload is deleted or the container crashes.
+
+[Types]
+● emptyDir
+The emptyDir are provided as local ephemeral storage. They are managed by kubelet on each node.
+● configMap, downwardAPI, secret
+It inject different kinds of Kubernetes data into a Pod.
+The configMap, downwardAPI, secret are provided as local ephemeral storage. They are managed by kubelet on each node.
+● CSI ephemeral volumes
+It provided by special CSI drivers.
+CSI ephemeral volumes must be provided by third-party CSI storage drivers.
+● generic ephemeral volumes
+It can be provided by all storage drivers that also support persistent volumes.
+Generic ephemeral volumes can be provided by third-party CSI storage drivers, but also by any other storage driver that supports dynamic provisioning.
+Some CSI drivers are written specifically for CSI ephemeral volumes and do not support dynamic provisioning: those then cannot be used for generic ephemeral volumes.

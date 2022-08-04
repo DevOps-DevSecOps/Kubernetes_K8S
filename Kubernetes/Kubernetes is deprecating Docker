@@ -1,0 +1,7 @@
+kubelet ---Container Runtime Interface (CRI)---> Dockershim ---> Docker ---> Container
+kubelet ---Container Runtime Interface (CRI)---> Docker, RKT, Containerd, CRI-O ---> Container
+
+When install 'Docker Engine' it comes with several components like REST API, CLI, CRI, Network, Volumes, Images.
+Kubelet talks to 'Docker Engine' with an several commands using an Dockershim.
+The Dockershim is not part of 'Docker Engine', Kubernetes developed and managed this Dockershim to communicate with 'Docker Engine'.
+Kubelet only need to perform Docker Container to run, start, stop, rm, ...etc it doesn't required any other Docker component like REST API, CLI, Network, Volumes, Images.

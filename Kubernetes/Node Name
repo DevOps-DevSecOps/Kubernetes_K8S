@@ -1,0 +1,3 @@
+The nodeName is the simplest form of node selection.
+It scheduling a pod on a specific node by using nodeName.
+The pod will run on the node with specific nodeName.

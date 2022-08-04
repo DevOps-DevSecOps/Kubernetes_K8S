@@ -1,0 +1,6 @@
+kubectl expose pod mc3 --type=NodePort --port=80
+
+kubectl describe service mc3
+
+Now can use your browser (or curl) to navigate to your node port  to access the web application.
+http://NODE_PUBLIC_IP_ADDRESS:NODE_PORT_NO

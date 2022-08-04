@@ -1,0 +1,40 @@
+StatefulSets is used for stateful applications.
+StatefulSet is the Kubernetes controller used to run the stateful application as containers (Pods) in the Kubernetes cluster.
+The advantage of StatefulSets are unique network identifiers, persistent storage, graceful deployment and scaling, automated rolling updates.
+StatefulSets assign a sticky identity an ordinal number starting from zero to each Pod instead of assigning random IDs for each replica Pod.
+The POD_NAME for Pods Workload are assigned as only POD_NAME, with out an random IDs and ordinal number. (POD_NAME)
+The POD_NAME for Deployments Workload are assigned with random IDs. (POD_NAME-XXXX-XXXX)
+The POD_NAME for ReplicaSet and ReplicationController Workload are assigned
+The POD_NAME for DaemonSet Workload are assigned
+The POD_NAME for StatefulSets Workload are assigned with ordinal numbers from zero to each Pod. (POD_NAME-0, POD_NAME-1, POD_NAME-2)
+The first Pod (POD_NAME-0) will be Primary and other Pods (POD_NAME-1 ..... POD_NAME-NO) will be Secondary.
+The first Pod (POD_NAME-0) will handle both read and write requests from the user and other Pods (POD_NAME-1 ..... POD_NAME-NO) always sync with the first Pod (POD_NAME-0) for data replication.
+If any one of the Pod dies, a new Pod is created with the same name.
+A new Pod is created by cloning the previous Pod’s data.
+If the previous Pod is in the pending state, then the new Pod will not be created.
+# EXAMPLE:- 4 replicas Pods current running and need scaled down to 3 replicas mean that it should be run 3 Pods, it will delete the last Pod numbered 3.
+
+# EXAMPLE:-
+                                                        Load Balancer
+                                                              |
+                                                              |
+                      ----------------------------------------|----------------------------------------
+                      |                                       |                                       |
+                      |                                       |                                       |
+                      |                                       |                                       |
+                     Web                                     Web                                     Web
+POD's            Application                             Application                             Application
+                 (Stateless)                             (Stateless)                             (Stateless)
+                      |                                       |                                       |
+                      |                                       |                                       |
+                      |                                       |                                       |
+POD's             Database-0 <-----Data Replication-----> Database-1 <-----Data Replication-----> Database-2
+                   Primary                                Secondary                               Secondary
+                 read / write                                read                                    read
+                  (Stateful)                              (Stateful)                              (Stateful)
+                      |                                       |                                       |
+                      |                                       |                                       |
+                      |                                       |                                       |
+                   PV & PVC                                PV & PVC                                PV & PVC
+
+# Link :-

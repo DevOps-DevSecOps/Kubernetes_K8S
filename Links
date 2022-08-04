@@ -1,0 +1,33 @@
+[imagePullSecrets & ImagePullBackOff]
+https://docs.oracle.com/en-us/iaas/Content/Registry/Tasks/registrypullingimagesfromocir.htm
+https://www.ibm.com/docs/en/cloud-private/3.2.0?topic=images-creating-imagepullsecrets-specific-namespace
+https://devopstales.github.io/kubernetes/k8s-imagepullsecret-patcher/
+https://www.containiq.com/post/kubernetes-imagepullbackoff
+https://www.tutorialworks.com/kubernetes-imagepullbackoff/
+https://stackoverflow.com/questions/32726923/pulling-images-from-private-registry-in-kubernetes
+
+[Multiple Clusters]
+Configure Access to Multiple Clusters => https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/
+
+[Networking]
+Adding entries to Pod /etc/hosts with HostAliases => https://kubernetes.io/docs/tasks/network/customize-hosts-file-for-pods/
+
+[Namespaces]
+Configure Memory and CPU Quotas for a Namespace => https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace/
+Configure Default Memory Requests and Limits for a Namespace => https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/
+Configure Default CPU Requests and Limits for a Namespace => https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-default-namespace/
+Configure Quotas for API Objects => https://kubernetes.io/docs/tasks/administer-cluster/quota-api-object/
+Configure a Pod Quota for a Namespace => https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/quota-pod-namespace/
+Configure Minimum and Maximum Memory Constraints for a Namespace => https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-constraint-namespace/
+Configure Minimum and Maximum CPU Constraints for a Namespace => https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-constraint-namespace/
+Assign Memory Resources to Containers and Pods => https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/
+Assign CPU Resources to Containers and Pods => https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/
+
+[Secrets with Docker]
+Pull an Image from a Private Registry => https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+
+[Troubleshooting]
+https://komodor.com/learn/kubernetes-troubleshooting-the-complete-guide/
+
+[Commands]
+https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands

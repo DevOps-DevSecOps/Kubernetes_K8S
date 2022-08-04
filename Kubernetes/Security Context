@@ -1,0 +1,24 @@
+It allow to set a UID or User ID other than 0 for Pods or Containers. UID is not a username.
+By default containers run as 'root' with UID = 0.
+Two types of Security Context
+1. Pod level
+Security Context applied to all containers in the Pod.
+2. Container level
+Security Context applied on a per individual container.
+Override Pod level Security Context - Container level Security Context can be override/change the Pod level Security Context.
+
+* runAsUser
+
+* runAsNonRoot
+
+* runAsGroup
+
+* fsGroup - The field defines a special supplemental group that assigns a group ID (GID) for all containers in the pod.
+            This group ID is associated with the Volumes (emptyDir) mounted at specific folder path in Container (/FOLDER_NAME/FOLDER_NAME) and with any files created in that volume.
+            If the volume type allows this (as emptyDir volume type) the owning GID will be the fsGroup.
+            It control access to shared volumes by Containers in a Pod.
+            Allows the config of Group ID or GID must match the shared storage GID to have access to that volume.
+
+* allowPrivilegeEscalation
+
+* readonlyRootFilesystem

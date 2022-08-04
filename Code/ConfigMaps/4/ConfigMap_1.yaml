@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: application-configs
+  namespace: default
+data:
+  app.value: "45000"
+  app.type: test-application
+  app.ui: web

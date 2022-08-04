@@ -1,0 +1,82 @@
+• Check command node_exists is used to check existence of nodes in a Kubernetes cluster.
+• Spec - node_exists has the following variables:
+-> selector - Label selector for nodes whose existence are checked
+-> nodeName - Name of Kubernetes node whose existence is checked
+-> count - Number of expected Kubernetes nodes
+• Execution of this command can result in following states:
+-> OK
+-> CRITICAL
+-> UNKNOWN
+
+# Tutorial
+• you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster.
+
+kubectl create namespace demo
+
+kubectl get namespaces
+NAME          STATUS    AGE
+default       Active    6h
+kube-public   Active    6h
+kube-system   Active    6h
+demo          Active    4m
+
+# Check existence of nodes with matching labels
+• If a ClusterAlert will be used check existence of nodes with matching labels by setting spec.vars.selector field.
+
+cat ./docs/examples/cluster-alerts/node_exists/demo-0.yaml
+
+apiVersion: monitoring.appscode.com/v1alpha1
+kind: ClusterAlert
+metadata:
+  name: node-exists-demo-0
+  namespace: demo
+spec:
+  check: node_exists
+  vars:
+    selector: beta.kubernetes.io/os=linux
+    count: '1'
+  checkInterval: 30s
+  alertInterval: 2m
+  notifierSecretName: notifier-config
+  receivers:
+  - notifier: Mailgun
+    state: CRITICAL
+    to: ["ops@example.com"]
+    
+kubectl apply -f ./docs/examples/cluster-alerts/node_exists/demo-0.yaml
+
+kubectl describe clusteralert -n demo node-exists-demo-0
+
+# Check existence of a specific node
+• If a ClusterAlert will be used check existence of a node by name by setting spec.vars.nodeName field.
+
+cat ./docs/examples/cluster-alerts/node_exists/demo-1.yaml
+
+apiVersion: monitoring.appscode.com/v1alpha1
+kind: ClusterAlert
+metadata:
+  name: node-exists-demo-1
+  namespace: demo
+spec:
+  check: node_exists
+  vars:
+    nodeName: minikube
+    count: '1'
+  checkInterval: 30s
+  alertInterval: 2m
+  notifierSecretName: notifier-config
+  receivers:
+  - notifier: Mailgun
+    state: CRITICAL
+    to: ["ops@example.com"]
+    
+kubectl apply -f ./docs/examples/cluster-alerts/node_exists/demo-1.yaml
+
+kubectl describe clusteralert -n demo node-exists-demo-1
+
+# Cleaning up
+• To cleanup the Kubernetes resources
+
+kubectl delete ns demo
+
+# Link:- https://appscode.com/products/searchlight/5.1.1/guides/cluster-alerts/node_exists/

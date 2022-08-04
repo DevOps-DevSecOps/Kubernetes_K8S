@@ -1,0 +1,1 @@
+'kubectl port-forward' is useful for testing/debugging purposes, so that can access service by locally without exposing outside.

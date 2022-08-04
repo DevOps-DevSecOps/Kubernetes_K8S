@@ -1,0 +1,19 @@
+The Dashboard UI is not deployed by default.
+
+Links:- https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+
+To enable access to the Dashboard
+COMMAND:- kubectl proxy
+
+To access the Dashboard
+http://IP_ADDRESS:PORT_NO/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+http://IP_ADDRESS:PORT_NO/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+
+Authentication
+There are two types of credentials
+1. Kubeconfig
+2. Token
+for generating a token need to create 'ServiceAccount' and 'ClusterRoleBinding'.
+the 'ClusterRole' already exists in the cluster with the name of "cluster-admin".          CLUSTERROLE_NAME: cluster-admin
+Links:- https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
+now need to find the token using command and copy the token, in UI Dashboard select 'Token' option and paste the token it into the "Enter token" field on the login screen.

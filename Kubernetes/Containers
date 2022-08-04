@@ -1,0 +1,117 @@
+A container image is a ready-to-run software package, containing everything needed to run an application: the code and any runtime it requires, application and system libraries, and default values for any essential settings.
+A container is immutable: you cannot change the code of a container that is already running.
+A containerized application and want to make changes, you need to build a new image that includes the change, then recreate the container to start from the updated image.
+
+[Multi Containers]
+Typically, a Pod contains a single container.
+However, multiple containers can be placed in the same Pod.
+The multiple containers can talk to each other with in a Pod.
+All containers running on the same Pod share the same volume and network interface of the Pod.
+All the containers in the pod share the same network namespace, therefore all containers can communicate with each other inside the pod.
+All the containers can have the same volume mounted so that they can communicate with each other by reading and modifying files in the storage volume.
+
+[Init Containers]
+Pod can have one OR more init containers runs along with main container.
+Init Containers are the containers that should run and complete before the startup of the main container in the pod.
+The all (one OR more) init containers will run before the main container.
+The init containers always runs to the completion.
+Each init container must complete successfully before the next one starts.
+Let say have multiple init containers, If 1st init container execute successfully then it will go to another 2nd init container.
+If a Pod's init container fails, the kubelet repeatedly restarts that init container until it succeeds, if the Pod has a restartPolicy of Never then kubelet does not restart the pod.
+The main container starts only after all the Init containers are terminated successfully.
+# Example
+For both Container will be attached(volumeMounts) to the same Volumes(emptyDir).
+Init_Container: The init container with the image busybox will create the custom index.html file at the volume mount workdir location.
+APP_Container: The main container is running with Nginx serving on the port 80 that takes the index.html from the volume mount workdir location.
+Since the Init container is run first and terminated before the start of the main container Nginx will find the custom index.html file at the location /usr/share/nginx/html.
+# Link:- https://medium.com/bb-tutorials-and-thoughts/kubernetes-learn-init-container-pattern-7a757742de6b
+
+[Sidecar Containers]
+The container that runs the application and another container that provides helper functionality to the primary application.
+The container providing helper functionality is called a sidecar container.
+A Pod is helping to other Pod to do some thing.
+Main container runs along with Sidecar container.
+A Sidecar container is a second container added to the Pod definition.
+It must be placed in the same Pod is that it needs to use the same resources being used by the main container. 
+# Example
+A great example is a central logging agent.
+The main application will write the logs into a log file and the sidecar container will continuously read this log file and send all logs to a central logging service where they will be use Log Aggregator monitoring tool.
+In a Pod have 2 Container: APP_Container(Nginx), Sidecar_Container. 
+For both Container will be attached(volumeMounts) to the same Volumes(emptyDir).
+APP_Container(Nginx): The access and error logs are produced.
+                      The access and error logs produced by the APP_Container(Nginx) are not critical enough to be placed on a persistent volume.
+Sidecar_Container: To ships [attached(volumeMounts) to the same Volumes(emptyDir)] the error and access logs from APP_Container(Nginx) to a Sidecar_Container will act as Splunk Universal Forwarder send to central Log Aggregator monitoring tool like Splunk (Splunk database).
+# Link:- https://medium.com/bb-tutorials-and-thoughts/kubernetes-learn-sidecar-container-pattern-6d8c21f873d
+         https://www.golinuxcloud.com/kubernetes-sidecar-container/
+
+[Adapter Containers]
+Is used to translate the output from the applications endpoint to a format that required the client tool.
+Adapter Container is used to translate the output from the main container endpoint to a format that required the client tool.
+The main container generates OR write logs into any different kind of format and then adapter container will read logs help to convert that logs output into particular required format. 
+# Example
+The main container generates logs in text format and external systems need to consume these logs in a JSON format.
+It need to have some mechanism to convert text files to JSON format.
+The Adapter container is a simple express Nginx server that reads from the location /var/log/file.log and produces JSON format.
+In a Pod have 2 Container: APP_Container(Nginx), Adapter_Container.
+For both Container will be attached(volumeMounts) to the same Volumes(emptyDir).
+APP_Container(Nginx): The main container is Nginx generating some logs to the path /var/log/file.log from the volume mount workdir location.
+                      The main container creates logs in the location /var/log/file.log.
+Adapter_Container: It serves (convert) those log files in a JSON format.
+                   To ships [attached(volumeMounts) to the same Volumes(emptyDir)] the logs from APP_Container(Nginx) to a Adapter_Container will act as Splunk Universal Forwarder send to central Log Aggregator monitoring tool like Splunk (Splunk database).
+# Link:- https://medium.com/bb-tutorials-and-thoughts/kubernetes-learn-adaptor-container-pattern-97674285983c
+
+[Ambassador Containers]
+The Ambassador container will simplifies accessing services outside the Pod.
+The Ambassador container is used to connect containers with the outside world.
+The helper container can send network requests on behalf of the main application.
+The main container application should access the data from the external services by using Ambassador Container.
+Its a proxying connections from the main container to other services.
+The main container application is not directly communicating with other application OR with outside world. 
+The main container don’t want to handle this complexity, but the Ambassador container hides the complexity and provides the uniform interface to access the external services.
+# Example
+APP_Container: The main container application is running with an Movies website.
+               The main container doesn't have it own database and not integrated with any REST API. 
+Ambassador_Container: The Movie DB website offers a REST API where you can get information about the movies.
+                      We have implemented an ambassador container that listens on path '/movies' and whenever it receives a request, it will make an authenticated request to the API of The Movie DB.
+# Link:- https://medium.com/bb-tutorials-and-thoughts/kubernetes-learn-ambassador-container-pattern-bc2e1331bd3a
+
+[Ephemeral Containers]
+Ephemeral Container allow you to create a container image that includes all the debugging tools.
+Ephemeral Container can be added to an existing pod to allow you to troubleshoot a live issue.
+It runs temporarily in an existing Pod to allow to integrations like troubleshooting a container workload.
+It's adding a container in an exiting pod for debugging purposes.
+Ephemeral Container can also debug a pod in 'CrashLoopBackOff' state.
+The command to add Ephemeral Container to existing Pod.
+COMMAND:-       $ kubectl debug -it pods/POD_NAME -- image=IMAGE_NAME
+# Example for Ephemeral Container
+Let’s create a deployment application using nginx as an image.
+$ kubectl create deployment nginx-deployment --image=nginx
+Now should get the pod name that want to debug.
+$ kubectl get pods
+The ephemeral container’s image will be busybox.
+The -i and -t flags allow us to attach to the newly created container and Now we can quickly start debugging.
+These command will create a new ephemeral container in the pod nginx-deployment-xxxxxxxx-xxxx.
+$ kubectl debug -it pods/nginx-deployment-xxxxxxxx-xxxx --image=busybox
+The command can see a new field “Ephemeral Containers”.
+$ kubectl describe pods nginx-deployment-xxxxxxxx-xxxx
+# Links:- https://loft.sh/blog/using-kubernetes-ephemeral-containers-for-troubleshooting/
+
+[Restart Policy]
+The default value is Always.
+The restartPolicy applies to all containers in the Pod.
+The restartPolicy only refers to restarts of the containers by the kubelet on the same node.
+After containers in a Pod exit, the kubelet restarts them with an exponential back-off delay (10s, 20s, 40s, …), that is capped at five minutes.
+Once a container has executed for 10 minutes without any problems, the kubelet resets the restart backoff timer for that container.
+The spec of a Pod has a restartPolicy field with possible values are Always, OnFailure, Never.
+
+● Always - The container will be restarted even if it exited with a zero exit code (i.e. successfully).
+           This is useful when you don't care why the container exited, you just want to make sure that it is always running (e.g. a web server).
+           This is the default.
+# Syntax :->                        restartPolicy: Always
+
+● OnFailure - The container will only be restarted if it exited with a non-zero exit code (i.e. something went wrong).
+              This is useful when you want accomplish a certain task with the pod, and ensure that it completes successfully - if it doesn't it will be restarted until it does.
+# Syntax :->                        restartPolicy: OnFailure
+
+● Never - The container will not be restarted regardless of why it exited.
+# Syntax :->                        restartPolicy: Never

@@ -1,0 +1,7 @@
+kubectl taint nodes NODE_NAME special=true:NoSchedule
+kubectl taint nodes NODE_NAME special:NoSchedule-
+
+[Multiple]
+kubectl taint nodes NODE_NAME key1=value1:NoSchedule
+kubectl taint nodes NODE_NAME key1=value1:NoExecute
+kubectl taint nodes NODE_NAME key2=value2:NoSchedule

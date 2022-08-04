@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: avengers
+spec:
+  containers:
+  - name: avengers
+    image: nginx
+    envFrom:
+    - configMapRef:
+        name: avengers

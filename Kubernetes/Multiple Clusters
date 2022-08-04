@@ -1,0 +1,69 @@
+A context is the connection to a specific cluster used by kubectl. It can manage multiple clusters that way.
+Each Context contains a Kubernetes Cluster, a User, and a Namespace.
+The multiple Contexts to target multiple different Kubernetes Clusters, a Users, and a Namespaces.
+It also stores authentication information such as Username/Password, Certificates or Tokens.
+The current context is the cluster that is currently the default for kubectl: all kubectl commands run against that cluster.
+Each of the context that have been used will be available on "/home/USER_NAME/.kube/config" (OR) "~/.kube/config" (OR) "$HOME/.kube/config".
+
+The KUBECONFIG contains the following information about
+● Kubernetes Cluster (OR) Kubernetes Clusters
+● User (OR) Users
+● Namespace (OR) Namespaces
+● Authentication
+
+Syntax for ".kube/config" :-
+..............
+..............
+..............
+contexts:
+- context:                                                  # CONTEXT 1
+    cluster: CLUSTER_NAME
+    namespace: NAMESPACE_NAME
+    user: USER_NAME
+  name: CONTEXT_NAME
+- context:                                                  # CONTEXT 2
+    cluster: CLUSTER_NAME
+    namespace: NAMESPACE_NAME
+    user: SERVICEACCOUNT_NAME
+  name: CONTEXT_NAME
+current-context: CONTEXT_NAME
+..............
+..............
+..............
+
+# EXAMPLE :-
+Suppose you have two clusters, one for development work and one for scratch work.
+In the "development" cluster, your frontend developers work in a namespace called 'frontend', and your storage developers work in a namespace called 'storage'.
+In your "scratch" cluster, developers work in the 'default' namespace.
+Access to the development cluster requires authentication by certificate. Access to the scratch cluster requires authentication by username and password.
+
+Create a directory named FOLDER_NAME. In your FOLDER_NAME directory, create a file named FILE_NAME with this content:
+
+$ vi FILE_NAME
+apiVersion: v1
+kind: Config
+preferences: {}
+clusters:
+- cluster:
+  name: development
+- cluster:
+  name: scratch
+users:
+- name: developer
+- name: experimenter
+contexts:
+- context:
+  name: dev-frontend
+- context:
+  name: dev-storage
+- context:
+  name: exp-scratch
+
+Add context details to your configuration file:
+$ kubectl config --kubeconfig=FILE_NAME set-context dev-frontend --cluster=development --namespace=frontend --user=developer  
+$ kubectl config --kubeconfig=FILE_NAME set-context dev-storage --cluster=development --namespace=storage --user=developer
+$ kubectl config --kubeconfig=FILE_NAME set-context exp-scratch --cluster=scratch --namespace=default --user=experimenter
+
+Add user details to your configuration file:
+$ kubectl config --kubeconfig=config-demo set-credentials developer --client-certificate=fake-cert-file --client-key=fake-key-seefile
+$ kubectl config --kubeconfig=config-demo set-credentials experimenter --username=exp --password=some-password

@@ -1,0 +1,45 @@
+[Selectors]
+
+# EXAMPLE 1 :-
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: REPLICATIONCONTROLLER_NAME
+spec:
+  replicas: NO
+  selector:
+    KEY: VALUE
+    KEY: VALUE
+........
+........
+........
+
+# EXAMPLE 2 :-
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: REPLICASET_NAME
+spec:
+  replicas: NO
+  selector:
+    matchLabels:                                                # This option was added
+      KEY: VALUE
+      KEY: VALUE
+........
+........
+........
+
+# EXAMPLE 3 :-
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: REPLICASET_NAME
+spec:
+  replicas: NO
+  selector:
+    matchExpressions:
+      - {key: KEY_NAME, operator: In, values: [VALUE_NAME, VALUE_NAME]}
+      - {key: KEY_NAME, operator: NotIn, values: [VALUE_NAME, VALUE_NAME]}
+........
+........
+........

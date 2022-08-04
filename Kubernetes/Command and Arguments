@@ -1,0 +1,2 @@
+* "args" in Kubernetes overrides 'CMD' in the original docker image.
+* "command" in Kubernetes overrides 'ENTRYPOINT' in the original docker image.

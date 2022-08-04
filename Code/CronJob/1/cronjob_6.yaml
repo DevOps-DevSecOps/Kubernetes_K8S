@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+   name: kube-job
+spec:
+   schedule: "*/5 * * * *" 
+   jobTemplate:
+     spec:
+       template:
+          spec:
+            containers:
+            - name: hello
+              image: busybox
+              command : ["echo", "Hello Kubernetes Cron Job"]
+            restartPolicy: OnFailure 

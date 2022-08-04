@@ -1,0 +1,85 @@
+• Check command event is used to check Kubernetes events. This plugin checks for all Warning events happened in the last spec.checkInterval duration.
+• Spec - event check command has the following variables:
+-> clockSkew - Clock skew in Duration. [Default: 30s]. This time is added with spec.checkInterval while checking events
+-> involvedObjectKind - Kind of involved object used to select events
+-> involvedObjectName - Name of involved object used to select events
+-> involvedObjectNamespace - Namespace of involved object used to select events
+-> involvedObjectUID - UID of involved object used to select events
+• Execution of this command can result in following states:
+-> OK
+-> WARNING
+-> UNKNOWN
+
+# Tutorial
+• you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster.
+
+kubectl create namespace demo
+
+kubectl get namespaces
+NAME          STATUS    AGE
+default       Active    6h
+kube-public   Active    6h
+kube-system   Active    6h
+demo          Active    4m
+
+# Check existence of any warning event
+• If a ClusterAlert will be used check existence of warning events occurred in the last check interval.
+
+cat ./docs/examples/cluster-alerts/event/demo-0.yaml
+
+apiVersion: monitoring.appscode.com/v1alpha1
+kind: ClusterAlert
+metadata:
+  name: event-demo-0
+  namespace: demo
+spec:
+  check: event
+  checkInterval: 30s
+  alertInterval: 2m
+  notifierSecretName: notifier-config
+  receivers:
+  - notifier: Mailgun
+    state: WARNING
+    to: ["ops@example.com"]
+    
+kubectl apply -f ./docs/examples/cluster-alerts/event/demo-0.yaml
+
+kubectl describe clusteralert -n demo event-demo-0
+
+kubectl get events -n demo
+
+# Check existence of events for a specific object
+• If a ClusterAlert will be used check existence of events for a specific object by setting one or more spec.vars.involvedObject* fields.
+
+cat ./docs/examples/cluster-alerts/event/demo-1.yaml
+
+apiVersion: monitoring.appscode.com/v1alpha1
+kind: ClusterAlert
+metadata:
+  name: event-demo-1
+  namespace: demo
+spec:
+  check: event
+  vars:
+    involvedObjectName: busybox
+    involvedObjectNamespace: demo
+  checkInterval: 30s
+  alertInterval: 2m
+  notifierSecretName: notifier-config
+  receivers:
+  - notifier: Mailgun
+    state: WARNING
+    to: ["ops@example.com"]
+    
+kubectl apply -f ./docs/examples/cluster-alerts/event/demo-1.yaml
+
+kubectl describe clusteralert -n demo event-demo-1
+
+kubectl get events -n demo
+
+# Cleaning up
+• To cleanup the Kubernetes resources
+
+kubectl delete ns demo
+
+# Link:- https://appscode.com/products/searchlight/5.1.1/guides/cluster-alerts/event/
