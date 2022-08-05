@@ -5,7 +5,7 @@ metadata:
   labels:
     name: prod-db-client
 spec:
-  serviceAccount: prod-db-client
+  serviceAccountName: prod-db-client
   containers:
   - name: db-client-container
     image: myClientImage
