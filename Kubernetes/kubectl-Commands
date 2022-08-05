@@ -906,8 +906,10 @@ kubectl get secret/SECRET_NAME -o yaml
 kubectl get secrets
 kubectl get secrets -o yaml
 kubectl get secrets --all-namespaces
+kubectl get secrets -n NAMESPACE_NAME
 kubectl get secrets --namespace NAMESPACE_NAME
 kubectl get secrets SECRET_NAME
+kubectl get secrets SECRET_NAME -n NAMESPACE_NAME
 kubectl get secrets SECRET_NAME -o yaml
 kubectl get secrets/SECRET_NAME
 kubectl describe secret
@@ -1022,7 +1024,10 @@ kubectl get sa -o yaml
 kubectl get sa --all-namespaces
 kubectl get sa SERVICEACCOUNT_NAME -o yaml
 kubectl get serviceaccount
+kubectl get serviceaccount -n NAMESPACE_NAME
 kubectl get serviceaccount --namespace NAMESPACE_NAME
+kubectl get serviceaccount SERVICEACCOUNT_NAME
+kubectl get serviceaccount SERVICEACCOUNT_NAME -n NAMESPACE_NAME
 kubectl get serviceaccount SERVICEACCOUNT_NAME -o yaml
 kubectl get serviceaccount SERVICEACCOUNT_NAME -o json
 kubectl get serviceaccounts
