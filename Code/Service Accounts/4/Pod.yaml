@@ -8,4 +8,4 @@ spec:
   serviceAccountName: prod-db-client
   containers:
   - name: db-client-container
-    image: myClientImage
+    image: nginx
