@@ -1,0 +1,5 @@
+create a Namespace.
+$ kubectl create namespace devops-tools
+
+create a Service Account in Namespace.
+$ kubectl create serviceaccount api-service-account -n devops-tools
