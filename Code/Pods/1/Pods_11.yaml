@@ -1,9 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
+  name: web
   labels:
-    run: app2
+    run: app
 spec:
   containers:
   - image: httpd
-    name: app2
+    name: app
