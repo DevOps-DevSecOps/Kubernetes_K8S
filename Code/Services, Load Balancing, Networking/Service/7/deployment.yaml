@@ -9,6 +9,7 @@ spec:
   replicas: 2
   template:
     metadata:
+      name: my-nginx
       labels:
         run: my-nginx
     spec:
