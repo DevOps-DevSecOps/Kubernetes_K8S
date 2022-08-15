@@ -784,6 +784,7 @@ kubectl get service SERVICE_NAME -n NAMESPACE_NAME
 kubectl get service SERVICE_NAME -n NAMESPACE_NAME -o yaml
 kubectl get service SERVICE_NAME -n NAMESPACE_NAME -o yaml > FILE_NAME.yaml
 kubectl get services
+kubectl get services -o wide
 kubectl get services -n NAMESPACE_NAME
 kubectl get services --namespace NAMESPACE_NAME
 kubectl get services --namespace=NAMESPACE_NAME
