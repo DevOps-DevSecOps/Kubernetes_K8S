@@ -1,3 +1,7 @@
+#
+kubeadm init
+kubeadm init --pod-network-cidr=SUBNET_RANGE --apiserver-advertise-address=MASTER_NODE_IPADDRESS                        # MASTER_NODE_IPADDRESS = Private/Public
+
 # Check the token validity
 kubeadm token list
 
