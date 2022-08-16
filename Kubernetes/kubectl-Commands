@@ -169,6 +169,7 @@ kubectl get pod -l 'KEY in (VALUE,VALUE)'
 kubectl get pod -l 'KEY in (VALUE),KEY in (VALUE)'
 kubectl get pod --all-namespaces -o wide
 kubectl get pod -n NAMESPACE_NAME
+kubectl get pod -n NAMESPACE_NAME -w
 kubectl get pod -n NAMESPACE_NAME -o wide
 kubectl get pod -n NAMESPACE_NAME --show-labels
 kubectl get pod -n NAMESPACE_NAME --show-labels -o wide
