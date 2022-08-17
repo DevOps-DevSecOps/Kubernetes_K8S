@@ -1,3 +1,4 @@
 #
+kubeadm init --pod-network-cidr=192.168.10.0/24
 kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=MASTER_NODE_IPADDRESS
 kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=MASTER_NODE_IPADDRESS
