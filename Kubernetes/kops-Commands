@@ -25,6 +25,17 @@ export KOPS_CLUSTER_NAME=CLUSTER_NAME
 export KOPS_STATE_STORE=s3://BUCKET_NAME
 kops create cluster --cloud=aws --zones=AVAILABILITY_ZONE --node-count=NO --node-size=INSTANCE_TYPES --master-size=INSTANCE_TYPES --name=${KOPS_CLUSTER_NAME}
 
+# EXAMPLE 6:-
+export KOPS_CLUSTER_NAME=CLUSTER_NAME
+export KOPS_STATE_STORE=s3://BUCKET_NAME
+kops create cluster --name=${KOPS_CLUSTER_NAME} --state=${KOPS_STATE_STORE} --master-size=INSTANCE_TYPES --master-count NO --node-size=INSTANCE_TYPES --node-count=NO --zones=AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3 --dns ROUTE53_HOSTEDZONE_TYPES                      # ROUTE53_HOSTEDZONE_TYPES = private/public
+
+# EXAMPLE 7:-
+export KOPS_STATE_STORE=s3://BUCKET_NAME
+kops create cluster --cloud=aws --name=CLUSTER_NAME --zones=AVAILABILITY_ZONE --dns-zone=ROUTE53_HOSTEDZONE_NAME --dns ROUTE53_HOSTEDZONE_TYPES                      # ROUTE53_HOSTEDZONE_TYPES = private/public
+
+# EXAMPLE 8:-
+
 [YAML]
 kops create -f FILE_NAME.yaml
 kops delete -f FILE_NAME.yaml
@@ -40,15 +51,18 @@ kops get cluster CLUSTER_NAME
 kops get cluster CLUSTER_NAME -o yaml
 kops get cluster CLUSTER_NAME -o yaml > FILE_NAME.yaml
 kops get clusters
-kops get instances --name CLUSTER_NAME
 kops get secrets
 kops get secrets admin -o plaintext
 kops get secrets admin -o plaintext --name CLUSTER_NAME
+kops get instances --name CLUSTER_NAME
+kops get ig                                                         #
+kops get instancegroups
 
 [Edit]
 kops edit cluster CLUSTER_NAME
 kops edit cluster CLUSTER_NAME --state s3://BUCKET_NAME
 kops edit cluster CLUSTER_NAME --state=s3://BUCKET_NAME
+kops edit ig INSTANCEGROUP_NAME                                     # scale up, scale down, change Instance Types, change Subnets Availability Zones (AZ)
 
 [Update]
 kops update cluster --name CLUSTER_NAME
@@ -61,6 +75,7 @@ kops update cluster CLUSTER_NAME --yes --state=s3://BUCKET_NAME --yes
 [Validate]
 kops validate cluster
 kops validate cluster --state s3://BUCKET_NAME
+kops vaildate cluster CLUSTER_NAME
 kops validate cluster CLUSTER_NAME --state s3://BUCKET_NAME
 kops validate cluster --wait MINUTES                                                        # MINUTES = 10m, Kops will try for 10 minutes to validate the cluster
 kops validate cluster --wait MINUTES --count NO                                             # MINUTES = 10m & NO = 3, Kops will try for 10 minutes to validate the cluster 3 times
