@@ -4,7 +4,7 @@ The advantage of StatefulSets are unique network identifiers, persistent storage
 StatefulSets assign a sticky identity an ordinal number starting from zero to each Pod instead of assigning random IDs for each replica Pod.
 The POD_NAME for Pods Workload are assigned as only POD_NAME, with out an random IDs and ordinal number. (POD_NAME)
 The POD_NAME for Deployments Workload are assigned with random IDs. (POD_NAME-XXXX-XXXX)
-The POD_NAME for ReplicaSet and ReplicationController Workload are assigned
+The POD_NAME for ReplicaSet and ReplicationController Workload are assigned with random IDs. (POD_NAME-XXXX)
 The POD_NAME for DaemonSet Workload are assigned
 The POD_NAME for StatefulSets Workload are assigned with ordinal numbers from zero to each Pod. (POD_NAME-0, POD_NAME-1, POD_NAME-2)
 Ordered numbers for each Pod.
