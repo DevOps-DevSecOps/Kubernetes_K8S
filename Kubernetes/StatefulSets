@@ -41,4 +41,4 @@ POD's             Database-0 <-----Data Replication-----> Database-1 <-----Data 
                       |                                       |                                       |
                    PV & PVC                                PV & PVC                                PV & PVC
 
-# Link :-
+# Link :- https://loft.sh/blog/kubernetes-statefulset-examples-and-best-practices/
