@@ -6,7 +6,7 @@ kubeadm init --pod-network-cidr=SUBNET_RANGE --apiserver-advertise-address=MASTE
 # Check the token validity
 kubeadm token list
 
-# Generating/Creating new kubeadm token
+# Generating/Creating new kubeadm token to join Worker Nodes
 kubeadm token create --print-join-command
 
 #
