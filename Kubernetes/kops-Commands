@@ -62,6 +62,7 @@ kops get instancegroups
 kops edit cluster CLUSTER_NAME
 kops edit cluster CLUSTER_NAME --state s3://BUCKET_NAME
 kops edit cluster CLUSTER_NAME --state=s3://BUCKET_NAME
+kops edit cluster --name CLUSTER_NAME
 kops edit ig INSTANCEGROUP_NAME                                     # scale up, scale down, change Instance Types, change Subnets Availability Zones (AZ)
 
 [Update]
