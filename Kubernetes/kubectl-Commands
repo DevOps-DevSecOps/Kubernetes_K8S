@@ -858,6 +858,7 @@ kubectl create configmap CONFIGMAP_NAME --from-file=FOLDER_NAME/FILE_NAME --name
 kubectl create configmap CONFIGMAP_NAME --from-env-file=FOLDER_NAME/FILE_NAME
 kubectl create configmap CONFIGMAP_NAME --from-env-file=FOLDER_NAME/FILE_NAME --from-env-file=FOLDER_NAME/FILE_NAME
 kubectl edit cm CONFIGMAP_NAME
+kubectl edit cm CONFIGMAP_NAME -n NAMESPACE_NAME
 kubectl edit configmap CONFIGMAP_NAME
 kubectl get cm
 kubectl get cm --all-namespaces
