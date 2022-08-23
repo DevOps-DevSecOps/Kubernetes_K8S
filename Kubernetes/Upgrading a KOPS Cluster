@@ -1,0 +1,5 @@
+[1. list the KOPS cluster]
+$ kops get cluster
+
+[2. edit the particular cluster and update the version]
+$
