@@ -3,7 +3,8 @@ kubeadm init
 kubeadm init --pod-network-cidr=SUBNET_RANGE
 kubeadm init --pod-network-cidr=SUBNET_RANGE --apiserver-advertise-address=MASTER_NODE_IPADDRESS                        # MASTER_NODE_IPADDRESS = Private/Public
 
-# Highly Available Clusters
+# Highly Available Clusters with multiple Master Nodes and multiple Worker Nodes
+kubeadm init --control-plane-endpoint LOAD_BALANCER_IPADDRESS:LOAD_BALANCER_PORT_NO --upload-certs
 
 # Check the token validity
 kubeadm token list
