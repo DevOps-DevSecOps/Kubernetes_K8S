@@ -84,6 +84,7 @@ kops validate cluster --wait MINUTES --count NO                                 
 
 [Upgrade]
 # Upgrade a kubernetes cluster, After this command is run, use "kops update cluster" and "kops rolling-update cluster" to finish a cluster upgrade
+kops upgrade cluster --name CLUSTER_NAME --yes
 kops upgrade cluster CLUSTER_NAME --yes --state=s3://BUCKET_NAME
 
 [Rolling Update]
