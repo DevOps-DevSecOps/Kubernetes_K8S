@@ -1,15 +1,29 @@
-[1. list the KOPS cluster]
+There are two ways to do upgrading a KOPS cluster.
+
+This is the 1st way to do.
+1. list the KOPS cluster.
 $ kops get cluster
-
-[2. edit the particular cluster and update the version]
+2. edit the particular cluster and update the version.
 $ kops edit cluster --name CLUSTER_NAME
-Then change 'kubernetesVersion: x.xx.x' older version to 'kubernetesVersion: x.xx.x' new specific OR particular version.
-
-[3. check the current version by using the commands]
+Then change 'kubernetesVersion: x.xx.x' older version to 'kubernetesVersion: x.xx.x' new specific/particular OR latest version.
+3. check the current version by using the commands.
 $ kubectl version --short
 Server Version: vx.xx.x                     # its current older version
 $ kubectl get nodes
 Nodes (Master & Worker) version is in older version.
+4. update the cluster.
+$ kops update cluster --name CLUSTER_NAME --yes
+5. rolling-update the cluster.
+$ kops rolling-update cluster --name CLUSTER_NAME --yes
+6. finally verify the cluster is updated OR not.
+$ kubectl version --short
+Server Version: vx.xx.x                     # now its new version
+$ kubectl get nodes
+Nodes (Master & Worker) version is in new version.
 
-[4. update the cluster]
+This is the 2nd way to do.
+1. upgrade the cluster.
+$ kops upgrade cluster --name CLUSTER_NAME --yes
+This command will verify the old and new version.
+2. update the cluster.
 $
