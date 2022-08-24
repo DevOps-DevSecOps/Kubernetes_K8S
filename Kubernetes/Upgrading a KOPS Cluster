@@ -2,4 +2,14 @@
 $ kops get cluster
 
 [2. edit the particular cluster and update the version]
+$ kops edit cluster --name CLUSTER_NAME
+Then change 'kubernetesVersion: x.xx.x' older version to 'kubernetesVersion: x.xx.x' new specific OR particular version.
+
+[3. check the current version by using the commands]
+$ kubectl version --short
+Server Version: vx.xx.x                     # its current older version
+$ kubectl get nodes
+Nodes (Master & Worker) version is in older version.
+
+[4. update the cluster]
 $
