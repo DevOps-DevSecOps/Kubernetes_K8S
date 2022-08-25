@@ -29,4 +29,8 @@ This command will verify the old and new version.
 $ kops update cluster --name CLUSTER_NAME --yes
 3. rolling-update the cluster.
 $ kops rolling-update cluster --name CLUSTER_NAME --yes
-4.
+4. finally verify the cluster is updated OR not.
+$ kubectl version --short
+Server Version: vx.xx.x                     # now its new version
+$ kubectl get nodes
+Nodes (Master & Worker) version is in new version.
