@@ -57,6 +57,7 @@ kops get secrets admin -o plaintext --name CLUSTER_NAME
 kops get instances --name CLUSTER_NAME
 kops get ig                                                         #
 kops get instancegroups
+kops get instancegroups INSTANCEGROUP_NAME
 
 [Edit]
 kops edit cluster --name CLUSTER_NAME
@@ -64,6 +65,7 @@ kops edit cluster CLUSTER_NAME
 kops edit cluster CLUSTER_NAME --state s3://BUCKET_NAME
 kops edit cluster CLUSTER_NAME --state=s3://BUCKET_NAME
 kops edit ig INSTANCEGROUP_NAME                                     # scale up, scale down, change Instance Types, change Subnets Availability Zones (AZ)
+kops edit instancegroups INSTANCEGROUP_NAME
 
 [Update]
 kops update cluster --name CLUSTER_NAME
