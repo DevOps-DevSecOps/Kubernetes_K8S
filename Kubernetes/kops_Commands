@@ -7,3 +7,5 @@ kops update cluster ${NAME} --yes
 [Delete]
 kops delete cluster --name ${NAME}
 kops delete cluster --name ${NAME} --yes
+kops delete cluster $NAME --yes
+kops delete cluster ${NAME} --yes
