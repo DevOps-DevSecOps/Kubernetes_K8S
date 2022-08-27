@@ -396,6 +396,7 @@ kubectl scale deploy DEPLOYMENT_NAME --replicas NO
 kubectl scale deploy/DEPLOYMENT_NAME --replicas=NO
 kubectl scale deploy/DEPLOYMENT_NAME --replicas NO
 kubectl scale deployment DEPLOYMENT_NAME --replicas=NO
+kubectl scale deployment DEPLOYMENT_NAME --replicas NO
 kubectl scale deployment/DEPLOYMENT_NAME --replicas=NO
 kubectl scale deployment DEPLOYMENT_NAME --replicas=NO -n NAMESPACE_NAME
 kubectl scale deployment DEPLOYMENT_NAME --replicas=NO -n=NAMESPACE_NAME
