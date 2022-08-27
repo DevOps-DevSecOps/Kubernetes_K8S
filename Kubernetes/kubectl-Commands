@@ -349,6 +349,7 @@ kubectl create deployment DEPLOYMENT_NAME --image IMAGE_NAME
 kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME:TAG
 kubectl create deployment DEPLOYMENT_NAME --image IMAGE_NAME:TAG
 kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME --replicas=NO
+kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME --replicas=NO --port=CONTAINER_PORT_NO
 kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME --replicas=NO --dry-run=client -o yaml
 kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME --replicas=NO --dry-run=client -o yaml > FILE_NAME.yaml
 kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME -n=NAMESPACE_NAME
