@@ -35,6 +35,12 @@ export KOPS_STATE_STORE=s3://BUCKET_NAME
 kops create cluster --cloud=aws --name=CLUSTER_NAME --zones=AVAILABILITY_ZONE --dns-zone=ROUTE53_HOSTEDZONE_NAME --dns ROUTE53_HOSTEDZONE_TYPES                      # ROUTE53_HOSTEDZONE_TYPES = private/public
 
 # EXAMPLE 8:-
+export S3_BUCKET_NAME=BUCKET_NAME
+export KOPS_STATE_STORE=s3://${S3_BUCKET_NAME}
+kops create cluster --name CLUSTER_NAME --zones AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3 --networking amazonvpc --kubernetes-version VERSION_NO --yes
+
+# EXAMPLE 9:-
+kops create cluster --name=CLUSTER_NAME --cloud=aws --zones=AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3 --master-size=INSTANCE_TYPES --master-zones=AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3 --node-size=INSTANCE_TYPES --node-count=NO --state=s3://BUCKET_NAME --yes
 
 [YAML]
 kops create -f FILE_NAME.yaml
@@ -79,6 +85,7 @@ kops update cluster CLUSTER_NAME --yes --state=s3://BUCKET_NAME --yes
 kops validate cluster --name CLUSTER_NAME
 kops validate cluster
 kops validate cluster --state s3://BUCKET_NAME
+kops validate cluster --state=s3://BUCKET_NAME
 kops vaildate cluster CLUSTER_NAME
 kops validate cluster CLUSTER_NAME --state s3://BUCKET_NAME
 kops validate cluster --wait MINUTES                                                        # MINUTES = 10m, Kops will try for 10 minutes to validate the cluster
@@ -101,6 +108,7 @@ kops delete cluster --name CLUSTER_NAME
 kops delete cluster --name CLUSTER_NAME --yes
 kops delete cluster --name=CLUSTER_NAME --yes
 kops delete cluster --name CLUSTER_NAME --state s3://BUCKET_NAME --yes
+kops delete cluster --name=CLUSTER_NAME --state=s3://BUCKET_NAME --yes
 kops delete cluster CLUSTER_NAME --state s3://BUCKET_NAME --yes
 kops delete instance INSTANCE_ID --yes                                                  # INSTANCE_ID = EC2 Instance ID: i-0a5ed581b862d3425
 kops delete instance HOST_NAME --yes                                                    # HOST_NAME = ip-xx.xx.xx.xx.ec2.internal
