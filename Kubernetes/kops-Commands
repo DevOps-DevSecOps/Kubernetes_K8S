@@ -42,6 +42,9 @@ kops create cluster --name CLUSTER_NAME --zones AVAILABILITY_ZONE_1,AVAILABILITY
 # EXAMPLE 9:-
 kops create cluster --name=CLUSTER_NAME --cloud=aws --zones=AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3 --master-size=INSTANCE_TYPES --master-zones=AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3 --node-size=INSTANCE_TYPES --node-count=NO --state=s3://BUCKET_NAME --yes
 
+# EXAMPLE 10:-
+kops create cluster --name CLUSTER_NAME --master-count NO --master-zones AVAILABILITY_ZONE --node-count NO --zones AVAILABILITY_ZONE --kubernetes-version=VERSION_NO --yes
+
 [YAML]
 kops create -f FILE_NAME.yaml
 kops delete -f FILE_NAME.yaml
