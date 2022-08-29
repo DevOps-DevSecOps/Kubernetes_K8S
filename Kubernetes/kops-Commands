@@ -81,6 +81,8 @@ kops update cluster --name CLUSTER_NAME
 kops update cluster --name CLUSTER_NAME --yes
 kops update cluster --name CLUSTER_NAME --yes --admin
 kops update cluster --name CLUSTER_NAME --state s3://BUCKET_NAME --yes
+kops update cluster CLUSTER_NAME
+kops update cluster CLUSTER_NAME --yes
 kops update cluster CLUSTER_NAME --state s3://BUCKET_NAME --yes
 kops update cluster CLUSTER_NAME --yes --state=s3://BUCKET_NAME --yes
 
@@ -103,6 +105,8 @@ kops upgrade cluster CLUSTER_NAME --yes --state=s3://BUCKET_NAME
 kops rolling-update cluster --name CLUSTER_NAME --yes
 kops rolling-update cluster
 kops rolling-update cluster --yes
+kops rolling-update cluster CLUSTER_NAME
+kops rolling-update cluster CLUSTER_NAME --yes
 kops rolling-update cluster CLUSTER_NAME --yes --fail-on-validate-error="false"
 kops rolling-update cluster CLUSTER_NAME --yes --cloudonly --force
 
