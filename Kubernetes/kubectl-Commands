@@ -1120,6 +1120,7 @@ kubectl get hpa HPA_NAME -o yaml
 kubectl get hpa HPA_NAME -o yaml > /FOLDER_NAME/FILE_NAME.yaml
 kubectl describe hpa HPA_NAME
 kubectl delete hpa HPA_NAME
+kubectl delete hpa/HPA_NAME
 
 [Vertical Pod Autoscaling (VPA)]
 kubectl get vpa
