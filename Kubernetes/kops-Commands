@@ -38,6 +38,7 @@ kops create cluster --cloud=aws --name=CLUSTER_NAME --zones=AVAILABILITY_ZONE --
 export S3_BUCKET_NAME=BUCKET_NAME
 export KOPS_STATE_STORE=s3://${S3_BUCKET_NAME}
 kops create cluster --name CLUSTER_NAME --zones AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3 --networking amazonvpc --kubernetes-version VERSION_NO --yes
+kops create cluster --name=CLUSTER_NAME --zones=AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3 --networking=amazonvpc --kubernetes-version=VERSION_NO --yes
 
 # EXAMPLE 9:-
 kops create cluster --name=CLUSTER_NAME --cloud=aws --zones=AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3 --master-size=INSTANCE_TYPES --master-zones=AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3 --node-size=INSTANCE_TYPES --node-count=NO --state=s3://BUCKET_NAME --yes
