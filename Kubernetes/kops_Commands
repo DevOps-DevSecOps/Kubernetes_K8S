@@ -2,7 +2,12 @@
 kops edit cluster ${NAME}
 
 [Update]
+kops update cluster $NAME --yes
 kops update cluster ${NAME} --yes
+
+[Upgrade]
+kops upgrade cluster $NAME
+kops upgrade cluster $NAME --yes
 
 [Delete]
 kops delete cluster --name ${NAME}
