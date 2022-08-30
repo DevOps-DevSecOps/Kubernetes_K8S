@@ -83,6 +83,7 @@ kubectl run NAME --image=IMAGE_NAME --env="KEY=VALUE" --env="KEY=VALUE"         
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME
 kubectl run NAME --image DOCKER_HUB_USER_ID/REPOSITORY_NAME --context=CONTEXT_NAME
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --labels KEY=VALUE --port SERVICE_PORT_NO --expose
+kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --requests=cpu=NOm --expose --port=SERVICE_PORT_NO                       # Pod_Deployment and Service
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --restart=Never
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --dry-run=client -o yaml > FILE_NAME.yaml
@@ -402,7 +403,7 @@ kubectl scale deployment DEPLOYMENT_NAME --replicas=NO -n NAMESPACE_NAME
 kubectl scale deployment DEPLOYMENT_NAME --replicas=NO -n=NAMESPACE_NAME
 kubectl scale deployment DEPLOYMENT_NAME --replicas=NO --namespace=NAMESPACE_NAME
 kubectl scale --current-replicas=NO --replicas=NO deployment/DEPLOYMENT_NAME                    # deployment current size is NO, scale to NO
-kubectl autoscale deployment DEPLOYMENT_NAME --cpu-percent=PERCENTAGE_NO --min=NO --max=NO      # Horizontal Pod Autoscaler
+kubectl autoscale deployment DEPLOYMENT_NAME --cpu-percent=PERCENTAGE_NO --min=NO --max=NO      # Horizontal Pod Autoscaler, CPU utilization across all pods and will increase and decrease replicas
 kubectl autoscale deployment/DEPLOYMENT_NAME --cpu-percent=PERCENTAGE_NO --min=NO --max=NO
 kubectl autoscale deployment/DEPLOYMENT_NAME --min=NO --max=NO
 kubectl edit deploy DEPLOYMENT_NAME
