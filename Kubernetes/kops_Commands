@@ -1,7 +1,9 @@
 [Edit]
+kops edit cluster $NAME
 kops edit cluster ${NAME}
 
 [Update]
+kops update cluster $NAME
 kops update cluster $NAME --yes
 kops update cluster ${NAME} --yes
 
@@ -10,6 +12,7 @@ kops upgrade cluster $NAME
 kops upgrade cluster $NAME --yes
 
 [Rolling Update]
+kops rolling-update cluster $NAME
 kops rolling-update cluster $NAME --yes
 
 [Delete]
