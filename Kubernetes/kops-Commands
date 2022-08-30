@@ -130,6 +130,7 @@ kops delete cluster --name CLUSTER_NAME --yes
 kops delete cluster --name=CLUSTER_NAME --yes
 kops delete cluster --name CLUSTER_NAME --state s3://BUCKET_NAME --yes
 kops delete cluster --name=CLUSTER_NAME --state=s3://BUCKET_NAME --yes
+kops delete cluster CLUSTER_NAME
 kops delete cluster CLUSTER_NAME --yes
 kops delete cluster CLUSTER_NAME --state s3://BUCKET_NAME --yes
 kops delete instance INSTANCE_ID --yes                                                  # INSTANCE_ID = EC2 Instance ID: i-0a5ed581b862d3425
