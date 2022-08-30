@@ -9,6 +9,9 @@ kops update cluster ${NAME} --yes
 kops upgrade cluster $NAME
 kops upgrade cluster $NAME --yes
 
+[Rolling Update]
+kops rolling-update cluster $NAME --yes
+
 [Delete]
 kops delete cluster --name ${NAME}
 kops delete cluster --name ${NAME} --yes
