@@ -46,6 +46,17 @@ kops create cluster --name=CLUSTER_NAME --cloud=aws --zones=AVAILABILITY_ZONE_1,
 # EXAMPLE 10:-
 kops create cluster --name CLUSTER_NAME --master-count NO --master-zones AVAILABILITY_ZONE --node-count NO --zones AVAILABILITY_ZONE --kubernetes-version=VERSION_NO --yes
 
+# EXAMPLE 11:- Install "calico" along with setup of Kubernetes KOPS
+kops create cluster --cloud=aws --name=CLUSTER_NAME --zones=AVAILABILITY_ZONE --networking calico --dns-zone=ROUTE53_HOSTEDZONE_NAME --dns ROUTE53_HOSTEDZONE_TYPES
+kops create cluster --cloud=aws --name=CLUSTER_NAME --zones=AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2 --networking calico --master-size INSTANCE_TYPES --master-count NO --node-size INSTANCE_TYPES --node-count NO --dns-zone=ROUTE53_HOSTEDZONE_NAME --dns ROUTE53_HOSTEDZONE_TYPES
+
+# EXAMPLE 12:-
+export KOPS_STATE_STORE=s3://BUCKET_NAME
+export CLUSTER_NAME=CLUSTER_NAME
+export VPC_ID=VPC_ID                                               # export the existing AWS VPC
+export NETWORK_CIDR=VPC_CIDR_RANGE                                 # VPC_CIDR_RANGE = 172.20.0.0/16
+kops create cluster --name=${CLUSTER_NAME} --vpc=${VPC_ID} --zones=AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2
+
 [YAML]
 kops create -f FILE_NAME.yaml
 kops delete -f FILE_NAME.yaml
@@ -61,6 +72,7 @@ kops get cluster CLUSTER_NAME
 kops get cluster CLUSTER_NAME -o yaml
 kops get cluster CLUSTER_NAME -o yaml > FILE_NAME.yaml
 kops get clusters
+kops get secret
 kops get secrets
 kops get secrets admin -o plaintext
 kops get secrets admin -o plaintext --name CLUSTER_NAME
@@ -84,6 +96,7 @@ kops update cluster --name CLUSTER_NAME --yes --admin
 kops update cluster --name CLUSTER_NAME --state s3://BUCKET_NAME --yes
 kops update cluster CLUSTER_NAME
 kops update cluster CLUSTER_NAME --yes
+kops update cluster CLUSTER_NAME --yes --admin
 kops update cluster CLUSTER_NAME --state s3://BUCKET_NAME --yes
 kops update cluster CLUSTER_NAME --yes --state=s3://BUCKET_NAME --yes
 
@@ -117,6 +130,7 @@ kops delete cluster --name CLUSTER_NAME --yes
 kops delete cluster --name=CLUSTER_NAME --yes
 kops delete cluster --name CLUSTER_NAME --state s3://BUCKET_NAME --yes
 kops delete cluster --name=CLUSTER_NAME --state=s3://BUCKET_NAME --yes
+kops delete cluster CLUSTER_NAME --yes
 kops delete cluster CLUSTER_NAME --state s3://BUCKET_NAME --yes
 kops delete instance INSTANCE_ID --yes                                                  # INSTANCE_ID = EC2 Instance ID: i-0a5ed581b862d3425
 kops delete instance HOST_NAME --yes                                                    # HOST_NAME = ip-xx.xx.xx.xx.ec2.internal
