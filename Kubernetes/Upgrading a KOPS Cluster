@@ -10,7 +10,7 @@ Then change 'kubernetesVersion: x.xx.x' older version to 'kubernetesVersion: x.x
 $ kubectl version --short
 Server Version: vx.xx.x                     # its current older version
 $ kubectl get nodes
-Nodes (Master & Worker) version is in older version.
+Nodes (Master & Worker) is in old version.
 4. update the cluster.
 $ kops update cluster --name CLUSTER_NAME --yes
 5. rolling-update the cluster.
@@ -19,7 +19,7 @@ $ kops rolling-update cluster --name CLUSTER_NAME --yes
 $ kubectl version --short
 Server Version: vx.xx.x                     # now its new version
 $ kubectl get nodes
-Nodes (Master & Worker) version is in new version.
+Nodes (Master & Worker) is in new version.
 
 This is the 2nd way to do.
 1. upgrade the cluster.
@@ -33,4 +33,4 @@ $ kops rolling-update cluster --name CLUSTER_NAME --yes
 $ kubectl version --short
 Server Version: vx.xx.x                     # now its new version
 $ kubectl get nodes
-Nodes (Master & Worker) version is in new version.
+Nodes (Master & Worker) is in new version.
