@@ -57,6 +57,22 @@ export VPC_ID=VPC_ID                                               # export the 
 export NETWORK_CIDR=VPC_CIDR_RANGE                                 # VPC_CIDR_RANGE = 172.20.0.0/16
 kops create cluster --name=${CLUSTER_NAME} --vpc=${VPC_ID} --zones=AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2
 
+# EXAMPLE 13:-
+export NAME=CLUSTER_NAME
+export KOPS_STATE_STORE=s3://BUCKET_NAME
+kops create cluster ${NAME} --zones AVAILABILITY_ZONE --networking weave --master-size INSTANCE_TYPES --master-count NO --node-size INSTANCE_TYPES --node-count=NO
+
+# EXAMPLE 14:-
+export KOPS_NAME=CLUSTER_NAME
+export KOPS_STATE_STORE=s3://BUCKET_NAME
+export PRIVATE_HOSTED_ZONE_ID=ROUTE53_HOSTEDZONE_NAME
+kops create cluster --name $KOPS_NAME --state $KOPS_STATE_STORE --zones AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3 --networking weave --master-zones AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3 --master-size INSTANCE_TYPES --dns-zone=${PRIVATE_HOSTED_ZONE_ID} --dns ROUTE53_HOSTEDZONE_TYPES --image
+
+# EXAMPLE 15:-
+export KOPS_STATE_STORE=s3://BUCKET_NAME
+echo $KOPS_STATE_STORE                                              #
+kops create cluster --name CLUSTER_NAME --zones AVAILABILITY_ZONE --master-size INSTANCE_TYPES --node-size INSTANCE_TYPES --image
+
 [YAML]
 kops create -f FILE_NAME.yaml
 kops delete -f FILE_NAME.yaml
