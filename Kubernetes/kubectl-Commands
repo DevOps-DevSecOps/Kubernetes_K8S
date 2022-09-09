@@ -185,6 +185,8 @@ kubectl get pod POD_NAME -o yaml --export
 kubectl get pod POD_NAME --show-labels
 kubectl get pod POD_NAME -n NAMESPACE_NAME
 kubectl get pod POD_NAME -n NAMESPACE_NAME -o yaml
+kubectl get pod POD_NAME -n NAMESPACE_NAME -o yaml > FILE_NAME.yaml
+kubectl get pod POD_NAME -n NAMESPACE_NAME -o yaml > /FOLDER_NAME/FILE_NAME.yaml
 kubectl get pod POD_NAME --namespace=NAMESPACE_NAME
 kubectl get pod POD_NAME --output yaml
 kubectl get pod POD_NAME --output=yaml
@@ -327,6 +329,7 @@ kubectl delete pod -l KEY=VALUE
 kubectl delete pod POD_NAME
 kubectl delete pod POD_NAME POD_NAME
 kubectl delete pod POD_NAME -n=NAMESPACE_NAME
+kubectl delete pod POD_NAME --namespace NAMESPACE_NAME --force
 kubectl delete pod POD_NAME --namespace=NAMESPACE_NAME
 kubectl delete pod/POD_NAME
 kubectl delete pod/POD_NAME -n NAMESPACE_NAME
@@ -888,6 +891,7 @@ kubectl delete configmaps CONFIGMAP_NAME
 kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE                                      
 kubectl create secret generic SECRET_NAME --from-literal=KEY='VALUE'
 kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE --from-literal=KEY=VALUE
+kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE --from-literal=KEY=VALUE -n NAMESPACE_NAME
 kubectl create secret generic SECRET_NAME --from-literal=KEY='VALUE' --from-literal=KEY='VALUE'
 kubectl create secret generic SECRET_NAME --from-literal='KEY=VALUE' --from-literal='KEY=VALUE'
 kubectl create secret generic SECRET_NAME --from-file=./FILE_NAME
@@ -906,6 +910,7 @@ kubectl get secret SECRET_NAME -o json
 kubectl get secret SECRET_NAME --output=yaml
 kubectl get secret SECRET_NAME --export -o yaml > FILE_NAME.yaml                # export the secret and store the secret config data in a file
 kubectl get secret SECRET_NAME -n NAMESPACE_NAME
+kubectl get secret SECRET_NAME -n NAMESPACE_NAME -o yaml
 kubectl get secret SECRET_NAME --namespace NAMESPACE_NAME
 kubectl get secret/SECRET_NAME
 kubectl get secret/SECRET_NAME -o yaml
