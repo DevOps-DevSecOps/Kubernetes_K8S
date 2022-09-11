@@ -66,12 +66,12 @@ kops create cluster ${NAME} --zones AVAILABILITY_ZONE --networking weave --maste
 export KOPS_NAME=CLUSTER_NAME
 export KOPS_STATE_STORE=s3://BUCKET_NAME
 export PRIVATE_HOSTED_ZONE_ID=ROUTE53_HOSTEDZONE_NAME
-kops create cluster --name $KOPS_NAME --state $KOPS_STATE_STORE --zones AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3 --networking weave --master-zones AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3 --master-size INSTANCE_TYPES --node-count NO --node-size INSTANCE_TYPES --dns-zone=${PRIVATE_HOSTED_ZONE_ID} --dns ROUTE53_HOSTEDZONE_TYPES --image IMAGE_ID_NAME --kubernetes-version=VERSION_NO --yes
+kops create cluster --name $KOPS_NAME --state $KOPS_STATE_STORE --zones AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3 --networking weave --master-zones AVAILABILITY_ZONE_1,AVAILABILITY_ZONE_2,AVAILABILITY_ZONE_3 --master-size INSTANCE_TYPES --node-count NO --node-size INSTANCE_TYPES --dns-zone=${PRIVATE_HOSTED_ZONE_ID} --dns ROUTE53_HOSTEDZONE_TYPES --image IMAGE_ID_NAME --kubernetes-version=VERSION_NO --yes                                       # IMAGE_ID_NAME = AMI(Amazon Machine Image)_ID
 
 # EXAMPLE 15:-
 export KOPS_STATE_STORE=s3://BUCKET_NAME
-echo $KOPS_STATE_STORE                                              #
-kops create cluster --name CLUSTER_NAME --zones AVAILABILITY_ZONE --master-size INSTANCE_TYPES --node-size INSTANCE_TYPES --image IMAGE_ID_NAME --kubernetes-version VERSION_NO
+echo $KOPS_STATE_STORE                                              # read value (BUCKET_NAME) from the variable (KOPS_STATE_STORE)
+kops create cluster --name CLUSTER_NAME --zones AVAILABILITY_ZONE --master-size INSTANCE_TYPES --node-size INSTANCE_TYPES --image IMAGE_ID_NAME --kubernetes-version VERSION_NO                             # IMAGE_ID_NAME = AMI(Amazon Machine Image)_ID
 
 [YAML]
 kops create -f FILE_NAME.yaml
@@ -93,7 +93,7 @@ kops get secrets
 kops get secrets admin -o plaintext
 kops get secrets admin -o plaintext --name CLUSTER_NAME
 kops get instances --name CLUSTER_NAME
-kops get ig                                                         #
+kops get ig                                                         
 kops get instancegroups
 kops get instancegroups INSTANCEGROUP_NAME
 
