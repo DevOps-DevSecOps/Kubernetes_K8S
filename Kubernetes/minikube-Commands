@@ -1,7 +1,8 @@
 minikube version
 
 minikube start
-
+minikube start --driver=virtualbox
+minikube start --cpus=NO --memory=NO --driver=virtualbox
 minikube start --cpus NO --memory NOg --driver=virtualbox
 
 minikube status
