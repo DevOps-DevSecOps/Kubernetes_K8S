@@ -143,6 +143,7 @@ kubectl expose pod POD_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES
 kubectl expose pod POD_NAME --port SERVICE_PORT_NO --target-port CONTAINER_PORT_NO --type SERVICE_TYPES
 kubectl get po --kubeconfig=FILE_NAME
 kubectl get po
+kubectl get po -A
 kubectl get po -o wide
 kubectl get po -o yaml
 kubectl get po -l KEY
