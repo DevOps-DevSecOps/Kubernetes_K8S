@@ -1,15 +1,24 @@
 minikube version
 
 minikube start
+minikube start --kubernetes-version=VERSION_NO
 minikube start --driver=virtualbox
 minikube start --cpus=NO --memory=NO --driver=virtualbox
 minikube start --cpus NO --memory NOg --driver=virtualbox
+minikube start -p NAME                                      # it create another cluster with different profile name
+minikube start -p NAME --kubernetes-version=VERSION_NO
 
 minikube status
+
+minikube pause
+
+minikube unpause
 
 minikube stop
 
 minikube ip
+
+minikube config set memory NO                               # increase/decrease the default memory limit (requires a restart)
 
 minikube logs
 
