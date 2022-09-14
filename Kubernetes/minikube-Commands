@@ -22,3 +22,5 @@ minikube service SERVICE_NAME
 minikube service SERVICE_NAME --url --namespace NAMESPACE_NAME
 
 minikube addons list
+
+minikube delete --all
