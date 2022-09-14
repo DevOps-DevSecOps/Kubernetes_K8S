@@ -3,6 +3,8 @@ minikube version
 minikube start
 minikube start --kubernetes-version=VERSION_NO
 minikube start --driver=virtualbox
+minikube start --driver=docker
+minikube start --cpus NO --memory NO
 minikube start --cpus=NO --memory=NO --driver=virtualbox
 minikube start --cpus NO --memory NOg --driver=virtualbox
 minikube start -p NAME                                      # it create another cluster with different profile name
