@@ -1,2 +1,4 @@
 minikube start --cpus 4 --memory 5g --driver=virtualbox
 minikube start --cpus=4 --memory=4096 --driver=virtualbox
+
+minikube config set memory 16384
