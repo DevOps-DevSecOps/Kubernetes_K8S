@@ -34,3 +34,7 @@ $ kubectl version --short
 Server Version: vx.xx.x                     # now its new version
 $ kubectl get nodes
 Nodes (Master & Worker) is in new version.
+
+# Link :- https://medium.com/avmconsulting-blog/upgrading-and-scaling-kubernetes-cluster-in-aws-6971b3936465
+          https://kops.sigs.k8s.io/operations/updates_and_upgrades/
+          https://devopsbuzz.com/kops-to-manage-kubernetes/
