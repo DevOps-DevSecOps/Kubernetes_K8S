@@ -140,6 +140,7 @@ kops upgrade cluster CLUSTER_NAME --yes --state=s3://BUCKET_NAME
 kops rolling-update cluster --name CLUSTER_NAME --yes
 kops rolling-update cluster
 kops rolling-update cluster --yes
+kops rolling-update cluster --master-interval=NOm --node-interval=NOm --yes                     # updates all nodes in the cluster first master and then worker, There is a 5-minute delay between restarting master nodes and a 2-minute delay between restarting worker nodes
 kops rolling-update cluster CLUSTER_NAME
 kops rolling-update cluster CLUSTER_NAME --yes
 kops rolling-update cluster CLUSTER_NAME --yes --fail-on-validate-error="false"
