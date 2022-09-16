@@ -12,6 +12,7 @@ kops upgrade cluster $NAME
 kops upgrade cluster $NAME --yes
 
 [Rolling Update]
+kops rolling-update cluster --master-interval=1m --node-interval=1m --yes
 kops rolling-update cluster $NAME
 kops rolling-update cluster $NAME --yes
 
