@@ -1,4 +1,4 @@
 [mountPath]
-When new files in particular folder (source) copy to any one of the folder (destination), the existing OR current OR older files will be deleted in folder (destination) then only new files will be present.
+When new files in particular folder (source) copy to any one of the folder (destination), the existing OR older files will be deleted in folder (destination) then only new files will be present in folder (destination).
 
 [subPath]
