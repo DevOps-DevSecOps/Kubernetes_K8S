@@ -2,3 +2,4 @@
 When new files in particular folder (source) copy to any one of the folder (destination), the existing OR older files will be deleted in folder (destination) then only new files will be present in folder (destination).
 
 [subPath]
+When new files in particular folder (source) copy to any one of the folder (destination), the existing OR older files will not be deleted in folder (destination) then both older files and new files will be present in folder (destination).
