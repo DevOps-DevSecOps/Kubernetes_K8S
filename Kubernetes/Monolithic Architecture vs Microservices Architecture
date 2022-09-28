@@ -1,4 +1,11 @@
 [Monolithic]
-
+It built as one large system.
+It is not easy to scale.
+It has shared database.
+Deployment of large code base makes IDE slow and build time gets increase.
 
 [Microservices]
+It built as small independent module based on functionality.
+It is easy to scale.
+Each project and module has their own database.
+Deployment of each project is independent and small in size. So overall build and development time gets decrease.
