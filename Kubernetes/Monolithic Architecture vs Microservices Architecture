@@ -1,10 +1,17 @@
 [Monolithic]
+It has multi-module services for each Application are managed and served in.
+The multi-module services will be 
 It built as one large system.
 It is not easy to scale.
 It has shared database.
 Deployment of large code base makes IDE slow and build time gets increase.
 
 [Microservices]
+It has multi-module services for each Application.
+
+The each multi-module services can implemented with different programming languages.
+If any one module service goes down remaining other module services will up and running.
+
 It built as small independent module based on functionality.
 It is easy to scale.
 Each project and module has their own database.
