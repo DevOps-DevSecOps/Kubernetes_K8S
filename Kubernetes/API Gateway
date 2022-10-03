@@ -3,6 +3,8 @@ APIs are part of an application that communicates with other Applications.
 APIs operate as a bridge between Applications, allowing them to communicate more efficiently.
 APIs will support both for one to more Applications and multi-module services with in a Application.
 
-●
-●
-●
+● Web API
+● HTTP (HyperText Transfer Protocol) API
+HTTP requests to have access to a server.
+● REST (Representational State Transfer) API / RESTful API
+HTTP methods for RESTful
