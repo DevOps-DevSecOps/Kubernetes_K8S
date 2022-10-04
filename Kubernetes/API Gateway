@@ -7,4 +7,6 @@ APIs will support both for one to more Applications and multi-module services wi
 ● HTTP (HyperText Transfer Protocol) API
 HTTP requests to have access to a server.
 ● REST (Representational State Transfer) API / RESTful API
-HTTP methods for RESTful
+  HTTP Verb =    POST      GET         PUT              PATCH         DELETE   
+                   |        |           |                 |              |
+  CRUD      =    Create    Read   Update/Replace    Update/Modify     Delete
