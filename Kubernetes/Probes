@@ -1,6 +1,7 @@
 [Readiness Probe]
 If a container does not provide a readiness probe, the default state is Success.
 It is used to find out if the app is ready to handle requests.
+It tell when the container is ready to start traffic.
 It indicates whether the application running in the container is ready to accept requests.
 It indicates whether applications running in a container are ready to receive traffic.
 Services matching the pod are allowed to send traffic to it and if not the endpoints controller removes the pod from all matching Kubernetes Services.
@@ -15,7 +16,8 @@ If the readiness probe fails, the endpoints controller removes the Pod's IP addr
 [Liveness Probe]
 If a container does not provide a liveness probe, the default state is Success.
 It is used to determine whether a container is running OR not.
-It is used to find out if the app is running correctly or not.
+It is used to find out if the app is running correctly OR not.
+It is responsible for restarting a container, if it in a deadlock.
 It is used to find out if the app has crashed/deadlocked.
 It indicates app is alive or dead.
 If app is alive, then kubelet leaves it alone. If app is dead that means unhealthy, then the kubelet will kills the container and the container is restarted with the pod restartPolicy.
@@ -26,6 +28,7 @@ If liveness probe failed then the kubelet will try to restart the pod on the sam
 [Startup Probe]
 If a container does not provide a startup probe, the default state is Success.
 It indicates whether the application within the container is started.
+It tells when the container application has started.
 It is very useful on slow-start applications then Startup probe allows our application to become ready.
 It is use to find out if the app is initialized or not.
 It indicates whether the application running in the container has fully started.
