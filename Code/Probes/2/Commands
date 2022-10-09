@@ -1,0 +1,7 @@
+The application using Gradle as preferred build tool.
+$ ./gradlew build
+
+The following Docker commands.
+$ docker build -t NAME .
+$ docker tag IMAGE_NAME DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
+$ docker push DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
