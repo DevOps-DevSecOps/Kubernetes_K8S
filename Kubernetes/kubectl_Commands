@@ -64,6 +64,10 @@ kubectl exec POD_NAME -c CONTAINER_NAME -- ls /
 kubectl exec POD_NAME -c CONTAINER_NAME -- cat /FOLDER_NAME/FILE_NAME
 kubectl exec POD_NAME -c CONTAINER_NAME -- mv /FOLDER_NAME/FILE_NAME:original /FOLDER_NAME/FILE_NAME:rename
 
+[Service]
+kubectl create service SERVICE_NAME nodeport
+kubectl create service SERVICE_NAME clusterip --clusterip="None" -o yaml --dry-run=client > /FOLDER_NAME/FILE_NAME.yaml
+
 [ConfigMaps]
 kubectl create configmap CONFIGMAP_NAME --from-literal=url="http://example.com"
 
