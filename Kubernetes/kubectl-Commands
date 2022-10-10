@@ -141,6 +141,7 @@ kubectl expose pod POD_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO
 kubectl expose pod POD_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO
 kubectl expose pod POD_NAME --name SERVICE_NAME --port=SERVICE_PORT_NO --dry-run=client -o yaml
 kubectl expose pod POD_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES
+kubectl expose pod POD_NAME --name SERVICE_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES --dry-run=client -o yaml
 kubectl expose pod POD_NAME --port SERVICE_PORT_NO --target-port CONTAINER_PORT_NO --type SERVICE_TYPES
 kubectl get po --kubeconfig=FILE_NAME
 kubectl get po
