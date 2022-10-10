@@ -765,8 +765,6 @@ kubectl delete storageclass STORAGECLASS_NAME --force --namespace NAMESPACE_NAME
 
 [Service]
 kubectl explain svc
-kubectl create service SERVICE_NAME SERVICE_TYPES
-kubectl create service SERVICE_NAME SERVICE_TYPES --clusterip="None" -o yaml --dry-run=client > /FOLDER_NAME/FILE_NAME.yaml
 kubectl edit svc SERVICE_NAME
 kubectl edit svc/SERVICE_NAME
 kubectl edit svc SERVICE_NAME -n NAMESPACE_NAME
