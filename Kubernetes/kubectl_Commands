@@ -13,6 +13,7 @@ kubectl set resources deployment DEPLOYMENT_NAME --limits cpu=200m,memory=512Mi 
 kubectl set resources deployment DEPLOYMENT_NAME --limits=cpu=200m,memory=512Mi --requests=cpu=100m,memory=256Mi
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=NodePort
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=LoadBalancer
+kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=LoadBalancer --external-ip=1.1.1.1 --port=SERVICE_PORT_NO
 kubectl autoscale deployment DEPLOYMENT_NAME --cpu-percent=50 --min=1 --max=10              # CPU utilization across all Pods of 50% then Pods maintains between 1 and 10 replicas
 
 [Service Accounts]
