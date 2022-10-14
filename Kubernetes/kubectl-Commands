@@ -315,14 +315,14 @@ kubectl top pods
 kubectl top pods -n NAMESPACE_NAME
 kubectl top pods --all-namespaces
 kubectl top pods POD_NAME -n NAMESPACE_NAME
-kubectl port-forward POD_NAME HOST_PORT_NO:SERVICE_PORT_NO
-kubectl port-forward POD_NAME HOST_PORT_NO:SERVICE_PORT_NO --namespace NAMESPACE_NAME
-kubectl port-forward POD_NAME HOST_PORT_NO:SERVICE_PORT_NO --namespace=NAMESPACE_NAME
-kubectl port-forward pod/POD_NAME :SERVICE_PORT_NO                                                      # Listen on a random host port no locally
-kubectl port-forward --address 0.0.0.0 pod/POD_NAME HOST_PORT_NO:SERVICE_PORT_NO                        # Listen on host port on all addresses
-kubectl port-forward --address localhost,IP_ADDRESS pod/POD_NAME HOST_PORT_NO:SERVICE_PORT_NO           # Listen on host port with selected IP
-kubectl port-forward pod/POD_NAME HOST_PORT_NO:SERVICE_PORT_NO
-kubectl port-forward pods/POD_NAME HOST_PORT_NO:SERVICE_PORT_NO
+kubectl port-forward POD_NAME HOST_PORT_NO:CONTAINER_PORT_NO
+kubectl port-forward POD_NAME HOST_PORT_NO:CONTAINER_PORT_NO --namespace NAMESPACE_NAME
+kubectl port-forward POD_NAME HOST_PORT_NO:CONTAINER_PORT_NO --namespace=NAMESPACE_NAME
+kubectl port-forward pod/POD_NAME :CONTAINER_PORT_NO                                                      # Listen on a random host port no locally
+kubectl port-forward --address 0.0.0.0 pod/POD_NAME HOST_PORT_NO:CONTAINER_PORT_NO                        # Listen on host port on all addresses
+kubectl port-forward --address localhost,IP_ADDRESS pod/POD_NAME HOST_PORT_NO:CONTAINER_PORT_NO           # Listen on host port with selected IP
+kubectl port-forward pod/POD_NAME HOST_PORT_NO:CONTAINER_PORT_NO
+kubectl port-forward pods/POD_NAME HOST_PORT_NO:CONTAINER_PORT_NO
 kubectl delete po --all                                                                                 # delete all pods in the default namespace
 kubectl delete po --all --force
 kubectl delete po --all -n NAMESPACE_NAME                                                               # delete all pods in namespace
