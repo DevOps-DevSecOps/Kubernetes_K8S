@@ -1,1 +1,3 @@
-'kubectl port-forward' is useful for testing/debugging purposes, so that can access service by locally without exposing outside.
+[port-forward]
+It is a method to access, interact and manage the internal Kubernetes clusters directly from current local host system.
+It is useful for testing/debugging purposes, so that can access service by locally without exposing outside.
