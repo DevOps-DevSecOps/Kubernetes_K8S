@@ -347,6 +347,7 @@ KUBECONFIG=FILE_NAME kubectl get pods
 kubectl explain deploy
 kubectl explain deployment
 kubectl create deploy DEPLOYMENT_NAME --image=IMAGE_NAME
+kubectl create deploy DEPLOYMENT_NAME --image=IMAGE_NAME:TAG
 kubectl create deploy DEPLOYMENT_NAME --image=IMAGE_NAME --replicas=NO
 kubectl create deploy DEPLOYMENT_NAME --image=IMAGE_NAME --dry-run -o yaml > FILE_NAME.yaml
 kubectl create deploy DEPLOYMENT_NAME --image=index.docker.io/DOCKER_HUB_USER_ID/REPOSITORY_NAME
