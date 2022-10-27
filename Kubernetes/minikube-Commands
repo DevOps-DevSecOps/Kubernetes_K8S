@@ -2,6 +2,7 @@ minikube version
 
 minikube start
 minikube start --kubernetes-version=VERSION_NO
+minikube start --vm-driver=none
 minikube start --driver=virtualbox
 minikube start --driver=docker
 minikube start --cpus NO --memory NO
