@@ -1,4 +1,5 @@
 Pods are ephemeral and stateless.
 Volumes bring persistence to pods.
 Containers has access to volume with in a same pod.
-It support many types of Storage's.
+If node stops working, the pod can be rescheduled on another node and the volume can be attached to the new node.
+It support many types of Storages.
