@@ -1,1 +1,1 @@
-
+aws ec2 create-volume --availability-zone=eu-west-1a --size=10 --volume-type=gp2
