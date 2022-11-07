@@ -1,0 +1,1 @@
+If the EBS volume is partitioned, So can supply the optional field by using (partition: "<partition number>") to specify which partition to mount on.
