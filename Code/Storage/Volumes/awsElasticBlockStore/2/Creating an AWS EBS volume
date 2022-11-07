@@ -1,0 +1,10 @@
+$ aws ec2 create-volume --size 10 --region us-east-1 --availability-zone us-east-1a --volume-type gp2
+{
+    "VolumeId": "vol-055681138509322ee",
+    "VolumeType": "gp2",
+    "Encrypted": "false",
+    "CreateTime": "2022-11-07T13:51:33.317Z",
+    "AvailabilityZone": "us-east-1a",
+    "Size": "10",
+    "State": "creating"
+}
