@@ -1,0 +1,2 @@
+So install OpenEBS and use then into StorageClass.
+In "StorageClass" code with a field 'provisioner: openebs.io/local' provisioner plugin. The OpenEBS is a thrid party plugin using in Kubernetes.
