@@ -20,3 +20,5 @@ CSI ephemeral volumes must be provided by third-party CSI storage drivers.
 It can be provided by all storage drivers that also support persistent volumes.
 Generic ephemeral volumes can be provided by third-party CSI storage drivers, but also by any other storage driver that supports dynamic provisioning.
 Some CSI drivers are written specifically for CSI ephemeral volumes and do not support dynamic provisioning: those then cannot be used for generic ephemeral volumes.
+
+[Storage Classes]
