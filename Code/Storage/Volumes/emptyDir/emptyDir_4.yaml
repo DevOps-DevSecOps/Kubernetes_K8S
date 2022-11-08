@@ -16,4 +16,4 @@ spec:
       mountPath: /var/html
 volumes:
 - name: vol1
-emptyDir: {}
+  emptyDir: {}
