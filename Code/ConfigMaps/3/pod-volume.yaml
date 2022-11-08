@@ -13,7 +13,7 @@ spec:
         - containerPort: 8080
       imagePullPolicy: Always
       volumeMounts:
-          name: my-volume
+        - name: my-volume
           mountPath: /app/config
   volumes:
     - name: my-volume
