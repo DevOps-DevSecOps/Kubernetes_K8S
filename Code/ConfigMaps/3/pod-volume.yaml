@@ -16,6 +16,6 @@ spec:
           name: my-volume
           mountPath: /app/config
   volumes:
-      name: my-volume
+    - name: my-volume
       configMap:
         name: my-configmap
