@@ -756,14 +756,18 @@ kubectl get pvc --namespace=NAMESPACE_NAME
 kubectl get persistentvolumeclaims --namespace=NAMESPACE_NAME
 kubectl describe pvc
 kubectl describe pvc PVC_NAME
+kubectl delete pvc --all
 kubectl delete pvc -l KEY=VALUE
 kubectl delete pvc PVC_NAME
 kubectl delete pvc PVC_NAME --force --namespace NAMESPACE_NAME
 
 [Storage Classes]
+kubectl explain sc
 kubectl get sc
 kubectl get sc -o yaml
+kubectl get sc STORAGECLASS_NAME -o yaml > FILE_NAME.yaml
 kubectl get storageclass
+kubectl delete sc STORAGECLASS_NAME
 kubectl delete storageclass STORAGECLASS_NAME
 kubectl delete storageclass STORAGECLASS_NAME --force --namespace NAMESPACE_NAME
 
