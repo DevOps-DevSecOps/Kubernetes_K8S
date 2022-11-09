@@ -1,6 +1,8 @@
 [Version]
 kubectl version
 kubectl version --short
+kubectl version --client
+kubectl version --client --output=yaml
 
 [YAML]
 kubectl create -f ./FOLDER_NAME
