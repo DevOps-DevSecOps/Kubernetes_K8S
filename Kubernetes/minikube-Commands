@@ -24,6 +24,7 @@ minikube ip
 minikube config set memory NO                               # increase/decrease the default memory limit (requires a restart)
 
 minikube logs
+minikube logs --file=FILE_NAME
 
 minikube dashboard
 
@@ -35,4 +36,5 @@ minikube service SERVICE_NAME --url --namespace NAMESPACE_NAME
 
 minikube addons list
 
+minikube delete
 minikube delete --all
