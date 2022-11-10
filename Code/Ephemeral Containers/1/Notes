@@ -9,6 +9,7 @@ kubectl run ephemeral-demo --image=k8s.gcr.io/pause:3.1 --restart=never
 Above command creates a pod named ephemeral-demo, using an image which doesn’t have any shell utility.
 2. Try to exec inside the container.
 kubectl exec -it ephemeral-demo -- bash
+OCI runtime exec failed: exec failed: container_linux.go:346: starting container process caused "exec: \"sh\": executable file not found in $PATH": unknown
 It should not be able to access the shell of container as their is no shell utility in the image.
 3. Inject an ephemeral container to troubleshoot the pod container.
 The syntax for below command:- "kubectl debug -it EXISTINGPODNAME --image=DEBUGGERIMAGENAME:TAG --target=EXISTINGCONTAINERNAME"
@@ -18,5 +19,3 @@ The kubectl debug command will add an ephemeral container inside the pod and sta
 --image :- the image name and tag to create ephemeral container.
 --target :- the container name with which ephemeral container should share the process namespace.
             by default a container do not share process namespace with other container inside a pod.
-
-[Demo with crashed container]
