@@ -1,0 +1,16 @@
+Ephemeral Container can be used to debug a pod in either of below cases:
+● If the container running inside pod doesn’t have any debugging utilities such as shell.
+● If the container has crashed.
+In this case, it won’t be able to exec inside shell of container to troubleshoot an issue.
+
+[Demo with shell-less container]
+1. Deploy a pod which does not have any shell utility in its container.
+kubectl run ephemeral-demo --image=k8s.gcr.io/pause:3.1 --restart=never
+Above command creates a pod named ephemeral-demo, using an image which doesn’t have any shell utility.
+2. Try to exec inside the container.
+kubectl exec -it ephemeral-demo -- bash
+It should not be able to access the shell of container as their is no shell utility in the image.
+3. Inject an ephemeral container to troubleshoot the pod container.
+The syntax for below command:- "kubectl debug -it EXISTINGPODNAME --image=DEBUGGERIMAGENAME:TAG --target=EXISTINGCONTAINERNAME"
+kubectl debug -it ephemeral-demo --image=busybox:1.28 --target=ephemeral-demo
+The kubectl debug command will add an ephemeral container inside the pod and start a shell interactive session.
