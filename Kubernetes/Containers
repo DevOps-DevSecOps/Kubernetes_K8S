@@ -19,6 +19,14 @@ Each init container must complete successfully before the next one starts.
 Let say have multiple init containers, If 1st init container execute successfully then it will go to another 2nd init container.
 If a Pod's init container fails, the kubelet repeatedly restarts that init container until it succeeds, if the Pod has a restartPolicy of Never then kubelet does not restart the pod.
 The main container starts only after all the Init containers are terminated successfully.
+The types of Pod status for Init Containers. A Pod status beginning with Init: summarizes the status of Init Container execution.
+              Status                                           Meaning
+              ------                                           -------
+              Init:N/M                                         The Pod has M Init Containers, and N have completed so far.
+              Init:Error                                       An Init Container has failed to execute.
+              Init:CrashLoopBackOff                            An Init Container has failed repeatedly.
+              Pending                                          The Pod has not yet begun executing Init Containers.
+              PodInitializing or Running                       The Pod has already finished executing Init Containers.
 # Example
 For both Container will be attached(volumeMounts) to the same Volumes(emptyDir).
 Init_Container: The init container with the image busybox will create the custom index.html file at the volume mount workdir location.
