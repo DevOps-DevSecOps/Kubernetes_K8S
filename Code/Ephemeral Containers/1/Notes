@@ -14,3 +14,9 @@ It should not be able to access the shell of container as their is no shell util
 The syntax for below command:- "kubectl debug -it EXISTINGPODNAME --image=DEBUGGERIMAGENAME:TAG --target=EXISTINGCONTAINERNAME"
 kubectl debug -it ephemeral-demo --image=busybox:1.28 --target=ephemeral-demo
 The kubectl debug command will add an ephemeral container inside the pod and start a shell interactive session.
+-it :- a terminal in interactive mode.
+--image :- the image name and tag to create ephemeral container.
+--target :- the container name with which ephemeral container should share the process namespace.
+            by default a container do not share process namespace with other container inside a pod.
+
+[Demo with crashed container]
