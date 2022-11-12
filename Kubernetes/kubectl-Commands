@@ -259,6 +259,7 @@ kubectl get pods --all-namespaces -o json
 kubectl get pods POD_NAME
 kubectl get pods POD_NAME -o yaml
 kubectl get pods/POD_NAME -o yaml
+kubectl get pods/POD_NAME -o wide
 kubectl describe po
 kubectl describe po -n NAMESPACE_NAME
 kubectl describe po POD_NAME
@@ -758,6 +759,8 @@ kubectl get pvc -l KEY=VALUE
 kubectl get pvc -n NAMESPACE_NAME
 kubectl get pvc --namespace NAMESPACE_NAME
 kubectl get pvc --namespace=NAMESPACE_NAME
+kubectl get pvc/PVC_NAME
+kubectl get pvc/PVC_NAME -o yaml
 kubectl get persistentvolumeclaims --namespace=NAMESPACE_NAME
 kubectl describe pvc
 kubectl describe pvc PVC_NAME
