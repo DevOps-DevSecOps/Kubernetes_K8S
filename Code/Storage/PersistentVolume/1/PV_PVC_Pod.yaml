@@ -1,0 +1,50 @@
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: my-persistent-volume
+  labels:
+    type: nfs
+spec:
+  storageClassName: pv-demo 
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/tmp"
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: my-persistent-volumeclaim
+spec:
+  storageClassName: pv-demo 
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Mi
+
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: myvolumes-pod
+spec:
+  containers:
+  - image: alpine
+    imagePullPolicy: IfNotPresent
+    name: myvolumes-container
+
+    command: ['sh', '-c', 'echo Container 1 is Running ; sleep 3600']
+
+    volumeMounts:
+      - mountPath: "/my-pv-path"
+        name: my-persistent-volumeclaim-name
+
+  volumes:
+    - name: my-persistent-volumeclaim-name
+      persistentVolumeClaim:
+       claimName: my-persistent-volumeclaim
