@@ -768,6 +768,7 @@ kubectl delete pvc --all
 kubectl delete pvc -l KEY=VALUE
 kubectl delete pvc PVC_NAME
 kubectl delete pvc PVC_NAME --force --namespace NAMESPACE_NAME
+kubectl delete persistentvolumeclaim PVC_NAME
 
 [Storage Classes]
 kubectl explain sc
