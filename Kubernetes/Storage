@@ -22,3 +22,19 @@ Generic ephemeral volumes can be provided by third-party CSI storage drivers, bu
 Some CSI drivers are written specifically for CSI ephemeral volumes and do not support dynamic provisioning: those then cannot be used for generic ephemeral volumes.
 
 [Storage Classes]
+Components of Storage Classes in YAML file.
+● provisioner
+It is a type of volume plug-in that handles the creation and management of storage within Kubernetes.
+Some provisioners are built in and shipped with Kubernetes and some are third-party provisioners, which is helpful when internal provisioners don’t support use case.
+Third-party provisioners are not shipped with Kubernetes, but are developed and maintained by third-party vendors.
+● reclaimPolicy
+It is the policy that describes how a storage class can reclaim a PV when it is no longer needed.
+* Delete - It will delete the data immediately.
+* Retain - It will keep the data until the user deletes it.
+● volumeBindingMode
+There are two volume binding modes that can be used:
+* Immediate - In this mode, the volume and storage binding are created immediately after the PVC is created.
+              So whenever a new PVC with the standard storage StorageClass is created, can see it in the bound state.
+              This mode is universally supported.
+* WaitForFirstConsumer - In this mode, volume is not created until a pod that consumes the PVC is created.
+                         Most plug-ins don’t support this mode, but only "Amazon Elastic Block Store", "Google Compute Engine Persistent Disk" and "Azure Disk" support it.
