@@ -22,7 +22,11 @@ Generic ephemeral volumes can be provided by third-party CSI storage drivers, bu
 Some CSI drivers are written specifically for CSI ephemeral volumes and do not support dynamic provisioning: those then cannot be used for generic ephemeral volumes.
 
 [Storage Classes (SC)]
-For each and every Storage Classes thier will be a Persistent Volume Claim (PVC).  
+It allows dynamic provisioning of Persistent Volumes, when PVC claims it.
+StorageClass is used with PVC that allow Pods to dynamically request a new storage.
+For each and every Storage Classes thier will be a Persistent Volume Claim (PVC).
+StorageClass use provisioners that are specific to the storage platform or cloud provider to give Kubernetes access to the physical storage.
+Each storage backend has own provisioner. Storage Backend is defined in the StorageClass component via provisioner attribute.
 Components of Storage Classes in YAML file.
 ● provisioner
 It is a type of volume plug-in that handles the creation and management of storage within Kubernetes.
@@ -30,6 +34,9 @@ Some provisioners are built in and shipped with Kubernetes and some are third-pa
 Third-party provisioners are not shipped with Kubernetes, but are developed and maintained by third-party vendors.
 ● reclaimPolicy
 It is the policy that describes how a storage class can reclaim a PV when it is no longer needed.
+If no 'reclaimPolicy' is specified when a StorageClass object is created, it will default to 'Delete'.
+PV that are created manually and managed via a StorageClass will have whatever reclaim policy they were assigned at creation.
+PV that are dynamically created by a StorageClass will have the reclaim policy specified in the reclaimPolicy field of the class, which can be either Delete or Retain.
 * Delete - It will delete the data immediately.
 * Retain - It will keep the data until the user deletes it.
 ● volumeBindingMode
