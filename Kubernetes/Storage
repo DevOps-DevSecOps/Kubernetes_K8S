@@ -60,7 +60,7 @@ PVC must be in same namespace as the Pod. For each Pod, a PVC makes a storage co
 
 ⦿ PVC to PV binding is a one-to-one mapping. The process uses a ClaimRef, which creates a bi-directional binding between PV and PVC.
 
-⦿ Persistent Volume (PV) is an abstraction for the physical storage device that you have attached to the cluster.
+⦿ Persistent Volume (PV) is an abstraction for the physical storage device that have attached to the cluster.
    Pods can use this storage space using Persistent Volume Claims (PVC).
    To create the PV-PVC pair for Pod is to use a StorageClass (SC) object, and then using the StorageClass to create PV-PVC pair dynamically.
 
