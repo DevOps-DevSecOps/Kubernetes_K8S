@@ -21,7 +21,8 @@ It can be provided by all storage drivers that also support persistent volumes.
 Generic ephemeral volumes can be provided by third-party CSI storage drivers, but also by any other storage driver that supports dynamic provisioning.
 Some CSI drivers are written specifically for CSI ephemeral volumes and do not support dynamic provisioning: those then cannot be used for generic ephemeral volumes.
 
-[Storage Classes]
+[Storage Classes (SC)]
+For each and every Storage Classes thier will be a Persistent Volume Claim (PVC).  
 Components of Storage Classes in YAML file.
 ● provisioner
 It is a type of volume plug-in that handles the creation and management of storage within Kubernetes.
@@ -38,3 +39,27 @@ There are two volume binding modes that can be used:
               This mode is universally supported.
 * WaitForFirstConsumer - In this mode, volume is not created until a pod that consumes the PVC is created.
                          Most plug-ins don’t support this mode, but only "Amazon Elastic Block Store", "Google Compute Engine Persistent Disk" and "Azure Disk" support it.
+
+[Persistent Volumes (PV)]
+It is an abstraction for the physical storage device that attached to the cluster.
+PV is not Namespaced it is available to whole cluster. PV is accessible to all Namespaces.
+
+[Persistent Volume Claims (PVC)]
+It is binding between a Pod and PV. Pod request the Volume through the PVC.
+It is the request to provision persistent storage with a specific type and configuration.
+Pods consume node resources and PVC consume PV resources.
+PVC describe the storage capacity and characteristics a pod requires, and the cluster attempts to match the request and provision the desired persistent volume.
+PVC must be in same namespace as the Pod. For each Pod, a PVC makes a storage consumption request within a namespace.
+
+⦿ PVC to PV binding is a one-to-one mapping. The process uses a ClaimRef, which creates a bi-directional binding between PV and PVC.
+
+{accessModes}
+There are 4 types of Access Modes.
+● ReadWriteOnce(RWO)
+The volume can be mounted as read-write by a single node.
+● ReadOnlyMany(ROX)
+The volume can be mounted read-only by many nodes.
+● ReadWriteMany(RWX)
+The volume can be mounted as read-write by many nodes.
+● ReadWriteOncePod(RWOP)
+The volume can be mounted as read-write by a single Pod.
