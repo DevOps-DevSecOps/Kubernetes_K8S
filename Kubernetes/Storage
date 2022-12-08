@@ -22,6 +22,8 @@ Generic ephemeral volumes can be provided by third-party CSI storage drivers, bu
 Some CSI drivers are written specifically for CSI ephemeral volumes and do not support dynamic provisioning: those then cannot be used for generic ephemeral volumes.
 
 [Storage Classes (SC)]
+First the StorageClass is created, then the PersistentVolumeClaim and finally the Pod.
+When a PVC is created, Kubernetes creates a PersistentVolume and binds it to the PVC automatically, depending on the VolumeBindingMode used in the StorageClass configuration.
 It allows dynamic provisioning of Persistent Volumes, when PVC claims it.
 StorageClass is used with PVC that allow Pods to dynamically request a new storage.
 For each and every Storage Classes thier will be a Persistent Volume Claim (PVC).
@@ -41,10 +43,12 @@ PV that are dynamically created by a StorageClass will have the reclaim policy s
 * Retain - It will keep the data until the user deletes it.
 ● volumeBindingMode
 There are two volume binding modes that can be used:
-* Immediate - In this mode, the volume and storage binding are created immediately after the PVC is created.
+* Immediate - This mode involves the automatic volume binding of PV to PVC with a StorageClass once a PVC is created.
+              In this mode, the volume and storage binding are created immediately after the PVC is created.
               So whenever a new PVC with the standard storage StorageClass is created, can see it in the bound state.
               This mode is universally supported.
-* WaitForFirstConsumer - In this mode, volume is not created until a pod that consumes the PVC is created.
+* WaitForFirstConsumer - This mode will delay the binding and dynamic provisioning of PV, until a Pod that will use it is created.
+                         In this mode, volume is not created until a pod that consumes the PVC is created.
                          Most plug-ins don’t support this mode, but only "Amazon Elastic Block Store", "Google Compute Engine Persistent Disk" and "Azure Disk" support it.
 
 [Persistent Volumes (PV)]
