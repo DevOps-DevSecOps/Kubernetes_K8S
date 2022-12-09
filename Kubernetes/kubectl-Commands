@@ -762,6 +762,7 @@ kubectl get pvc -n NAMESPACE_NAME
 kubectl get pvc --namespace NAMESPACE_NAME
 kubectl get pvc --namespace=NAMESPACE_NAME
 kubectl get pvc PVC_NAME
+kubectl get pvc PVC_NAME -o yaml
 kubectl get pvc/PVC_NAME
 kubectl get pvc/PVC_NAME -o yaml
 kubectl get persistentvolumeclaims --namespace=NAMESPACE_NAME
