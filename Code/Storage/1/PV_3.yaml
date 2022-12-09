@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  finalizers:
+  - kubernetes.io/pv-protection
+  labels:
+    component: harbor
+  name: jobservice
+spec:
+  accessModes:
+  - ReadWriteOnce
+  - ReadWriteMany
+  capacity:
+    storage: 10Gi
+  local:                                             <------ mandatory field
+    path: /mnt/kubernetes/persistent_volumes/harbor_registry_pv_0   <---- Note this path should exists in your kubernetes node 
+  persistentVolumeReclaimPolicy: Retain
+  nodeAffinity:                                      <------ mandatory field
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: harbor-registry
+          operator: In
+          values:
+          - harbor-registry-pv-0
+  storageClassName: harbor-registry-persistent-storage
