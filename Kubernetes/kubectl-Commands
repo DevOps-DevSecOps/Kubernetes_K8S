@@ -747,6 +747,7 @@ kubectl delete namespaces NAMESPACE_NAME
 [Persistent Volumes (PV)]
 kubectl get pv
 kubectl get pv --show-labels
+kubectl get pv PV_NAME
 kubectl describe pv
 kubectl describe pv PV_NAME
 kubectl describe pv/PV_NAME
