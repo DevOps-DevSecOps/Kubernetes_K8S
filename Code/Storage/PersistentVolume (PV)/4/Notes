@@ -1,0 +1,11 @@
+[shell on that Node, create a /mnt/data directory]
+$ sudo mkdir /mnt/data
+
+[the /mnt/data directory, create an index.html file]
+$ sudo sh -c "echo 'Hello from Kubernetes storage' > /mnt/data/index.html"
+
+[test that the index.html file exists]
+$ cat /mnt/data/index.html
+Hello from Kubernetes storage
+
+[now close the shell to your Node]
