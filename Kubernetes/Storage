@@ -29,6 +29,7 @@ StorageClass is used with PVC that allow Pods to dynamically request a new stora
 For each and every Storage Classes thier will be a Persistent Volume Claim (PVC).
 StorageClass use provisioners that are specific to the storage platform or cloud provider to give Kubernetes access to the physical storage.
 Each storage backend has own provisioner. Storage Backend is defined in the StorageClass component via provisioner attribute.
+If using a provisioner, usually don't create the PV. Just create a PVC requiring that created StorageClass.
 Components of Storage Classes in YAML file.
 ● provisioner
 It is a type of volume plug-in that handles the creation and management of storage within Kubernetes.
@@ -54,6 +55,7 @@ There are two volume binding modes that can be used:
 [Persistent Volumes (PV)]
 It is an abstraction for the physical storage device that attached to the cluster.
 PV is not Namespaced it is available to whole cluster. PV is accessible to all Namespaces.
+It no need to create StorageClass for PV.
 
 [Persistent Volume Claims (PVC)]
 It is binding between a Pod and PV. Pod request the Volume through the PVC.
