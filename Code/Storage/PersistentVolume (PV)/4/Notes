@@ -9,3 +9,9 @@ $ cat /mnt/data/index.html
 Hello from Kubernetes storage
 
 [now close the shell to Node]
+
+[open a new shell on the Node in the cluster]
+$ sudo rm /mnt/data/index.html
+$ sudo rmdir /mnt/data
+
+[again now close the shell to your Node]
