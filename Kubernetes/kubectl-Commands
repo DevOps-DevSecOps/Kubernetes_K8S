@@ -338,6 +338,7 @@ kubectl delete po POD_NAME --force
 kubectl delete pod -l KEY=VALUE
 kubectl delete pod POD_NAME
 kubectl delete pod POD_NAME POD_NAME
+kubectl delete pod POD_NAME -n NAMESPACE_NAME
 kubectl delete pod POD_NAME -n=NAMESPACE_NAME
 kubectl delete pod POD_NAME --namespace NAMESPACE_NAME --force
 kubectl delete pod POD_NAME --namespace=NAMESPACE_NAME
