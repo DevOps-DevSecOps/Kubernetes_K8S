@@ -15,6 +15,9 @@ kubeadm token list
 [Generating/Creating new kubeadm token to join Worker Nodes]
 kubeadm token create --print-join-command
 
+[Delete a existing kubeadm token]
+kubeadm token delete TOKEN_ID
+
 []
 kubeadm reset
 
