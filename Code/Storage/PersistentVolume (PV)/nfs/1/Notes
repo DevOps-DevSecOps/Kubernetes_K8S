@@ -1,0 +1,2 @@
+[Create a Index.html file inside the nfs share because will be mounting this share in nginx pod.]
+$ echo "Hello, NFS Storage NGINX" > /opt/k8s-pods/data/index.html
