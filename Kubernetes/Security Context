@@ -1,5 +1,7 @@
 It allow to set a UID or User ID other than 0 for Pods or Containers. UID is not a username.
-By default containers run as 'root' with UID = 0.
+By default containers run as 'root' with UID=0 and GID=0.
+$ id
+uid=0(root) gid=0(root) groups=0(root)
 Two types of Security Context
 1. Pod level
 Security Context applied to all containers in the Pod.
