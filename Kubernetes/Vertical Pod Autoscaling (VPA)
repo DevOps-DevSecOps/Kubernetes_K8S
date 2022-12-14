@@ -1,10 +1,11 @@
 Autoscaling is a method that dynamically scales up / down the number of computing resources that are being allocated to your application based on its needs.
 
-Vertical Pod Autoscaler (VPA) simply allocates more OR less CPUs and Memory to existing pods.
+Vertical Pod Autoscaler (VPA) simply allocates more OR less CPUs and Memory to existing workloads (Pods, Deployments, .. etc).
 Vertical Pod Autoscaler (VPA) automatically adjusts the CPU and Memory attributes for Pods.
 It work based on CPU/Memory utilization.
 Vertical Pod Autoscaler (VPA) will automatically recreate your pod with the suitable CPU and Memory attributes.
-This will free up the CPU and Memory for the other pods and help you better utilize your Kubernetes cluster.
+This will free up the CPU and Memory for the workloads and help better utilize the Kubernetes cluster.
+Vertical Pod Autoscaler (VPA) is increases and decreases container CPU and Memory resource configuration to align cluster resource allotment with actual usage.
 Vertical Pod Autoscaler (VPA) can suggest the Memory/CPU Requests and Limits and it can also automatically update it if enabled by the user.
 
 [updatePolicy]
