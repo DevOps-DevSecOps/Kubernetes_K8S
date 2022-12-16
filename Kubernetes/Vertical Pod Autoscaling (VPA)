@@ -17,6 +17,8 @@ The VPA assigns resources on pod creation and can update them during the lifetim
 Apply the recommendations directly by updating/recreating the pods (updateMode = auto).
 *The updateMode = auto is ok to use in testing OR staging environments but not in production.
 *The reason is that the pod restarts when VPA applies the change, which causes a workload disruption.
+● updateMode: "Recreate"
+It deletes the pod and creates a new one.
 ● updateMode: "Off"
 The VPA never changes the pod resources.
 The recommender sets the recommended resources in the VPA object.
