@@ -1157,6 +1157,7 @@ kubectl delete hpa/HPA_NAME
 
 [Vertical Pod Autoscaling (VPA)]
 kubectl get vpa
+kubectl get vpa VPA_NAME --output yaml
 kubectl describe vpa VPA_NAME
 kubectl describe vpa/VPA_NAME
 
