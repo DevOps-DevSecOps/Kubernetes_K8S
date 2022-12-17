@@ -68,11 +68,11 @@ It is the policy that describes how a storage class can reclaim a PV when it is 
 If no 'reclaimPolicy' is specified when a StorageClass object is created, it will default to 'Delete'.
 PV that are created manually and managed via a StorageClass will have whatever reclaim policy they were assigned at creation.
 PV that are dynamically created by a StorageClass will have the reclaim policy specified in the reclaimPolicy field of the class, which can be either Delete or Retain.
-* Delete
+● Delete
 It will delete the data immediately.
-* Retain
+● Retain
 It will keep the data until the user deletes it.
-* Recycle
+● Recycle
 It deletes the volume’s contents and makes the volume available to be claimed again.
 This policy is now deprecated.
 
