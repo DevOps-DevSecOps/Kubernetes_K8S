@@ -35,13 +35,6 @@ Components of Storage Classes in YAML file.
 It is a type of volume plug-in that handles the creation and management of storage within Kubernetes.
 Some provisioners are built in and shipped with Kubernetes and some are third-party provisioners, which is helpful when internal provisioners don’t support use case.
 Third-party provisioners are not shipped with Kubernetes, but are developed and maintained by third-party vendors.
-● reclaimPolicy
-It is the policy that describes how a storage class can reclaim a PV when it is no longer needed.
-If no 'reclaimPolicy' is specified when a StorageClass object is created, it will default to 'Delete'.
-PV that are created manually and managed via a StorageClass will have whatever reclaim policy they were assigned at creation.
-PV that are dynamically created by a StorageClass will have the reclaim policy specified in the reclaimPolicy field of the class, which can be either Delete or Retain.
-* Delete - It will delete the data immediately.
-* Retain - It will keep the data until the user deletes it.
 ● volumeBindingMode
 There are two volume binding modes that can be used:
 * Immediate - This mode involves the automatic volume binding of PV to PVC with a StorageClass once a PVC is created.
@@ -70,13 +63,29 @@ PVC must be in same namespace as the Pod. For each Pod, a PVC makes a storage co
    Pods can use this storage space using Persistent Volume Claims (PVC).
    To create the PV-PVC pair for Pod is to use a StorageClass (SC) object, and then using the StorageClass to create PV-PVC pair dynamically.
 
-{accessModes}
+{Reclaim Policy (reclaimPolicy,persistentVolumeReclaimPolicy)}
+It is the policy that describes how a storage class can reclaim a PV when it is no longer needed.
+If no 'reclaimPolicy' is specified when a StorageClass object is created, it will default to 'Delete'.
+PV that are created manually and managed via a StorageClass will have whatever reclaim policy they were assigned at creation.
+PV that are dynamically created by a StorageClass will have the reclaim policy specified in the reclaimPolicy field of the class, which can be either Delete or Retain.
+* Delete
+It will delete the data immediately.
+* Retain
+It will keep the data until the user deletes it.
+* Recycle
+It deletes the volume’s contents and makes the volume available to be claimed again.
+This policy is now deprecated.
+
+{Access Modes (accessModes)}
 There are 4 types of Access Modes.
 ● ReadWriteOnce(RWO)
 The volume can be mounted as read-write by a single node.
+Only a single node can mount the volume for reading and writing.
 ● ReadOnlyMany(ROX)
 The volume can be mounted read-only by many nodes.
+The volume can be mounted by multiple nodes for reading.
 ● ReadWriteMany(RWX)
 The volume can be mounted as read-write by many nodes.
+Multiple nodes can mount the volume for reading and writing.
 ● ReadWriteOncePod(RWOP)
 The volume can be mounted as read-write by a single Pod.
