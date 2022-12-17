@@ -19,6 +19,7 @@ Apply the recommendations directly by updating/recreating the pods (updateMode =
 *The reason is that the pod restarts when VPA applies the change, which causes a workload disruption.
 ● updateMode: "Recreate"
 It deletes the pod and creates a new one.
+It assigns resource requests on pod creation time and updates them on existing pods by evicting and recreating them.
 ● updateMode: "Off"
 The VPA never changes the pod resources.
 The recommender sets the recommended resources in the VPA object.
