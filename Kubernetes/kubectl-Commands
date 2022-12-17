@@ -1248,6 +1248,7 @@ kubectl certificate approve CSR_NAME
 kubectl certificate deny CSR_NAME
 
 [API]
+kubectl get apiservice
 kubectl get apiservices
 kubectl api-resources
 kubectl api-resources -o name                                       # all resources with simple output (only the resource name)
