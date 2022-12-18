@@ -15,6 +15,7 @@ Once pod is removed from a node, emptyDir is deleted forever. (OR) When a Pod is
 It's an temporary space.   
 The emptyDir volume is initially empty. 
 All containers in the Pod can read and write the same files in the emptyDir volume, though that volume can be mounted at the same or different paths in each container.
+An emptyDir volume recreates when containers restart or crash. The data in this volume is deleted and lost when the pod is removed from the node, crashes, or dies.
 
 [hostPath]
 A hostPath volume mounts a file or directory from the host node's filesystem into Pod.
