@@ -266,6 +266,7 @@ kubectl describe po
 kubectl describe po -n NAMESPACE_NAME
 kubectl describe po POD_NAME
 kubectl describe po POD_NAME -n NAMESPACE_NAME
+kubectl describe po POD_NAME --namespace NAMESPACE_NAME
 kubectl describe pod POD_NAME
 kubectl describe pod POD_NAME POD_NAME
 kubectl describe pod/POD_NAME
