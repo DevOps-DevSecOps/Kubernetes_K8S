@@ -671,29 +671,29 @@ kubectl exec -it POD_NAME /bin/sh
 kubectl exec -it POD_NAME /bin/bash
 kubectl exec -it POD_NAME LINUX_COMMANDS
 kubectl exec -it POD_NAME -c CONTAINER_NAME bash
+kubectl exec -i POD_NAME -- LINUX_COMMANDS -n NAMESPACE_NAME
 kubectl exec -it POD_NAME -- sh
 kubectl exec -it POD_NAME -- bash
+kubectl exec -it POD_NAME -- bash --namespace NAMESPACE_NAME
+kubectl exec -it POD_NAME -- bash --namespace=NAMESPACE_NAME
 kubectl exec -it POD_NAME -- /bin/sh
 kubectl exec -it POD_NAME -- /bin/bash
 kubectl exec -it POD_NAME -- LINUX_COMMANDS
 kubectl exec -it POD_NAME -c CONTAINER_NAME -- sh
 kubectl exec -it POD_NAME -c CONTAINER_NAME -- bash
+kubectl exec -it POD_NAME -c CONTAINER_NAME -- bash --namespace NAMESPACE_NAME
+kubectl exec -it POD_NAME -c CONTAINER_NAME -- bash --namespace=NAMESPACE_NAME
 kubectl exec -it POD_NAME -c CONTAINER_NAME -- /bin/sh
 kubectl exec -it POD_NAME -c CONTAINER_NAME -- /bin/bash
 kubectl exec -it POD_NAME -c CONTAINER_NAME -- LINUX_COMMANDS
 kubectl exec -it POD_NAME --container CONTAINER_NAME -- sh
-kubectl exec -i -t POD_NAME -- /bin/sh -c 'LINUX_COMMANDS'
 kubectl exec -i -t POD_NAME -- /bin/bash
 kubectl exec -i -t POD_NAME -c CONTAINER_NAME -- bash
+kubectl exec -i -t POD_NAME -- /bin/sh -c 'LINUX_COMMANDS'
 kubectl exec -i -t POD_NAME --container CONTAINER_NAME -- /bin/bash
 kubectl exec --stdin --tty POD_NAME -- sh
 kubectl exec --stdin --tty POD_NAME -- /bin/sh
 kubectl exec --stdin --tty POD_NAME -- /bin/bash
-kubectl exec -i POD_NAME -- LINUX_COMMANDS -n NAMESPACE_NAME
-kubectl exec -it POD_NAME -- bash --namespace NAMESPACE_NAME
-kubectl exec -it POD_NAME -- bash --namespace=NAMESPACE_NAME
-kubectl exec -it POD_NAME -- bash -c CONTAINER_NAME --namespace NAMESPACE_NAME
-kubectl exec -it POD_NAME -- bash -c CONTAINER_NAME --namespace=NAMESPACE_NAME
 kubectl exec POD_NAME LINUX_COMMANDS
 kubectl exec POD_NAME -c CONTAINER_NAME LINUX_COMMANDS
 kubectl exec POD_NAME -- LINUX_COMMANDS
