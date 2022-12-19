@@ -752,6 +752,7 @@ kubectl delete namespaces NAMESPACE_NAME
 
 [Persistent Volumes (PV)]
 kubectl get pv
+kubectl get pv -o wide
 kubectl get pv --show-labels
 kubectl get pv PV_NAME
 kubectl describe pv
@@ -763,6 +764,7 @@ kubectl delete pv PV_NAME --force --namespace NAMESPACE_NAME
 [PersistentVolumeClaim (PVC)]
 kubectl edit pvc PVC_NAME
 kubectl get pvc
+kubectl get pvc -o wide
 kubectl get pvc -l KEY=VALUE
 kubectl get pvc -n NAMESPACE_NAME
 kubectl get pvc --namespace NAMESPACE_NAME
