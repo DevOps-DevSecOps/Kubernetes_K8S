@@ -300,6 +300,7 @@ kubectl logs POD_NAME --previous
 kubectl logs POD_NAME --since=TIME_HOUR                                         # TIME_HOUR=1h, show all logs from pod in the hour
 kubectl logs POD_NAME --tail NO
 kubectl logs POD_NAME --tail=NO
+kubectl logs POD_NAME | tail -n NO
 kubectl logs POD_NAME > FILE_NAME
 kubectl logs POD_NAME -c CONTAINER_NAME
 kubectl logs POD_NAME -c CONTAINER_NAME --previous
