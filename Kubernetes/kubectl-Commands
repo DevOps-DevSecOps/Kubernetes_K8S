@@ -790,6 +790,7 @@ kubectl get sc -o yaml
 kubectl get sc STORAGECLASS_NAME
 kubectl get sc STORAGECLASS_NAME -o yaml > FILE_NAME.yaml
 kubectl get storageclass
+kubectl get storageclass -n NAMESPACE_NAME
 kubectl describe sc STORAGECLASS_NAME
 kubectl describe storageclass STORAGECLASS_NAME
 kubectl delete sc STORAGECLASS_NAME
