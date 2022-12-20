@@ -20,7 +20,15 @@ An emptyDir volume recreates when containers restart or crash. The data in this 
 [hostPath]
 A hostPath volume mounts a file or directory from the host node's filesystem into Pod.
 The data is persistence even after the pod is terminated.
-The "type: Directory" will create the directory inside with out any parent directory.
-The "type: DirectoryOrCreate" will create the parent directory.
-The "type: File" will a file must exist at the given path.
-The "type: FileOrCreate" will does not create the parent directory of the file. If the parent directory of the mounted file does not exist, the pod fails to start.
+● "type: Directory" 
+A directory must exist in the specified path.
+● "type: DirectoryOrCreate" 
+If no content is found in the specified path, an empty directory is created on demand.
+The permission on the created directory is set to 0755.
+The directory has the same group and ownership with kubelet.
+● "type: File" 
+A file must exist in the given specified path.
+● "type: FileOrCreate" 
+If no content is found in the specified path, an empty file is created.
+The permission of the created file is set to 0644.
+The file has the same group and ownership with kubelet.
