@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app
+        ports:
+          - containerPort: 80
+        volumeMounts:
+        - mountPath: /my-app/data
+          name: my-app-volume
+      volumes:
+      - name: my-app-volume
+        persistentVolumeClaim:
+          claimName: my-app-volume
