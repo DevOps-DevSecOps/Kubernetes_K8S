@@ -1,4 +1,9 @@
 [Selectors]
+● matchLabels
+The volume must have a label with this value.
+● matchExpressions
+A list of requirements made by specifying key, list of values, and operator that relates the key and values.
+Valid operators include In, NotIn, Exists, and DoesNotExist.
 
 # EXAMPLE 1 :-
 apiVersion: v1
