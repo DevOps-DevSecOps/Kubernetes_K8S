@@ -32,3 +32,7 @@ A file must exist in the given specified path.
 If no content is found in the specified path, an empty file is created.
 The permission of the created file is set to 0644.
 The file has the same group and ownership with kubelet.
+
+[gitRepo]
+A gitRepo volume is an example of a volume plugin.
+This plugin mounts an empty directory and clones a git repository into this directory for Pod to use.
