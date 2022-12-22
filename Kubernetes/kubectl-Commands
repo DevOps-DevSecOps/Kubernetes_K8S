@@ -71,6 +71,7 @@ kubectl run NAME --image=IMAGE_NAME --dry-run
 kubectl run NAME --image=IMAGE_NAME --dry-run -o yaml
 kubectl run NAME --image=IMAGE_NAME --dry-run=client -o yaml
 kubectl run NAME --image=IMAGE_NAME --dry-run=client -o yaml > FILE_NAME.yaml
+kubectl run NAME --image IMAGE_NAME --dry-run=client -o yaml > FILE_NAME.yaml
 kubectl run NAME --image=IMAGE_NAME --replicas=NO
 kubectl run NAME --image=IMAGE_NAME --replicas=NO -n NAMESPACE_NAME
 kubectl run NAME --image=IMAGE_NAME --replicas=NO --labels="KEY=VALUE"
