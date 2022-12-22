@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: demo-web
+  name: demo-web
+spec:
+  volumes:
+  - name: html
+    emptyDir: {}
+  containers:
+  - image: nginx
+    name: demo-web
+    volumeMounts:
+    - name: html
+      mountPath: /usr/share/nginx/html
+  initContainers:
+  - image: ansilh/debug-tools
+    name: git-pull
+    args:
+    - git
+    - clone
+    - https://github.com/ansilh/k8s-demo-web.git
+    - /html/.
+    volumeMounts:
+    - name: html
+      mountPath: /html/
