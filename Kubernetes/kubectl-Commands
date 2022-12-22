@@ -25,6 +25,7 @@ kubectl apply -f FILE_NAME.yaml --dry-run
 kubectl apply -f FILE_NAME.yaml --record
 kubectl apply -f FILE_NAME.yaml --record=true
 kubectl apply -f FILE_NAME.yaml --user=USER_NAME
+kubectl apply -f FILE_NAME.yaml -n NAMESPACE_NAME
 kubectl apply -f FILE_NAME.yaml --namespace=NAMESPACE_NAME
 kubectl apply -f FOLDER_NAME/FILE_NAME.yaml
 kubectl apply -f /FOLDER_NAME/FILE_NAME.yaml --namespace=NAMESPACE_NAME
