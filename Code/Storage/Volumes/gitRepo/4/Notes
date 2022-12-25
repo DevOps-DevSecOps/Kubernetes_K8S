@@ -1,7 +1,11 @@
+To see the status of the init container.
 $ kubectl get po
 NAME      READY   STATUS     RESTARTS   AGE
 website   0/1     Init:0/1   0          1s
+The number 0/1 indicates a total of 1 init containers, and 0 containers have been completed so far.
+In case the init container fails, the status changes to Init:Error or Init:CrashLoopBackOff if the container fails repeatedly.
 
+Can also use the logs command to get the logs from the init container by specifying the container name using the -c flag.
 $ kubectl logs website -c clone-repo
 Cloning into '/usr/share/nginx/html'...
 remote: Enumerating objects: 6, done.
