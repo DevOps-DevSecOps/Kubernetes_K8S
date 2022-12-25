@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: templater-service
+  labels:
+    app: templater-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: templater-service
+  template:
+    metadata:
+      labels:
+        app: templater-service
+    spec:
+      containers:
+        - image: betterdoc/templater-service
+          name: service
+          ports:
+            - containerPort: 80
+              protocol: TCP
