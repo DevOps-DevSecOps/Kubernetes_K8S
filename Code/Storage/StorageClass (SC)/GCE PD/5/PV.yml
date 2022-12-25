@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-gce
+spec:
+  claimRef:
+    name: myclaim
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage:  200Gi
+  storageClassName: fast
+  gcePersistentDisk:
+    pdName: msales-kubernetes-disk
+    fsType: ext4
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: topology.kubernetes.io/zone
+          operator: In
+          values:
+          - australia-southeast1-a
+        - key: topology.kubernetes.io/region
+          operator: In
+          values:
+          - australia-southeast1
