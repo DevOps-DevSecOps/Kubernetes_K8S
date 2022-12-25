@@ -1,0 +1,16 @@
+$ kubectl get po
+NAME      READY   STATUS     RESTARTS   AGE
+website   0/1     Init:0/1   0          1s
+
+$ kubectl logs website -c clone-repo
+Cloning into '/usr/share/nginx/html'...
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (6/6), done.
+
+Finally, to actually see the static HTML page can use port-forward to forward the local port to the port 80 on the container.
+$ kubectl port-forward pod/website 8000:80
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
