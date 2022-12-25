@@ -1,0 +1,28 @@
+#Pod with Init-container using emptyDir volume
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: webserver
+  name: webserver
+spec:
+  containers:
+  - image: nginx
+    name: nginx-webserver
+    volumeMounts:
+    - name: web-data
+      mountPath: /usr/share/nginx/html
+  initContainers:
+  - image: alpine/git
+    name: git
+    command:
+    - git
+    - clone
+    - https://github.com/shamimice03/demo-init-container.git
+    - /temp-repo
+    volumeMounts:
+    - name: web-data
+      mountPath: /temp-repo
+  volumes:
+  - name: web-data
+    emptyDir: {}
