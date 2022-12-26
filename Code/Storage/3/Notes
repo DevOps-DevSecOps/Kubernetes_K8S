@@ -1,0 +1,14 @@
+$ kubectl exec -it deployment/templater-service --container service bash
+
+templater@templater-service-59c946c5f6-xbwgj:/$ ls -l /templates
+total 0
+lrwxrwxrwx 1 65533 65533  44 Aug  7 13:53 from-github -> rev-c9a6fc1c725ff49fda06e97ea551049973a9d7b4
+drwxr-sr-x 4 65533 65533 103 Aug  7 13:53 rev-c9a6fc1c725ff49fda06e97ea551049973a9d7b4
+
+templater@templater-service-59c946c5f6-xbwgj:/$ tree /templates/from-github
+/templates/from-github
+|-- folder1
+|   `-- foo.md
+`-- folder2
+    `-- folder2b
+        `-- bar.md
