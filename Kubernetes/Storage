@@ -4,6 +4,46 @@ Containers has access to volume with in a same pod.
 If node stops working, the pod can be rescheduled on another node and the volume can be attached to the new node.
 It support many types of Storages.
 
+[Volumes]
+✤ awsElasticBlockStore
+An awsElasticBlockStore volume mounts an Amazon Web Services (AWS) EBS volume into pod.
+It is erased when a pod is removed, the contents of an EBS volume are persisted and the volume is unmounted.
+The EBS volume can be pre-populated with data, and that data can be shared between pods.
+It must create an EBS volume by using an command (aws ec2 create-volume) OR the AWS API before can use it.
+There are some restrictions when using an awsElasticBlockStore volume:-
+● The nodes on which pods are running must be AWS EC2 instances.
+● Those instances need to be in the same region and availability zone as the EBS volume.
+● EBS only supports a single EC2 instance mounting a volume.
+
+✤ emptyDir
+It creates empty directory first created when a Pod is assigned to a node.
+It stays as long as pod is running.
+Once pod is removed from a node, emptyDir is deleted forever. (OR) When a Pod is removed from a node for any reason, the data in the emptyDir is deleted permanently.
+It's an temporary space.   
+The emptyDir volume is initially empty. 
+All containers in the Pod can read and write the same files in the emptyDir volume, though that volume can be mounted at the same or different paths in each container.
+An emptyDir volume recreates when containers restart or crash. The data in this volume is deleted and lost when the pod is removed from the node, crashes, or dies.
+
+✤ hostPath
+A hostPath volume mounts a file or directory from the host node's filesystem into Pod.
+The data is persistence even after the pod is terminated.
+● "type: Directory" 
+A directory must exist in the specified path.
+● "type: DirectoryOrCreate" 
+If no content is found in the specified path, an empty directory is created on demand.
+The permission on the created directory is set to 0755.
+The directory has the same group and ownership with kubelet.
+● "type: File" 
+A file must exist in the given specified path.
+● "type: FileOrCreate" 
+If no content is found in the specified path, an empty file is created.
+The permission of the created file is set to 0644.
+The file has the same group and ownership with kubelet.
+
+✤ gitRepo
+A gitRepo volume is an example of a volume plugin.
+This plugin mounts an empty directory and clones a git repository into this directory for Pod to use.
+
 [Ephemeral Volumes]
 Ephemeral Volumes is a temporary space.
 Ephemeral Volumes in the sense that it is cleaned up when the workload is deleted or the container crashes.
