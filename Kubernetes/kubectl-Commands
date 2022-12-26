@@ -137,9 +137,6 @@ kubectl delete pod,service NAME NAME                                           #
 [Pods]
 kubectl explain pod
 kubectl explain pods
-kubectl attach -i POD_NAME
-kubectl attach -it POD_NAME
-kubectl attach -it POD_NAME -c CONTAINER_NAME
 kubectl edit pod POD_NAME
 kubectl edit pod POD_NAME -n NAMESPACE_NAME
 kubectl expose pod POD_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO
@@ -282,6 +279,43 @@ kubectl describe pods POD_NAME
 kubectl describe pods/POD_NAME
 kubectl describe pods POD_NAME -n NAMESPACE_NAME
 kubectl describe pods POD_NAME --namespace NAMESPACE_NAME
+kubectl attach -i POD_NAME
+kubectl attach -it POD_NAME
+kubectl attach -it POD_NAME -c CONTAINER_NAME
+kubectl exec -it POD_NAME sh
+kubectl exec -it POD_NAME bash
+kubectl exec -it POD_NAME /bin/sh
+kubectl exec -it POD_NAME /bin/bash
+kubectl exec -it POD_NAME LINUX_COMMANDS
+kubectl exec -it POD_NAME -c CONTAINER_NAME bash
+kubectl exec -i POD_NAME -- LINUX_COMMANDS -n NAMESPACE_NAME
+kubectl exec -it POD_NAME -- sh
+kubectl exec -it POD_NAME -- bash
+kubectl exec -it POD_NAME -- bash --namespace NAMESPACE_NAME
+kubectl exec -it POD_NAME -- bash --namespace=NAMESPACE_NAME
+kubectl exec -it POD_NAME -- /bin/sh
+kubectl exec -it POD_NAME -- /bin/bash
+kubectl exec -it POD_NAME -- LINUX_COMMANDS
+kubectl exec -it POD_NAME -c CONTAINER_NAME -- sh
+kubectl exec -it POD_NAME -c CONTAINER_NAME -- bash
+kubectl exec -it POD_NAME -c CONTAINER_NAME -- bash --namespace NAMESPACE_NAME
+kubectl exec -it POD_NAME -c CONTAINER_NAME -- bash --namespace=NAMESPACE_NAME
+kubectl exec -it POD_NAME -c CONTAINER_NAME -- /bin/sh
+kubectl exec -it POD_NAME -c CONTAINER_NAME -- /bin/bash
+kubectl exec -it POD_NAME -c CONTAINER_NAME -- LINUX_COMMANDS
+kubectl exec -it POD_NAME --container CONTAINER_NAME -- sh
+kubectl exec -i -t POD_NAME -- /bin/bash
+kubectl exec -i -t POD_NAME -c CONTAINER_NAME -- bash
+kubectl exec -i -t POD_NAME -- /bin/sh -c 'LINUX_COMMANDS'
+kubectl exec -i -t POD_NAME --container CONTAINER_NAME -- /bin/bash
+kubectl exec --stdin --tty POD_NAME -- sh
+kubectl exec --stdin --tty POD_NAME -- /bin/sh
+kubectl exec --stdin --tty POD_NAME -- /bin/bash
+kubectl exec POD_NAME LINUX_COMMANDS
+kubectl exec POD_NAME -c CONTAINER_NAME LINUX_COMMANDS
+kubectl exec POD_NAME -- LINUX_COMMANDS
+kubectl exec POD_NAME -- LINUX_COMMANDS -n NAMESPACE_NAME
+kubectl exec POD_NAME -c CONTAINER_NAME -- LINUX_COMMANDS
 kubectl label po POD_NAME KEY=VALUE -n NAMESPACE_NAME
 kubectl label pod POD_NAME KEY=VALUE                                            # add a label for existing pod
 kubectl label pod POD_NAME KEY=VALUE KEY=VALUE
@@ -473,6 +507,9 @@ kubectl describe deployment DEPLOYMENT_NAME
 kubectl describe deployment DEPLOYMENT_NAME > FILE_NAME.yaml
 kubectl describe deployments
 kubectl describe deployments DEPLOYMENT_NAME
+kubectl exec deploy/DEPLOYMENT_NAME -- LINUX_COMMANDS
+kubectl exec -it deploy/DEPLOYMENT_NAME -- /bin/bash -n NAMESPACE_NAME
+kubectl exec -it deployment/DEPLOYMENT_NAME --container CONTAINER_NAME bash
 kubectl logs deploy/DEPLOYMENT_NAME                                                         # Pod logs for a Deployment (single-container)
 kubectl logs deploy/DEPLOYMENT_NAME -c CONTAINER_NAME                                       # Pod logs for a Deployment (multi-container)
 kubectl logs deployment/DEPLOYMENT_NAME
@@ -669,44 +706,6 @@ kubectl delete job -l KEY=VALUE
 kubectl delete job JOB_NAME
 kubectl delete jobs JOB_NAME
 kubectl delete jobs/JOB_NAME
-
-[Exec]
-kubectl exec -it POD_NAME sh
-kubectl exec -it POD_NAME bash
-kubectl exec -it POD_NAME /bin/sh
-kubectl exec -it POD_NAME /bin/bash
-kubectl exec -it POD_NAME LINUX_COMMANDS
-kubectl exec -it POD_NAME -c CONTAINER_NAME bash
-kubectl exec -i POD_NAME -- LINUX_COMMANDS -n NAMESPACE_NAME
-kubectl exec -it POD_NAME -- sh
-kubectl exec -it POD_NAME -- bash
-kubectl exec -it POD_NAME -- bash --namespace NAMESPACE_NAME
-kubectl exec -it POD_NAME -- bash --namespace=NAMESPACE_NAME
-kubectl exec -it POD_NAME -- /bin/sh
-kubectl exec -it POD_NAME -- /bin/bash
-kubectl exec -it POD_NAME -- LINUX_COMMANDS
-kubectl exec -it POD_NAME -c CONTAINER_NAME -- sh
-kubectl exec -it POD_NAME -c CONTAINER_NAME -- bash
-kubectl exec -it POD_NAME -c CONTAINER_NAME -- bash --namespace NAMESPACE_NAME
-kubectl exec -it POD_NAME -c CONTAINER_NAME -- bash --namespace=NAMESPACE_NAME
-kubectl exec -it POD_NAME -c CONTAINER_NAME -- /bin/sh
-kubectl exec -it POD_NAME -c CONTAINER_NAME -- /bin/bash
-kubectl exec -it POD_NAME -c CONTAINER_NAME -- LINUX_COMMANDS
-kubectl exec -it POD_NAME --container CONTAINER_NAME -- sh
-kubectl exec -i -t POD_NAME -- /bin/bash
-kubectl exec -i -t POD_NAME -c CONTAINER_NAME -- bash
-kubectl exec -i -t POD_NAME -- /bin/sh -c 'LINUX_COMMANDS'
-kubectl exec -i -t POD_NAME --container CONTAINER_NAME -- /bin/bash
-kubectl exec --stdin --tty POD_NAME -- sh
-kubectl exec --stdin --tty POD_NAME -- /bin/sh
-kubectl exec --stdin --tty POD_NAME -- /bin/bash
-kubectl exec POD_NAME LINUX_COMMANDS
-kubectl exec POD_NAME -c CONTAINER_NAME LINUX_COMMANDS
-kubectl exec POD_NAME -- LINUX_COMMANDS
-kubectl exec POD_NAME -- LINUX_COMMANDS -n NAMESPACE_NAME
-kubectl exec POD_NAME -c CONTAINER_NAME -- LINUX_COMMANDS
-kubectl exec deploy/DEPLOYMENT_NAME -- LINUX_COMMANDS
-kubectl exec -it deploy/DEPLOYMENT_NAME -- /bin/bash -n NAMESPACE_NAME
 
 [ResourceQuota]
 kubectl get resourcequota
