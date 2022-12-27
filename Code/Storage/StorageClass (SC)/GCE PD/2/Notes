@@ -1,0 +1,54 @@
+$ kubectl get storageclass
+NAME                 PROVISIONER            AGE
+fast                 kubernetes.io/gce-pd   10m
+standard (default)   kubernetes.io/gce-pd   20m
+
+$ kubectl describe storageclass fast
+Name:                  fast
+IsDefaultClass:        No
+Annotations:           <none>
+Provisioner:           kubernetes.io/gce-pd
+Parameters:            type=pd-ssd
+AllowVolumeExpansion:  <unset>
+MountOptions:          <none>
+ReclaimPolicy:         Delete
+VolumeBindingMode:     Immediate
+Events:                <none>
+
+$ kubectl get pvc
+NAME        STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+myclaim-1   Bound     pvc-e655368e-5008-11e9-b000-42010a8001f1   8Gi        RWO            fast           7m
+myclaim-2   Bound     pvc-e0877dbc-5009-11e9-b000-42010a8001f1   16Gi       RWO            fast           6s
+
+$ kubectl get po -o wide
+NAME      READY     STATUS    RESTARTS   AGE       IP          NODE                                        NOMINATED NODE
+pv-pod    1/1       Running   0          35s       10.40.1.5   gke-bogotobogo-default-pool-abee3b7e-jjnt   <none>
+
+$ kubectl get pod
+NAME      READY     STATUS    RESTARTS   AGE
+pv-pod    1/1       Running   0          13m
+
+$ kubectl exec -it pv-pod -- /bin/sh
+  # ls
+  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc root  run  sbin  srv  sys  test-pd  tmp  usr  var
+  # cd /test-pd
+  # echo "I was here" > i_was_here.txt
+  # ls
+  i_was_here.txt  lost+found
+  # exit
+
+Now delete the pod and recreate a new pod with the same configuration.
+$ kubectl get po -o wide
+NAME      READY     STATUS    RESTARTS   AGE       IP          NODE                                        NOMINATED NODE
+pv-pod    1/1       Running   0          50s       10.40.1.6   gke-bogotobogo-default-pool-abee3b7e-jjnt   <none>
+
+$ kubectl exec pv-pod df /test-pd
+Filesystem     1K-blocks  Used Available Use% Mounted on
+/dev/sdb         8191416 36856   8138176   1% /test-pd
+
+$ kubectl exec pv-pod ls /test-pd
+i_was_here.txt
+lost+found
+
+$ kubectl exec pv-pod cat /test-pd/i_was_here.txt
+I was here
