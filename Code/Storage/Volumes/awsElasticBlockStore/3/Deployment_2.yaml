@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: kubernetes-deployment
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: express-App
+ template:
+   metadata:
+     labels:
+       app: exoress-App
+   spec:
+     containers:
+     - name: express-app
+       image:  tolatemitope/express-app
+       ports:
+       - name: nodejs-port
+         containerPort: 5000
+       volumeMounts:
+       - mountPath: /myvol
+         name: myvolume
+     volumes:
+     - name: myvolume
+       awsElasticBlockStore:
+         volumeID: vol-0ce33307daa915e75
