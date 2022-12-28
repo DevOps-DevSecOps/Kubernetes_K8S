@@ -1,0 +1,5 @@
+[Create an AWS EBS Volume through AWS CLI.]
+$ aws ec2 create-volume --size 10 --region us-west-1 --availability-zone us-west-1a --volume-type gp2 --tag-specifications 'ResourceType=volume, Tags=[{Key='Kubernetes',Value='volumekey'}]'
+
+[Delete an AWS EBS Volume through AWS CLI.]
+$ aws ec2 delete-volume --volume-id <volume_id>
