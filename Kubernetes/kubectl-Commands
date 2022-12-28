@@ -756,6 +756,7 @@ kubectl get pv
 kubectl get pv -o wide
 kubectl get pv --show-labels
 kubectl get pv PV_NAME
+kubectl get pv PV_NAME -o yaml
 kubectl describe pv
 kubectl describe pv PV_NAME
 kubectl describe pv/PV_NAME
