@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ibmcloudappmgmt-cassandra0
+  labels:
+    release: ibmcloudappmgmt
+spec:
+  capacity:
+    storage: 500Gi
+  storageClassName: local-storage-cassandra
+  local:
+    path: /data/k8s/cassandra0
+  nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values: ["10.10.10.1"]
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
