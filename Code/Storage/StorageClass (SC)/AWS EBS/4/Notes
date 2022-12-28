@@ -1,0 +1,45 @@
+$ kubectl get sc my-storageclass
+NAME               PROVISIONER             RECLAIMPOLICY     VOLUMEBINDINGMODE       AGE
+my-storageclass    kubernetes.io/aws-ebs   Delete            WaitForFirstConsumer    9s
+
+$ kubectl get pvc my-claim
+NAME       STATUS   VOLUME   CAPACITY   ACCESS  MODES   STORAGECLASS     AGE
+my-claim   Pending                                      my-storageclass  9s
+
+$ kubectl get pods my-pod
+NAME     READY   STATUS    RESTARTS   AGE
+my-pod   1/1     Running   0          3m
+
+$ kubectl get pvc my-claim
+NAME          STATUS      VOLUME        CAPACITY   ACCESS MODES   STORAGECLASS        AGE
+my-claim      Bound    pvc-6e5dae64       2Gi      RWO          my-storageclass       10m
+
+$ kubectl get pv 
+NAME          CAPACITY    ACCESS   MODES   RECLAIM   POLICY    STATUS        CLAIM            STORAGECLASS       AGE 
+pvc-6e5dae64    2Gi         RWO             Delete             Bound    default/my-claim     my-storageclass     99s
+
+$ kubectl exec -it my-pod -- bin/bash
+  root@my-pod:/#
+  root@my-pod:/# cd app/data
+  root@my-pod:/app/data#
+  root@my-pod:/app/data# echo My StorageClass Message > stclass.txt
+  root@my-pod:/app/data# cat stclass.text
+  My StorageClass Message
+
+$ kubectl delete pod my-pod
+pod "my-pod" deleted
+
+$ kubectl get pods
+No resources found
+
+Now again recreate the pod
+$ kubectl get pods
+NAME     READY   STATUS    RESTARTS   AGE
+my-pod   1/1     Running    0         89s
+
+$ kubectl  exec -it my-pod -- bin/bash
+  root@my-pod:/# cd /app/data
+  root@my-pod:/app/data# ls
+  stclass.text
+  root@my-pod:/app/data# cat stclass.text
+  My StorageClass Message
