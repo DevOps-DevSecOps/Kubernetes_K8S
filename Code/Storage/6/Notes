@@ -1,2 +1,3 @@
+create a password for MariaDB Database encoded in base64.
 $ echo -n 'StrongPassword' | base64
 U3Ryb25nUGFzc3dvcmQ=
