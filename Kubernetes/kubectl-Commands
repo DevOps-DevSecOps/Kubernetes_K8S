@@ -61,6 +61,7 @@ kubectl delete -f HTTPS_URL_FILE_NAME.yaml
 kubectl run NAME --image=IMAGE_NAME
 kubectl run NAME --image=IMAGE_NAME:TAG
 kubectl run NAME --image IMAGE_NAME
+kubectl run NAME --image IMAGE_NAME --namespace=NAMESPACE_NAME
 kubectl run NAME --image=IMAGE_NAME --port=CONTAINER_PORT_NO                    # container expose port
 kubectl run NAME --image=IMAGE_NAME --port=CONTAINER_PORT_NO --replicas=NO
 kubectl run NAME --image=IMAGE_NAME --restart=Never
