@@ -1,0 +1,2 @@
+$ echo -n 'StrongPassword' | base64
+U3Ryb25nUGFzc3dvcmQ=
