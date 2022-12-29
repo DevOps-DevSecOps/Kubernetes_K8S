@@ -1,3 +1,24 @@
 create a password for MariaDB Database encoded in base64.
 $ echo -n 'StrongPassword' | base64
 U3Ryb25nUGFzc3dvcmQ=
+
+$ kubectl exec -it mariadb-8579dc69cc-4ldvz /bin/sh
+  $ mysql -uroot -pStrongPassword
+  CREATE DATABASE wordpress;
+  GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'%' WITH GRANT OPTION;
+  FLUSH PRIVILEGES;
+
+$ kubectl get pods
+mariadb-8579dc69cc-4ldvz     1/1     Running   0          30m
+wordpress-688dffc569-f4bbb   1/1     Running   0          13m
+
+$ kubectl get pvc
+NAME            STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+mariadb-pvc     Bound    pvc-1bd50ae9-e77f-4c01-ba31-e5433a98801d   3Gi        RWO            local-path     17m
+wordpress-pvc   Bound    pvc-75a397fc-5726-4b4b-9ae0-258141605f75   1Gi        RWO            local-path     17m
+
+$ kubectl get svc
+NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP        58d
+mariadb      NodePort    10.104.60.255    <none>        3306:32269/TCP   32m
+wordpress    NodePort    10.109.101.187   <none>        80:31691/TCP     3h53m
