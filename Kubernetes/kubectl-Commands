@@ -767,6 +767,7 @@ kubectl delete pv PV_NAME --force --namespace NAMESPACE_NAME
 kubectl edit pvc PVC_NAME
 kubectl get pvc
 kubectl get pvc -o wide
+kubectl get pvc -w
 kubectl get pvc -l KEY=VALUE
 kubectl get pvc -n NAMESPACE_NAME
 kubectl get pvc --namespace NAMESPACE_NAME
