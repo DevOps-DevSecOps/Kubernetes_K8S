@@ -63,6 +63,7 @@ kubectl run NAME --image=IMAGE_NAME:TAG
 kubectl run NAME --image IMAGE_NAME
 kubectl run NAME --image IMAGE_NAME --namespace=NAMESPACE_NAME
 kubectl run NAME --image=IMAGE_NAME --port=CONTAINER_PORT_NO                    # container expose port
+kubectl run NAME --image=IMAGE_NAME --port=CONTAINER_PORT_NO --labels KEY=VALUE
 kubectl run NAME --image=IMAGE_NAME --port=CONTAINER_PORT_NO --replicas=NO
 kubectl run NAME --image=IMAGE_NAME --restart=Never
 kubectl run NAME --image=IMAGE_NAME --restart=Never --port=CONTAINER_PORT_NO
