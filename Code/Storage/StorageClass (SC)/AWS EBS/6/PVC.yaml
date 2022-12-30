@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: testk8sclaim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: k8sebs
+  resources:
+    requests:
+      storage: 1Gi
