@@ -1,0 +1,15 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mypod
+spec:
+  containers:
+    - name: alpine
+      image: alpine:3.2
+      volumeMounts:
+      - mountPath: "/var/k8svol"
+        name: mypd
+  volumes:
+    - name: mypd
+      persistentVolumeClaim:
+        claimName: testk8sclaim
