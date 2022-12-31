@@ -793,6 +793,7 @@ kubectl delete persistentvolumeclaim PVC_NAME
 
 [Storage Classes]
 kubectl explain sc
+kubectl edit sc STORAGECLASS_NAME
 kubectl edit storageclass STORAGECLASS_NAME
 kubectl get sc
 kubectl get sc -o yaml
