@@ -1,0 +1,16 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mypod
+spec:
+  containers:
+    - name: alpine
+      image: alpine:3.2
+      volumeMounts:
+      - mountPath: /var/k8svol
+        name: pgdata-volume
+        subPath: test
+  volumes:
+    - name: pgdata-volume
+      persistentVolumeClaim:
+        claimName: accounting-pvc-sc
