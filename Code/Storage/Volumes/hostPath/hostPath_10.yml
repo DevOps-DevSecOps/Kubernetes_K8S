@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: epitrax
+  namespace: app
+  labels:
+    app: epitrax
+spec:
+  template:
+    spec:
+      securityContext:
+        fsGroup: $USERID
+      containers:
+      - name: shell
+        image: epitrax/epitrax
+        command: ["sh", "-c", "tail -f /dev/null"]
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: $USERID
+          runAsGroup: $USERID
+        volumeMounts:
+        - mountPath: /opt/jboss/epitrax
+          name: epitrax-source-directory
+      volumes:
+      - name: epitrax-source-directory
+        hostpath:
+          type: Directory
+          path: $PWD/projects/epitrax
