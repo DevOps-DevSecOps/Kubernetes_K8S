@@ -1,0 +1,46 @@
+kind: Deployment
+apiVersion: apps/v1beta2
+metadata:
+  name: store-deployment
+  namespace: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: store
+  template:
+    metadata:
+      labels:
+        k8s-app: store
+    spec:
+      volumes:
+      - name: store-volume
+        persistentVolumeClaim:
+          claimName: store-persistent-volume-claim
+      containers:
+      - name: store
+        image: localhost:5000/store
+        ports:
+        - containerPort: 8383
+          protocol: TCP
+        volumeMounts:
+        - name: store-volume
+          mountPath: /data
+
+---
+#------------ Service ----------------#
+
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: store
+  name: store
+  namespace: test
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8383
+    targetPort: 8383
+  selector:
+    k8s-app: store
