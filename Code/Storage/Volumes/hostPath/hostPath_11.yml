@@ -1,0 +1,28 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+  name: hostpath-pod-example 
+  namespace: default 
+spec: 
+  replicas: 1 
+  selector: 
+    matchLabels: 
+      app: hostpath-pod-example 
+  template: 
+    metadata: 
+      labels: 
+        app: hostpath-pod-example 
+    spec: 
+      containers: 
+      - image: nginx
+        name: container-0 
+        volumeMounts: 
+        - mountPath: /tmp 
+          name: hostpath-example 
+      imagePullSecrets:
+        - name: default-secret
+      restartPolicy: Always 
+      volumes: 
+      - name: hostpath-example 
+        hostPath: 
+          path: /tmp/test
