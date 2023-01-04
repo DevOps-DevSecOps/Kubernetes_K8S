@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ebs-demo-gp2-claim
+  labels:
+    app: chicago
+spec:
+  storageClassName: demo-gp2-sc
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
