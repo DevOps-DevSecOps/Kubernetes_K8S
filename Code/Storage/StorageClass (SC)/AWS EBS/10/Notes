@@ -1,0 +1,28 @@
+$ kubectl get storageclass
+NAME                     PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+aws-standard (default)   kubernetes.io/aws-ebs   Delete          Immediate              false                  37s
+gp2 (default)            kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer   false                  112m
+
+$ kubectl get pv
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                     STORAGECLASS   REASON   AGE
+pvc-250719ae-36b8-441a-ad04-f6f69c1a11f0   3Gi        RWO            Delete           Bound    default/pv-claim   aws-standard            18s
+
+$ kubectl get pvc
+NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+pv-claim   Bound    pvc-250719ae-36b8-441a-ad04-f6f69c1a11f0   3Gi        RWO            aws-standard   2m30s
+
+$ kubectl exec -it test-aws -- bash
+root@test-eks-dynamic-storage:/# df -kh
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         8.0G  4.3G  3.7G  54% /
+tmpfs            64M     0   64M   0% /dev
+tmpfs           2.0G     0  2.0G   0% /sys/fs/cgroup
+/dev/xvda1      8.0G  4.3G  3.7G  54% /etc/hosts
+shm              64M     0   64M   0% /dev/shm
+/dev/xvdbq      2.9G  9.0M  2.9G   1% /usr/share/nginx/html
+tmpfs           2.0G   12K  2.0G   1% /run/secrets/kubernetes.io/serviceaccount
+tmpfs           2.0G     0  2.0G   0% /proc/acpi
+tmpfs           2.0G     0  2.0G   0% /proc/scsi
+tmpfs           2.0G     0  2.0G   0% /sys/firmware
+root@test-eks-dynamic-storage:/#
+
