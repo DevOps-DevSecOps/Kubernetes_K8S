@@ -194,6 +194,7 @@ kubectl get pod POD_NAME --watch
 kubectl get pod POD_NAME --show-labels
 kubectl get pod POD_NAME -n NAMESPACE_NAME
 kubectl get pod POD_NAME -n NAMESPACE_NAME -o yaml
+kubectl get pod POD_NAME -n NAMESPACE_NAME -o yaml --export
 kubectl get pod POD_NAME -n NAMESPACE_NAME -o yaml > FILE_NAME.yaml
 kubectl get pod POD_NAME -n NAMESPACE_NAME -o yaml > /FOLDER_NAME/FILE_NAME.yaml
 kubectl get pod POD_NAME --namespace=NAMESPACE_NAME
