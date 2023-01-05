@@ -4,6 +4,34 @@ kubectl run NAME --image=index.docker.io/DOCKER_HUB_USER_ID/REPOSITORY_NAME --re
 
 [Pods]
 kubectl get pods --all-namespaces -o wide | grep NODE_NAME
+$ exit                                               # quit the shell in the container
+kubectl exec -it POD_NAME printenv
+kubectl exec -it POD_NAME -- cat /FOLDER_NAME/FILE_NAME
+kubectl exec -it POD_NAME -- ls -l /FOLDER_NAME/FOLDER_NAME
+kubectl exec POD_NAME env                            # list the environment variables in the running container
+kubectl exec POD_NAME date
+kubectl exec POD_NAME ls /FOLDER_NAME/
+kubectl exec POD_NAME df /FOLDER_NAME                # mounted file systems
+kubectl exec POD_NAME cat /FOLDER_NAME/FILE_NAME     # reading file from the mounted file systems
+kubectl exec POD_NAME -c CONTAINER_NAME date
+kubectl exec POD_NAME -- printenv
+kubectl exec POD_NAME -- ps
+kubectl exec POD_NAME -- ps -ef
+kubectl exec POD_NAME -- ps -elf
+kubectl exec POD_NAME -- ps aux
+kubectl exec POD_NAME -- rm /FOLDER_NAME/FOLDER_NAME/FILE_NAME
+kubectl exec POD_NAME -- ls /
+kubectl exec POD_NAME -- ls /FOLDER_NAME/FOLDER_NAME
+kubectl exec POD_NAME -- ls -l /FOLDER_NAME/FOLDER_NAME
+kubectl exec POD_NAME -- cat /FOLDER_NAME/FOLDER_NAME/FILE_NAME
+kubectl exec POD_NAME -- cat /etc/hostname
+kubectl exec POD_NAME -- id
+kubectl exec POD_NAME -- curl https://IP_ADDRESS:PORT_NO
+kubectl exec POD_NAME -- sh -c "echo $PATH"
+kubectl exec -it POD_NAME -- /bin/bash -c "ls -la /FOLDER_NAME/FOLDER_NAME"
+kubectl exec POD_NAME -c CONTAINER_NAME -- ls /
+kubectl exec POD_NAME -c CONTAINER_NAME -- cat /FOLDER_NAME/FILE_NAME
+kubectl exec POD_NAME -c CONTAINER_NAME -- mv /FOLDER_NAME/FILE_NAME:original /FOLDER_NAME/FILE_NAME:rename
 kubectl port-forward pod/mypod :5000                                            # Listen on a random host port no locally
 kubectl port-forward --address localhost,10.19.21.23 pod/mypod 8888:5000        # Listen on host port with selected IP
 
@@ -37,35 +65,6 @@ kubectl logs --all-containers -n NAMESPACE_NAME
 kubectl logs --all-containers -n NAMESPACE_NAME --previous
 kubectl logs -f deployment/DEPLOYMENT_NAME
 kubectl logs -f deployment/DEPLOYMENT_NAME --all-containers=true -n NAMESPACE_NAME --since=MINUTES      # MINUTES = 10m
-
-[Exec]
-$ exit                                               # quit the shell in the container
-kubectl exec -it POD_NAME printenv
-kubectl exec -it POD_NAME -- cat /FOLDER_NAME/FILE_NAME
-kubectl exec -it POD_NAME -- ls -l /FOLDER_NAME/FOLDER_NAME
-kubectl exec POD_NAME env                            # list the environment variables in the running container
-kubectl exec POD_NAME date
-kubectl exec POD_NAME ls /FOLDER_NAME/
-kubectl exec POD_NAME df /FOLDER_NAME                # mounted file systems
-kubectl exec POD_NAME cat /FOLDER_NAME/FILE_NAME     # reading file from the mounted file systems
-kubectl exec POD_NAME -c CONTAINER_NAME date
-kubectl exec POD_NAME -- printenv
-kubectl exec POD_NAME -- ps
-kubectl exec POD_NAME -- ps -ef
-kubectl exec POD_NAME -- ps -elf
-kubectl exec POD_NAME -- ps aux
-kubectl exec POD_NAME -- rm /FOLDER_NAME/FOLDER_NAME/FILE_NAME
-kubectl exec POD_NAME -- ls /
-kubectl exec POD_NAME -- ls /FOLDER_NAME/FOLDER_NAME
-kubectl exec POD_NAME -- ls -l /FOLDER_NAME/FOLDER_NAME
-kubectl exec POD_NAME -- cat /FOLDER_NAME/FOLDER_NAME/FILE_NAME
-kubectl exec POD_NAME -- cat /etc/hostname
-kubectl exec POD_NAME -- sh -c "echo $PATH"
-kubectl exec POD_NAME -- id
-kubectl exec POD_NAME -- curl https://IP_ADDRESS:PORT_NO
-kubectl exec POD_NAME -c CONTAINER_NAME -- ls /
-kubectl exec POD_NAME -c CONTAINER_NAME -- cat /FOLDER_NAME/FILE_NAME
-kubectl exec POD_NAME -c CONTAINER_NAME -- mv /FOLDER_NAME/FILE_NAME:original /FOLDER_NAME/FILE_NAME:rename
 
 [ConfigMaps]
 kubectl create configmap CONFIGMAP_NAME --from-literal=url="http://example.com"
