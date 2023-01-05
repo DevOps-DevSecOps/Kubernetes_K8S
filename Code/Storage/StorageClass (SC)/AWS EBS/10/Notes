@@ -25,4 +25,3 @@ tmpfs           2.0G     0  2.0G   0% /proc/acpi
 tmpfs           2.0G     0  2.0G   0% /proc/scsi
 tmpfs           2.0G     0  2.0G   0% /sys/firmware
 root@test-eks-dynamic-storage:/#
-
