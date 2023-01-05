@@ -298,6 +298,7 @@ kubectl exec -it POD_NAME -- bash --namespace NAMESPACE_NAME
 kubectl exec -it POD_NAME -- bash --namespace=NAMESPACE_NAME
 kubectl exec -it POD_NAME -- /bin/sh
 kubectl exec -it POD_NAME -- /bin/bash
+kubectl exec -it POD_NAME -- /bin/bash -c "LINUX_COMMANDS"
 kubectl exec -it POD_NAME -- LINUX_COMMANDS
 kubectl exec -it POD_NAME -c CONTAINER_NAME -- sh
 kubectl exec -it POD_NAME -c CONTAINER_NAME -- bash
