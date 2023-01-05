@@ -9,6 +9,7 @@ kubectl create -f ./FOLDER_NAME
 kubectl create -f FILE_NAME.yaml
 kubectl create -f FILE_NAME.yaml --record
 kubectl create -f FILE_NAME.yaml -n NAMESPACE_NAME
+kubectl create -f FILE_NAME.yaml --namespace NAMESPACE_NAME
 kubectl create -f FILE_NAME.yaml --namespace=NAMESPACE_NAME
 kubectl create -f FILE_NAME.yaml --record                            # '--record=true' flag indicate allows to record current command in the annotations of the resources being created or updated, to see the commands executed in each Deployment revision
 kubectl create -f FILE_NAME.yaml --dry-run --validate
@@ -26,6 +27,7 @@ kubectl apply -f FILE_NAME.yaml --record
 kubectl apply -f FILE_NAME.yaml --record=true
 kubectl apply -f FILE_NAME.yaml --user=USER_NAME
 kubectl apply -f FILE_NAME.yaml -n NAMESPACE_NAME
+kubectl apply -f FILE_NAME.yaml --namespace NAMESPACE_NAME
 kubectl apply -f FILE_NAME.yaml --namespace=NAMESPACE_NAME
 kubectl apply -f FOLDER_NAME/FILE_NAME.yaml
 kubectl apply -f /FOLDER_NAME/FILE_NAME.yaml --namespace=NAMESPACE_NAME
@@ -227,7 +229,6 @@ kubectl get pods --selector="KEY in (VALUE, VALUE)"
 kubectl get pods -L KEY
 kubectl get pods -l="KEY=VALUE"
 kubectl get pods -l KEY=VALUE
-kubectl get pods -l KEY=VALUE -n=NAMESPACE_NAME
 kubectl get pods -l KEY=VALUE,KEY=VALUE
 kubectl get pods -l KEY=VALUE -l KEY=VALUE
 kubectl get pods -l KEY!=VALUE
@@ -250,12 +251,14 @@ kubectl get pods -l KEY=VALUE --watch
 kubectl get pods -l KEY=VALUE --output=yaml
 kubectl get pods -l KEY=VALUE -n NAMESPACE_NAME
 kubectl get pods -l KEY=VALUE -n=NAMESPACE_NAME
+kubectl get pods -l KEY=VALUE --namespace NAMESPACE_NAME
 kubectl get pods -n NAMESPACE_NAME
 kubectl get pods -n=NAMESPACE_NAME
 kubectl get pods -n NAMESPACE_NAME -w
 kubectl get pods -n NAMESPACE_NAME --watch
 kubectl get pods -n NAMESPACE_NAME --selector KEY=VALUE
 kubectl get pods --namespace NAMESPACE_NAME
+kubectl get pods --namespace NAMESPACE_NAME -w
 kubectl get pods --namespace=NAMESPACE_NAME
 kubectl get pods --all-namespaces
 kubectl get pods --all-namespaces -o wide
@@ -337,6 +340,7 @@ kubectl annotate pods POD_NAME KEY=VALUE                                        
 kubectl logs POD_NAME
 kubectl logs POD_NAME -n NAMESPACE_NAME
 kubectl logs POD_NAME --namespace NAMESPACE_NAME
+kubectl logs POD_NAME --namespace NAMESPACE_NAME --tail NO
 kubectl logs POD_NAME --namespace=NAMESPACE_NAME
 kubectl logs POD_NAME --previous
 kubectl logs POD_NAME --since=TIME_HOUR                                         # TIME_HOUR=1h, show all logs from pod in the hour
@@ -504,6 +508,7 @@ kubectl get deployments -w
 kubectl get deployments -o wide
 kubectl get deployments --show-labels
 kubectl get deployments --all-namespaces
+kubectl get deployments --namespace NAMESPACE_NAME
 kubectl get deployments DEPLOYMENT_NAME
 kubectl get deployments DEPLOYMENT_NAME -o yaml
 kubectl describe deploy
@@ -949,6 +954,7 @@ kubectl create secret generic SECRET_NAME --from-literal=KEY='VALUE' --from-lite
 kubectl create secret generic SECRET_NAME --from-literal='KEY=VALUE' --from-literal='KEY=VALUE'
 kubectl create secret generic SECRET_NAME --from-file=./FILE_NAME
 kubectl create secret generic SECRET_NAME --from-file=FILE_NAME --from-file=FILE_NAME
+kubectl create secret generic SECRET_NAME --from-file FILE_NAME --from-file FILE_NAME --namespace NAMESPACE_NAME
 kubectl create secret generic SECRET_NAME --from-file=./FILE_NAME --from-file=./FILE_NAME
 kubectl create secret generic SECRET_NAME --from-file=KEY=FILE_NAME --from-file=KEY=FILE_NAME
 kubectl create secret generic SECRET_NAME --from-env-file=./FILE_NAME
@@ -1032,6 +1038,7 @@ kubectl create rolebinding ROLEBINDING_NAME --role ROLE_NAME --user USER_NAME
 kubectl create rolebinding ROLEBINDING_NAME --role=ROLE_NAME --serviceaccount=NAMESPACE_NAME:SERVICEACCOUNT_NAME
 kubectl create rolebinding ROLEBINDING_NAME --role=ROLE_NAME --serviceaccount=NAMESPACE_NAME:SERVICEACCOUNT_NAME -n NAMESPACE_NAME
 kubectl create rolebinding ROLEBINDING_NAME --role ROLE_NAME --serviceaccount NAMESPACE_NAME:SERVICEACCOUNT_NAME -n NAMESPACE_NAME
+kubectl create rolebinding ROLEBINDING_NAME --role ROLE_NAME --serviceaccount NAMESPACE_NAME:SERVICEACCOUNT_NAME --namespace NAMESPACE_NAME
 kubectl create rolebinding ROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --user=USER_NAME --namespace=NAMESPACE_NAME
 kubectl create rolebinding ROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --serviceaccount=NAMESPACE_NAME:SERVICEACCOUNT_NAME
 kubectl create rolebinding ROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --serviceaccount=NAMESPACE_NAME:SERVICEACCOUNT_NAME -n NAMESPACE_NAME
@@ -1041,6 +1048,7 @@ kubectl create rolebinding ROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --ser
 kubectl create rolebinding ROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --group=system:serviceaccounts:NAMESPACE_NAME --namespace=NAMESPACE_NAME                                 # grant permission within "NAMESPACE_NAME" to all service accounts in that namespace
 kubectl get rolebinding
 kubectl get rolebindings
+Kubectl get rolebindings -n NAMESPACE_NAME
 kubectl describe rolebinding ROLEBINDING_NAME
 kubectl delete rolebinding ROLEBINDING_NAME -n NAMESPACE_NAME
 ● ClusterRole
