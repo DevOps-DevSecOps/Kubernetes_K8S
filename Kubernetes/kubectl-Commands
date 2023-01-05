@@ -667,8 +667,10 @@ kubectl edit statefulsets STATEFULSET_NAME
 kubectl set image sts STATEFULSET_NAME CONTAINER_NAME=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --record
 kubectl set image statefulset STATEFULSET_NAME CONTAINER_NAME=IMAGE_NAME:TAG
 kubectl scale sts STATEFULSET_NAME --replicas=NO
+kubectl scale sts STATEFULSET_NAME --replicas NO
 kubectl scale sts/STATEFULSET_NAME --replicas=NO
 kubectl scale statefulset STATEFULSET_NAME --replicas=NO
+kubectl scale statefulset STATEFULSET_NAME --replicas NO
 kubectl scale statefulset/STATEFULSET_NAME --replicas=NO
 kubectl get sts
 kubectl get sts STATEFULSET_NAME -o yaml
