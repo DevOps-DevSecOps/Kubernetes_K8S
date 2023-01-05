@@ -797,6 +797,7 @@ kubectl get persistentvolumeclaims
 kubectl get persistentvolumeclaims --namespace=NAMESPACE_NAME
 kubectl describe pvc
 kubectl describe pvc PVC_NAME
+kubectl describe pvc PVC_NAME -n NAMESPACE_NAME
 kubectl delete pvc --all
 kubectl delete pvc -l KEY=VALUE
 kubectl delete pvc PVC_NAME
