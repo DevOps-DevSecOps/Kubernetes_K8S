@@ -1,0 +1,8 @@
+[Create an AWS Elastic Block Storage.]
+$ aws ec2 create-volume --region us-west-2 --availability-zone us-west-2a --size 5 --volume-type gp2
+
+[Check if the volume is available as of status.]
+$ aws --region us-west-2 ec2 describe-volumes --volume-id vol-47f59cce
+
+[Then detach the volume and delete the volume.]
+$ aws ec2 delete-volume --region us-west-2 --volume-id vol-47f59cce
