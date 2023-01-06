@@ -4,3 +4,6 @@ It ensures how many replica of pod should be running in a node.
 The count of replicas should not be zero (replicas: 0), it will be cleaned up.
 The each Deployment revision is stored in its ReplicaSets.
 It will use selectors to select running pods with matching labels and uses the pod template to create pod replicas.
+A ReplicaSet is used for making sure that the designated number of pods is up and running.
+It is convenient to use when we are supposed to run multiple pods at a given time.
+ReplicaSet requires labels to understand which pods to run, a number of replicas that are supposed to run at a given time, and a template of the pod that it needs to create.
