@@ -682,6 +682,7 @@ kubectl get sts
 kubectl get sts STATEFULSET_NAME -o yaml
 kubectl get statefulset
 kubectl get statefulset STATEFULSET_NAME
+kubectl get statefulsets
 kubectl describe sts STATEFULSET_NAME
 kubectl describe statefulset STATEFULSET_NAME
 kubectl describe statefulset STATEFULSET_NAME > FILE_NAME.yaml
