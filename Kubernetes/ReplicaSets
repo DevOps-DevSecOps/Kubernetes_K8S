@@ -1,5 +1,5 @@
 It create and manages a set of pod replicas based on the number of replicas defined in YAML file.
-If a pod part of a ReplicaSet (replicas) is terminated, the ReplicaSet will replace it by creating a new pod using a replicas count in pod template.
+If a pod part of a ReplicaSet (replicas) is deleted/terminated, the ReplicaSet will replace it by creating a new pod using a replicas count in pod template.
 It ensures how many replica of pod should be running in a node.
 The count of replicas should not be zero (replicas: 0), it will be cleaned up.
 The each Deployment revision is stored in its ReplicaSets.
