@@ -7,3 +7,4 @@ To scale a DaemonSet to meet a desired state by looking for appropriate no of no
 DaemonSet works as a daemon on each node and ensures that each node runs the Pod.
 So that add a new node to cluster DaemonSet defined will create the Pod.
 Those Pods will only be deleted by removing the node or deleting the DaemonSet.
+By default DaemonSet pods are not being scheduled on the master node. But it can add toleration for it to run on the master node as well.
