@@ -29,5 +29,8 @@ Pull an Image from a Private Registry => https://kubernetes.io/docs/tasks/config
 [Troubleshooting]
 https://komodor.com/learn/kubernetes-troubleshooting-the-complete-guide/
 
+[Workloads]
+https://www.swtestacademy.com/kubernetes-workloads/
+
 [Commands]
 https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands
