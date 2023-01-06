@@ -6,9 +6,10 @@ A containerized application and want to make changes, you need to build a new im
 Typically, a Pod contains a single container.
 However, multiple containers can be placed in the same Pod.
 The multiple containers can talk to each other with in a Pod.
+Pods that run multiple containers that need to work together.
 All containers running on the same Pod share the same volume and network interface of the Pod.
 All the containers in the pod share the same network namespace, therefore all containers can communicate with each other inside the pod.
-All the containers can have the same volume mounted so that they can communicate with each other by reading and modifying files in the storage volume.
+All the containers in the pod share the same storage volume mounted so that they can communicate with each other by reading and modifying files in the storage volume.
 
 [Init Containers]
 Pod can have one OR more init containers runs along with main container.
