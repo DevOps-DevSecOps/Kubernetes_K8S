@@ -1,5 +1,6 @@
 Deployments is used how to create or modify instances of the pods that hold a containerized application.
 Deployments can scale the number of replica pods, enable rollout of updated code in a controlled manner, or rollback to an earlier deployment version if necessary.
+Deployments can both control the ReplicaSet i.e number of replicas and the template of Pod.
 
 [Strategies]
 ● RollingUpdate
