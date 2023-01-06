@@ -4,3 +4,6 @@ As new Nodes are added to the cluster, Pods are added to them.
 When add a new node to the cluster, a pod gets added to match the nodes.
 As nodes are removed from the cluster, those Pods are garbage collected.
 To scale a DaemonSet to meet a desired state by looking for appropriate no of nodes and deploying pods on them.
+DaemonSet works as a daemon on each node and ensures that each node runs the Pod.
+So that add a new node to cluster DaemonSet defined will create the Pod.
+Those Pods will only be deleted by removing the node or deleting the DaemonSet.
