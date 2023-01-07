@@ -1,0 +1,4 @@
+[creating a label to a node by using a key-value pair]
+$ kubectl label nodes kind-worker nginx=pod
+
+[]
