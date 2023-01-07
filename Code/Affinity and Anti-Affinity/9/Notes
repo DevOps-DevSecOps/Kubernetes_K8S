@@ -1,0 +1,3 @@
+$ kubectl label node kind-worker must=label
+
+$ kubectl label node kind-worker2 nicetohave=label
