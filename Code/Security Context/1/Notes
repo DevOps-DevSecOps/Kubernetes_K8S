@@ -1,0 +1,5 @@
+$ kubectl exec -it security-context-demo -- sh
+  /$ ps
+
+$ kubectl exec -it busybox -- sh
+  /$ ps
