@@ -1,0 +1,1 @@
+$ kubectl taint nodes NODE_NAME taint=node:NoSchedule
