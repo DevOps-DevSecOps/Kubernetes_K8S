@@ -26,6 +26,7 @@ Selector has to match a Node label to an schedule.
 The existing Pods running before affinity is applied will not be evicted if no affinity.
 Pods will be in pending state when no node with matching label.
 Pod cannot be scheduled on a node unless it matches the affinity configuration, even if there are no nodes that match.
+It is used for a case that the label must exist on the node during scheduling of the k8s object to a node.
 * requiredDuringScheduling - The pod must be scheduled to node(s) that match the expressions listed under matchExpressions.
                              The rule must be met for a pod to be scheduled onto a node.
 * IgnoredDuringExecution - It indicates that the node affinity only applies during pod scheduling, it doesn’t apply to already running pods.
