@@ -1168,7 +1168,7 @@ kubectl label node NODE_NAME KEY=VALUE --overwrite              # change a new V
 kubectl label nodes NODE_NAME KEY=VALUE                         # add a label for existing node
 kubectl drain NODE_NAME                                         # node in preparation for maintenance (OR) to upgrade the nodes, it will move that Pod to another working node and mark it as unschedulable (cordon)
 kubectl drain NODE_NAME --force
-kubectl cordon NODE_NAME                                        # unschedulable (OR) stops scheduling new Pods to these node (OR) don’t want any Pod to be scheduled on that specific node (OR) no need to mark it as unschedulable
+kubectl cordon NODE_NAME                                        # unschedulable (OR) stops scheduling new Pods to these node (OR) don’t want any Pod to be scheduled on that specific node (OR) need to mark it as unschedulable
 kubectl uncordon NODE_NAME                                      # schedulable new Pods to these node (OR) mark it as schedulable
 kubectl top node
 kubectl top node NODE_NAME
