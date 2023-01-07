@@ -1017,10 +1017,12 @@ kubectl create secret tls SECRET_NAME --key /FOLDER_NAME/FILE_NAME.key --cert /F
 kubectl get roles,rolebindings -n NAMESPACE_NAME
 ● Role
 kubectl create role ROLE_NAME --verb=VERBS_TYPES --resource=OBJECTS_NAME
+kubectl create role ROLE_NAME --verb=VERBS_TYPES --resource=OBJECTS_NAME -n NAMESPACE_NAME
 kubectl create role ROLE_NAME --verb VERBS_TYPES --resource OBJECTS_NAME
 kubectl create role ROLE_NAME --verb VERBS_TYPES --resource OBJECTS_NAME -n NAMESPACE_NAME
 kubectl create role ROLE_NAME --verb=VERBS_TYPES,VERBS_TYPES,VERBS_TYPES --resource=OBJECTS_NAME
 kubectl create role ROLE_NAME --verb=VERBS_TYPES,VERBS_TYPES,VERBS_TYPES --resource=OBJECTS_NAME,OBJECTS_NAME
+kubectl create role ROLE_NAME --verb=VERBS_TYPES,VERBS_TYPES,VERBS_TYPES --resource=OBJECTS_NAME,OBJECTS_NAME -n NAMESPACE_NAME
 kubectl create role ROLE_NAME --verb=VERBS_TYPES --verb=VERBS_TYPES --verb=VERBS_TYPES --resource=OBJECTS_NAME
 kubectl create role ROLE_NAME --verb=VERBS_TYPES --verb=VERBS_TYPES --verb=VERBS_TYPES --resource=OBJECTS_NAME -n NAMESPACE_NAME
 kubectl create role ROLE_NAME --verb=VERBS_TYPES --resource=OBJECTS_NAME --resource-name=OBJECTS_RESOURCE_NAME
@@ -1037,6 +1039,7 @@ kubectl describe role ROLE_NAME
 kubectl delete role ROLE_NAME -n NAMESPACE_NAME
 ● RoleBinding
 kubectl create rolebinding ROLEBINDING_NAME --role=ROLE_NAME --user=USER_NAME
+kubectl create rolebinding ROLEBINDING_NAME --role=ROLE_NAME --user=USER_NAME -n NAMESPACE_NAME
 kubectl create rolebinding ROLEBINDING_NAME --role ROLE_NAME --user USER_NAME
 kubectl create rolebinding ROLEBINDING_NAME --role=ROLE_NAME --serviceaccount=NAMESPACE_NAME:SERVICEACCOUNT_NAME
 kubectl create rolebinding ROLEBINDING_NAME --role=ROLE_NAME --serviceaccount=NAMESPACE_NAME:SERVICEACCOUNT_NAME -n NAMESPACE_NAME
@@ -1055,6 +1058,7 @@ Kubectl get rolebindings -n NAMESPACE_NAME
 kubectl describe rolebinding ROLEBINDING_NAME
 kubectl delete rolebinding ROLEBINDING_NAME -n NAMESPACE_NAME
 ● ClusterRole
+kubectl create clusterrole CLUSTERROLE_NAME --verb=VERBS_TYPES --resource=OBJECTS_NAME
 kubectl create clusterrole CLUSTERROLE_NAME --verb VERBS_TYPES --resource OBJECTS_NAME
 kubectl create clusterrole CLUSTERROLE_NAME --verb=VERBS_TYPES,VERBS_TYPES,VERBS_TYPES --resource=OBJECTS_NAME
 kubectl create clusterrole CLUSTERROLE_NAME --verb=VERBS_TYPES,VERBS_TYPES,VERBS_TYPES --resource=OBJECTS_NAME,OBJECTS_NAME
