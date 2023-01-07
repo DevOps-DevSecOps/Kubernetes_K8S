@@ -27,7 +27,8 @@ Kubernetes uses service accounts to authenticate and authorize requests by pods 
 [Role]
 Role are applicable within a namespace.
 Role are namespaced, meaning Roles work within the constraints of a namespace.
-After creating a Role, you assign it to a user or group of users by creating a RoleBinding.
+After creating a Role, assign it to a user or group of users by creating a RoleBinding.
+After creating a Role, have to bind them to either RoleBinding or ClusterRoleBinding.
 If a namespaced grouping of resources and allowed operations that can assign to a user or a group of users using a RoleBinding.
 It defines that will do to a group of resources.
 It used to assigning resources for a namespace.
