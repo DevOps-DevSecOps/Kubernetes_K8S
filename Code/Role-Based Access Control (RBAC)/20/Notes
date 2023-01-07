@@ -1,0 +1,5 @@
+[create a Namespace called “developers”]
+$ kubectl create namespace developers
+
+[create the Role]
+$ kubectl create role dev-role --verb=get,list,create --resource=deployments,pods -n developers
