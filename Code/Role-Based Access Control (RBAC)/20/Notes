@@ -1,5 +1,29 @@
-[create a Namespace called “developers”]
+[create a Namespace]
 $ kubectl create namespace developers
 
 [create the Role]
 $ kubectl create role dev-role --verb=get,list,create --resource=deployments,pods -n developers
+
+[create the RoleBinding]
+$ kubectl create rolebinding dev-rb --role=developers --user=ege -n developers
+
+[create a ServiceAccount]
+$ kubectl create serviceaccount dev-sa -n developers
+
+[create the RoleBinding]
+$ kubectl create rolebinding dev-sa-rb --role=dev-role --serviceaccount=developers:dev-sa
+
+[create a Namespace]
+$ kubectl create namespace testers
+
+[create the Role]
+$ kubectl create role tester-role --verb=list --resource=pods -n testers
+
+[create a ServiceAccount]
+$ kubectl create serviceaccount tester-sa -n testers
+
+[create the RoleBinding]
+$ kubectl create rolebinding tester-rb --role=tester-role --serviceaccount=testers:tester-sa -n testers
+
+[create the ClusterRole]
+$ kubectl create clusterrole devops-role --verb=list --resource=pods
