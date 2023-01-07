@@ -4,7 +4,7 @@ Taints and tolerations works together to ensure that Pods are not scheduled onto
 It doesn't tell the pod to go to a particular node, it tells the node to only accept pod with certain toleration.
 Without a toleration, no Pod can be scheduled onto a node with a taint.
 By default, Kubernetes Cluster will not schedule pods on the control-plane (master) node for security reasons.
-If want to be able to schedule pods on the Kubernetes control-plane (master) node, need to remove a 'taint' on the master nodes.
+If want to be able to schedule pods on the Kubernetes control-plane (master) node, need to remove a 'taint' on the master nodes OR else apply the 'toleration' to the Workloads then it will be schedule a Workloads on the master nodes.
 
 [Taints]
 Taints can be applied to a Nodes.
