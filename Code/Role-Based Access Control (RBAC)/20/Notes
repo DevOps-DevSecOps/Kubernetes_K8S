@@ -27,3 +27,25 @@ $ kubectl create rolebinding tester-rb --role=tester-role --serviceaccount=teste
 
 [create the ClusterRole]
 $ kubectl create clusterrole devops-role --verb=list --resource=pods
+
+[create a ServiceAccount]
+$ kubectl create serviceaccount devops-sa
+
+[create the ClusterRoleBinding]
+$ kubectl create clusterrolebinding devops-rb --clusterrole=devops-role --serviceaccount=default:devops-sa
+
+[check the status by using an get]
+$ kubectl get roles
+$ kubectl get roles -n developers
+$ kubectl get roles -n testers
+
+[check the status by using an describe]
+$ kubectl describe role dev-role -n developers
+
+[Authorization]
+$ kubectl auth can-i create deployments
+yes
+$ kubectl auth can-i list pods --as dev-sa
+no
+$ kubectl auth can-i delete deployments --as tester-sa
+no
