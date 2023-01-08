@@ -11,7 +11,7 @@ kubectl create -f FILE_NAME.yaml --record
 kubectl create -f FILE_NAME.yaml -n NAMESPACE_NAME
 kubectl create -f FILE_NAME.yaml --namespace NAMESPACE_NAME
 kubectl create -f FILE_NAME.yaml --namespace=NAMESPACE_NAME
-kubectl create -f FILE_NAME.yaml --record                            # '--record=true' flag indicate allows to record current command in the annotations of the resources being created or updated, to see the commands executed in each Deployment revision
+kubectl create -f FILE_NAME.yaml --record                            # '--record' OR '--record=true' flag indicate allows to record and write the current command executed in the resource annotation {kubernetes.io/change-cause} being created or updated, to see the commands executed in each Deployment revision
 kubectl create -f FILE_NAME.yaml --dry-run --validate
 kubectl create -f /FOLDER_NAME/FILE_NAME.yaml
 kubectl create -f HTTPS_URL_FILE_NAME.yaml
