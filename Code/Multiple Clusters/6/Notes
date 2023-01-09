@@ -1,0 +1,17 @@
+[to add a another cluster]
+$ kubectl config set-cluster new-cluster --server=https://new-cluster.com --certificate-authority=new-cluster-ca-file
+
+[to adding or modifying user credentials]
+$ kubectl config set-credentials new-user --client-certificate=new-user-cert-file --client-key=new-user-key-file
+
+[setting a context]
+$ kubectl config set-context user-cluster --cluster=new-cluster --namespace=default --user=new-user
+
+[to delete a user]
+$ kubectl config unset users.USER_NAME
+
+[to delete a cluster]
+$ kubectl config unset clusters.CLUSTER_NAME
+
+[to delete a context]
+$ kubectl config unset contexts.CONTEXT_NAME
