@@ -1,0 +1,29 @@
+[to view the content in kubeconfig file]
+$ kubectl config view
+
+[setting a context]
+$ kubectl config set-context dev-context --namespace=dev-namespace --cluster=docker-desktop --user=dev-user
+
+[to view the content in kubeconfig file]
+$ kubectl config view
+
+[setting a context]
+$ kubectl config set-context dev-context --namespace=development --cluster=docker-desktop --user=dev-user
+
+[display the current context]
+$ kubectl config current-context
+
+[to add a another cluster]
+$ kubectl config set-cluster prod --server=https://1.2.3.4 --certificate-authority=path/to/the/cafile
+
+[setting a context]
+$ kubectl config set-context prod --namespace=production --cluster=prod --user=admin
+
+[to adding or modifying user credentials]
+$ kubectl config set-credentials admin --client-certificate=<CERTIFICATE> --client-key=<KEY>
+
+[to view the content in kubeconfig file]
+$ kubectl config view
+
+[switching between contexts]
+$ kubectl config use-context prod
