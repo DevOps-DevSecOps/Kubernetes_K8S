@@ -1,0 +1,32 @@
+[to add a another cluster]
+$ kubectl config set-cluster my-other-cluster --server=https://k8s.example.com:6443 --certificate-authority=path/to/the/cafile
+
+[to adding or modifying user credentials]
+● setting credentials by using 'username' and 'password'
+$ kubectl config set-credentials foo --username=foo --password=pass
+● setting credentials by using an 'token-based authentication of Service Account'
+$ kubectl config set-credentials foo --token=mysecrettokenXFDJIQ1234
+
+[setting a context]
+$ kubectl config set-context some-context --cluster=my-other-cluster --user=foo --namespace=bar
+
+[display the current context]
+$ kubectl config current-context
+
+[setting a context]
+$ kubectl config set-context minikube --namespace=another-namespace
+
+[switching between contexts]
+$ kubectl config use-context my-other-context
+
+[listing contexts and clusters]
+$ kubectl config get-contexts
+
+[listing clusters]
+$ kubectl config get-clusters
+
+[deleting contexts]
+$ kubectl config delete-context my-unused-context
+
+[deleting clusters]
+$ kubectl config delete-cluster my-old-cluster
