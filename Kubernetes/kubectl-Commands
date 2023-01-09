@@ -209,6 +209,7 @@ kubectl get pod/POD_NAME -o yaml
 kubectl get pods --kubeconfig FILE_NAME
 kubectl get pods --kubeconfig=FILE_NAME
 kubectl get pods --kubeconfig /FOLDER_NAME/FILE_NAME
+kubectl get pods --kubeconfig=/FOLDER_NAME/FILE_NAME
 kubectl get pods --user=USER_NAME
 kubectl get pods --context=CONTEXT_NAME
 kubectl get pods --context=CONTEXT_NAME --namespace=NAMESPACE_NAME
