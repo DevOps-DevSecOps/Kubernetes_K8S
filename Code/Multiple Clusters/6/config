@@ -1,0 +1,44 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: demo-ca-file-1
+    server: https://demo-cluster-1.com
+  name: demo-cluster-1
+- cluster:
+    certificate-authority: demo-ca-file-2
+    server: https://demo-cluster-2.com
+    insecure-skip-tls-verify: false
+  name: demo-cluster-2
+- cluster:
+    certificate-authority: demo-ca-file-3
+    server: https://demo-cluster-3.com
+    insecure-skip-tls-verify: true
+  name: demo-cluster-3
+contexts:
+- context:
+    cluster: demo-cluster-1
+    namespace: development
+    user: developer
+  name: dev-cluster
+- context:
+    cluster: demo-cluster-2
+    namespace: production
+    user: admin
+  name: admin-cluster
+- context:
+    cluster: demo-cluster-1
+    namespace: staging
+    user: developer
+  name: dev-staging-cluster
+current-context: ""
+kind: Config
+preferences: {}
+users:
+- name: developer
+  user:
+    client-certificate: demo-cert-file
+    client-key: demo-key-file
+- name: admin
+  user:
+    password: admin-password
+    username: admin
