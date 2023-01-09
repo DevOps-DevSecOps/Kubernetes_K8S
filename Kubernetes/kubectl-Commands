@@ -1220,6 +1220,7 @@ kubectl get componentstatuses
 kubectl config view                                                 # it looks for a file named "config" in the "$HOME/.kube" directory (OR) "~/.kube/config" 
 kubectl config view --minify                                        # configuration information associated with the current context
 kubectl config get-contexts                                         # list of contexts
+kubectl config get-clusters                                         # list of clusters
 kubectl config current-context                                      # display the current context
 kubectl config use-context CONTEXT_NAME                             # switch to different context
 kubectl config set-context --current --user=USER_NAME
@@ -1245,8 +1246,10 @@ kubectl config set-credentials USER_NAME --client-certificate FILE_NAME.crt --cl
 kubectl config set-credentials USER_NAME --client-certificate=FILE_NAME.crt --client-key=FILE_NAME.key --embed-certs
 kubectl config set-credentials USER_NAME --client-certificate=FILE_NAME.crt --client-key=FILE_NAME.key --embed-certs=true
 kubectl config set-credentials USER_NAME --client-certificate=/FOLDER_NAME/FOLDER_NAME/FILE_NAME.crt --client-key=/FOLDER_NAME/FOLDER_NAME/FILE_NAME.key
+kubectl config set-cluster CLUSTER_NAME --server=https://IP_ADDRESS:PORT_NO --certificate-authority=/FOLDER_NAME/FILE_NAME.crt
 kubectl config unset users.USER_NAME                                # delete user
 kubectl config delete-context CONTEXT_NAME
+kubectl config delete-cluster CLUSTER_NAME
 kubectl config --kubeconfig=FILE_NAME view
 kubectl config --kubeconfig=FILE_NAME view --minify
 kubectl config --kubeconfig=FILE_NAME use-context CONTEXT_NAME
