@@ -1,0 +1,37 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://kubernetes.docker.internal:6443
+  name: docker-desktop
+- cluster:
+    certificate-authority: <CERTIFICATE>
+    server: https://1.2.3.4
+  name: prod
+contexts:
+- context:
+    cluster: docker-desktop
+    namespace: development
+    user: dev-user
+  name: dev-context
+- context:
+    cluster: docker-desktop
+    user: docker-desktop
+  name: docker-desktop
+- context:
+    cluster: prod
+    namespace: production
+    user: admin
+  name: prod
+current-context: docker-desktop
+kind: Config
+preferences: {}
+users:
+- name: admin
+  user:
+    client-certificate: <CERTIFICATE>
+    client-key: <KEY>
+- name: docker-desktop
+  user:
+    client-certificate-data: REDACTED
+    client-key-data: REDACTED
