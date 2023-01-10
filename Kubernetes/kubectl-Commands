@@ -613,6 +613,7 @@ kubectl describe replicaset
 kubectl describe replicaset REPLICASET_NAME
 kubectl describe replicaset REPLICASET_NAME --namespace NAMESPACE_NAME
 kubectl describe replicasets
+kubectl describe replicasets REPLICASET_NAME
 kubectl port-forward rs/REPLICASET_NAME HOST_PORT_NO:CONTAINER_PORT_NO
 kubectl port-forward replicaset/REPLICASET_NAME HOST_PORT_NO:CONTAINER_PORT_NO
 kubectl delete rs REPLICASET_NAME
@@ -1071,6 +1072,7 @@ kubectl create clusterrole CLUSTERROLE_NAME --verb=VERBS_TYPES --verb=VERBS_TYPE
 kubectl create clusterrole CLUSTERROLE_NAME --verb=VERBS_TYPES --resource=OBJECTS_NAME --resource-name=OBJECTS_RESOURCE_NAME --resource-name=OBJECTS_RESOURCE_NAME
 kubectl edit clusterrole CLUSTERROLE_NAME
 kubectl get clusterrole
+kubectl get clusterrole | grep CLUSTERROLE_NAME
 kubectl get clusterrole -n NAMESPACE_NAME
 kubectl get clusterrole CLUSTERROLE_NAME
 kubectl get clusterrole CLUSTERROLE_NAME -o yaml
@@ -1095,6 +1097,7 @@ kubectl get clusterrolebinding CLUSTERROLEBINDING_NAME -o yaml
 kubectl get clusterrolebindings
 kubectl describe clusterrolebinding CLUSTERROLEBINDING_NAME
 kubectl delete clusterrolebinding CLUSTERROLEBINDING_NAME -n NAMESPACE_NAME
+kubectl delete clusterrolebindings CLUSTERROLEBINDING_NAME
 
 [Service Accounts]
 kubectl create sa SERVICEACCOUNT_NAME
