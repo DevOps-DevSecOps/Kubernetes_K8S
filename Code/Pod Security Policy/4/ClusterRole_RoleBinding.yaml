@@ -1,0 +1,37 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    eks.amazonaws.com/component: pod-security-policy
+    kubernetes.io/cluster-service: "true"
+  name: psp-fluentd-fluentd                         # named for psp-<namespace>-<serviceaccount>
+rules:
+- apiGroups:
+  - policy
+  resourceNames:
+  - fluentd-fluentd
+  resources:
+  - podsecuritypolicies
+  verbs:
+  - use
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    kubernetes.io/description: 'tailored PSP for fluentd->fluentd'
+  labels:
+    eks.amazonaws.com/component: pod-security-policy
+    kubernetes.io/cluster-service: "true"
+  name: psp-fluentd-fluentd
+  namespace: fluentd
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: psp-fluentd-fluentd
+subjects:
+  - kind: ServiceAccount
+    namespace: fluentd
+    name: fluentd
