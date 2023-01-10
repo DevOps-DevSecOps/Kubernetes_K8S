@@ -1,0 +1,15 @@
+# Role binding which grants access to the app pod security policy
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: acme-app-psp-binding
+  namespace: acme-namespace
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: acme-app-psp-crole
+subjects:
+# For all service accounts in acme-namespace
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: system:serviceaccounts:acme-namespace
