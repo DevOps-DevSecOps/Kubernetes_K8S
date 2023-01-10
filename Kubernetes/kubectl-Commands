@@ -1087,6 +1087,9 @@ kubectl create clusterrolebinding CLUSTERROLEBINDING_NAME --clusterrole=CLUSTERR
 kubectl create clusterrolebinding CLUSTERROLEBINDING_NAME --clusterrole CLUSTERROLE_NAME --serviceaccount NAMESPACE_NAME:SERVICEACCOUNT_NAME
 kubectl create clusterrolebinding CLUSTERROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --serviceaccount=NAMESPACE_NAME:SERVICEACCOUNT_NAME -n NAMESPACE_NAME
 kubectl get clusterrolebinding
+kubectl get clusterrolebinding CLUSTERROLEBINDING_NAME
+kubectl get clusterrolebinding CLUSTERROLEBINDING_NAME -o yaml
+kubectl get clusterrolebindings
 kubectl describe clusterrolebinding CLUSTERROLEBINDING_NAME
 kubectl delete clusterrolebinding CLUSTERROLEBINDING_NAME -n NAMESPACE_NAME
 
