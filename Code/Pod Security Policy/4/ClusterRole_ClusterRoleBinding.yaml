@@ -1,0 +1,36 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    eks.amazonaws.com/component: pod-security-policy
+    kubernetes.io/cluster-service: "true"
+  name: psp-restricted
+rules:
+- apiGroups:
+  - policy
+  resourceNames:
+  - restricted
+  resources:
+  - podsecuritypolicies
+  verbs:
+  - use
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    kubernetes.io/description: Restrictive PSP bound to system:authenticated to cover all users
+  labels:
+    eks.amazonaws.com/component: pod-security-policy
+    kubernetes.io/cluster-service: "true"
+  name: psp-restricted
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: psp-restricted
+subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:authenticated
