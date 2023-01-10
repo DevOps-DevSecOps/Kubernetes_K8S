@@ -610,12 +610,15 @@ kubectl describe rs
 kubectl describe rs REPLICASET_NAME
 kubectl describe rs/REPLICASET_NAME
 kubectl describe replicaset
+kubectl describe replicaset REPLICASET_NAME
+kubectl describe replicaset REPLICASET_NAME --namespace NAMESPACE_NAME
 kubectl describe replicasets
 kubectl port-forward rs/REPLICASET_NAME HOST_PORT_NO:CONTAINER_PORT_NO
 kubectl port-forward replicaset/REPLICASET_NAME HOST_PORT_NO:CONTAINER_PORT_NO
 kubectl delete rs REPLICASET_NAME
 kubectl delete rs/REPLICASET_NAME
 kubectl delete replicaset REPLICASET_NAME
+kubectl delete replicaset REPLICASET_NAME --namespace NAMESPACE_NAME
 
 [ReplicationController]
 kubectl scale rc REPLICATIONCONTROLLER_NAME --replicas=NO
