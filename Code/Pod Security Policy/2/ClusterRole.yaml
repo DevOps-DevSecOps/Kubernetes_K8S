@@ -1,0 +1,14 @@
+# Cluster role which grants access to the app pod security policy
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: acme-app-psp-crole
+rules:
+- apiGroups:
+  - policy
+  resourceNames:
+  - acme-app-psp
+  resources:
+  - podsecuritypolicies
+  verbs:
+  - use
