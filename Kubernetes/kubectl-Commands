@@ -1058,10 +1058,14 @@ kubectl create rolebinding ROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --ser
 kubectl create rolebinding ROLEBINDING_NAME --clusterrole CLUSTERROLE_NAME --serviceaccount NAMESPACE_NAME:SERVICEACCOUNT_NAME -n NAMESPACE_NAME
 kubectl create rolebinding ROLEBINDING_NAME --clusterrole CLUSTERROLE_NAME --serviceaccount NAMESPACE_NAME:SERVICEACCOUNT_NAME -n NAMESPACE_NAME --dry-run -o yaml > FILE_NAME.yaml
 kubectl create rolebinding ROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --serviceaccount=NAMESPACE_NAME:SERVICEACCOUNT_NAME --namespace=NAMESPACE_NAME
+kubectl create rolebinding ROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --serviceaccount=NAMESPACE_NAME:SERVICEACCOUNT_NAME --namespace NAMESPACE_NAME
 kubectl create rolebinding ROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --group=system:serviceaccounts:NAMESPACE_NAME --namespace=NAMESPACE_NAME                                 # grant permission within "NAMESPACE_NAME" to all service accounts in that namespace
 kubectl get rolebinding
 kubectl get rolebindings
 Kubectl get rolebindings -n NAMESPACE_NAME
+kubectl get rolebindings ROLEBINDING_NAME
+kubectl get rolebindings ROLEBINDING_NAME -n NAMESPACE_NAME
+kubectl get rolebindings ROLEBINDING_NAME -n NAMESPACE_NAME -o yaml
 kubectl describe rolebinding ROLEBINDING_NAME
 kubectl delete rolebinding ROLEBINDING_NAME -n NAMESPACE_NAME
 ● ClusterRole
