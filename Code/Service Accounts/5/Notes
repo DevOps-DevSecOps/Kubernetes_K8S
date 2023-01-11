@@ -1,0 +1,2 @@
+[create a specialsa ServiceAccount in the default namespace]
+$ kubectl create serviceaccount specialsa
