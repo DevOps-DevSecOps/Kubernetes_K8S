@@ -1,0 +1,2 @@
+[create a new ServiceAccount in the different Namespace]
+$ kubectl create sa privileged-sa -n privileged
