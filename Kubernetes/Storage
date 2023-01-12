@@ -139,7 +139,10 @@ This is only supported for CSI volumes and Kubernetes version 1.22+.
 A free resource that is not yet bound to a claim.
 ● Bound
 The volume is bound to a claim.
+PV has been bound to a claim.
 ● Released
 The claim has been deleted, but the resource is not yet reclaimed by the cluster.
+PVC has been deleted, PV is pending reclamation.
 ● Failed
 The volume has failed its automatic reclamation.
+An error has been encountered attempting to reclaim the PV.
