@@ -95,7 +95,9 @@ PV is not Namespaced it is available to whole cluster. PV is accessible to all N
 It no need to create StorageClass for PV.
 ● volumeMode
 * Filesystem - It is the default.
+               The volume mounted into Pod into a directory.
 * Block - It is uses a volume as a raw block device.
+          The block device (/dev/xvdf, /dev/xvdf1, /dev/xvdf2) is empty and it create a filesystem on the device before mounting it for the first time.
 
 [Persistent Volume Claims (PVC)]
 It is binding between a Pod and PV. Pod request the Volume through the PVC.
