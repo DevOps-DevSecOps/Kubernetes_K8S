@@ -125,14 +125,17 @@ There are 4 types of Access Modes.
 The volume can be mounted as read-write by a single node.
 Only a single node can mount the volume for reading and writing.
 This access mode still can allow multiple pods to access the volume when the pods are running on the same node.
+The volume can be mounted by a single node in read and write mode. While it mounted to the node then other nodes can't mount the volume.
 It read and write is allowed by only one pod at a time.
 ● ReadOnlyMany(ROX)
 The volume can be mounted read-only by many nodes.
 The volume can be mounted by multiple nodes for reading.
+The volume can be mounted on multiple nodes in read mode.
 The multiple pods can perform read operations from the volume.
 ● ReadWriteMany(RWX)
 The volume can be mounted as read-write by many nodes.
 Multiple nodes can mount the volume for reading and writing.
+The volume can be mounted in read and write mode on multiple nodes at the same time.
 The multiple pods can perform read and write operations from the volume.
 ● ReadWriteOncePod(RWOP)
 The volume can be mounted as read-write by a single Pod.
