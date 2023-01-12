@@ -780,6 +780,7 @@ kubectl get pv --show-labels
 kubectl get pv PV_NAME
 kubectl get pv PV_NAME -o yaml
 kubectl get pv PV_NAME -o yaml > FILE_NAME.yaml
+kubectl get persistentvolume
 kubectl get persistentvolumes
 kubectl describe pv
 kubectl describe pv PV_NAME
