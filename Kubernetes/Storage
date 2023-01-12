@@ -1,5 +1,6 @@
 Pods are ephemeral and stateless.
 Volumes bring persistence to pods.
+Volumes provide external storage for pods and thier Containers and allow data to be shared between all containers with in a pod.
 Containers has access to volume with in a same pod.
 If node stops working, the pod can be rescheduled on another node and the volume can be attached to the new node.
 It support many types of Storages.
@@ -154,3 +155,15 @@ PVC has been deleted, PV is pending reclamation.
 ● Failed
 The volume has failed its automatic reclamation.
 An error has been encountered attempting to reclaim the PV.
+
+[Syntax for YAML file]
+● volumes:
+Pod level config.
+Volumes to be attached to the Pod.
+Pod can support multiple types of Volumes.
+● volumeMounts:
+Container level config.
+The location in the container file system where the volume is mounted to. 
+Any OS allows mounting at any location of the container file system.
+A volume has to be mounted to a container using volumeMount in order for the container to have access to the volume.
+pod container can mount multiple volume types defined in the pod spec.
