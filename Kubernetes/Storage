@@ -78,18 +78,24 @@ Some provisioners are built in and shipped with Kubernetes and some are third-pa
 Third-party provisioners are not shipped with Kubernetes, but are developed and maintained by third-party vendors.
 ● volumeBindingMode
 There are two volume binding modes that can be used:
-* Immediate - This mode involves the automatic volume binding of PV to PVC with a StorageClass once a PVC is created.
+* Immediate - It is the default.
+              This mode involves the automatic volume binding of PV to PVC with a StorageClass once a PVC is created.
               In this mode, the volume and storage binding are created immediately after the PVC is created.
               So whenever a new PVC with the standard storage StorageClass is created, can see it in the bound state.
+              It indicates that volume binding and dynamic provisioning occurs once the PVC is created.
               This mode is universally supported.
 * WaitForFirstConsumer - This mode will delay the binding and dynamic provisioning of PV, until a Pod that will use it is created.
                          In this mode, volume is not created until a pod that consumes the PVC is created.
                          Most plug-ins don’t support this mode, but only "Amazon Elastic Block Store", "Google Compute Engine Persistent Disk" and "Azure Disk" support it.
+                         The binding will be delayed and provisioning of a PV will only happen when a Pod starts using the PVC.
 
 [Persistent Volumes (PV)]
 It is an abstraction for the physical storage device that attached to the cluster.
 PV is not Namespaced it is available to whole cluster. PV is accessible to all Namespaces.
 It no need to create StorageClass for PV.
+● volumeMode
+* Filesystem - It is the default.
+* Block - It is uses a volume as a raw block device.
 
 [Persistent Volume Claims (PVC)]
 It is binding between a Pod and PV. Pod request the Volume through the PVC.
@@ -115,6 +121,7 @@ PV that are dynamically created by a StorageClass will have the reclaim policy s
 ● Delete
 It will automatically delete the data immediately.
 ● Retain
+It is the default.
 It will keep the data until the user deletes it.
 ● Recycle
 It deletes the volume’s contents and makes the volume available to be claimed again.
@@ -143,7 +150,7 @@ The volume can be mounted as read-write by a single Pod.
 This access mode if want to ensure that only one pod across whole cluster can read that PVC or write to it. 
 This is only supported for CSI volumes and Kubernetes version 1.22+.
 
-{Phase}
+[Phase]
 ● Available
 A free resource that is not yet bound to a claim.
 ● Bound
