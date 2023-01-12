@@ -97,6 +97,8 @@ Pods consume node resources and PVC consume PV resources.
 PVC describe the storage capacity and characteristics a pod requires, and the cluster attempts to match the request and provision the desired persistent volume.
 PVC must be in same namespace as the Pod. For each Pod, a PVC makes a storage consumption request within a namespace.
 
+          PVC (request) ---> StorageClass (defines Type of Disk) ---> PV (Cloud Provider like AWS, GCP, Azure)
+
 ⦿ PVC to PV binding is a one-to-one mapping. The process uses a ClaimRef, which creates a bi-directional binding between PV and PVC.
    PV that meets the criteria defined in the PVC, it matches the claim to PV then it binds the PV to that PVC.
 
@@ -110,12 +112,12 @@ If no 'reclaimPolicy' is specified when a StorageClass object is created, it wil
 PV that are created manually and managed via a StorageClass will have whatever reclaim policy they were assigned at creation.
 PV that are dynamically created by a StorageClass will have the reclaim policy specified in the reclaimPolicy field of the class, which can be either Delete or Retain.
 ● Delete
-It will delete the data immediately.
+It will automatically delete the data immediately.
 ● Retain
 It will keep the data until the user deletes it.
 ● Recycle
 It deletes the volume’s contents and makes the volume available to be claimed again.
-This policy is now deprecated.
+This policy option is now deprecated and should not be used as it may not be supported.
 
 {Access Modes (accessModes)}
 There are 4 types of Access Modes.
@@ -123,12 +125,15 @@ There are 4 types of Access Modes.
 The volume can be mounted as read-write by a single node.
 Only a single node can mount the volume for reading and writing.
 This access mode still can allow multiple pods to access the volume when the pods are running on the same node.
+It read and write is allowed by only one pod at a time.
 ● ReadOnlyMany(ROX)
 The volume can be mounted read-only by many nodes.
 The volume can be mounted by multiple nodes for reading.
+The multiple pods can perform read operations from the volume.
 ● ReadWriteMany(RWX)
 The volume can be mounted as read-write by many nodes.
 Multiple nodes can mount the volume for reading and writing.
+The multiple pods can perform read and write operations from the volume.
 ● ReadWriteOncePod(RWOP)
 The volume can be mounted as read-write by a single Pod.
 This access mode if want to ensure that only one pod across whole cluster can read that PVC or write to it. 
