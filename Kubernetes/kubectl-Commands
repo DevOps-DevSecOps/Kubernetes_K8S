@@ -801,6 +801,7 @@ kubectl get pvc PVC_NAME -o yaml
 kubectl get pvc PVC_NAME -o yaml > FILE_NAME.yaml
 kubectl get pvc/PVC_NAME
 kubectl get pvc/PVC_NAME -o yaml
+kubectl get persistentvolumeclaim
 kubectl get persistentvolumeclaims
 kubectl get persistentvolumeclaims --namespace=NAMESPACE_NAME
 kubectl describe pvc
