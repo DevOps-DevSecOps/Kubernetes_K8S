@@ -88,6 +88,12 @@ There are two volume binding modes that can be used:
                          In this mode, volume is not created until a pod that consumes the PVC is created.
                          Most plug-ins don’t support this mode, but only "Amazon Elastic Block Store", "Google Compute Engine Persistent Disk" and "Azure Disk" support it.
                          The binding will be delayed and provisioning of a PV will only happen when a Pod starts using the PVC.
+● allowVolumeExpansion
+In this field there will be two options.
+* true - The StorageClass will allow support for volume expansion.
+         When the request come from PVC with storage size change, then StorageClass will accept the request and it allow to expansion the volume.
+* false - The StorageClass will not allow support for volume expansion.
+          When the request come from PVC with storage size change, then StorageClass will not accept the request and it not allow to expansion the volume.
 
 [Persistent Volumes (PV)]
 It is an abstraction for the physical storage device that attached to the cluster.
