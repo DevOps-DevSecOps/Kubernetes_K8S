@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app
+  labels:
+    run: app
+spec:
+  nodeName: gke-cluster-1-default-pool-7bb89275-nm5w
+  containers:
+  - image: nginx
+    name: app1
+    volumeMounts:
+    - name: pvc
+      mountPath: /usr/share/nginx/html
+  - image: deanj08/storage
+    name: app2
+    args:
+    - "using an storage"
+    volumeMounts:
+    - name: pvc
+      mountPath: /var/html
+  volumes:
+  - name: vol1
+    emptyDir: {}
+  - name: vol2
+    hostPath:
+      path: /var/cka
+      type: DirectoryOrCreate
+  - name: vol3
+    gitRepo:
+      repository: https://github.com/luksa/kubia-website-example.git
+      revision: main
+  - name: vol4
+    persistentVolumeClaim:
+      claimName: pvc2
+  - name: vol5
+    gcePersistentDisk:
+      pdName: disk-2
+  - name: vol6
+    hostPath:
+      path: /var/html
