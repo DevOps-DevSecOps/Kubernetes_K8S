@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ebay-app
+spec:
+  selector:
+    matchLabels:
+      environment: dev
+      app: ebay
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        environment: dev
+        app: ebay
+    spec:
+      volumes:
+      - name: ebay-volume
+        persistentVolumeClaim:
+          claimName: myclaim
+      containers:
+      - name: container1-nginx
+        image: nginx
+        volumeMounts:
+        - name: ebay-volume
+          mountPath: "/tmp/persistent"
+      - name: container2-tomcat
+        image: tomcat
