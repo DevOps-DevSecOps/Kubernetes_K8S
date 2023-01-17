@@ -162,18 +162,50 @@ The volume can be mounted as read-write by a single Pod.
 This access mode if want to ensure that only one pod across whole cluster can read that PVC or write to it. 
 This is only supported for CSI volumes and Kubernetes version 1.22+.
 
-[Phase]
+[Phases/States]
 ● Available
 A free resource that is not yet bound to a claim.
+The PV is ready to be used by the PVC.
 ● Bound
 The volume is bound to a claim.
 PV has been bound to a claim.
+The PV has been assigned to a PVC.
 ● Released
 The claim has been deleted, but the resource is not yet reclaimed by the cluster.
 PVC has been deleted, PV is pending reclamation.
+The claim has been deleted but the cluster has not yet reclaimed the resource.
 ● Failed
 The volume has failed its automatic reclamation.
 An error has been encountered attempting to reclaim the PV.
+It shows that an error has occured in the PV.
+
+[Provisioning]
+There are two ways to provision persistent storage volumes in Kubernetes.
+● Static
+PVs are created by Kubernetes cluster administrators and exist in the Kubernetes API.
+PV is created in advance by the cluster administrator, the developer creates the PVC and the Pod, and the Pod uses the storage provided by the PV through the PVC.
+The administrator has to make existing storage devices available to a cluster.
+To make existing storage available to a cluster, the administrator has to manually create a persistent volume after that only user can claim the storage for the pod by creating PVCs.
+● Dynamic
+The static PVs created by the administrator can match the user’s PVC, the cluster will try to automatically provision a storage volume for the PVC, which is based on StorageClass.
+The PVC needs to request a storage class, but this storage class must be pre-created and configured by the administrator.
+The cluster administrator needs to enable the access controller for default StorageClass in the API Server.
+It is based on StorageClasses, the PVC must request a storage class and the administrator must have created and configured that storage class for dynamic provisioning to occur.
+In order to demand storage, it must create a PVC by using an default StorageClass.
+
+[LifeCycle of PV and PVC]
+● Provisioning
+PV
+The creation of the PV, either directly Static OR Dynamically using StorageClass.
+● Binding
+PVC
+It assigning the PV to the PVC.
+● Using
+Workloads like Pods, Deployments, ... etc.
+Pods use the volume through the PVC.
+● Reclaiming
+Reclaim Policy (reclaimPolicy,persistentVolumeReclaimPolicy) = Retain, Delete, Recycle.
+PV is reclaimed, either by keeping it for the next use OR by deleting it directly from the cloud storage.
 
 [Syntax for YAML file]
 ● volumes:
