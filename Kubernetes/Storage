@@ -63,6 +63,8 @@ Generic ephemeral volumes can be provided by third-party CSI storage drivers, bu
 Some CSI drivers are written specifically for CSI ephemeral volumes and do not support dynamic provisioning: those then cannot be used for generic ephemeral volumes.
 
 [Storage Classes (SC)]
+Storage Classes is automatically to manage the PersistentVolume (PV) also known as Dynamic Provisioning.
+First create the StorageClass (SC) and then create PersistentVolumeClaim (PVC) that reference to StorageClass (SC), the Kubernetes use StorageClass (SC) provisioner to provision a PersistentVolume (PV) when the PersistentVolumeClaim (PVC) is referenced in a Pod volume and applied, so storage is provisioned the PersistentVolume (PV) is automatically created and get bound to PVC.
 First the StorageClass is created, then the PersistentVolumeClaim and finally the Pod.
 When a PVC is created, Kubernetes creates a PersistentVolume and binds it to the PVC automatically, depending on the VolumeBindingMode used in the StorageClass configuration.
 It allows dynamic provisioning of Persistent Volumes, when PVC claims it.
@@ -96,6 +98,8 @@ In this field there will be two options.
           When the request come from PVC with storage size change, then StorageClass will not accept the request and it not allow to expansion the volume.
 
 [Persistent Volumes (PV)]
+Persistent Volumes is also known as Static Provisioning.
+First need to create a volume in external storage like AWS, Azure, GCP with required storage size (eg: 10GB) later then create a PersistentVolume (PV) in Kubernetes that links back to volume in external storage, so after that can claim created PersistentVolume (PV) using a request called PersistentVolumeClaim (PVC) from a Pod and application can use it. 
 It is an abstraction for the physical storage device that attached to the cluster.
 PV is not Namespaced it is available to whole cluster. PV is accessible to all Namespaces.
 It no need to create StorageClass for PV.
