@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ebay-app
+spec:
+  selector:
+    matchLabels:
+      environment: dev
+      app: ebay
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        environment: dev
+        app: ebay
+    spec:
+      nodeSelector:
+        newnode: worker3
+      containers:
+      - name: container1-nginx
+        image: nginx
+      - name: container2-tomcat
+        image: tomcat
