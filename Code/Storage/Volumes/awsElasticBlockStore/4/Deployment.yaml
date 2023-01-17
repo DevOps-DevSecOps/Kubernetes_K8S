@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: accounting-db
+spec:
+  selector:
+    matchLabels:
+      app: accounting-db
+  template:
+    metadata:
+      labels:
+        app: accounting-db
+    spec:
+      containers:
+      - image: jawadhasanshani/accountingbookdb:v2
+        name: accounting-db-ctr
+        env:
+        - name: POSTGRES_PASSWORD
+          value: sasa
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: pgdata-volume
+          subPath: test1
+      volumes:
+      - name: pgdata-volume
+        # This AWS EBS volume must already exist
+        awsElasticBlockStore:
+          volumeID: vol-0b2853bbd0a14121d
+          fsType: ext4
