@@ -10,14 +10,14 @@ spec:
   - image: nginx
     name: app1
     volumeMounts:
-    - name: pvc
+    - name: vol3
       mountPath: /usr/share/nginx/html
   - image: deanj08/storage
     name: app2
     args:
     - "using an storage"
     volumeMounts:
-    - name: pvc
+    - name: vol5
       mountPath: /var/html
   volumes:
   - name: vol1
@@ -39,3 +39,6 @@ spec:
   - name: vol6
     hostPath:
       path: /var/html
+  - name: vol7
+    persistentVolumeClaim:
+      claimName:
