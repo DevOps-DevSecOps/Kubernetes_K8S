@@ -113,7 +113,7 @@ It no need to create StorageClass for PV.
           When a pod uses a Persistent Volume with this mode, the volume is made available to the application in the container as a raw block device (without a filesystem).
           This allows the application to read and write data without any filesystem overhead. This mode is typically used by special types of applications, such as database systems.
 
-[Persistent Volume Claims (PVC)]
+[Persistent Volume Claim (PVC)]
 It is binding between a Pod and PV. Pod request the Volume through the PVC.
 It is the request to provision persistent storage with a specific type and configuration.
 Pods consume node resources and PVC consume PV resources.
@@ -126,7 +126,7 @@ PVC must be in same namespace as the Pod. For each Pod, a PVC makes a storage co
    PV that meets the criteria defined in the PVC, it matches the claim to PV then it binds the PV to that PVC.
 
 ⦿ Persistent Volume (PV) is an abstraction for the physical storage device that have attached to the cluster.
-   Pods can use this storage space using Persistent Volume Claims (PVC).
+   Pods can use this storage space using Persistent Volume Claim (PVC).
    To create the PV-PVC pair for Pod is to use a StorageClass (SC) object, and then using the StorageClass to create PV-PVC pair dynamically.
 
 {Reclaim Policy (reclaimPolicy,persistentVolumeReclaimPolicy)}
