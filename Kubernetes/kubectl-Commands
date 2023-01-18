@@ -787,6 +787,7 @@ kubectl get persistentvolumes
 kubectl describe pv
 kubectl describe pv PV_NAME
 kubectl describe pv/PV_NAME
+kubectl label pv PV_NAME KEY=VALUE
 kubectl delete pv PV_NAME
 kubectl delete pv PV_NAME --force --namespace NAMESPACE_NAME
 
