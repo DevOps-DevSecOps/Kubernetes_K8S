@@ -1,5 +1,5 @@
 [creating a label to a node by using a key-value pair]
-$ kubectl label nodes kind-worker nginx=pod
+$ kubectl label nodes NODE_NAME nginx=pod
 
 [verify the pod on which node it scheduled]
 $ kubectl get pods -o wide
