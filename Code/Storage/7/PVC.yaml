@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: PVC
+spec:
+  resources:
+    requests:
+      storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  - ReadOnlyMany
+  storageClassName: ""
+  selector:
+    matchLabels:
+      tier: dev
