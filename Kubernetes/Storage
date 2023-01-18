@@ -80,22 +80,35 @@ Some provisioners are built in and shipped with Kubernetes and some are third-pa
 Third-party provisioners are not shipped with Kubernetes, but are developed and maintained by third-party vendors.
 ● volumeBindingMode
 There are two volume binding modes that can be used:
-* Immediate - It is the default.
-              This mode involves the automatic volume binding of PV to PVC with a StorageClass once a PVC is created.
-              In this mode, the volume and storage binding are created immediately after the PVC is created.
-              So whenever a new PVC with the standard storage StorageClass is created, can see it in the bound state.
-              It indicates that volume binding and dynamic provisioning occurs once the PVC is created.
-              This mode is universally supported.
-* WaitForFirstConsumer - This mode will delay the binding and dynamic provisioning of PV, until a Pod that will use it is created.
-                         In this mode, volume is not created until a pod that consumes the PVC is created.
-                         Most plug-ins don’t support this mode, but only "Amazon Elastic Block Store", "Google Compute Engine Persistent Disk" and "Azure Disk" support it.
-                         The binding will be delayed and provisioning of a PV will only happen when a Pod starts using the PVC.
+* Immediate 
+It is the default.
+This mode involves the automatic volume binding of PV to PVC with a StorageClass once a PVC is created.
+In this mode, the volume and storage binding are created immediately after the PVC is created.
+So whenever a new PVC with the standard storage StorageClass is created, can see it in the bound state.
+It indicates that volume binding and dynamic provisioning occurs once the PVC is created.
+This mode is universally supported.
+* WaitForFirstConsumer 
+This mode will delay the binding and dynamic provisioning of PV, until a Pod that will use it is created.
+In this mode, volume is not created until a pod that consumes the PVC is created.
+Most plug-ins don’t support this mode, but only "Amazon Elastic Block Store", "Google Compute Engine Persistent Disk" and "Azure Disk" support it.
+The binding will be delayed and provisioning of a PV will only happen when a Pod starts using the PVC.
 ● allowVolumeExpansion
+It can expand the Persistent Volume if required.
 In this field there will be two options.
-* true - The StorageClass will allow support for volume expansion.
-         When the request come from PVC with storage size change, then StorageClass will accept the request and it allow to expansion the volume.
-* false - The StorageClass will not allow support for volume expansion.
-          When the request come from PVC with storage size change, then StorageClass will not accept the request and it not allow to expansion the volume.
+* true 
+The StorageClass will allow support for volume expansion.
+When the request come from PVC with storage size change, then StorageClass will accept the request and it allow to expansion the volume.
+* false 
+The StorageClass will not allow support for volume expansion.
+When the request come from PVC with storage size change, then StorageClass will not accept the request and it not allow to expansion the volume.
+● type
+There are several type of Volume types in each cloud platform.
+* provisioner: kubernetes.io/aws-ebs
+By default it is gp2.
+But can choose other types in AWS EBS like General Purpose SSD (gp2 and gp3), Provisioned IOPS SSD (io1 and io2), Throughput Optimized HDD (st1), Cold HDD (sc1), Magnetic (standard).
+* provisioner: kubernetes.io/gce-pd
+By default it is pd-standard.
+But can choose other types in GCE PD like pd-standard, pd-ssd.
 
 [Persistent Volumes (PV)]
 Persistent Volumes is also known as Static Provisioning.
@@ -104,14 +117,16 @@ It is an abstraction for the physical storage device that attached to the cluste
 PV is not Namespaced it is available to whole cluster. PV is accessible to all Namespaces.
 It no need to create StorageClass for PV.
 ● volumeMode
-* Filesystem - It is the default.
-               The volume mounted into Pod into a directory.
-               When the Persistent Volume (PV) is mounted in a container, it is mounted to a directory in the file tree of the container.
-               If the underlying storage is an unformatted block device, Kubernetes formats the device using the filesystem specified in the volume definition before it is mounted in the container.
-* Block - It is uses a volume as a raw block device.
-          The block device (/dev/xvdf, /dev/xvdf1, /dev/xvdf2) is empty and it create a filesystem on the device before mounting it for the first time.
-          When a pod uses a Persistent Volume with this mode, the volume is made available to the application in the container as a raw block device (without a filesystem).
-          This allows the application to read and write data without any filesystem overhead. This mode is typically used by special types of applications, such as database systems.
+* Filesystem 
+It is the default.
+The volume mounted into Pod into a directory.
+When the Persistent Volume (PV) is mounted in a container, it is mounted to a directory in the file tree of the container.
+If the underlying storage is an unformatted block device, Kubernetes formats the device using the filesystem specified in the volume definition before it is mounted in the container.
+* Block 
+It is uses a volume as a raw block device.
+The block device (/dev/xvdf, /dev/xvdf1, /dev/xvdf2) is empty and it create a filesystem on the device before mounting it for the first time.
+When a pod uses a Persistent Volume with this mode, the volume is made available to the application in the container as a raw block device (without a filesystem).
+This allows the application to read and write data without any filesystem overhead. This mode is typically used by special types of applications, such as database systems.
 
 [Persistent Volume Claim (PVC)]
 It is binding between a Pod and PV. Pod request the Volume through the PVC.
@@ -168,6 +183,11 @@ The volume can be mounted as read-write by a single Pod.
 This access mode if want to ensure that only one pod across whole cluster can read that PVC or write to it. 
 This is only supported for CSI volumes and Kubernetes version 1.22+.
 
+{fsType in Storage Classes (SC) and Persistent Volumes (PV)}
+● ext4
+It is the default.
+● xfs
+
 [Phases/States]
 ● Available
 A free resource that is not yet bound to a claim.
@@ -196,7 +216,7 @@ To make existing storage available to a cluster, the administrator has to manual
 The static PVs created by the administrator can match the user’s PVC, the cluster will try to automatically provision a storage volume for the PVC, which is based on StorageClass.
 The PVC needs to request a storage class, but this storage class must be pre-created and configured by the administrator.
 The cluster administrator needs to enable the access controller for default StorageClass in the API Server.
-It is based on StorageClasses, the PVC must request a storage class and the administrator must have created and configured that storage class for dynamic provisioning to occur.
+It is based on Storage Classes (SC), the PVC must request a storage class and the administrator must have created and configured that storage class for dynamic provisioning to occur.
 In order to demand storage, it must create a PVC by using an default StorageClass.
 
 [LifeCycle of PV and PVC]
