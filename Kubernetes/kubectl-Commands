@@ -129,10 +129,11 @@ kubectl get all --all-namespaces -o yaml > FILE_NAME.yaml
 kubectl get all -n NAMESPACE_NAME
 kubectl get all --namespace NAMESPACE_NAME
 kubectl get po,svc
-kubectl get pods,deploy
-kubectl get rc,services
 kubectl get po,svc,deploy
 kubectl get po,deploy,rs -l KEY=VALUE
+kubectl get pods,deploy
+kubectl get pods,pv,pvc -o wide
+kubectl get rc,services
 kubectl delete pods,services -l KEY=VALUE
 kubectl delete deployment,services -l KEY=VALUE
 kubectl delete configmap,service,pvc -l KEY=VALUE
