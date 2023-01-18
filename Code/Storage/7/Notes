@@ -1,0 +1,3 @@
+[create a label to PV]
+$ kubectl label pv PV_NAME KEY=VALUE
+$ kubectl label pv PV tier=dev
