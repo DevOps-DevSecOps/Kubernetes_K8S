@@ -153,9 +153,14 @@ When the user no longer needs a volume, they can delete the PVC. The reclaim pol
 Currently, volumes can either be Retained, Recycled, or Deleted.
 ● Delete
 It will automatically delete the data immediately.
+It deletion removes the PV from Kubernetes.
+It removes the storage asset from the associated external infrastructure such as AWS EBS, GCE PD, Azure Disk.
 ● Retain
 It is the default.
 It will keep the data until the user deletes it.
+It allows for manual reclamation of the resource.
+PVC is deleted, the PV still exists, and the volume is considered “released”.
+It is not yet available for another claim because the previous claimant’s data remains on the volume.
 ● Recycle
 It deletes the volume’s contents and makes the volume available to be a fresh claimed again.
 This policy option is now deprecated and should not be used as it may not be supported.
@@ -226,9 +231,20 @@ The creation of the PV, either directly Static OR Dynamically using StorageClass
 ● Binding
 PVC
 It assigning the PV to the PVC.
+The user creates a PVC (or has previously created one for dynamic provisioning), specifying the requested storage size and access mode.
+The master has a control loop to monitor new PVCs, find matching PVs (if any), and bind the PVC and PV together.
+If a PV is ever dynamically provisioned to a new PVC, the loop will always bind that PV to the PVC.
+In addition, users will always get at least the storage they request, but the volume may exceed their request.
+If no matching PV is found, the PVC will remain unbound indefinitely, and once the PV is available, then the PVC will become bound again.
+For example, if a cluster is provisioned with many 50G PVs, it will not match the 100G PVCs requested, and the PVCs will not be bound until 100G PVs are added to the cluster.
 ● Using
 Workloads like Pods, Deployments, ... etc.
 Pods use the volume through the PVC.
+The Pod uses PVC as a volume, and the Kubernetes cluster looks up the bound PV by the PVC and mounts it to the Pod.
+The user can specify the access method when using PVC as a volume.
+For volumes that support multiple access methods, the user specifies which mode is desired when using their claim as a volume in a Pod.
+Once a user has a bound PVC, the bound PV belongs to that user.
+The user can access the possessed PV through the PVC contained in the Pod’s storage volume.
 ● Reclaiming
 Reclaim Policy (reclaimPolicy,persistentVolumeReclaimPolicy) = Retain, Delete, Recycle.
 PV is reclaimed, either by keeping it for the next use OR by deleting it directly from the cloud storage.
