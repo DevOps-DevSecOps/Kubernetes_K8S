@@ -1,0 +1,18 @@
+● Storage
+PV has 10Gi, PVC requesting 5Gi.
+Once PV and PVC bounded, resource will use only requested storage, so in this case 5Gi will be waste.
+It would be better to use also 5Gi in PV or 10Gi in PVC.
+● AccessMode
+PV and PVC has both have ReadWriteOnce.
+● storageClassName
+define the storageClassName as testvolume.
+
+[Misconfiguration]
+PVC is looking for PV with volumeMode: Block. 
+As your current PV don't have it, it will not be bounded.
+
+[Solution]
+Then add 'volumeMode: Block' to PV configuration and PVC will bound PV.
+
+[Tests]
+As described the PV can find information for 'volumeMode' default would be "volumeMode: Filesystem".
