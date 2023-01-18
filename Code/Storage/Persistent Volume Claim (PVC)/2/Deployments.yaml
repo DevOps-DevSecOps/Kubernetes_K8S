@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busapp
+  namespace: develop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bus
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: bus
+        tier: frontend
+    spec:
+      volumes:
+        - name: newvolume
+          persistentVolumeClaim:
+            claimName: busapp-vol-pvc
+      containers:
+        - name: busapp
+          image: learnitguide/busapp:1.0
+          volumeMounts:
+          - name: newvolume
+            mountPath: "/tmp/data"
+          ports:
+            - containerPort: 8001
+          resources:
+            requests:
+              cpu: 50m
+              memory: 512Mi
+            limits:
+              cpu: 100m
+              memory: 2048Mi
