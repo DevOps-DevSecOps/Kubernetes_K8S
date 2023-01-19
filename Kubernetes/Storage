@@ -127,6 +127,11 @@ It is uses a volume as a raw block device.
 The block device (/dev/xvdf, /dev/xvdf1, /dev/xvdf2) is empty and it create a filesystem on the device before mounting it for the first time.
 When a pod uses a Persistent Volume with this mode, the volume is made available to the application in the container as a raw block device (without a filesystem).
 This allows the application to read and write data without any filesystem overhead. This mode is typically used by special types of applications, such as database systems.
+● mountOptions
+* hard
+* debug
+* nfsvers
+It support for an NFS. 
 
 [Persistent Volume Claim (PVC)]
 It is binding between a Pod and PV. Pod request the Volume through the PVC.
