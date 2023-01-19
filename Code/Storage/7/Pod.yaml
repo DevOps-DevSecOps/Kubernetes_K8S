@@ -41,4 +41,4 @@ spec:
       path: /var/html
   - name: vol7
     persistentVolumeClaim:
-      claimName:
+      claimName: PVC_                                                   # PVC_1 (OR) PVC_2
