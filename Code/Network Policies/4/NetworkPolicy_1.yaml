@@ -1,0 +1,15 @@
+# allowing only POD traffic from frontend pod to backend pod.
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: netpol1
+spec:
+  podSelector:
+    matchLabels:
+      app: backend
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: frontend
