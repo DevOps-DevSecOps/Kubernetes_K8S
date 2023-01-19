@@ -52,7 +52,7 @@ It define whether a given Pod should or should not be scheduled onto a particula
 The 'topologyKey' field specifies Node Labels Key (topologyKey: NODE_LABELS_KEY) will match with any of the value.
 The Inter-Pod supports both Affinity and Anti-Affinity.
 * Pod Affinity - It specify that a pod should be scheduled on the same node as another pod.
-                 The 'topologyKey' match with these node already running with existing pod labels (KEY & VALUE) are matched with Anti-Affinity new pod labels (KEY & VALUE) it will scheduled on the same node.
+                 The 'topologyKey' match with these node already running with existing pod labels (KEY & VALUE) are matched with Affinity OR Anti-Affinity new pod labels (KEY & VALUE) it will scheduled on the same node.
 * Pod Anti-Affinity - It allows you to specify that a set of pods should be scheduled away from one another on different nodes (one replica per node).
                       It works with 'topologyKey: NODE_LABELS_KEY', the no of Cluster Nodes make in same node label (KEY & VALUE).    
                       The 'topologyKey' match with these node already running with existing pod labels (KEY & VALUE) are matched with Anti-Affinity new pod labels (KEY & VALUE) it won't schedule on that node, so the 'topologyKey' match with another node with some other existing pod labels (KEY & VALUE) are not matched with Anti-Affinity new pod labels (KEY & VALUE) it will scheduled on that node.
