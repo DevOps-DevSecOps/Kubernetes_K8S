@@ -1,11 +1,13 @@
-# HostPort
-apiVersion: v1
-kind: Pod
-metadata:
-  name: <Pod name>
-spec:
-  containers:
-  - name: <container name>
-    image: <image>
-    ports:
-    - hostPort: <port>
+[hostPort]
+The hostPort setting applies to the Kubernetes containers.
+The container port will be exposed to the external network at <hostIP>:<hostPort>, where the hostIP is the IP address of the Kubernetes node where the container is running and the hostPort is the port requested by the user.
+The hostPort feature allows to expose a single container port on the host IP.
+Using the hostPort to expose an application to the outside of the Kubernetes cluster.
+The host IP can change when the container is restarted, two containers using the same hostPort cannot be scheduled on the same node.
+
+[hostNetwork]
+When a pod is configured with "hostNetwork: true", the applications running in such a pod can directly see the network interfaces of the host machine where the pod was started.
+An application that is configured to listen on all network interfaces will in turn be accessible on all network interfaces of the host machine.
+The every time the pod is restarted Kubernetes can reschedule the pod onto a different node and so the application will change its IP address.
+Besides that two applications requiring the same port cannot run on the same node. 
+This can lead to port conflicts when the number of applications running on the cluster grows.
