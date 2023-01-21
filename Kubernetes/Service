@@ -11,3 +11,9 @@ An application that is configured to listen on all network interfaces will in tu
 The every time the pod is restarted Kubernetes can reschedule the pod onto a different node and so the application will change its IP address.
 Besides that two applications requiring the same port cannot run on the same node. 
 This can lead to port conflicts when the number of applications running on the cluster grows.
+
+[Endpoints]
+Service selector matches a pod label, Kubernetes will automatically create an Endpoints object with the same name as the service, which stores the pod’s IP address and port.
+When the service receives a request, its proxy will redirect it to one of those IPs and ports.
+Kubernetes will automatically update the endpoint resource IPs in case of editing or scaling of a deployment in which pods are already linked to a service.
+If create a service without specifying a pod selector, Kubernetes will not generate the endpoint resource and it will be up to create one with the endpoints to link to the service.
