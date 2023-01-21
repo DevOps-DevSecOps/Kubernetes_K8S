@@ -22,10 +22,11 @@ spec:
 ---
 apiVersion: v1
 kind: Service
-apiVersion: v1
 metadata:
   name: training-service
 spec:
+  selector:
+    app: training
   type: ClusterIP
   ports:
     - name: training-port
