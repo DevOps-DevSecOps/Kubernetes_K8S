@@ -1,0 +1,40 @@
+[check the pod’s IP address by executing the following command]
+$ kubectl get pods -o wide
+NAME                                   READY   STATUS    RESTARTS   AGE     IP          NODE             NOMINATED NODE   READINESS GATES
+training-deployment-7446bffdc5-tn4ln   1/1     Running   0          5m43s   10.1.0.53   docker-desktop   <none>           <none>
+training-deployment-7446bffdc5-zt2vc   1/1     Running   0          5m43s   10.1.0.52   docker-desktop   <none>           <none>
+training-deployment-7446bffdc5-zt5gl   1/1     Running   0          5m43s   10.1.0.54   docker-desktop   <none>           <none>
+
+Since the service selector matched a pod label, Kubernetes would have automatically created an endpoint object.
+
+[check the endpoints currently in the cluster, execute the following command]
+$ kubectl get endpoints
+NAME               ENDPOINTS                                AGE
+kubernetes         192.168.65.3:6443                        12d
+training-service   10.1.0.52:80,10.1.0.53:80,10.1.0.54:80   22s
+
+The pods’ IPs are linked to training-service service.
+
+[check the current endpoints, will see that there will only be the Kubernetes endpoint]
+$ kubectl get endpoints
+NAME         ENDPOINTS           AGE
+kubernetes   192.168.65.3:6443   13d
+
+It is now time to create an endpoints resource to link to service to pods.
+Now create a new YAML file with the endpoint OR endpoints with using an IPs addresses of Workloads like Pod, Deployment.
+
+[then first need to get pods’ IPs addresses by using the following below command]
+$ kubectl get pods -o wide
+NAME                                   READY   STATUS    RESTARTS   AGE    IP          NODE             NOMINATED NODE   READINESS GATES
+training-deployment-7446bffdc5-55lzk   1/1     Running   0          6m4s   10.1.0.62   docker-desktop   <none>           <none>
+training-deployment-7446bffdc5-6528s   1/1     Running   0          6m4s   10.1.0.60   docker-desktop   <none>           <none>
+training-deployment-7446bffdc5-jwfff   1/1     Running   0          6m4s   10.1.0.63   docker-desktop   <none>           <none>
+training-deployment-7446bffdc5-lpwkd   1/1     Running   0          6m4s   10.1.0.61   docker-desktop   <none>           <none>
+
+Once the deployment is completed, will be able to see endpoints linked to service.
+
+[need to check the current endpoints by using the following below command]
+$ kubectl get endpoints
+NAME               ENDPOINTS                                            AGE
+kubernetes         192.168.65.3:6443                                    13d
+training-service   10.1.0.60:80,10.1.0.61:80,10.1.0.62:80,10.1.0.63:80  14s
