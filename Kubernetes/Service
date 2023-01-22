@@ -14,16 +14,23 @@ It exposes the Pod to only within the cluster.
 It assigns a private IP address in ClusterIP range.
 It can talk to applications only with in the cluster.
 So the Pods can reach the service on apps port number.
+It exposes the service on an internal IP in the cluster.
 ● NodePort
 A port that is the same on each node that is also reachable externally outside.
 It exposes the Pod to outside the cluster.
 It assigns a private IP address in ClusterIP range.
 It assigns a port on the worker nodes to expose it outside the cluster.
 Port is open on every node IP.
+It exposes a port named NodePort on all worker nodes.
+It exposes the service on the same port of each selected Node in the cluster.
+Make the service accessible from outside the cluster using "NODE_PUBLIC_IP_ADDRESS:NODE_PORT_NO".
+The nodePort is dynamically OR randomly took the port number range between 30000 to 32767 by default.
+But can also assign statically OR particular custom port number.
 ● LoadBalancer
 It created by the cloud provider that will route external traffic to every node on the NodePort (ELB on AWS).
 It exposes the Pod to outside the cluster.
 It create a LoadBalancer in cloud.
+LoadBalancer builds on NodePort and create an external load-balancer in cloud such as AWS, Azure, GCP.
 ● ExternalName
 It can provide a DNS name for the service.
 This only works when the DNS add-on is enabled.
