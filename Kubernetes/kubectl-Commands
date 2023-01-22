@@ -138,6 +138,7 @@ kubectl delete pods,services -l KEY=VALUE
 kubectl delete deployment,services -l KEY=VALUE
 kubectl delete configmap,service,pvc -l KEY=VALUE
 kubectl delete po,svc --all -n NAMESPACE_NAME
+kubectl delete pod,svc --all
 kubectl delete pod,svc --all -n NAMESPACE_NAME
 kubectl delete pod,service NAME NAME                                           # delete pods and services with same names
 
