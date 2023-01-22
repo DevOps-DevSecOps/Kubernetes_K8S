@@ -25,7 +25,7 @@ It exposes a port named NodePort on all worker nodes.
 It exposes the service on the same port of each selected Node in the cluster.
 Make the service accessible from outside the cluster using "NODE_PUBLIC_IP_ADDRESS:NODE_PORT_NO".
 The nodePort is dynamically OR randomly took the port number range between 30000 to 32767 by default.
-But can also assign statically OR particular custom port number.
+But can also assign statically OR particular specific custom port number.
 ● LoadBalancer
 It created by the cloud provider that will route external traffic to every node on the NodePort (ELB on AWS).
 It exposes the Pod to outside the cluster.
@@ -35,6 +35,19 @@ LoadBalancer builds on NodePort and create an external load-balancer in cloud su
 It can provide a DNS name for the service.
 This only works when the DNS add-on is enabled.
 It add CNAME DNS record to coreDNS.
+
+[Headless]
+The client/user wants to communicate with one specific Pod directly.
+Pods want to talk directly with specific Pod.
+So not randomly selected, mostly it will be used in Stateful applications.
+Headless Service mostly will be used in Database. The below diagram will be example to understand.
+                    POD_MySQL-0                                              POD_MySQL-1
+                     (master)                                                 (worker)
+                       |  |                                                     |  |
+                       |  |                                                     |  |
+              writing  |  |  reading <-- continuous syncronization --> reading  |  |  reading
+                                              (data replicas)
+Only master is allowed to write to Database (DB).
 
 [hostPort]
 The hostPort setting applies to the Kubernetes containers.
