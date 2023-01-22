@@ -68,3 +68,20 @@ Service selector matches a pod label, Kubernetes will automatically create an En
 When the service receives a request, its proxy will redirect it to one of those IPs and ports.
 Kubernetes will automatically update the endpoint resource IPs in case of editing or scaling of a deployment in which pods are already linked to a service.
 If create a service without specifying a pod selector, Kubernetes will not generate the endpoint resource and it will be up to create one with the endpoints to link to the service.
+
+[IPs and Ports]
+● Pod IP
+In the Pod Container inside the port number of an application.
+In a Service the 'targetPort' will connect to the Pod Container port number.
+$ curl http://POD_IP_ADDRESS:POD_CONTAINER_PORT_NO
+The above command will only work with in the Pod.
+● Service IP
+In a Service the 'port' will connect to the 'targetPort' to the Pod Container port number.
+$ curl http://CLUSTER_IP_ADDRESS:SERVICE_PORT_NO
+$ curl http://CLUSTER_IP_ADDRESS:CLUSTER_PORT_NO
+The above command will only work with in the Cluster.
+The "--port=SERVICE_PORT_NO" mean that "--port=CLUSTER_PORT_NO".
+● Node IP
+If need to access the application from outside then need a "NODE_PUBLIC_IP_ADDRESS:NODE_PORT_NO".
+$ curl http://NODE_PUBLIC_IP_ADDRESS:NODE_PORT_NO
+The above command will work to access inside and outside of the cluster.
