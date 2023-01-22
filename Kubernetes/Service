@@ -1,3 +1,34 @@
+[Services]
+The each Pod has its own IP address.
+Pods are ephemeral because are destory frequently when Pods delete OR terminated, recreating the new pods with existing YAML template OR command line interface.
+So the Pod IP address are frequently keep on changing.
+Service selector matches a Pod label (OR) If the Label/Selector then Pod and Service match.
+But the Service will maintain the stable static IP address for 
+
+[ServiceTypes]
+Kubernetes ServiceTypes allow you to specify what kind of Service you want.
+● ClusterIP
+The ClusterIP is the default for the service.
+Its only reachable from with in the cluster.
+It exposes the Pod to only within the cluster.
+It assigns a private IP address in ClusterIP range.
+It can talk to applications only with in the cluster.
+So the Pods can reach the service on apps port number.
+● NodePort
+A port that is the same on each node that is also reachable externally outside.
+It exposes the Pod to outside the cluster.
+It assigns a private IP address in ClusterIP range.
+It assigns a port on the worker nodes to expose it outside the cluster.
+Port is open on every node IP.
+● LoadBalancer
+It created by the cloud provider that will route external traffic to every node on the NodePort (ELB on AWS).
+It exposes the Pod to outside the cluster.
+It create a LoadBalancer in cloud.
+● ExternalName
+It can provide a DNS name for the service.
+This only works when the DNS add-on is enabled.
+It add CNAME DNS record to coreDNS.
+
 [hostPort]
 The hostPort setting applies to the Kubernetes containers.
 The container port will be exposed to the external network at <hostIP>:<hostPort>, where the hostIP is the IP address of the Kubernetes node where the container is running and the hostPort is the port requested by the user.
