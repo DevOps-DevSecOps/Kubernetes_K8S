@@ -39,8 +39,8 @@ It add CNAME DNS record to coreDNS.
 [Headless]
 The client/user wants to communicate with one specific Pod directly.
 Pods want to talk directly with specific Pod.
-So not randomly selected, mostly it will be used in Stateful applications.
-Headless Service mostly will be used in Database. The below diagram will be example to understand.
+So not randomly selected, mostly it will be used in Stateful applications like Databases.
+Headless Service mostly will be used in Databases. The below diagram will be example to understand.
                     POD_MySQL-0                                              POD_MySQL-1
                      (master)                                                 (worker)
                        |  |                                                     |  |
