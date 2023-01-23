@@ -51,6 +51,18 @@ Headless Service mostly will be used in Databases. The below diagram will be exa
                                               (data replicas)
 Only master is allowed to write to Database (DB).
 
+{Port in YAML}
+● targetPort
+The 'targetPort' will be connect to the Pod Container port number.
+This port on the pod that the request get sent to that pod will be listening on.
+So application in the container will needs to be listening for network requests on this port for the service. 
+● port
+The 'port' will be connect to the 'targetPort' to the Pod Container port number.
+It exposes the service on the specific port internally with in the cluster.
+So other pods with in the cluster can communicate with this server on the specific port.
+● nodePort
+It exposes the service externally visible outside the cluster by node public ip address and node port no. The service also has to be of type NodePort.
+
 [hostPort]
 The hostPort setting applies to the Kubernetes containers.
 The container port will be exposed to the external network at <hostIP>:<hostPort>, where the hostIP is the IP address of the Kubernetes node where the container is running and the hostPort is the port requested by the user.
