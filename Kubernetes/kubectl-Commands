@@ -463,6 +463,7 @@ kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO --type=SERVICE_
 kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --port SERVICE_PORT_NO --target-port CONTAINER_PORT_NO --type SERVICE_TYPES
 kubectl expose deployment/DEPLOYMENT_NAME --name=SERVICE_NAME --type=SERVICE_TYPES
+kubectl expose deployment/DEPLOYMENT_NAME --name SERVICE_NAME --type SERVICE_TYPES --port SERVICE_PORT_NO
 kubectl expose deployment/DEPLOYMENT_NAME --port SERVICE_PORT_NO
 kubectl scale deploy DEPLOYMENT_NAME --replicas=NO
 kubectl scale deploy DEPLOYMENT_NAME --replicas NO
@@ -856,6 +857,7 @@ kubectl get svc SERVICE_NAME -o yaml
 kubectl get svc SERVICE_NAME -n NAMESPACE_NAME
 kubectl get svc SERVICE_NAME -n NAMESPACE_NAME -o json
 kubectl get service
+kubectl get service -l KEY=VALUE
 kubectl get service --all-namespaces
 kubectl get service --all-namespaces -o yaml > FILE_NAME.yaml
 kubectl get service SERVICE_NAME
