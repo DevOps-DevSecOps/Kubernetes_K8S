@@ -44,6 +44,8 @@ kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO --type=LoadBala
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=NodePort
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=LoadBalancer
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=LoadBalancer --external-ip=1.1.1.1 --port=SERVICE_PORT_NO
+kubectl expose deployment/DEPLOYMENT_NAME --name SERVICE_NAME --type NodePort --port SERVICE_PORT_NO
+kubectl expose deployment/DEPLOYMENT_NAME --name SERVICE_NAME --type LoadBalancer --port SERVICE_PORT_NO
 kubectl autoscale deployment DEPLOYMENT_NAME --cpu-percent=50 --min=1 --max=10              # CPU utilization across all Pods of 50% then Pods maintains between 1 and 10 replicas
 
 [Service Accounts]
