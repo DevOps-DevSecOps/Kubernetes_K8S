@@ -9,7 +9,7 @@ But the Service will maintain the stable static IP address to connect a set/grou
 Kubernetes ServiceTypes allow you to specify what kind of Service you want.
 ● ClusterIP
 The ClusterIP is the default for the service.
-Its only reachable from with in the cluster.
+This type makes the Service only reachable from with in the cluster.
 It exposes the Pod to only within the cluster.
 It assigns a private IP address in ClusterIP range.
 It can talk to applications only with in the cluster.
