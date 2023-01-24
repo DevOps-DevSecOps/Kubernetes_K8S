@@ -66,6 +66,7 @@ kubectl run NAME --image IMAGE_NAME
 kubectl run NAME --image IMAGE_NAME -n NAMESPACE_NAME
 kubectl run NAME --image IMAGE_NAME --namespace=NAMESPACE_NAME
 kubectl run NAME --image=IMAGE_NAME --port=CONTAINER_PORT_NO                    # container expose port
+kubectl run NAME --image=IMAGE_NAME --port=CONTAINER_PORT_NO --labels=KEY=VALUE
 kubectl run NAME --image=IMAGE_NAME --port=CONTAINER_PORT_NO --labels KEY=VALUE
 kubectl run NAME --image=IMAGE_NAME --port=CONTAINER_PORT_NO --replicas=NO
 kubectl run NAME --image=IMAGE_NAME --restart=Never
@@ -169,6 +170,8 @@ kubectl get po -n NAMESPACE_NAME -o wide
 kubectl get po -n NAMESPACE_NAME --show-labels
 kubectl get po --namespace=NAMESPACE_NAME
 kubectl get po POD_NAME
+kubectl get po POD_NAME --show-labels
+kubectl get po POD_NAME -o yaml > FILE_NAME.yaml
 kubectl get po POD_NAME -n NAMESPACE_NAME
 kubectl get po/POD_NAME
 kubectl get po/POD_NAME -o yaml
@@ -451,13 +454,14 @@ kubectl set resources deployment DEPLOYMENT_NAME --limits cpu=NOm,memory=NOMi --
 kubectl set resources deployment DEPLOYMENT_NAME --limits=cpu=NOm,memory=NOMi --requests=cpu=NOm,memory=NOMi
 kubectl set resources deployment/DEPLOYMENT_NAME -c=CONTAINER_NAME --limits=cpu=NOm,memory=NOMi
 kubectl set resources deployment DEPLOYMENT_NAME --limits cpu=0,memory=0 --requests cpu=0,memory=0                      # remove ResourceQuota for Deployment
+kubectl expose deploy DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO
 kubectl expose deploy DEPLOYMENT_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES
-kubectl expose deployment DEPLOYMENT_NAME --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=SERVICE_TYPES --external-ip=IP_ADDRESS --port=SERVICE_PORT_NO
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=SERVICE_TYPES
+kubectl expose deployment DEPLOYMENT_NAME --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO
 kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=SERVICE_TYPES
