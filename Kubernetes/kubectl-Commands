@@ -148,9 +148,10 @@ kubectl explain pod
 kubectl explain pods
 kubectl edit pod POD_NAME
 kubectl edit pod POD_NAME -n NAMESPACE_NAME
+kubectl expose po POD_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO
 kubectl expose pod POD_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO
-kubectl expose pod POD_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO
 kubectl expose pod POD_NAME --name SERVICE_NAME --port=SERVICE_PORT_NO --dry-run=client -o yaml
+kubectl expose pod POD_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO
 kubectl expose pod POD_NAME --name SERVICE_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES --dry-run=client -o yaml
 kubectl expose pod POD_NAME --type=SERVICE_TYPES
 kubectl expose pod POD_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES
