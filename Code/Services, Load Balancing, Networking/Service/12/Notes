@@ -1,0 +1,8 @@
+[create a label for a POD]
+$ kubectl label po POD_NAME KEY=VALUE
+$ kubectl label po webpod app=nginx
+
+[create a POD with an label in CLI]
+$ kubectl run webfront --image=nginx --labels=app=nginx
+
+[]
