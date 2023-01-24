@@ -455,6 +455,7 @@ kubectl set resources deployment DEPLOYMENT_NAME --limits=cpu=NOm,memory=NOMi --
 kubectl set resources deployment/DEPLOYMENT_NAME -c=CONTAINER_NAME --limits=cpu=NOm,memory=NOMi
 kubectl set resources deployment DEPLOYMENT_NAME --limits cpu=0,memory=0 --requests cpu=0,memory=0                      # remove ResourceQuota for Deployment
 kubectl expose deploy DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO
+kubectl expose deploy DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=SERVICE_TYPES
 kubectl expose deploy DEPLOYMENT_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=SERVICE_TYPES --external-ip=IP_ADDRESS --port=SERVICE_PORT_NO
