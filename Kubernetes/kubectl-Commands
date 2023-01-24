@@ -334,6 +334,7 @@ kubectl exec POD_NAME -- LINUX_COMMANDS -n NAMESPACE_NAME
 kubectl exec POD_NAME -c CONTAINER_NAME -- LINUX_COMMANDS
 kubectl exec POD_NAME --container CONTAINER_NAME -- LINUX_COMMANDS
 kubectl exec POD_NAME --container CONTAINER_NAME -- sh -c "LINUX_COMMANDS"
+kubectl label po POD_NAME KEY=VALUE
 kubectl label po POD_NAME KEY=VALUE -n NAMESPACE_NAME
 kubectl label pod POD_NAME KEY=VALUE                                            # add a label for existing pod
 kubectl label pod POD_NAME KEY=VALUE KEY=VALUE
