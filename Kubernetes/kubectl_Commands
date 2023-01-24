@@ -26,6 +26,7 @@ kubectl exec POD_NAME -- ls -l /FOLDER_NAME/FOLDER_NAME
 kubectl exec POD_NAME -- cat /FOLDER_NAME/FOLDER_NAME/FILE_NAME
 kubectl exec POD_NAME -- cat /etc/hostname
 kubectl exec POD_NAME -- id
+kubectl exec POD_NAME -- curl IP_ADDRESS:PORT_NO
 kubectl exec POD_NAME -- curl https://IP_ADDRESS:PORT_NO
 kubectl exec POD_NAME -- sh -c "echo $PATH"
 kubectl exec -it POD_NAME -- /bin/bash -c "ls -la /FOLDER_NAME/FOLDER_NAME"
