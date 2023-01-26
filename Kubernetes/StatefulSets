@@ -11,7 +11,8 @@ Ordered numbers for each Pod.
 The first Pod (POD_NAME-0) will be Primary and other Pods (POD_NAME-1 ..... POD_NAME-NO) will be Secondary.
 The first Pod (POD_NAME-0) will handle both read and write requests from the user and other Pods (POD_NAME-1 ..... POD_NAME-NO) always sync with the first Pod (POD_NAME-0) for data replication.
 The first Pod (POD_NAME-0) can be a primary when creating a replicated database setup which handles both reading and writing, remaining other Pods (POD_NAME-1 ..... POD_NAME-NO) act as replicas will be secondary.
-If any one of the Pod dies, a new Pod is created with the same name.
+If any of the Pod dies, a new Pod is created with the same name.
+If the Pod destroy because of many reasons, so then it come up with a new Pod is recreated with the same name.
 New Pods will only be created if the previous Pod is in running state and will clone the previous Pod’s data.
 A new Pod is created by cloning the previous Pod’s data.
 If the previous Pod is in the pending state, then the new Pod will not be created.
