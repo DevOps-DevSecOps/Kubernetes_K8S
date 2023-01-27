@@ -16,6 +16,11 @@ It can talk to applications only with in the cluster.
 So the Pods can reach the service on apps port number.
 It exposes the service on an internal IP in the cluster.
 It exposes a service which is only accessible from within the cluster.
+There are two ways to assign a virtual IP address for a Service.
+* dynamically
+The cluster control plane automatically picks a free IP address from within the configured IP range for "type: ClusterIP" Service.
+* statically
+So manually specify an IP address of choice, from within the configured IP range for Service.
 ● NodePort
 A port that is the same on each node that is also reachable externally outside.
 It exposes the Pod to outside the cluster.
