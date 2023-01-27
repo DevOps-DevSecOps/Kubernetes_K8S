@@ -74,3 +74,18 @@ spec:
  - protocol: TCP
    port: 80
    targetPort: 80
+---
+# LoadBalancer
+apiVersion: v1
+kind: Service
+metadata:
+ name: example-prod
+spec:
+ type: LoadBalancer
+ selector:
+  app: my-app
+  env: prod
+ ports:
+ - protocol: TCP
+   port: 80
+   targetPort: 80
