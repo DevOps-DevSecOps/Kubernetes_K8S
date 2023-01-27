@@ -9,7 +9,7 @@ But the Service will maintain the stable static IP address to connect a set/grou
 Kubernetes ServiceTypes allow you to specify what kind of Service you want.
 ● ClusterIP
 The ClusterIP is the default for the service.
-This type makes the Service only reachable from with in the cluster.
+This type makes the Service only reachable from with in the cluster via a cluster-internal IP..
 It exposes the Pod to only within the cluster.
 It assigns a private IP address in ClusterIP range.
 It can talk to applications only with in the cluster.
@@ -25,6 +25,7 @@ Port is open on every node IP.
 It exposes a port named NodePort on all worker nodes.
 It exposes the service on the same port of each selected Node in the cluster.
 Make the service accessible from outside the cluster using "NODE_PUBLIC_IP_ADDRESS:NODE_PORT_NO".
+This type of service makes it possible to access a Service by directing requests to a specific port on every Node, accessed via the NodeIP (Kubernetes automatically creates a ClusterIP service to route the request). 
 The nodePort is dynamically OR randomly took the port number range between 30000 to 32767 by default.
 But can also assign statically OR particular specific custom port number.
 ● LoadBalancer
@@ -37,6 +38,7 @@ LoadBalancer builds on NodePort and create an external load-balancer in cloud su
 It can provide a DNS name for the service.
 This only works when the DNS add-on is enabled.
 It add CNAME DNS record to coreDNS.
+This type of service were used to maps the service to a CNAME record such as a Fully Qualified Domain Name.
 
 [Headless]
 The client/user wants to communicate with one specific Pod directly.
