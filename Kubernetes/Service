@@ -39,8 +39,10 @@ It can provide a DNS name for the service.
 This only works when the DNS add-on is enabled.
 It add CNAME DNS record to coreDNS.
 This type of service were used to maps the service to a CNAME record such as a Fully Qualified Domain Name.
+This Service type uses DNS in place of a selector and creates an internal CNAME DNS entry that aliases another.
 
 [Headless]
+It allows direct connection to a Pod. So it won't take any support in ServiceTypes. 
 The client/user wants to communicate with one specific Pod directly.
 Pods want to talk directly with specific Pod.
 So not randomly selected, mostly it will be used in Stateful applications like Databases.
