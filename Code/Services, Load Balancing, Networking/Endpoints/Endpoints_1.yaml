@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: mytest-cluster
+subsets:
+  - addresses:
+      - ip: 192.168.10.100
+    ports:
+      - name: myport
+        port: 1
+        protocol: TCP
+  - addresses:
+      - ip: 192.168.10.101
+    ports:
+      - name: myport
+        port: 1
+        protocol: TCP
+  - addresses:
+      - ip: 192.168.10.102
+    ports:
+      - name: myport
+        port: 1
+        protocol: TCP
