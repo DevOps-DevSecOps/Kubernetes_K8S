@@ -1,3 +1,4 @@
+# Deployment
 apiVersion: apps/v1 
 kind: Deployment 
 metadata: 
@@ -19,6 +20,7 @@ spec:
     - name: my-deployment-container 
       image: nginx
 ---
+# ClusterIP
 apiVersion: v1
 kind: Service
 metadata:
@@ -33,6 +35,7 @@ spec:
    port: 80
    targetPort: 8080
 ---
+# NodePort
 apiVersion: v1
 kind: Service
 metadata:
@@ -45,5 +48,29 @@ spec:
  ports:
  - nodePort: 32410
    protocol: TCP
+   port: 80
+   targetPort: 80
+---
+# ExternalName
+apiVersion: v1
+kind: Service
+metadata:
+ name: example-prod
+spec:
+ type: ExternalName
+ externalName: example.com
+---
+# Headless
+apiVersion: v1
+kind: Service
+metadata:
+ name: app
+spec:
+ clusterIP: None
+ selector:
+   app: my-app
+   env: prod
+ ports:
+ - protocol: TCP
    port: 80
    targetPort: 80
