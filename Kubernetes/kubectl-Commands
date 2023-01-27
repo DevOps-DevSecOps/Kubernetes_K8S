@@ -904,8 +904,9 @@ kubectl delete services/SERVICE_NAME
 
 [Endpoints]
 kubectl get ep
-kubectl get ep SERVICE_NAME
+kubectl get ep ENDPOINT_NAME
 kubectl get endpoints
+kubectl describe endpoints ENDPOINT_NAME
 
 [Ingress]
 kubectl get ing
