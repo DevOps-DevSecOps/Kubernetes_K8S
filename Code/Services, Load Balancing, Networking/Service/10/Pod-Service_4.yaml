@@ -1,0 +1,38 @@
+# Pod
+apiVersion: v1
+kind: Pod
+metadata:
+  name: influxdb
+  labels:
+    name: influxdb
+spec:
+  containers:
+    - name: influxdb
+      image: influxdb
+      ports:
+        - containerPort: 8086
+---
+# NodePort
+kind: Service
+apiVersion: v1
+metadata:
+  name: influxdb
+spec:
+  type: NodePort
+  ports:
+    - port: 8086
+      nodePort: 30000
+  selector:
+    name: influxdb
+---
+# LoadBalancer
+kind: Service
+apiVersion: v1
+metadata:
+  name: influxdb
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8086
+  selector:
+    name: influxdb
