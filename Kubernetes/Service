@@ -16,6 +16,7 @@ It can talk to applications only with in the cluster.
 So the Pods can reach the service on apps port number.
 It exposes the service on an internal IP in the cluster.
 It exposes a service which is only accessible from within the cluster.
+By default Kubernetes services are accessible at the ClusterIP which is an internal IP address reachable from inside of the Kubernetes cluster only.
 There are two ways to assign a virtual IP address for a Service.
 * dynamically
 The cluster control plane automatically picks a free IP address from within the configured IP range for "type: ClusterIP" Service.
@@ -31,6 +32,8 @@ It exposes a port named NodePort on all worker nodes.
 It exposes the service on the same port of each selected Node in the cluster.
 Make the service accessible from outside the cluster using "NODE_PUBLIC_IP_ADDRESS:NODE_PORT_NO".
 This type of service makes it possible to access a Service by directing requests to a specific port on every Node, accessed via the NodeIP (Kubernetes automatically creates a ClusterIP service to route the request). 
+To make the service accessible from outside of the cluster a user can create a service of type NodePort.
+When creating a NodePort service, the user can specify a port from the range 30000-32767, and each Kubernetes node will proxy that port to the pods selected by the service.
 The nodePort is dynamically OR randomly took the port number range between 30000 to 32767 by default.
 But can also assign statically OR particular specific custom port number.
 ● LoadBalancer
