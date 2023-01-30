@@ -54,6 +54,9 @@ It allows us to interact directly with the Pods instead of a proxy.
 It allows direct connection to a Pod. So it won't take any support in ServiceTypes. 
 The client/user wants to communicate with one specific Pod directly.
 Pods want to talk directly with specific Pod.
+Headless service is accessible only from within the cluster (just like ClusterIP service).
+A virtual IP address is not allocated for the Headless service. So there is no load balancing performed (which also means that kube-proxy does not play a role within this type of service).
+Headless service addresses the use cases where the clients need to connect to any or all of those pods directly using the endpoint (pod) IP address.
 So not randomly selected, mostly it will be used in Stateful applications like Databases.
 Headless Service mostly will be used in Databases. The below diagram will be example to understand.
                     POD_MySQL-0                                              POD_MySQL-1
@@ -63,6 +66,8 @@ Headless Service mostly will be used in Databases. The below diagram will be exa
               writing  |  |  reading <-- continuous syncronization --> reading  |  |  reading
                                               (data replicas)
 Only master is allowed to write to Database (DB).
+A scenario for this type of direct connectivity would be with databases where the client needs to connect to the primary database node.
+In those scenarios a client would need to figure out the endpoint IP (rather than the service' s virtual IP address) and then connect to them directly.
 
 {Port in YAML}
 ● targetPort
