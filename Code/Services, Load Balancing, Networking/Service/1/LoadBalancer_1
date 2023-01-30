@@ -1,0 +1,1 @@
+kubectl expose deployment example --port=8765 --target-port=9376 --name=example-service --type=LoadBalancer
