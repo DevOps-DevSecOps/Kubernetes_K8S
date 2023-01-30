@@ -1,0 +1,13 @@
+apiVersion: v1 
+kind: Service 
+metadata: 
+    name: foo 
+spec: 
+   clusterIP: None 
+   selector: 
+        key1: val1 
+        key2: val2 
+   ports: 
+     - port: 8080 
+       protocol: TCP
+   type: ClusterIP
