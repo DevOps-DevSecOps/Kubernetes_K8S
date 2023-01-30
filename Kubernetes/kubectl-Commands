@@ -760,6 +760,7 @@ kubectl get limitrange
 kubectl explain ns
 kubectl edit ns NAMESPACE_NAME
 kubectl create ns NAMESPACE_NAME
+kubectl create ns NAMESPACE_NAME --context CONTEXT_NAME
 kubectl create ns NAMESPACE_NAME --dry-run=client -o yaml > FILE_NAME.yaml
 kubectl create namespace NAMESPACE_NAME
 kubectl create namespace NAMESPACE_NAME --dry-run -o yaml
