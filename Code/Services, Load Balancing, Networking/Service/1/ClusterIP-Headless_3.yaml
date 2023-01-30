@@ -1,0 +1,11 @@
+apiVersion: v1 
+kind: Service 
+metadata: 
+    name: foo 
+    annotations: tsm.tanzu.vmware.com/endpoints.statefulset:    '{"key1": "val1", "key2": "val2"}' 
+spec: 
+    clusterIP: None 
+    ports: 
+        - port: 8080 
+          protocol: TCP
+    type: ClusterIP
