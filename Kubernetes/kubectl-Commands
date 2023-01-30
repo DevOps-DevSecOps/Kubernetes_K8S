@@ -102,6 +102,7 @@ kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --restart=Never
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --dry-run=client -o yaml > FILE_NAME.yaml
 kubectl run NAME --image=index.docker.io/DOCKER_HUB_USER_ID/REPOSITORY_NAME --requests=cpu=NOm,memory=NOM --expose --port=CONTAINER_PORT_NO
 kubectl run --rm -it NAME --image=IMAGE_NAME
+kubectl run --rm -it NAME --image=IMAGE_NAME --restart=Never
 kubectl run --rm -it NAME --image=IMAGE_NAME:TAG --restart=Never
 kubectl run --rm -it NAME --image=IMAGE_NAME --restart=Never -- sh
 kubectl run --rm -it NAME --image=IMAGE_NAME --restart=Never -- LINUX_COMMANDS
