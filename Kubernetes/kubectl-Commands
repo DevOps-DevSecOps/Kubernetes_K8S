@@ -255,6 +255,7 @@ kubectl get pods -l 'KEY notin (VALUE, VALUE)'
 kubectl get pods -l 'KEY,KEY notin (VALUE)'
 kubectl get pods -l 'KEY,KEY notin (VALUE)' --show-labels
 kubectl get pods -l KEY=VALUE -o wide
+kubectl get pods -l 'KEY=VALUE' -o wide
 kubectl get pods -l KEY=VALUE -o wide -n NAMESPACE_NAME
 kubectl get pods -l KEY=VALUE -o yaml
 kubectl get pods -l KEY=VALUE -w
@@ -872,6 +873,7 @@ kubectl get service -l KEY=VALUE
 kubectl get service --all-namespaces
 kubectl get service --all-namespaces -o yaml > FILE_NAME.yaml
 kubectl get service SERVICE_NAME
+kubectl get service/SERVICE_NAME
 kubectl get service SERVICE_NAME --watch
 kubectl get service SERVICE_NAME -o yaml
 kubectl get service SERVICE_NAME -n NAMESPACE_NAME
