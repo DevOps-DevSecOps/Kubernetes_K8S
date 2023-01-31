@@ -1319,6 +1319,7 @@ kubectl auth can-i VERBS_TYPES deployments
 kubectl auth can-i VERBS_TYPES deployments --namespace NAMESPACE_NAME
 kubectl auth can-i VERBS_TYPES deployments --as USER_NAME
 kubectl auth can-i VERBS_TYPES deployments --as=system:serviceaccount:NAMESPACE_NAME:SERVICEACCOUNT_NAME
+kubectl auth can-i VERBS_TYPES service
 kubectl auth can-i VERBS_TYPES secrets
 kubectl auth can-i VERBS_TYPES secrets --namespace NAMESPACE_NAME
 kubectl auth can-i VERBS_TYPES secrets --namespace NAMESPACE_NAME --as USER_NAME
