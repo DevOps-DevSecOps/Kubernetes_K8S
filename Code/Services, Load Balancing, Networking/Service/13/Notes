@@ -1,0 +1,2 @@
+[create a Service object that exposes the deployment]
+$ kubectl expose deployment hello-world --type=LoadBalancer --name=my-service
