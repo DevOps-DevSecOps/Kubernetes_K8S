@@ -37,6 +37,7 @@ This type of service makes it possible to access a Service by directing requests
 To make the service accessible from outside of the cluster a user can create a service of type NodePort.
 When creating a NodePort service, the user can specify a port from the range 30000-32767, and each Kubernetes node will proxy that port to the pods selected by the service.
 The nodePort is dynamically OR randomly took the port number range between 30000 to 32767 by default.
+It defines a range of ports to use for NodePort allocation and usually defaults to 30000-32767.
 But can also assign statically OR particular specific custom port number.
 It allows to expose the service through a static OR dynamic port on the node.
 ● LoadBalancer
