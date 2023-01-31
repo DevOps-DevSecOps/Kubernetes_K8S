@@ -1,0 +1,49 @@
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: echo-pod
+  template:
+    metadata:
+      labels:
+        app: echo-pod
+    spec:
+      containers:
+      - name: echoheaders
+        image: k8s.gcr.io/echoserver:1.10
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+---
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: echo-service
+  annotations:
+      # Note that the backend talks over HTTP.
+      service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+      # TODO: Fill in with the ARN of your certificate.
+      service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:<region>:<aws-account-id>:certificate/<acm-cert-id>
+      # Only run SSL on the port named "https" below.
+      service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
+      # For an NLB type load balancer
+      service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+      # For an internal loadbalancer
+      service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+spec:
+  selector:
+    app: echo-pod
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  - name: https
+    port: 443
+    targetPort: 8080
+  type: LoadBalancer
