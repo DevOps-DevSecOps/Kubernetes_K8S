@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: FE
+  name: FE
+spec:
+  clusterIP: 10.96.75.104
+  ports:
+  - nodePort: 30171
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: FE
+  type: NodePort
