@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: load-balancer-service-with-static-ip
+spec:
+  selector:
+    app: hello-world
+    tier: frontend
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+  loadBalancerIP: 10.11.12.49
