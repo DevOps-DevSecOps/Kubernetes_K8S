@@ -10,6 +10,10 @@ spec:
 
   type: ClusterIP
 
+  selector:
+
+    app: nginx
+
   clusterIP: 10.10.5.10
 
   ports:
