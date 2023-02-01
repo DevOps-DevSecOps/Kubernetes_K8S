@@ -109,6 +109,10 @@ Service selector matches a pod label, Kubernetes will automatically create an En
 When the service receives a request, its proxy will redirect it to one of those IPs and ports.
 Kubernetes will automatically update the endpoint resource IPs in case of editing or scaling of a deployment in which pods are already linked to a service.
 If create a service without specifying a pod selector, Kubernetes will not generate the endpoint resource and it will be up to create one with the endpoints to link to the service.
+● With selectors
+If a selector is used, the endpoint controller creates an endpoint record in the API, modifying DNS record and returning an A record that points to the required pods.
+● Without selectors
+If a selector is not used, the endpoint controller will not create any endpoint records.
 
 [IPs and Ports]
 ● Pod IP
