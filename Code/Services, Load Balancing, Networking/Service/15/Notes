@@ -8,4 +8,15 @@ NAME                     READY   STATUS    RESTARTS   AGE
 nginx-86c57db685-fzxn5   1/1     Running   0          22s
 httpd-7bddd4bd85-zk8ks   1/1     Running   0          16s
 
-[]
+[check the status of Services]
+$ kubectl get svc
+NAME            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+kubernetes      ClusterIP   10.43.0.1       <none>        443/TCP   18m
+httpd-service   ClusterIP   10.43.240.149   1.2.4.120     80/TCP    32s
+nginx-service   ClusterIP   10.43.13.149    1.2.4.114     80/TCP    26s
+
+[curl the httpd service and should see the Apache default page response]
+$ curl -i 1.2.4.120
+
+[curl the nginx service and should see the nginx default page response]
+$ curl -i 1.2.4.114
