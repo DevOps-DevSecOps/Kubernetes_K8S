@@ -6,6 +6,8 @@ kubectl run NAME --image=index.docker.io/DOCKER_HUB_USER_ID/REPOSITORY_NAME --re
 kubectl get pods --all-namespaces -o wide | grep NODE_NAME
 $ exit                                               # quit the shell in the container
 kubectl exec -it POD_NAME printenv
+kubectl exec -it POD_NAME env --namespace=NAMESPACE_NAME
+kubectl exec -it POD_NAME ping IP_ADDRESS
 kubectl exec -it POD_NAME -- cat /FOLDER_NAME/FILE_NAME
 kubectl exec -it POD_NAME -- ls -l /FOLDER_NAME/FOLDER_NAME
 kubectl exec POD_NAME env                            # list the environment variables in the running container
