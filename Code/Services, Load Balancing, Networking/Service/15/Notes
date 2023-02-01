@@ -1,0 +1,11 @@
+[create Kubernetes deployments]
+$ kubectl create deployment nginx --image=nginx
+$ kubectl create deployment httpd --image=httpd
+
+[check the status of Pods]
+$ kubectl get pods
+NAME                     READY   STATUS    RESTARTS   AGE
+nginx-86c57db685-fzxn5   1/1     Running   0          22s
+httpd-7bddd4bd85-zk8ks   1/1     Running   0          16s
+
+[]
