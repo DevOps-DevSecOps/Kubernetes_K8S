@@ -108,6 +108,7 @@ kubectl run --rm -it NAME --image=IMAGE_NAME --restart=Never -- sh
 kubectl run --rm -it NAME --image=IMAGE_NAME --restart=Never -- LINUX_COMMANDS
 kubectl run --rm -it NAME --image=IMAGE_NAME:TAG --restart=Never -- LINUX_COMMANDS
 kubectl run --rm -it NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME
+kubectl run --rm -it NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --restart=Never
 kubectl run --rm -i -t NAME --image=IMAGE_NAME -- sh
 kubectl run -i --tty NAME --image IMAGE_NAME:TAG
 kubectl run -i --tty NAME --image=IMAGE_NAME -- sh                              # run pod as interactive shell
@@ -912,6 +913,8 @@ kubectl delete services/SERVICE_NAME
 kubectl get ep
 kubectl get ep ENDPOINT_NAME
 kubectl get endpoints
+kubectl get endpoints ENDPOINT_NAME
+kubectl get endpoints SERVICE_NAME
 kubectl describe endpoints ENDPOINT_NAME
 
 [Ingress]
