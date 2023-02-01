@@ -264,6 +264,7 @@ kubectl get pods -l KEY=VALUE --watch
 kubectl get pods -l KEY=VALUE --output=yaml
 kubectl get pods -l KEY=VALUE -n NAMESPACE_NAME
 kubectl get pods -l KEY=VALUE -n=NAMESPACE_NAME
+kubectl get pods -l KEY=VALUE --namespace=NAMESPACE_NAME
 kubectl get pods -l KEY=VALUE --namespace NAMESPACE_NAME
 kubectl get pods -n NAMESPACE_NAME
 kubectl get pods -n=NAMESPACE_NAME
@@ -885,6 +886,7 @@ kubectl get services -o wide
 kubectl get services -n NAMESPACE_NAME
 kubectl get services --namespace NAMESPACE_NAME
 kubectl get services --namespace=NAMESPACE_NAME
+kubectl get services --namespace=NAMESPACE_NAME -l KEY=VALUE
 kubectl get services --all-namespaces
 kubectl get services SERVICE_NAME
 kubectl get services SERVICE_NAME --namespace=NAMESPACE_NAME
