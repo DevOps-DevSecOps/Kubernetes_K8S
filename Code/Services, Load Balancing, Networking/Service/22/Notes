@@ -1,0 +1,5 @@
+[create an Namespace]
+$ kubectl create ns redis
+
+[us now exec into the pod and check that the configuration]
+$ kubectl exec -it redis-ss-0 -c redis -n redis -- /bin/bash
