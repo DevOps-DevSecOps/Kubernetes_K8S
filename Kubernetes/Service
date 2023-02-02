@@ -4,6 +4,10 @@ Pods are ephemeral because are destory frequently when Pods delete OR terminated
 So the Pod IP address are frequently keep on changing.
 Service selector matches a Pod label (OR) If the Label/Selector then Pod and Service match.
 But the Service will maintain the stable static IP address to connect a set/group of pods in a cluster.
+A service is assigned an IP address (cluster IP), which the service proxies use.
+A service can map an incoming port to any targetPort. By default, the targetPort is set to the same value of the port field, and it can be defined as a string.
+Services support TCP (default), UDP, and SCTP for protocols.
+Services can be defined with or without a selector.
 
 [ServiceTypes]
 Kubernetes ServiceTypes allow you to specify what kind of Service you want.
