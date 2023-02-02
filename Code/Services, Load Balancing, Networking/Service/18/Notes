@@ -1,0 +1,24 @@
+[Deployment]
+$ kubectl create deployment source-ip-app --image=registry.k8s.io/echoserver:1.4
+
+[Type=ClusterIP]
+$ kubectl expose deployment source-ip-app --name=clusterip --port=80 --target-port=8080
+
+$ kubectl get svc clusterip
+NAME         TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)   AGE
+clusterip    ClusterIP   10.0.170.92   <none>        80/TCP    51s
+
+[Type=NodePort]
+$ kubectl expose deployment source-ip-app --name=nodeport --port=80 --target-port=8080 --type=NodePort
+
+[Type=LoadBalancer]
+$ kubectl expose deployment source-ip-app --name=loadbalancer --port=80 --target-port=8080 --type=LoadBalancer
+
+$ kubectl get svc loadbalancer
+NAME           TYPE           CLUSTER-IP    EXTERNAL-IP       PORT(S)   AGE
+loadbalancer   LoadBalancer   10.0.65.118   203.0.113.140     80/TCP    5m
+
+$ curl 203.0.113.140
+
+$ kubectl get svc loadbalancer -o yaml | grep -i healthCheckNodePort
+
