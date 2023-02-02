@@ -371,6 +371,7 @@ kubectl logs -f POD_NAME
 kubectl logs -f POD_NAME -c CONTAINER_NAME
 kubectl logs -f POD_NAME --tail NO
 kubectl logs -f POD_NAME --tail NO -c CONTAINER_NAME
+kubectl logs --follow POD_NAME
 kubectl logs -p POD_NAME -n NAMESPACE_NAME
 kubectl logs pod/POD_NAME
 kubectl logs pod/POD_NAME -n NAMESPACE_NAME
@@ -918,6 +919,7 @@ kubectl get endpoints
 kubectl get endpoints ENDPOINT_NAME
 kubectl get endpoints SERVICE_NAME
 kubectl describe endpoints ENDPOINT_NAME
+kubectl describe endpoints SERVICE_NAME
 
 [Ingress]
 kubectl get ing
