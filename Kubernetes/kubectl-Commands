@@ -323,6 +323,7 @@ kubectl exec -it POD_NAME -c CONTAINER_NAME -- bash --namespace NAMESPACE_NAME
 kubectl exec -it POD_NAME -c CONTAINER_NAME -- bash --namespace=NAMESPACE_NAME
 kubectl exec -it POD_NAME -c CONTAINER_NAME -- /bin/sh
 kubectl exec -it POD_NAME -c CONTAINER_NAME -- /bin/bash
+kubectl exec -it POD_NAME -c CONTAINER_NAME -- /bin/bash -n NAMESPACE_NAME
 kubectl exec -it POD_NAME -c CONTAINER_NAME -- LINUX_COMMANDS
 kubectl exec -it POD_NAME --container CONTAINER_NAME -- sh
 kubectl exec -i -t POD_NAME -- /bin/bash
@@ -705,6 +706,7 @@ kubectl scale statefulset/STATEFULSET_NAME --replicas=NO
 kubectl get sts
 kubectl get sts STATEFULSET_NAME -o yaml
 kubectl get statefulset
+kubectl get statefulset -n NAMESPACE_NAME
 kubectl get statefulset STATEFULSET_NAME
 kubectl get statefulsets
 kubectl describe sts STATEFULSET_NAME
@@ -970,6 +972,7 @@ kubectl get cm CONFIGMAP_NAME -o yaml
 kubectl get cm CONFIGMAP_NAME -o yaml -n NAMESPACE_NAME
 kubectl get configmap
 kubectl get configmap -o yaml
+kubectl get configmap -n NAMESPACE_NAME
 kubectl get configmap CONFIGMAP_NAME
 kubectl get configmap CONFIGMAP_NAME -o yaml
 kubectl get configmaps
