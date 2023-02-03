@@ -234,6 +234,7 @@ kubectl get pods -a -n NAMESPACE_NAME
 kubectl get pods --show-all -w
 kubectl get pods --show-labels
 kubectl get pods --selector=KEY=VALUE,KEY=VALUE
+kubectl get pods --selector='KEY=VALUE'
 kubectl get pods --selector="KEY=VALUE"
 kubectl get pods --selector="KEY=VALUE" --output=wide
 kubectl get pods --selector="KEY in (VALUE,VALUE)"
