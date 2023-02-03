@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rmq-external-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: rabbitmq
+  ports:
+    - name: rmq-admin
+      protocol: TCP
+      port: 15672
+      targetPort: 15672
