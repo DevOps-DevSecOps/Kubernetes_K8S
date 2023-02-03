@@ -22,6 +22,7 @@ It exposes the service on an internal IP address in the cluster.
 It exposes a service which is only accessible from within the cluster.
 By default Kubernetes services are accessible at the ClusterIP which is an internal IP address reachable from inside of the Kubernetes cluster only.
 It is the default type to expose the server only on an cluster-internal ip address.
+This is the default type that exposes the service on an internal IP of the cluster. These services are only accessible within the cluster.
 There are two ways to assign a virtual IP address for a Service.
 * dynamically
 The cluster control plane automatically picks a free IP address from within the configured IP range for "type: ClusterIP" Service.
@@ -44,6 +45,8 @@ The nodePort is dynamically OR randomly took the port number range between 30000
 It defines a range of ports to use for NodePort allocation and usually defaults to 30000-32767.
 But can also assign statically OR particular specific custom port number.
 It allows to expose the service through a static OR dynamic port on the node.
+A NodePort service exposes the service on the IP of each node at a static port.
+Users can communicate with the service from the outside by requesting <NodeIP>:<NodePort>.
 ● LoadBalancer
 It created by the cloud provider that will route external traffic to every node on the NodePort (ELB on AWS).
 It exposes the Pod to outside the cluster.
@@ -116,7 +119,7 @@ If create a service without specifying a pod selector, Kubernetes will not gener
 ● With selectors
 If a selector is used, the endpoint controller creates an endpoint record in the API, modifying DNS record and returning an A record that points to the required pods.
 ● Without selectors
-If a selector is not used, the endpoint controller will not create any endpoint records.
+If a selector is not used, the endpoint controller will not create any endpoint records without having the selectors configured.
 
 [IPs and Ports]
 ● Pod IP
