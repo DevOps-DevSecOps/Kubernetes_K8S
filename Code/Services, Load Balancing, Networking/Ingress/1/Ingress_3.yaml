@@ -1,0 +1,22 @@
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: "example-ingress"
+  namespace: production
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
+spec:
+  rules:
+    - host: abc.com
+      http:
+        paths:
+          - path: /orders
+            backend:
+              serviceName: order-service
+              servicePort: 8080
+          - path: /blog
+            backend:
+              serviceName: blog-service
+              servicePort: 8081
