@@ -48,6 +48,7 @@ kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO --type=LoadBala
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=ClusterIP                                      # expose a deployment of ClusterIP
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=NodePort                                       # expose a deployment of NodePort
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=LoadBalancer                                   # expose a deployment of LoadBalancer
+kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=ClusterIP
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=NodePort
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=LoadBalancer
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=LoadBalancer --external-ip=1.1.1.1 --port=SERVICE_PORT_NO
