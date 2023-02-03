@@ -1,0 +1,11 @@
+[check the status of the deployment]
+$ kubectl get deployment apache-deployment
+
+[command to expose the deployment with the ClusterIP service type]
+$ kubectl expose deployment apache-deployment --name=apache-http-service --type=ClusterIP --port=8080 --target-port=8080
+
+[check the service]
+$ kubectl get service apache-http-service
+
+[directing traffic from host port 8090 to service port 8080]
+$ kubectl port-forward service/apache-http-service 8090:8080
