@@ -1,0 +1,9 @@
+[verify the pod is up and running]
+$ kubectl get pods --selector='app=rabbitmq'
+NAME       READY   STATUS    RESTARTS   AGE
+rabbitmq   1/1     Running   0          91m
+
+[verify the service]
+$ kubectl get svc
+NAME                   TYPE           CLUSTER-IP      EXTERNAL-IP                                                              PORT(S)           AGE
+rmq-external-service   LoadBalancer   10.100.37.235   a8e294d5ad3d74562ac0ca47e8eaec9a-34496842.ap-south-1.elb.amazonaws.com   15672:31716/TCP   4m45s
