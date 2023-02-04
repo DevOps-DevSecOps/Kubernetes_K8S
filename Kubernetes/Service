@@ -137,3 +137,16 @@ The "--port=SERVICE_PORT_NO" mean that "--port=CLUSTER_PORT_NO".
 If need to access the application from outside then need a "NODE_PUBLIC_IP_ADDRESS:NODE_PORT_NO".
 $ curl http://NODE_PUBLIC_IP_ADDRESS:NODE_PORT_NO
 The above command will work to access inside and outside of the cluster.
+
+[IP]
+The below options is used for manually to assign the IP address.
+● clusterIP
+The 'clusterIP' option field can manually assign to a clusterIP between the range of a IP address for used with in the internal cluster.
+● externalIPs
+The 'externalIPs' option field can manually assign an one OR more cluster nodes IP address.
+The 'externalIPs' that route to one or more cluster nodes, Kubernetes Services can be exposed on those externalIPs.
+Traffic that ingresses into the cluster with the external IP (as destination IP), on the Service port, will be routed to one of the Service endpoints.
+The 'externalIPs' are not managed by Kubernetes and are the responsibility of the cluster administrator.
+● loadBalancerIP
+The 'loadBalancerIP' option field can manually assign a IP address for expose to outside the cluster.
+Eg:- AWS ELB 
