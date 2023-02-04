@@ -149,4 +149,3 @@ Traffic that ingresses into the cluster with the external IP (as destination IP)
 The 'externalIPs' are not managed by Kubernetes and are the responsibility of the cluster administrator.
 ● loadBalancerIP
 The 'loadBalancerIP' option field can manually assign a IP address for expose to outside the cluster.
-Eg:- AWS ELB 
