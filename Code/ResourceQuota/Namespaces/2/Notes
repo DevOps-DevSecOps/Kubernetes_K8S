@@ -1,3 +1,60 @@
-[create a namespace]
+[create a Namespace]
 $ kubectl create namespace quota-mem-cpu-example
 
+● The memory request total for all Pods in that namespace must not exceed 1 GiB.
+● The memory limit total for all Pods in that namespace must not exceed 2 GiB.
+● The CPU request total for all Pods in that namespace must not exceed 1 cpu.
+● The CPU limit total for all Pods in that namespace must not exceed 2 cpu.
+
+[create the ResourceQuota]
+$ kubectl apply -f ResourceQuota.yaml --namespace=quota-mem-cpu-example
+$ kubectl apply -f https://k8s.io/examples/admin/resource/quota-mem-cpu.yaml --namespace=quota-mem-cpu-example
+
+[view detailed information about the ResourceQuota]
+$ kubectl get resourcequota mem-cpu-demo --namespace=quota-mem-cpu-example --output=yaml
+
+[create the Pod]
+$ kubectl apply -f Pod_1.yaml --namespace=quota-mem-cpu-example
+$ kubectl apply -f https://k8s.io/examples/admin/resource/quota-mem-cpu-pod.yaml --namespace=quota-mem-cpu-example
+
+[verify that the Pod is running and that its (only) container is healthy]
+$ kubectl get pod quota-mem-cpu-demo --namespace=quota-mem-cpu-example
+
+[view detailed information about the ResourceQuota]
+$ kubectl get resourcequota mem-cpu-demo --namespace=quota-mem-cpu-example --output=yaml
+..........
+..........
+status:
+  hard:
+    limits.cpu: "2"
+    limits.memory: 2Gi
+    requests.cpu: "1"
+    requests.memory: 1Gi
+  used:
+    limits.cpu: 800m
+    limits.memory: 800Mi
+    requests.cpu: 400m
+    requests.memory: 600Mi
+..........
+..........
+The output shows the quota along with how much of the quota has been used.
+The memory and CPU requests and limits for your Pod do not exceed the quota.
+
+[attempt to create a second Pod]
+$ kubectl apply -f Pod_2.yaml --namespace=quota-mem-cpu-example
+$ kubectl apply -f https://k8s.io/examples/admin/resource/quota-mem-cpu-pod-2.yaml --namespace=quota-mem-cpu-example
+..........
+..........
+Error from server (Forbidden): error when creating "examples/admin/resource/quota-mem-cpu-pod-2.yaml":
+pods "quota-mem-cpu-demo-2" is forbidden: exceeded quota: mem-cpu-demo,
+requested: requests.memory=700Mi,used: requests.memory=600Mi, limited: requests.memory=1Gi
+..........
+..........
+
+● In the manifest, can see that the Pod has a memory request of 700 MiB.
+● The sum of the used memory request and this new memory request exceeds the memory request quota: 600 MiB + 700 MiB > 1 GiB.
+● The second Pod does not get created. 
+● The output shows that creating the second Pod would cause the memory request total to exceed the memory request quota.
+
+[delete Namespace]
+$ kubectl delete namespace quota-mem-cpu-example
