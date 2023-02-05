@@ -1,0 +1,49 @@
+[create a namespace]
+$ kubectl create namespace quota-pod-example
+
+[create the ResourceQuota]
+$ kubectl apply -f ResourceQuota.yaml --namespace=quota-pod-example
+$ kubectl apply -f https://k8s.io/examples/admin/resource/quota-pod.yaml --namespace=quota-pod-example
+
+[view detailed information about the ResourceQuota]
+$ kubectl get resourcequota pod-demo --namespace=quota-pod-example --output=yaml
+..........
+..........
+spec:
+  hard:
+    pods: "2"
+status:
+  hard:
+    pods: "2"
+  used:
+    pods: "0"
+..........
+..........
+
+● The output shows that the namespace has a quota of two Pods, and that currently there are no Pods; that is, none of the quota is used.
+
+[create a Deployment]
+$ kubectl apply -f Deployment.yaml --namespace=quota-pod-example
+$ kubectl apply -f https://k8s.io/examples/admin/resource/quota-pod-deployment.yaml --namespace=quota-pod-example
+
+[view detailed information about the Deployment]
+$ kubectl get deployment pod-quota-demo --namespace=quota-pod-example --output=yaml
+..........
+..........
+spec:
+  ...
+  replicas: 3
+...
+status:
+  availableReplicas: 2
+...
+lastUpdateTime: 2021-04-02T20:57:05Z
+    message: 'unable to create pods: pods "pod-quota-demo-1650323038-" is forbidden:
+      exceeded quota: pod-demo, requested: pods=1, used: pods=2, limited: pods=2'
+..........
+..........
+
+● The output shows that even though the Deployment specifies three replicas, only two Pods were created because of the quota defined earlier.
+
+[delete Namespace]
+$ kubectl delete namespace quota-pod-example
