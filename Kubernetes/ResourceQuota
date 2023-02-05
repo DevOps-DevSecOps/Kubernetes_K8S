@@ -1,0 +1,1 @@
+For every Pod in the namespace, each container must have a memory request, memory limit, cpu request, and cpu limit.
