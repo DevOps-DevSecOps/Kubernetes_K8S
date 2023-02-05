@@ -1,0 +1,3 @@
+[create a namespace]
+$ kubectl create namespace quota-mem-cpu-example
+
