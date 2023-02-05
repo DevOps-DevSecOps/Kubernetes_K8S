@@ -24,4 +24,28 @@ status:
 ● The output shows that in the quota-object-example namespace, there can be at most one PersistentVolumeClaim, at most two Services of type LoadBalancer, and no Services of type NodePort.
 
 [create a PersistentVolumeClaim (PVC)]
-$
+$ kubectl apply -f PVC_1.yaml --namespace=quota-object-example
+$ kubectl apply -f https://k8s.io/examples/admin/resource/quota-objects-pvc.yaml --namespace=quota-object-example
+
+[verify that the PersistentVolumeClaim was created]
+$ kubectl get persistentvolumeclaims --namespace=quota-object-example
+NAME             STATUS
+pvc-quota-demo   Pending
+
+● The output shows that the PersistentVolumeClaim exists and has status Pending.
+
+[attempt to create a second PersistentVolumeClaim (PVC)]
+$ kubectl apply -f PVC_2.yaml --namespace=quota-object-example
+$ kubectl apply -f https://k8s.io/examples/admin/resource/quota-objects-pvc-2.yaml --namespace=quota-object-example
+..........
+..........
+persistentvolumeclaims "pvc-quota-demo-2" is forbidden:
+exceeded quota: object-quota-demo, requested: persistentvolumeclaims=1,
+used: persistentvolumeclaims=1, limited: persistentvolumeclaims=1
+..........
+..........
+
+● The output shows that the second PersistentVolumeClaim was not created, because it would have exceeded the quota for the namespace.
+
+[delete Namespace]
+$ kubectl delete namespace quota-object-example
