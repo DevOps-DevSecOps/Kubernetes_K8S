@@ -658,6 +658,7 @@ kubectl get rc/REPLICATIONCONTROLLER_NAME -o json
 kubectl get replicationcontroller
 kubectl get replicationcontroller REPLICATIONCONTROLLER_NAME
 kubectl get replicationcontrollers REPLICATIONCONTROLLER_NAME
+kubectl describe rc --namespace=NAMESPACE_NAME
 kubectl describe rc REPLICATIONCONTROLLER_NAME
 kubectl describe rc/REPLICATIONCONTROLLER_NAME
 kubectl describe replicationcontrollers REPLICATIONCONTROLLER_NAME
