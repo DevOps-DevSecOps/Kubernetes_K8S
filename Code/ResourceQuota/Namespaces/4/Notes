@@ -42,7 +42,7 @@ Resource      Used  Hard
 limits.cpu    220m  300m
 requests.cpu  110m  200m
 
-[create the Thrid Pod]
+[create the thrid Pod]
 $ kubectl create -f Pod_3.yaml -n quota-demo
 ..........
 ..........
