@@ -1,5 +1,6 @@
 • Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called namespaces.
 • Namespaces allow you to create virtual clusters within the same physical cluster.
+• Namespaces create virtual clusters within a physical Kubernetes cluster.
 • Namespaces are intended for use in environments with many users spread across multiple teams, or projects.
 • Can have multiple namespaces inside a single Kubernetes cluster, and they are all logically isolated from each other.
 • By default, all resources in a Kubernetes cluster are created in a 'default' namespace.
