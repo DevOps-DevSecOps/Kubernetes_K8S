@@ -759,12 +759,14 @@ kubectl get resourcequotas -n NAMESPACE_NAME
 kubectl get resourcequota RESOURCEQUOTA_NAME
 kubectl get resourcequota RESOURCEQUOTA_NAME --namespace=NAMESPACE_NAME
 kubectl get resourcequota RESOURCEQUOTA_NAME --namespace=NAMESPACE_NAME --output=yaml
+kubectl describe resourcequota
+kubectl describe resourcequota --namespace=NAMESPACE_NAME
+kubectl describe resourcequota RESOURCEQUOTA_NAME --namespace=NAMESPACE_NAME
 kubectl describe resourcequota/RESOURCEQUOTA_NAME --namespace NAMESPACE_NAME
 kubectl delete resourcequotas RESOURCEQUOTA_NAME
 kubectl delete resourcequotas RESOURCEQUOTA_NAME -n NAMESPACE_NAME
 kubectl describe quota
 kubectl describe quota --namespace=NAMESPACE_NAME
-kubectl get limitrange
 
 [Namespaces]
 kubectl explain ns
