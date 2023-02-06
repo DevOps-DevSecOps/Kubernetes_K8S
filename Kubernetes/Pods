@@ -1,3 +1,4 @@
+Pod is the basic unit of work and the smallest deployable unit of computing that can create and manage in Kubernetes.
 Pods that run a single container. The "one-Container-per-Pod" model in Kubernetes.
 The each Pod has its own unique IP address.
 The IP address of a Pod is reachable with in cluster from any nodes.
@@ -8,6 +9,7 @@ Containers with in same Pod can communicate with each other using Pod localhost.
 All the containers with in a pod share the same pod IP address.
 However, multiple containers can be placed in the same Pod also. (OR) Pod can be a group one or more application containers.
 All containers running on the same Pod share the same volume and share the network interface of the Pod.
+Pod is a group of one or more containers, with shared storage and network resources, and a specification for how to run the containers.
 After the Node (OR) Pod is restarted, then all Pods containers are started on the node with new IP addresses.
 
 [Status]
