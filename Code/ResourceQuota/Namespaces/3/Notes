@@ -13,6 +13,37 @@ Resource      Used  Hard
 limits.cpu    0     200m
 requests.cpu  0     100m
 
-[create the Pod]
-$ kubectl apply -f Pod.yaml --namespace quota-test
+[create the Pod A]
+$ kubectl apply -f Pod_1.yaml --namespace quota-test
 
+[view detailed information about the ResourceQuota]
+$ kubectl describe resourcequota/test-cpu-quota --namespace quota-test
+Name:         test-cpu-quota
+Namespace:    quota-test
+Resource      Used  Hard
+--------      ----  ----
+limits.cpu    100m  200m
+requests.cpu  50m   100m
+
+[create the Pod B]
+$ kubectl create -f Pod_2.yaml -n quota-test
+
+[view detailed information about the ResourceQuota]
+$ kubectl describe resourcequota/test-cpu-quota --namespace quota-test
+Name:         test-cpu-quota
+Namespace:    quota-test
+Resource      Used  Hard
+--------      ----  ----
+limits.cpu    200m  200m
+requests.cpu  100m  100m
+
+[create the Pod C]
+$ kubectl create -f Pod_3.yaml -n quota-test
+..........
+..........
+Error from server (Forbidden): error when creating "STDIN": pods "podc" is forbidden: exceeded quota: test-cpu-quota, requested: limits.cpu=10m,requests.cpu=5m, used: limits.cpu=200m,requests.cpu=100m, limited: limits.cpu=200m,requests.cpu=100m
+..........
+..........
+
+[delete Namespace]
+$ kubectl delete ns quota-test
