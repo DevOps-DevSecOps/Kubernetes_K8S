@@ -1,1 +1,3 @@
+A Kubernetes cluster has a limited amount of available hardware resources.
+Hardware resources are measured based on worker nodes with a specific number of CPU cores or RAM allocation.
 For every Pod in the namespace, each container must have a memory request, memory limit, cpu request, and cpu limit.
