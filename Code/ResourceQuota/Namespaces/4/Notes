@@ -1,0 +1,54 @@
+$ kubectl get nodes
+NAME                       STATUS   ROLES    AGE   VERSION
+autoscale-concourse-vmxh   Ready    <none>   4m    v1.21.2
+autoscale-default-vm37     Ready    <none>   56m   v1.21.2
+
+[create a Namespace]
+$ kubectl create namespace quota-demo
+
+[create the ResourceQuota]
+$ kubectl create -f ResourceQuota.yaml
+
+[view detailed information about the ResourceQuota]
+$ kubectl describe resourcequota/test-cpu-quota --namespace quota-demo
+Name:         test-cpu-quota
+Namespace:    quota-demo
+Resource      Used  Hard
+--------      ----  ----
+limits.cpu    0     300m
+requests.cpu  0     200m
+
+[create the first Pod]
+$ kubectl create -f Pod_1.yaml -n quota-demo
+
+[view detailed information about the ResourceQuota]
+$ kubectl describe resourcequota/test-cpu-quota --namespace quota-demo
+Name:         test-cpu-quota
+Namespace:    quota-demo
+Resource      Used  Hard
+--------      ----  ----
+limits.cpu    200m  300m
+requests.cpu  100m  200m
+
+[create the second Pod]
+$ kubectl create -f Pod_2.yaml -n quota-demo
+
+[view detailed information about the ResourceQuota]
+$ kubectl describe resourcequota/test-cpu-quota --namespace quota-demo
+Name:         test-cpu-quota
+Namespace:    quota-demo
+Resource      Used  Hard
+--------      ----  ----
+limits.cpu    220m  300m
+requests.cpu  110m  200m
+
+[create the Thrid Pod]
+$ kubectl create -f Pod_3.yaml -n quota-demo
+..........
+..........
+Error from server (Forbidden): error when creating "STDIN": pods "testpod3" is forbidden: exceeded quota: test-cpu-quota, requested: limits.cpu=200m,requests.cpu=100m, used: limits.cpu=220m,requests.cpu=110m, limited: limits.cpu=300m,requests.cpu=200m
+..........
+..........
+
+[delete Namespace]
+$ kubectl delete ns quota-demo
