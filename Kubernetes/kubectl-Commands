@@ -92,6 +92,7 @@ kubectl run NAME --image=IMAGE_NAME --labels="KEY=VALUE,KEY=VALUE"
 kubectl run NAME --image=IMAGE_NAME --labels="KEY=VALUE, KEY=VALUE"
 kubectl run NAME --image=IMAGE_NAME --env="KEY=VALUE" --env="KEY=VALUE"         # set environment variables in the container
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME
+kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --namespace=NAMESPACE_NAME
 kubectl run NAME --image DOCKER_HUB_USER_ID/REPOSITORY_NAME --context=CONTEXT_NAME
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --labels KEY=VALUE --port CONTAINER_PORT_NO --expose
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --requests=cpu=NOm --expose --port=CONTAINER_PORT_NO                       # Pod_Deployment and Service
@@ -662,6 +663,7 @@ kubectl describe rc/REPLICATIONCONTROLLER_NAME
 kubectl describe replicationcontrollers REPLICATIONCONTROLLER_NAME
 kubectl describe replicationcontrollers/REPLICATIONCONTROLLER_NAME
 kubectl delete rc REPLICATIONCONTROLLER_NAME
+kubectl delete rc REPLICATIONCONTROLLER_NAME --namespace=NAMESPACE_NAME
 kubectl delete replicationcontrollers REPLICATIONCONTROLLER_NAME
 
 [DaemonSet]
