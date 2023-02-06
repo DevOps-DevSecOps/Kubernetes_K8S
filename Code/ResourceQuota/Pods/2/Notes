@@ -120,3 +120,5 @@ Events:
 [delete Pod]
 $ kubectl delete pod memory-demo-3 --namespace=mem-example
 
+[delete Namespace]
+$ kubectl delete namespace mem-example
