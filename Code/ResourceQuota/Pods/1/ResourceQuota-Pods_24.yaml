@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: couchbase-pod
+spec:
+  containers:
+  - name: couchbase
+    image: couchbase
+    ports:
+    - containerPort: 8091
+    resources:
+      limits:
+        cpu: "1"
+        memory: 512Mi
