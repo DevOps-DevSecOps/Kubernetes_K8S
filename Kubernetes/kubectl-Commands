@@ -648,6 +648,7 @@ kubectl scale rc/REPLICATIONCONTROLLER_NAME rc/REPLICATIONCONTROLLER_NAME rc/REP
 kubectl scale replicationcontroller REPLICATIONCONTROLLER_NAME --replicas=NO
 kubectl get rc
 kubectl get rc -o wide
+kubectl get rc --all-namespaces
 kubectl get rc REPLICATIONCONTROLLER_NAME
 kubectl get rc/REPLICATIONCONTROLLER_NAME
 kubectl get rc/REPLICATIONCONTROLLER_NAME -o wide
