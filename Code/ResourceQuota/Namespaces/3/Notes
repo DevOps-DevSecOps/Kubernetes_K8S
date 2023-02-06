@@ -1,0 +1,18 @@
+[create a Namespace]
+$ kubectl create namespace quota-test
+
+[create the ResourceQuota]
+$ kubectl apply -f ResourceQuota.yaml --namespace quota-test
+
+[view detailed information about the ResourceQuota]
+$ kubectl describe resourcequota/test-cpu-quota --namespace quota-test
+Name:         test-cpu-quota
+Namespace:    quota-test
+Resource      Used  Hard
+--------      ----  ----
+limits.cpu    0     200m
+requests.cpu  0     100m
+
+[create the Pod]
+$ kubectl apply -f Pod.yaml --namespace quota-test
+
