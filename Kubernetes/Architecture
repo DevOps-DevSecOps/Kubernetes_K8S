@@ -1,4 +1,6 @@
 [Master Node - Control Plane]
+Also known as master node or head node.
+It manages the worker nodes in the cluster.
 ● API Server
 It is the Gatekeeper of the cluster by providing Authentication, Authorization, Validation of all requests to perform CRUD (create, read, update, delete) functions in the cluster.
 It responds to requests from the worker nodes.
@@ -11,6 +13,9 @@ ETCD Storage is a key-value data store that can be accessed by all nodes in the 
 It monitors resource utilization across the cluster and schedules pods of containers accordingly.
 
 [Worker Node]
+Also known as worker node or compute node.
+Kubernetes cluster needs at least one worker node, but normally have many.
+It can scale up and scale down cluster by adding and removing nodes.
 ● Kubelet
 It maintain to register the node with the cluster.
 It will send periodic health check so that the API server know that compute nodes (worker nodes) are healthy.
