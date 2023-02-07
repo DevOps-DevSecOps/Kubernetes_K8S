@@ -1,0 +1,32 @@
+[create a 1st pod]
+$ kubectl run ephemeral-demo --image=registry.k8s.io/pause:3.1 --restart=Never
+
+[access to a shell]
+$ kubectl exec -it ephemeral-demo -- sh
+OCI runtime exec failed: exec failed: container_linux.go:346: starting container process caused "exec: \"sh\": executable file not found in $PATH": unknown
+
+● It will throw an error because there is no shell in this container image.
+
+[add a debugging container]
+$ kubectl debug -it ephemeral-demo --image=busybox:1.28 --target=ephemeral-demo
+
+[view the state of the newly created ephemeral container]
+$ kubectl describe pod ephemeral-demo
+...
+Ephemeral Containers:
+  debugger-8xzrl:
+    Container ID:   docker://b888f9adfd15bd5739fefaa39e1df4dd3c617b9902082b1cfdc29c4028ffb2eb
+    Image:          busybox
+    Image ID:       docker-pullable://busybox@sha256:1828edd60c5efd34b2bf5dd3282ec0cc04d47b2ff9caa0b6d4f07a21d1c08084
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Wed, 12 Feb 2020 14:25:42 +0100
+    Ready:          False
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:         <none>
+...
+
+[remove the Pod]
+$ kubectl delete pod ephemeral-demo
