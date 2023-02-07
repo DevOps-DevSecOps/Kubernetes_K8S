@@ -1,4 +1,4 @@
-[create a 1st pod]
+[create a pod]
 $ kubectl run ephemeral-demo --image=registry.k8s.io/pause:3.1 --restart=Never
 
 [access to a shell]
