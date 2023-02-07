@@ -1,0 +1,64 @@
+[create a Namespace]
+$ kubectl create namespace cpu-example
+
+[create the 1st Pod]
+$ kubectl apply -f Pod_1.yaml --namespace=cpu-example
+$ kubectl apply -f https://k8s.io/examples/pods/resource/cpu-request-limit.yaml --namespace=cpu-example
+
+[verify that the Pod is running]
+$ kubectl get pod cpu-demo --namespace=cpu-example
+
+[view detailed information about the Pod]
+$ kubectl get pod cpu-demo --output=yaml --namespace=cpu-example
+..........
+..........
+resources:
+  limits:
+    cpu: "1"
+  requests:
+    cpu: 500m
+..........
+..........
+
+● The output shows that the one container in the Pod has a CPU request of 500 milliCPU and a CPU limit of 1 CPU.
+
+[fetch the metrics for the Pod]
+$ kubectl top pod cpu-demo --namespace=cpu-example
+NAME                        CPU(cores)   MEMORY(bytes)
+cpu-demo                    974m         <something>
+
+● The output shows that the Pod is using 974 milliCPU, which is slightly less than the limit of 1 CPU specified in the Pod configuration.
+
+[delete Pod]
+$ kubectl delete pod cpu-demo --namespace=cpu-example
+
+[create the 2nd Pod]
+$ kubectl apply -f Pod_2.yaml --namespace=cpu-example
+$ kubectl apply -f https://k8s.io/examples/pods/resource/cpu-request-limit-2.yaml --namespace=cpu-example
+
+[view the Pod status]
+$ kubectl get pod cpu-demo-2 --namespace=cpu-example
+NAME         READY     STATUS    RESTARTS   AGE
+cpu-demo-2   0/1       Pending   0          7m
+
+● The output shows that the Pod status is Pending.
+● Pod has not been scheduled to run on any Node, and it will remain in the Pending state indefinitely.
+
+[view detailed information about the Pod, including events]
+$ kubectl describe pod cpu-demo-2 --namespace=cpu-example
+..........
+..........
+Events:
+  Reason                        Message
+  ------                        -------
+  FailedScheduling      No nodes are available that match all of the following predicates:: Insufficient cpu (3).
+..........
+..........
+
+● The output shows that the Container cannot be scheduled because of insufficient CPU resources on the Nodes.
+
+[delete Pod]
+$ kubectl delete pod cpu-demo-2 --namespace=cpu-example
+
+[delete Namespace]
+$ kubectl delete namespace cpu-example
