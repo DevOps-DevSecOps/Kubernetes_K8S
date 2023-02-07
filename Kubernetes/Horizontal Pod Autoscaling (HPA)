@@ -5,5 +5,7 @@ Horizontal Pod Autoscaler scales the number of Pods in a Deployment.
 It work based on CPU/Memory utilization (OR) any installed custom Metrics in server exposed by application.
 If CPU/Memory utilization threshold that crossed and HPA updates the number of pod keeps on increasing/decreasing the replicas count.
 The autoscaler will work accordingly as per CPU/Memory utilization across all pods and will increase and decrease replicas.
-
+HPA automatically updates a workload resource (such as a Deployment or StatefulSet), with the aim of automatically scaling the workload to match demand.
+HPA automatically scales number of pod replicas based on CPU usage or another metric.
+HPA controls the scale of a Deployment and its ReplicaSet.
 HPA allocates pod replicas in order to manage resources.
