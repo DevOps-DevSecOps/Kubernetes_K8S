@@ -60,11 +60,16 @@ This can be due to one of the following reasons:
 => Container ran out of memory
 This may be because your application needs more resources than it’s allowed to use, or your application is using more than it should.
 => The OOMKiller killed the container
+OOM stands for “Out Of Memory”.
+The OOMKilled error, also indicated by exit code 137, means that a container OR pod was terminated because they used more memory than allowed.
 Every pod has a specified memory space and when it tries to consume more memory than what has been allocated to it, the pod will keep crashing.
 This can occur if the pod is allocated less memory than it actually requires to run or if there an error in the pod and it keeps on consuming all the memory space while in its run state.
 When you take a look at the events log, you will notice that there is an ‘OOM killed event’ error displayed which will clearly indicate that the pod crashed because it used up all the RAM designated to it.
 To solve this error, you can increase the ram allocated to the pod.
 You will also likely see 'Reason: OOM' in the container in the describe pod output.
+$ kubectl get pods
+NAME        READY    STATUS       RESTARTS    AGE
+POD_NAME    0/1      OOMKilled    0           3m12s
 => The liveness probe failed
 If you see a warning like this in the Events output in the describe pod.
 'Warning  Unhealthy  13s (x3 over 23s)  kubelet, dali      Liveness probe failed: cat: can't open '/tmp/healthy': No such file or directory'
