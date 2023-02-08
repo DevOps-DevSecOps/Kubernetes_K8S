@@ -1,0 +1,1 @@
+It isolates the network between pods by specifying which pods can connect to each other, and other network endpoints.
