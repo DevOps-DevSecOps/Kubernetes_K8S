@@ -2,12 +2,14 @@
 The each Pod has its own IP address.
 Pods are ephemeral because are destory frequently when Pods delete OR terminated, recreating the new pods with existing YAML template OR command line interface.
 So the Pod IP address are frequently keep on changing.
+Service provides stable networking for pods (ephemeral pods) by bringing stable IP addresses and DNS names, and provide a way to Kubernetes to configuring a proxy to forward traffic to a set of pods.
 Service selector matches a Pod label (OR) If the Label/Selector then Pod and Service match.
 But the Service will maintain the stable static IP address to connect a set/group of pods in a cluster.
 A service is assigned an IP address (cluster IP), which the service proxies use.
 A service can map an incoming port to any targetPort. By default, the targetPort is set to the same value of the port field, and it can be defined as a string.
 Services support TCP (default), UDP, and SCTP for protocols.
 Services can be defined with or without a selector.
+It is used to expose an application deployed on a set of pods using a single endpoint. It maps a fixed IP address to a logical group of pods.
 
 [ServiceTypes]
 Kubernetes ServiceTypes allow you to specify what kind of Service you want.
@@ -112,6 +114,10 @@ Besides that two applications requiring the same port cannot run on the same nod
 This can lead to port conflicts when the number of applications running on the cluster grows.
 
 [Endpoints]
+Endpoint defines which pods (or other servers) are exposed through a service.
+For Kubernetes Services, Kubernetes creates a Endpoint object. 
+This endpoint will have the ip address mapping of the pods. This is created automatically for services with a defined selector.
+Endpoints can also be used to connect to external services like they were internal to the kubernetes cluster.
 Service selector matches a pod label, Kubernetes will automatically create an Endpoints object with the same name as the service, which stores the pod’s IP address and port.
 When the service receives a request, its proxy will redirect it to one of those IPs and ports.
 Kubernetes will automatically update the endpoint resource IPs in case of editing or scaling of a deployment in which pods are already linked to a service.
@@ -120,6 +126,11 @@ If create a service without specifying a pod selector, Kubernetes will not gener
 If a selector is used, the endpoint controller creates an endpoint record in the API, modifying DNS record and returning an A record that points to the required pods.
 ● Without selectors
 If a selector is not used, the endpoint controller will not create any endpoint records without having the selectors configured.
+
+[EndpointSlice]
+It provide a simple way to track network endpoints within a Kubernetes cluster.
+It offer a more scalable and extensible alternative to Endpoints.
+It contains references to a set of network endpoints.
 
 [IPs and Ports]
 ● Pod IP
