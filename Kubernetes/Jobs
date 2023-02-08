@@ -1,3 +1,4 @@
+Jobs runs pods that perform a completable task.
 Jobs help us to perform a particular task which we assigned to them.
 Jobs will perform a given task and once it’s completed it will stop the process.
 
