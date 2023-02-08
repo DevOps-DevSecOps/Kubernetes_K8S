@@ -70,6 +70,17 @@ You will also likely see 'Reason: OOM' in the container in the describe pod outp
 $ kubectl get pods
 NAME        READY    STATUS       RESTARTS    AGE
 POD_NAME    0/1      OOMKilled    0           3m12s
+$ kubectl describe pod POD_NAME
+...
+...
+       Last State:   Terminated
+       Reason:       OOMKilled
+       Exit Code:    137
+...
+...
+Exit code 137 indicates that the container was terminated due to an out of memory issue.
+To determine what caused the OOMKilled error:
+* The pod was terminated because a container limit was reached.
 => The liveness probe failed
 If you see a warning like this in the Events output in the describe pod.
 'Warning  Unhealthy  13s (x3 over 23s)  kubelet, dali      Liveness probe failed: cat: can't open '/tmp/healthy': No such file or directory'
@@ -77,3 +88,4 @@ If these are too short for the application initialization time, then Kubernetes 
 
 # Links:- https://containersolutions.github.io/runbooks/posts/kubernetes/crashloopbackoff/
           https://komodor.com/learn/exit-codes-in-containers-and-kubernetes-the-complete-guide/
+          https://komodor.com/learn/how-to-fix-oomkilled-exit-code-137/
