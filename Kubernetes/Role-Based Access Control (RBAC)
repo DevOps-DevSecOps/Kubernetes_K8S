@@ -27,6 +27,7 @@ Kubernetes uses service accounts to authenticate and authorize requests by pods 
 [Role]
 Role are applicable within a namespace.
 Role are namespaced, meaning Roles work within the constraints of a namespace.
+Role contains one or more rules that represent a set of permissions.
 After creating a Role, assign it to a user or group of users by creating a RoleBinding.
 After creating a Role, have to bind them to either RoleBinding or ClusterRoleBinding.
 If a namespaced grouping of resources and allowed operations that can assign to a user or a group of users using a RoleBinding.
@@ -38,12 +39,13 @@ RoleBinding holds a list of subjects (users, groups, or service accounts) and a 
 RoleBinding grants permissions within a specific namespace.
 RoleBinding may reference any Role in the same namespace.
 It assign a Role or a ClusterRole to a user or a group within a specific namespace.
-It is used for granting permission to a Subject in a Kubernetes cluster. Subjects are nothing but a user, service, or a group.
+It is used for granting permission to a Subject in a Kubernetes cluster. Subjects are nothing but a users, service accounts, groups.
 
 [ClusterRole]
 ClusterRole are applicable across cluster-wide.
 ClusterRole give access across more than one namespace or all namespaces.
-After creating a ClusterRole, you assign it to a user or group of users by creating a RoleBinding or ClusterRoleBinding.
+ClusterRoles are not bound to a specific namespace. ClusterRole give access across more than one namespace or all namespaces.
+After creating a ClusterRole, assign it to a user or group of users by creating a RoleBinding or ClusterRoleBinding.
 ClusterRoles are typically used with service accounts.
 Its a cluster-level grouping of resources and allowed operations that can assign to a user or a group using a RoleBinding or a ClusterRoleBinding.
 It used to assign resources on a cluster level, need to use ClusterRole.
@@ -59,6 +61,6 @@ Read-only within a Namespace.
 
 [ClusterRoleBinding]
 ClusterRoleBinding grants access cluster-wide and to multiple namespaces.
-ClusterRoleBinding is binding or associating a ClusterRole with a Subject (users, groups, or service accounts).
+ClusterRoleBinding is binding or associating a ClusterRole with a Subject (users, groups, service accounts).
 It assign a ClusterRole to a user or a group for all namespaces in the cluster.
 It is used to grant permission to a subject on a cluster-level in all the namespaces.
