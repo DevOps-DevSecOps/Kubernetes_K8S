@@ -1,1 +1,2 @@
+It isolates the network between pods by specifying which pods can connect to each other, and other network endpoints.
 The main features of Ingress are load balancing, name-based virtual hosting, URL routing, and SSL termination.
