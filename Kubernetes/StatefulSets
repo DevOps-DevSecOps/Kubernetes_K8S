@@ -1,4 +1,4 @@
-StatefulSets is used for stateful applications.
+StatefulSets is used to manage for stateful applications with persistent storage.
 StatefulSet is the Kubernetes controller used to run the stateful application as containers (Pods) in the Kubernetes cluster.
 The advantage of StatefulSets are unique network identifiers, persistent storage, graceful deployment and scaling, automated rolling updates.
 StatefulSets assign a sticky identity an ordinal number starting from zero to each Pod instead of assigning random IDs for each replica Pod.
@@ -11,6 +11,7 @@ Ordered numbers for each Pod.
 The first Pod (POD_NAME-0) will be Primary and other Pods (POD_NAME-1 ..... POD_NAME-NO) will be Secondary.
 The first Pod (POD_NAME-0) will handle both read and write requests from the user and other Pods (POD_NAME-1 ..... POD_NAME-NO) always sync with the first Pod (POD_NAME-0) for data replication.
 The first Pod (POD_NAME-0) can be a primary when creating a replicated database setup which handles both reading and writing, remaining other Pods (POD_NAME-1 ..... POD_NAME-NO) act as replicas will be secondary.
+Each Pod has own storage.
 If any of the Pod dies, a new Pod is created with the same name.
 If the Pod destroy because of many reasons, so then it come up with a new Pod is recreated with the same name.
 New Pods will only be created if the previous Pod is in running state and will clone the previous Pod’s data.
