@@ -1,5 +1,8 @@
-Cron jobs are useful for creating periodic and recurring tasks, like running backups or sending emails.
-Cron jobs can also schedule individual tasks for a specific time.
+CronJob creates Jobs on a repeating schedule.
+It runs a job periodically on a given schedule, written in Cron format.
+CronJob are meant for performing regular scheduled actions such as backups, report generation.
+CronJob are useful for creating periodic and recurring tasks, like running backups or sending emails.
+CronJob can also schedule individual tasks for a specific time.
 It runs a job periodically on a given schedule, written in Cron format.
 
 ['failedJobHistoryLimit' & 'successfulJobsHistoryLimit']
