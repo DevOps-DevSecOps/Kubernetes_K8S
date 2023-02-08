@@ -10,3 +10,5 @@ ResourceQuotas can also be set for Kubernetes Objects with in a Namespaces.
 ● For every Container in the Pod, the memory limit must equal the memory request.
 ● Every Container in the Pod must have a CPU limit and a CPU request.
 ● For every Container in the Pod, the CPU limit must equal the CPU request.
+
+In Kubernetes cluster each nodes have a set of Memory, CPU, Disk. So whenever a Pod is placed on a Node 
