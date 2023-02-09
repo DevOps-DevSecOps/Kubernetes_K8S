@@ -1,1 +1,10 @@
 It isolates the network between pods by specifying which pods can connect to each other, and other network endpoints.
+There are no of Network providers that support Network Policy.
+* Calico
+* Cilium
+* Romana
+* Weave Net
+
+By default the Pods are non isolated, they can accept any traffic from any source.
+Let say have created a new Pod and the created a Service IP (ClusterIP, NodePort) attached to Pod, so that particular Pod accessed by any of the Pod in the cluster.
+  
