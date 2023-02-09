@@ -268,10 +268,11 @@ kubectl get pods -l KEY=VALUE -n NAMESPACE_NAME
 kubectl get pods -l KEY=VALUE -n=NAMESPACE_NAME
 kubectl get pods -l KEY=VALUE --namespace=NAMESPACE_NAME
 kubectl get pods -l KEY=VALUE --namespace NAMESPACE_NAME
-kubectl get pods -n NAMESPACE_NAME
 kubectl get pods -n=NAMESPACE_NAME
+kubectl get pods -n NAMESPACE_NAME
 kubectl get pods -n NAMESPACE_NAME -w
 kubectl get pods -n NAMESPACE_NAME --watch
+kubectl get pods -n NAMESPACE_NAME --show-labels
 kubectl get pods -n NAMESPACE_NAME --selector KEY=VALUE
 kubectl get pods --namespace NAMESPACE_NAME
 kubectl get pods --namespace NAMESPACE_NAME -w
@@ -306,6 +307,7 @@ kubectl attach -it POD_NAME
 kubectl attach -it POD_NAME -c CONTAINER_NAME
 kubectl exec -it POD_NAME sh
 kubectl exec -it POD_NAME bash
+kubectl exec -it POD_NAME bash -n NAMESPACE_NAME
 kubectl exec -it POD_NAME /bin/sh
 kubectl exec -it POD_NAME /bin/bash
 kubectl exec -it POD_NAME LINUX_COMMANDS
@@ -429,8 +431,9 @@ kubectl create deploy DEPLOYMENT_NAME --image=IMAGE_NAME --replicas=NO
 kubectl create deploy DEPLOYMENT_NAME --image=IMAGE_NAME --dry-run -o yaml > FILE_NAME.yaml
 kubectl create deploy DEPLOYMENT_NAME --image=index.docker.io/DOCKER_HUB_USER_ID/REPOSITORY_NAME
 kubectl create deploy DEPLOYMENT_NAME --image=index.docker.io/DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
-kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME
 kubectl create deployment DEPLOYMENT_NAME --image IMAGE_NAME
+kubectl create deployment DEPLOYMENT_NAME --image IMAGE_NAME -n NAMESPACE_NAME
+kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME
 kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME:TAG
 kubectl create deployment DEPLOYMENT_NAME --image IMAGE_NAME:TAG
 kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME --replicas=NO
