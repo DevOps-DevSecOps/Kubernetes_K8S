@@ -6,5 +6,6 @@ There are no of Network providers that support Network Policy.
 * Weave Net
 
 By default the Pods are non isolated, they can accept any traffic from any source.
+Pods become isolated by attaching to a Network Policy.
+Network Policy is attached to a Pod, that pod will reject any connections that are not allowed by any Network Policy.
 Let say have created a new Pod and the created a Service IP (ClusterIP, NodePort) attached to Pod, so that particular Pod accessed by any of the Pod in the cluster.
-  
