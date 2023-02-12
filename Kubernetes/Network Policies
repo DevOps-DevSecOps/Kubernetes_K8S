@@ -6,6 +6,9 @@ There are no of Network providers that support Network Policy.
 * Weave Net
 
 By default the Pods are non isolated, they can accept any traffic from any source.
+By default, all pods in Kubernetes are non-isolated, meaning that all pods are able to talk to one another. This is true for pods in the same namespace and pods in different namespaces.
+It defines how the pods in the same namespace will communicate with each other and the network endpoint.
 Pods become isolated by attaching to a Network Policy.
 Network Policy is attached to a Pod, that pod will reject any connections that are not allowed by any Network Policy.
+Its resources use labels to select the pods and define rules to allow traffic to a specific pod in addition to which is defined in the namespace.
 Let say have created a new Pod and the created a Service IP (ClusterIP, NodePort) attached to Pod, so that particular Pod accessed by any of the Pod in the cluster.
