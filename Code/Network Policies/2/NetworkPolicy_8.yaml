@@ -9,9 +9,9 @@ spec:
          role: backend
    ingress:
    - from:
-      - podSelector:
+     - podSelector:
          matchLabels:
             role: frontend
-   ports:
-      - protocol: TCP
-        port: 6379
+     ports:
+     - protocol: TCP
+       port: 6379
