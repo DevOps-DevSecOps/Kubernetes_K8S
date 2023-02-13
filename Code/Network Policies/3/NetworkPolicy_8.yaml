@@ -1,0 +1,11 @@
+# To provide a deny all action to the policy a regular allow policy can be applied with an empty selector.
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-all
+  namespace: default
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
