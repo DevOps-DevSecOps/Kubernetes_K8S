@@ -963,6 +963,9 @@ kubectl delete ingress INGRESS_NAME
 kubectl edit networkpolicy NETWORKPOLICY_NAME
 kubectl edit networkpolicy NETWORKPOLICY_NAME -n NAMESPACE_NAME
 kubectl get netpol
+kubectl get netpol -n NAMESPACE_NAME
+kubectl describe netpol NETWORKPOLICY_NAME
+kubectl describe netpol NETWORKPOLICY_NAME -n NAMESPACE_NAME
 kubectl describe networkpolicy
 kubectl describe networkpolicy -n NAMESPACE_NAME
 kubectl describe networkpolicy NETWORKPOLICY_NAME
