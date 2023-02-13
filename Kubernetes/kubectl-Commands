@@ -5,7 +5,6 @@ kubectl version --client
 kubectl version --client --output=yaml
 
 [YAML]
-kubectl create -f ./FOLDER_NAME
 kubectl create -f FILE_NAME.yaml
 kubectl create -f FILE_NAME.yaml --record
 kubectl create -f FILE_NAME.yaml -n NAMESPACE_NAME
@@ -13,7 +12,9 @@ kubectl create -f FILE_NAME.yaml --namespace NAMESPACE_NAME
 kubectl create -f FILE_NAME.yaml --namespace=NAMESPACE_NAME
 kubectl create -f FILE_NAME.yaml --record                            # '--record' OR '--record=true' flag indicate allows to record and write the current command executed in the resource annotation {kubernetes.io/change-cause} being created or updated, to see the commands executed in each Deployment revision
 kubectl create -f FILE_NAME.yaml --dry-run --validate
+kubectl create -f ./FOLDER_NAME
 kubectl create -f /FOLDER_NAME/FILE_NAME.yaml
+kubectl create -f FOLDER_NAME/FILE_NAME.yaml --namespace=NAMESPACE_NAME
 kubectl create -f HTTPS_URL_FILE_NAME.yaml
 kubectl create -f HTTPS_URL_FILE_NAME.yaml -n NAMESPACE_NAME
 kubectl apply -f .                                                  # create resources in all manifest files inside folder
@@ -91,12 +92,14 @@ kubectl run NAME --image=IMAGE_NAME --labels="KEY=VALUE"
 kubectl run NAME --image=IMAGE_NAME --labels="KEY=VALUE,KEY=VALUE"
 kubectl run NAME --image=IMAGE_NAME --labels="KEY=VALUE, KEY=VALUE"
 kubectl run NAME --image=IMAGE_NAME --env="KEY=VALUE" --env="KEY=VALUE"         # set environment variables in the container
+kubectl run NAME --image=IMAGE_NAME --env="KEY=VALUE" --port=CONTAINER_PORT_NO --namespace=NAMESPACE_NAME
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME
-kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --namespace=NAMESPACE_NAME
 kubectl run NAME --image DOCKER_HUB_USER_ID/REPOSITORY_NAME --context=CONTEXT_NAME
+kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --namespace=NAMESPACE_NAME
+kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --dry-run=client -o yaml > FILE_NAME.yaml
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --labels KEY=VALUE --port CONTAINER_PORT_NO --expose
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --requests=cpu=NOm --expose --port=CONTAINER_PORT_NO                       # Pod_Deployment and Service
-kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --dry-run=client -o yaml > FILE_NAME.yaml
+kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --env="KEY=VALUE" --port=CONTAINER_PORT_NO --namespace=NAMESPACE_NAME
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --port=CONTAINER_PORT_NO
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --restart=Never
@@ -113,13 +116,15 @@ kubectl run --rm -it NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME
 kubectl run --rm -it NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --restart=Never
 kubectl run --rm -i -t NAME --image=IMAGE_NAME -- sh
 kubectl run --rm -i -t NAME --image=IMAGE_NAME --restart=Never -l KEY=VALUE
-kubectl run -i --tty NAME --image IMAGE_NAME:TAG
-kubectl run -i --tty NAME --image=IMAGE_NAME -- sh                              # run pod as interactive shell
-kubectl run -i --tty NAME --image=IMAGE_NAME --restart=Never -- bash
-kubectl run -i --tty NAME --image=IMAGE_NAME:TAG --restart=Never -- bash
-kubectl run -i --tty NAME --image=IMAGE_NAME --restart=Never                    # keep it in the foreground, don't restart it if it exits
+kubectl run -i --tty NAME --image IMAGE_NAME
 kubectl run -i --tty NAME --image=IMAGE_NAME /bin/sh
 kubectl run -i --tty NAME --image IMAGE_NAME --command "/bin/sh"
+kubectl run -i --tty NAME --image=IMAGE_NAME -- sh                              # run pod as interactive shell
+kubectl run -i --tty NAME --image=IMAGE_NAME --restart=Never                    # keep it in the foreground, don't restart it if it exits
+kubectl run -i --tty NAME --image=IMAGE_NAME --restart=Never -- bash
+kubectl run -i --tty NAME --image=IMAGE_NAME --restart=Never --namespace=NAMESPACE_NAME -- sh
+kubectl run -i --tty NAME --image IMAGE_NAME:TAG
+kubectl run -i --tty NAME --image=IMAGE_NAME:TAG --restart=Never -- bash
 kubectl run -i --tty NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
 kubectl run -i --tty --rm NAME --image IMAGE_NAME:TAG --restart=Never
 kubectl run -i --tty --rm NAME --image IMAGE_NAME:TAG --restart=Never /bin/sh
@@ -348,6 +353,7 @@ kubectl exec POD_NAME --container CONTAINER_NAME -- LINUX_COMMANDS
 kubectl exec POD_NAME --container CONTAINER_NAME -- sh -c "LINUX_COMMANDS"
 kubectl label po POD_NAME KEY=VALUE
 kubectl label po POD_NAME KEY=VALUE -n NAMESPACE_NAME
+kubectl label po --selector=KEY=VALUE --namespace=NAMESPACE_NAME KEY=VALUE      # add a label for existing pod by using selector
 kubectl label pod POD_NAME KEY=VALUE                                            # add a label for existing pod
 kubectl label pod POD_NAME KEY=VALUE KEY=VALUE
 kubectl label pod POD_NAME KEY=VALUE --overwrite                                # change a new VALUE to existing KEY for existing pod
@@ -481,6 +487,7 @@ kubectl expose deployment DEPLOYMENT_NAME --name SERVICE_NAME --port=SERVICE_POR
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO
+kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO --namespace=NAMESPACE_NAME
 kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --port SERVICE_PORT_NO --target-port CONTAINER_PORT_NO --type SERVICE_TYPES
@@ -956,6 +963,7 @@ kubectl describe networkpolicy
 kubectl describe networkpolicy -n NAMESPACE_NAME
 kubectl describe networkpolicy NETWORKPOLICY_NAME
 kubectl describe networkpolicy NETWORKPOLICY_NAME -n NAMESPACE_NAME
+kubectl delete netpol NETWORKPOLICY_NAME --namespace=NAMESPACE_NAME
 
 [ConfigMaps]
 kubectl create cm CONFIGMAP_NAME --from-literal=KEY=VALUE
