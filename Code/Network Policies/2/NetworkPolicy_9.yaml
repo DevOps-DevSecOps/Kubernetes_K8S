@@ -3,14 +3,14 @@ kind: NetworkPolicy
 metadata:
   name: deny-backend-egress
   namespace: default
-  spec:
-    podSelector:
+spec:
+  podSelector:
     matchLabels:
       tier: backend
-      policyTypes:
-      - Egress
-      egress:
-      - to:
-         - podSelector:
+  policyTypes:
+  - Egress
+  egress:
+  - to:
+    - podSelector:
         matchLabels:
-        tier: backend
+          tier: backend
