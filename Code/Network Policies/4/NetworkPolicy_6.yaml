@@ -8,8 +8,8 @@ spec:
     matchLabels:
       app: webserver-dev 
   policyTypes:
-  -	Ingress
-  -	Egress 
+  - Ingress
+  - Egress 
   ingress:
   -	from:
     - ipBlock:
