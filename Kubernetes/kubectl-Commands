@@ -76,6 +76,8 @@ kubectl run NAME --image IMAGE_NAME --restart Never -n NAMESPACE_NAME
 kubectl run NAME --image=IMAGE_NAME:TAG --restart=Never -- LINUX_COMMANDS
 kubectl run NAME --image=IMAGE_NAME -n NAMESPACE_NAME
 kubectl run NAME --image=IMAGE_NAME --namespace=NAMESPACE_NAME
+kubectl run NAME --image=IMAGE_NAME --namespace NAMESPACE_NAME --expose --port CONTAINER_PORT_NO
+kubectl run NAME --image=IMAGE_NAME:TAG --namespace NAMESPACE_NAME --expose --port CONTAINER_PORT_NO
 kubectl run NAME --image=IMAGE_NAME --dry-run
 kubectl run NAME --image=IMAGE_NAME --dry-run -o yaml
 kubectl run NAME --image=IMAGE_NAME --dry-run=client -o yaml
@@ -108,9 +110,10 @@ kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --labels KEY=VAL
 kubectl run NAME --image=index.docker.io/DOCKER_HUB_USER_ID/REPOSITORY_NAME --requests=cpu=NOm,memory=NOM --expose --port=CONTAINER_PORT_NO
 kubectl run --rm -it NAME --image=IMAGE_NAME
 kubectl run --rm -it NAME --image=IMAGE_NAME --restart=Never
-kubectl run --rm -it NAME --image=IMAGE_NAME:TAG --restart=Never
 kubectl run --rm -it NAME --image=IMAGE_NAME --restart=Never -- sh
 kubectl run --rm -it NAME --image=IMAGE_NAME --restart=Never -- LINUX_COMMANDS
+kubectl run --rm -it NAME --image=IMAGE_NAME:TAG --namespace NAMESPACE_NAME
+kubectl run --rm -it NAME --image=IMAGE_NAME:TAG --restart=Never
 kubectl run --rm -it NAME --image=IMAGE_NAME:TAG --restart=Never -- LINUX_COMMANDS
 kubectl run --rm -it NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME
 kubectl run --rm -it NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --restart=Never
@@ -382,6 +385,7 @@ kubectl logs POD_NAME -c CONTAINER_NAME -n NAMESPACE_NAME
 kubectl logs POD_NAME -c CONTAINER_NAME -n NAMESPACE_NAME --previous
 kubectl logs -f POD_NAME
 kubectl logs -f POD_NAME -c CONTAINER_NAME
+kubectl logs -f POD_NAME -c CONTAINER_NAME -n NAMESPACE_NAME
 kubectl logs -f POD_NAME --tail NO
 kubectl logs -f POD_NAME --tail NO -c CONTAINER_NAME
 kubectl logs --follow POD_NAME
