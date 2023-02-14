@@ -1,0 +1,15 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  Namespace: accounts
+  name: accounts-allow
+spec:
+  podSelector:
+    matchLabels:
+      app: Srv1
+      Tier: backend
+  ingress:
+  - from:
+    - NamespaceSelector:
+        matchLabels:
+          usage: finance
