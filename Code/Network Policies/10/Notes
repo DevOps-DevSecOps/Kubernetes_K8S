@@ -31,6 +31,22 @@ pod/nginx-701339712-e0qfq   1/1           Running       0          35s
 $ kubectl run busybox --rm -ti --image=busybox:1.28 -- /bin/sh
   ......./ # wget --spider --timeout=1 nginx
            Connecting to nginx (10.100.0.16:80)
+           remote file exists
 
 [create a NetworkPolicy]
-$
+$ kubectl create -f NetworkPolicy.yaml
+networkpolicy "access-nginx" created
+
+● Now attempt to access the nginx Service from a Pod without the correct labels, the request times out.
+
+$ kubectl run busybox --rm -ti --image=busybox:1.28 -- /bin/sh
+  ......./ # wget --spider --timeout=1 nginx
+           Connecting to nginx (10.100.0.16:80)
+           wget: download timed out
+
+● create a Pod with the correct labels to see that the request is allowed.
+
+$ kubectl run busybox --rm -ti --labels="access=true" --image=busybox:1.28 -- /bin/sh
+  ......./ # wget --spider --timeout=1 nginx
+           Connecting to nginx (10.100.0.16:80)
+           remote file exists
