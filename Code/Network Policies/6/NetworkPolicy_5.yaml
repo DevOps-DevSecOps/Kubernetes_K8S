@@ -1,7 +1,7 @@
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  Namespace: accounts
+  namespace: accounts
   name: accounts-allow
 spec:
   podSelector:
@@ -10,8 +10,8 @@ spec:
       Tier: backend
   ingress:
   - from:
-    - NamespaceSelector:
+    - namespaceSelector:
         matchLabels:
           usage: finance
       ports:
-        port: 3111
+      - port: 3111
