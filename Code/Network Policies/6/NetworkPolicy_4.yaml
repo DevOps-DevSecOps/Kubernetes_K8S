@@ -1,0 +1,15 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: db-allow
+spec:
+  podSelector:
+    matchLabels:
+      app: Srv1
+      tier: db
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: Srv1
+          Tier: backend
