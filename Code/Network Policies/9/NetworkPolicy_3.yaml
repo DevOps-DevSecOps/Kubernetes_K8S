@@ -1,0 +1,26 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: proxy-to-service-ingress-egress
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/component: proxy
+  policyTypes:
+    - Egress
+    - Ingress
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 192.168.64.28/32
+      ports:
+        - port: 8443
+          protocol: TCP
+  ingress:
+    - from:
+      - ipBlock:
+          cidr: 192.168.64.28/32
+      ports:
+        - port: 8443
+          protocol: TCP
