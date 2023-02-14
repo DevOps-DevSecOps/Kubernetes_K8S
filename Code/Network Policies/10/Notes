@@ -1,0 +1,36 @@
+[create an Deployment]
+$ kubectl run nginx --image=nginx --replicas=2
+deployment "nginx" created
+
+$ kubectl create deployment nginx --image=nginx
+deployment.apps/nginx created
+
+[create an Service]
+$ kubectl expose deployment nginx --port=80 
+service "nginx" exposed
+
+[verify the details]
+$ kubectl get svc,pod
+NAME                        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE
+svc/kubernetes              10.100.0.1    <none>        443/TCP    6m
+svc/nginx                   10.100.0.16   <none>        80/TCP     3s
+NAME                        READY         STATUS        RESTARTS   AGE
+po/nginx-701339712-e0qfq    1/1           Running       0          5s
+po/nginx-701339712-o00ef    1/1           Running       0          5s
+
+$ kubectl get svc,pod
+NAME                        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE
+service/kubernetes          10.100.0.1    <none>        443/TCP    46m
+service/nginx               10.100.0.16   <none>        80/TCP     33s
+NAME                        READY         STATUS        RESTARTS   AGE
+pod/nginx-701339712-e0qfq   1/1           Running       0          35s
+
+● Now able to access the new nginx service from other Pods.
+● To access the nginx Service from another Pod in the default namespace, start a busybox container.
+
+$ kubectl run busybox --rm -ti --image=busybox:1.28 -- /bin/sh
+  ......./ # wget --spider --timeout=1 nginx
+           Connecting to nginx (10.100.0.16:80)
+
+[create a NetworkPolicy]
+$
