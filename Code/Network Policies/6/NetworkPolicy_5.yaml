@@ -13,5 +13,5 @@ spec:
     - namespaceSelector:
         matchLabels:
           usage: finance
-      ports:
+    ports:
       - port: 3111
