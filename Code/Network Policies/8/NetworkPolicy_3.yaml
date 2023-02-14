@@ -1,0 +1,16 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: egress-access-myapp
+spec:
+  podSelector:
+    matchLabels:
+      app: myapp
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 1.1.1.1/32
+    ports:
+    - protocol: TCP
+      port: 443
