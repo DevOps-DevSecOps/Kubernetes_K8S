@@ -1,0 +1,30 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-access
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: ingress-nginx
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 192.168.1.0/24
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-to-backends
+spec:
+  podSelector:
+    matchLabels:
+      app: myapp
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          ingress: "true"
+      podSelector:
+        matchLabels:
+          app.kubernetes.io/name: ingress-nginx
