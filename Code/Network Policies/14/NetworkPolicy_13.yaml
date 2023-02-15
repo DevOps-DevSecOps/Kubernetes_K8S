@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: example-ingress-policy
+  namespace: sink-ns
+spec:
+  podSelector:
+    matchLabels:
+      to: "sink"
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          network/namespace: source-ns
+    - podSelector:
+        matchLabels:
+          from: "source"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: example-egress-policy
+  namespace: source-ns
+spec:
+  podSelector:
+    matchLabels:
+      from: "source"
+  policyTypes:
+  - Egress
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          network/namespace: sink-ns
+    - podSelector:
+        matchLabels:
+          to: "sink"
