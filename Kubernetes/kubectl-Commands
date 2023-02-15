@@ -804,6 +804,7 @@ kubectl create ns NAMESPACE_NAME --dry-run=client -o yaml > FILE_NAME.yaml
 kubectl create namespace NAMESPACE_NAME
 kubectl create namespace NAMESPACE_NAME --dry-run -o yaml
 kubectl label ns NAMESPACE_NAME KEY=VALUE
+kubectl label namespace NAMESPACE_NAME KEY=VALUE
 kubectl label namespace/NAMESPACE_NAME KEY=VALUE
 kubectl get ns
 kubectl get ns -o wide
