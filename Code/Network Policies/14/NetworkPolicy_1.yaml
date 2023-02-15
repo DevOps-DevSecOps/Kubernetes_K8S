@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: simple-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: target-app-who-is-applied-the-policy
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 172.17.0.0/16
+    - namespaceSelector:
+        matchLabels:
+          name: namespace-that-can-talk-to-my-app
+    - podSelector:
+        matchLabels:
+          app: pod-that-can-talk-to-my-app
+    ports:
+    - protocol: TCP
+      port: 6379
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 10.0.0.0/24
+    - namespaceSelector:
+        matchLabels:
+          name: namespace-my-app-can-talk-to
+    - podSelector:
+        matchLabels:
+          app: pod-my-app-can-talk-to
+    ports:
+    - protocol: TCP
+      port: 5978
