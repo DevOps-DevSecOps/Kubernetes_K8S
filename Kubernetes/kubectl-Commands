@@ -200,6 +200,7 @@ kubectl get pod -A                                                             #
 kubectl get pod
 kubectl get pod --watch
 kubectl get pod --output=wide
+kubectl get pod --output=wide -n NAMESPACE_NAME
 kubectl get pod -o wide
 kubectl get pod -o wide -l KEY=VALUE
 kubectl get pod -l KEY=VALUE
@@ -338,6 +339,7 @@ kubectl exec -it POD_NAME -- /bin/sh
 kubectl exec -it POD_NAME -- /bin/bash
 kubectl exec -it POD_NAME -- /bin/bash -c "LINUX_COMMANDS"
 kubectl exec -it POD_NAME -- LINUX_COMMANDS
+kubectl exec -it POD_NAME -- LINUX_COMMANDS -n NAMESPACE_NAME
 kubectl exec -it POD_NAME -c CONTAINER_NAME -- sh
 kubectl exec -it POD_NAME -c CONTAINER_NAME -- bash
 kubectl exec -it POD_NAME -c CONTAINER_NAME -- bash --namespace NAMESPACE_NAME
@@ -365,6 +367,7 @@ kubectl label po POD_NAME KEY=VALUE
 kubectl label po POD_NAME KEY=VALUE -n NAMESPACE_NAME
 kubectl label po --selector=KEY=VALUE --namespace=NAMESPACE_NAME KEY=VALUE      # add a label for existing pod by using selector
 kubectl label pod POD_NAME KEY=VALUE                                            # add a label for existing pod
+kubectl label pod POD_NAME KEY=VALUE -n NAMESPACE_NAME
 kubectl label pod POD_NAME KEY=VALUE KEY=VALUE
 kubectl label pod POD_NAME KEY=VALUE --overwrite                                # change a new VALUE to existing KEY for existing pod
 kubectl label pod POD_NAME KEY-                                                 # removing a label for existing pod
@@ -973,6 +976,7 @@ kubectl edit networkpolicy NETWORKPOLICY_NAME -n NAMESPACE_NAME
 kubectl get netpol
 kubectl get netpol -A
 kubectl get netpol -n NAMESPACE_NAME
+kubectl get networkpolicies --all-namespaces
 kubectl describe netpol NETWORKPOLICY_NAME
 kubectl describe netpol NETWORKPOLICY_NAME -n NAMESPACE_NAME
 kubectl describe networkpolicy
