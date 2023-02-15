@@ -1,0 +1,17 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: ksm-can-be-accessed-by-my-app
+  namespace: kube-system
+spec:
+  podSelector:
+    matchLabels:
+      app: kube-state-metrics
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: my-app-that-needs-access-to-ksm
+      ports:
+        - protocol: TCP
+          port: 10301
