@@ -1,2 +1,40 @@
+[Restricting incoming traffic to Pods]
+
 $ kubectl run hello-web --labels app=hello --image=google-samples/containers/gke/hello-app:1.0 --port 8080 --expose
 
+$ kubectl apply -f NetworkPolicy_1.yaml
+
+● run a temporary Pod with the label app=foo and get a shell in the Pod.
+
+$ kubectl run -l app=foo --image=alpine --restart=Never --rm -i -t test-1
+  ......./ # wget -qO- --timeout=2 http://hello-web:8080
+           Hello, world!
+           Version: 1.0.0
+           Hostname: hello-web-2258067535-vbx6z
+  ......./ # exit
+
+● run a temporary Pod with a different label (app=other) and get a shell inside the Pod.
+
+$ kubectl run -l app=other --image=alpine --restart=Never --rm -i -t test-1
+  ......./ # wget -qO- --timeout=2 http://hello-web:8080
+           wget: download timed out
+  ......./ # exit
+
+[Restricting outgoing traffic from the Pods]
+
+$ kubectl apply -f NetworkPolicy_2.yaml
+
+$ kubectl run hello-web-2 --labels app=hello-2 --image=google-samples/containers/gke/hello-app:1.0 --port 8080 --expose
+
+● run a temporary Pod with the label app=foo and open a shell inside the container.
+
+$ kubectl run -l app=foo --image=alpine --rm -i -t --restart=Never test-3
+  ......./ # wget -qO- --timeout=2 http://hello-web:8080                                    # validate that the Pod can establish connections to hello-web:8080
+           Hello, world!
+           Version: 1.0.0
+           Hostname: hello-web-2258067535-vbx6z
+  ......./ # wget -qO- --timeout=2 http://hello-web-2:8080                                  # validate that the Pod cannot establish connections to hello-web-2:8080
+           wget: download timed out
+  ......./ # wget -qO- --timeout=2 http://www.example.com                                   # validate that the Pod cannot establish connections to external websites such as www.example.com
+           wget: download timed out
+  ......./ # exit
