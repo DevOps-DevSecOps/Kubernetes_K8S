@@ -1,0 +1,8 @@
+# kubectl create ns staging
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: admin
+  labels:
+    role: admin
