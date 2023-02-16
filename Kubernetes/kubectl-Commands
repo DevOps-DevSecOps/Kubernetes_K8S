@@ -286,11 +286,13 @@ kubectl get pods -l KEY=VALUE -n NAMESPACE_NAME
 kubectl get pods -l KEY=VALUE -n=NAMESPACE_NAME
 kubectl get pods -l KEY=VALUE --namespace=NAMESPACE_NAME
 kubectl get pods -l KEY=VALUE --namespace NAMESPACE_NAME
+kubectl get pods -l "KEY=VALUE" --namespace NAMESPACE_NAME
 kubectl get pods -n=NAMESPACE_NAME
 kubectl get pods -n NAMESPACE_NAME
 kubectl get pods -n NAMESPACE_NAME -w
 kubectl get pods -n NAMESPACE_NAME --watch
 kubectl get pods -n NAMESPACE_NAME --show-labels
+kubectl get pods -n NAMESPACE_NAME --show-labels -o wide
 kubectl get pods -n NAMESPACE_NAME --selector KEY=VALUE
 kubectl get pods --namespace NAMESPACE_NAME
 kubectl get pods --namespace NAMESPACE_NAME -w
@@ -379,6 +381,7 @@ kubectl annotate pod POD_NAME KEY=VALUE --overwrite                             
 kubectl annotate pod POD_NAME KEY-                                              # removing a annotation for existing pod
 kubectl annotate pods POD_NAME KEY=VALUE                                        # add a annotation for existing pod
 kubectl logs POD_NAME
+kubectl logs POD_NAME -f
 kubectl logs POD_NAME -n NAMESPACE_NAME
 kubectl logs POD_NAME --namespace NAMESPACE_NAME
 kubectl logs POD_NAME --namespace NAMESPACE_NAME --tail NO
@@ -392,6 +395,7 @@ kubectl logs POD_NAME > FILE_NAME
 kubectl logs POD_NAME -c CONTAINER_NAME
 kubectl logs POD_NAME -c CONTAINER_NAME --previous
 kubectl logs POD_NAME -c CONTAINER_NAME -n NAMESPACE_NAME
+kubectl logs POD_NAME -c CONTAINER_NAME -n NAMESPACE_NAME -f
 kubectl logs POD_NAME -c CONTAINER_NAME -n NAMESPACE_NAME --previous
 kubectl logs -f POD_NAME
 kubectl logs -f POD_NAME -c CONTAINER_NAME
@@ -472,8 +476,9 @@ kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME --dry-run -o yaml >
 kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME --dry-run=client -o yaml
 kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME --dry-run=client -o yaml > FILE_NAME.yaml
 kubectl create deployment DEPLOYMENT_NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME
-kubectl create deployment DEPLOYMENT_NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
 kubectl create deployment DEPLOYMENT_NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --replicas=NO
+kubectl create deployment DEPLOYMENT_NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME -n NAMESPACE_NAME
+kubectl create deployment DEPLOYMENT_NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
 kubectl set env deployment/DEPLOYMENT_NAME NAME=VALUE                                           #
 kubectl set image deploy DEPLOYMENT_NAME CONTAINER_NAME=IMAGE_NAME
 kubectl set image deploy DEPLOYMENT_NAME CONTAINER_NAME=IMAGE_NAME:TAG
@@ -501,6 +506,8 @@ kubectl expose deployment DEPLOYMENT_NAME --name SERVICE_NAME --port=SERVICE_POR
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO
+kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO -n NAMESPACE_NAME
+kubectl expose deployment DEPLOYMENT_NAME --port SERVICE_PORT_NO -n NAMESPACE_NAME
 kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO --namespace=NAMESPACE_NAME
 kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=SERVICE_TYPES
@@ -542,6 +549,7 @@ kubectl get deployment -l KEY=VALUE
 kubectl get deployment -l KEY=VALUE --show-labels
 kubectl get deployment -n NAMESPACE_NAME
 kubectl get deployment -n=NAMESPACE_NAME
+kubectl get deployment --all-namespaces
 kubectl get deployment DEPLOYMENT_NAME
 kubectl get deployment DEPLOYMENT_NAME --show-labels
 kubectl get deployment DEPLOYMENT_NAME -o wide
