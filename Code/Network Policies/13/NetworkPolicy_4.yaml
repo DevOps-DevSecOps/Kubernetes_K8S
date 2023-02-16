@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-server-to-access
+spec:
+  podSelector:
+    matchLabels:
+      deployment-b-pod-label-1-key: deployment-b-pod-label-1-value
+      deployment-b-pod-label-2-key: deployment-b-pod-label-2-value
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          deployment-a-pod-label-1-key: deployment-a-pod-label-1-value
+          deployment-a-pod-label-2-key: deployment-a-pod-label-2-value
