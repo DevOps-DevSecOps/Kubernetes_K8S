@@ -1,0 +1,17 @@
+[create a Namespace]
+$ kubectl create ns prod-nginx
+
+[details of the Pod]
+$ kubectl get pod -n prod-nginx -o wide --show-labels
+
+[details of the Service]
+$ kubectl get svc -n prod-nginx -o wide --show-labels
+
+[create a Pod]
+$ kubectl run -it --rm -n prod-nginx --image xxradar/hackon --env="POD=$POD" debug
+
+[create a NetworkPolicy]
+$ kubectl apply -n prod-nginx -f NetworkPolicy_1.yaml
+
+[change a new VALUE to existing KEY for Namespace]
+$ kubectl label ns kube-system kubernetes.io/metadata.name=kube-system --overwrite
