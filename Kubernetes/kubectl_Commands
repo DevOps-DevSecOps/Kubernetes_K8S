@@ -8,6 +8,7 @@ $ exit                                               # quit the shell in the con
 kubectl exec -it POD_NAME printenv
 kubectl exec -it POD_NAME env --namespace=NAMESPACE_NAME
 kubectl exec -it POD_NAME ping IP_ADDRESS
+kubectl exec -it POD_NAME -- ping IP_ADDRESS
 kubectl exec -it POD_NAME -- cat /FOLDER_NAME/FILE_NAME
 kubectl exec -it POD_NAME -- ls -l /FOLDER_NAME/FOLDER_NAME
 kubectl exec POD_NAME env                            # list the environment variables in the running container
