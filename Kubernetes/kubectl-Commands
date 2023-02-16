@@ -124,6 +124,8 @@ kubectl run --rm -it NAME --image=IMAGE_NAME:TAG --restart=Never
 kubectl run --rm -it NAME --image=IMAGE_NAME:TAG --restart=Never -- LINUX_COMMANDS
 kubectl run --rm -it NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME
 kubectl run --rm -it NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --restart=Never
+kubectl run --rm -it NAME --image DOCKER_HUB_USER_ID/REPOSITORY_NAME -l KEY=VALUE -n NAMESPACE_NAME
+kubectl run --rm -it NAME --image DOCKER_HUB_USER_ID/REPOSITORY_NAME --env="KEY=VALUE" -n NAMESPACE_NAME
 kubectl run --rm -i -t NAME --image=IMAGE_NAME -- sh
 kubectl run --rm -i -t NAME --image=IMAGE_NAME --restart=Never -l KEY=VALUE
 kubectl run -i --tty NAME --image IMAGE_NAME
@@ -812,6 +814,7 @@ kubectl create ns NAMESPACE_NAME --dry-run=client -o yaml > FILE_NAME.yaml
 kubectl create namespace NAMESPACE_NAME
 kubectl create namespace NAMESPACE_NAME --dry-run -o yaml
 kubectl label ns NAMESPACE_NAME KEY=VALUE
+kubectl label ns NAMESPACE_NAME KEY=VALUE --overwrite
 kubectl label namespace NAMESPACE_NAME KEY=VALUE
 kubectl label namespace/NAMESPACE_NAME KEY=VALUE
 kubectl get ns
@@ -910,6 +913,7 @@ kubectl get svc --show-labels
 kubectl get svc --all-namespaces
 kubectl get svc -l KEY=VALUE
 kubectl get svc -n NAMESPACE_NAME
+kubectl get svc -n NAMESPACE_NAME -o wide --show-labels
 kubectl get svc SERVICE_NAME
 kubectl get svc/SERVICE_NAME
 kubectl get svc SERVICE_NAME -o yaml
