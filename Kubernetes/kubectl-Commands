@@ -720,6 +720,8 @@ kubectl get ds DAEMONSET_NAME -n NAMESPACE_NAME -o yaml
 kubectl get daemonset -A                                                                  # list pods in all namespaces
 kubectl get daemonset
 kubectl get daemonset -n NAMESPACE_NAME
+kubectl get daemonset DAEMONSET_NAME -n NAMESPACE_NAME
+kubectl get daemonset DAEMONSET_NAME --namespace NAMESPACE_NAME
 kubectl get daemonsets
 kubectl get daemonsets/DAEMONSET_NAME
 kubectl describe ds -n NAMESPACE_NAME
