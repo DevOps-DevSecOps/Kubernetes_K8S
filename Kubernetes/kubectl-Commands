@@ -993,6 +993,7 @@ kubectl describe networkpolicy -n NAMESPACE_NAME
 kubectl describe networkpolicy NETWORKPOLICY_NAME
 kubectl describe networkpolicy NETWORKPOLICY_NAME -n NAMESPACE_NAME
 kubectl delete netpol NETWORKPOLICY_NAME --namespace=NAMESPACE_NAME
+kubectl delete networkpolicy --all
 
 [ConfigMaps]
 kubectl create cm CONFIGMAP_NAME --from-literal=KEY=VALUE
