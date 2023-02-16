@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-n1-a-to-n2-b
+  namespace: N2
+spec:
+  podSelector:
+    matchLabels:
+      deployment-b-pod-label-1-key: deployment-b-pod-label-1-value
+      deployment-b-pod-label-2-key: deployment-b-pod-label-2-value
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    -  namespaceSelector:
+        matchLabels:
+          networking/namespace: N1
+       podSelector:
+        matchLabels:
+          deployment-a-pod-label-1-key: deployment-a-pod-label-1-value
+          deployment-a-pod-label-2-key: deployment-a-pod-label-2-value
