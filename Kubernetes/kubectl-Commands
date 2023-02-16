@@ -116,6 +116,8 @@ kubectl run --rm -it NAME --image=IMAGE_NAME
 kubectl run --rm -it NAME --image=IMAGE_NAME --restart=Never
 kubectl run --rm -it NAME --image=IMAGE_NAME --restart=Never -- sh
 kubectl run --rm -it NAME --image=IMAGE_NAME --restart=Never -- LINUX_COMMANDS
+kubectl run --rm -it NAME --image IMAGE_NAME --namespace NAMESPACE_NAME
+kubectl run --rm -it NAME --image IMAGE_NAME --namespace NAMESPACE_NAME --labels KEY=VALUE
 kubectl run --rm -it NAME --image=IMAGE_NAME:TAG
 kubectl run --rm -it NAME --image=IMAGE_NAME:TAG -- /bin/sh
 kubectl run --rm -it NAME --image=IMAGE_NAME:TAG --labels="KEY=VALUE" -- /bin/sh
@@ -176,6 +178,7 @@ kubectl expose pod POD_NAME --name SERVICE_NAME --port=SERVICE_PORT_NO --dry-run
 kubectl expose pod POD_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO
 kubectl expose pod POD_NAME --name SERVICE_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES --dry-run=client -o yaml
 kubectl expose pod POD_NAME --type=SERVICE_TYPES
+kubectl expose pod POD_NAME --port=SERVICE_PORT_NO
 kubectl expose pod POD_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES
 kubectl expose pod POD_NAME --port SERVICE_PORT_NO --target-port CONTAINER_PORT_NO --type SERVICE_TYPES
 kubectl get po --kubeconfig=FILE_NAME
@@ -989,6 +992,7 @@ kubectl edit networkpolicy NETWORKPOLICY_NAME -n NAMESPACE_NAME
 kubectl get netpol
 kubectl get netpol -A
 kubectl get netpol -n NAMESPACE_NAME
+kubectl get networkpolicy -n NAMESPACE_NAME
 kubectl get networkpolicies --all-namespaces
 kubectl describe netpol NETWORKPOLICY_NAME
 kubectl describe netpol NETWORKPOLICY_NAME -n NAMESPACE_NAME
