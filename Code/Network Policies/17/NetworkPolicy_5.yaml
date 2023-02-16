@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-http-other-ns
+spec:
+  podSelector:
+    matchLabels:
+      app: nginx
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          project: debug
+      podSelector:
+        matchLabels:
+          mode: debug
+    ports:
+    - protocol: TCP
+      port: 80
