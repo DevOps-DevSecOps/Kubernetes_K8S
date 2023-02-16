@@ -1,0 +1,25 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: busybox-policy
+spec:
+  podSelector:
+    matchLabels:
+      run: busybox
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 106.XX.XX.21/32
+    - ipBlock:
+        cidr: 140.XX.XX.4/32
+    - ipBlock:
+        cidr: 140.XX.XX.13/32
+    - ipBlock:
+        cidr: 140.XX.XX.3/32
+  - to:
+    - ipBlock:
+        cidr: 0.0.0.0/0
+    - namespaceSelector: {}
+    ports:
+    - protocol: UDP
+      port: 53
