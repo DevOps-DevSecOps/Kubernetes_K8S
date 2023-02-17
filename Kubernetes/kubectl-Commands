@@ -822,6 +822,7 @@ kubectl label ns NAMESPACE_NAME KEY=VALUE
 kubectl label ns NAMESPACE_NAME KEY=VALUE --overwrite
 kubectl label namespace NAMESPACE_NAME KEY=VALUE
 kubectl label namespace/NAMESPACE_NAME KEY=VALUE
+kubectl label namespaces NAMESPACE_NAME KEY=VALUE
 kubectl get ns
 kubectl get ns -o wide
 kubectl get ns -o yaml
