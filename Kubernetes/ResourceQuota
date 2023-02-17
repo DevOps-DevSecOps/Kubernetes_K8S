@@ -13,5 +13,5 @@ ResourceQuotas can also be set for Kubernetes Objects with in a Namespaces.
 
 In Kubernetes cluster each Nodes have a set of Memory, CPU, Disk. So whenever a Pod is placed on a Node, then Pod will start consuming the resources that available to the Node.
 So if the Nodes has no sufficient resources, schedular will avoid placing Pod on that Node will be in pending state.
-
 The output error for ResourceQuotas will be "FailedScheduling  No nodes are available that match all of the following predicates:: Insufficient memory / cpu". 
+The exist running Pod in the container can't used more ResourceQuotas than limit will be terminated.
