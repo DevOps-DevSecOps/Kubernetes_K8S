@@ -1,0 +1,29 @@
+# ClusterIP
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: foo-service
+spec:
+  selector:
+    app: foo
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+
+---
+# NodePort
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: foo-service
+spec:
+  type: NodePort
+  selector:
+    app: foo
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
