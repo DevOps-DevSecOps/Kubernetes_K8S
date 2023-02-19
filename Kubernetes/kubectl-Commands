@@ -1295,6 +1295,7 @@ kubectl cordon NODE_NAME                                        # unschedulable 
 kubectl uncordon NODE_NAME                                      # schedulable new Pods to these node (OR) mark it as schedulable
 kubectl top node
 kubectl top node NODE_NAME
+kubectl top nodes
 kubectl taint node NODE_NAME KEY=VALUE:TAINTS_EFFECT           # add taints to node with key=value and taints_effect
 kubectl taint node NODE_NAME KEY=VALUE:TAINTS_EFFECT-          # remove taints from node with key=value and taints_effect
 kubectl taint nodes NODE_NAME KEY=VALUE:TAINTS_EFFECT          # add taints to node with key=value and taints_effect
