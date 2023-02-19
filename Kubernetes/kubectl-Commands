@@ -724,6 +724,7 @@ kubectl get daemonset -n NAMESPACE_NAME
 kubectl get daemonset DAEMONSET_NAME -n NAMESPACE_NAME
 kubectl get daemonset DAEMONSET_NAME --namespace NAMESPACE_NAME
 kubectl get daemonsets
+kubectl get daemonsets -n NAMESPACE_NAME
 kubectl get daemonsets/DAEMONSET_NAME
 kubectl describe ds -n NAMESPACE_NAME
 kubectl describe ds DAEMONSET_NAME
@@ -736,6 +737,7 @@ kubectl rollout status ds/DAEMONSET_NAME -n NAMESPACE_NAME
 kubectl rollout history daemonset DAEMONSET_NAME
 kubectl rollout history daemonset DAEMONSET_NAME --revision=NO
 kubectl rollout undo daemonset DAEMONSET_NAME --to-revision=NO
+kubectl rollout restart daemonset DAEMONSET_NAME -n NAMESPACE_NAME
 kubectl delete ds DAEMONSET_NAME
 kubectl delete ds DAEMONSET_NAME -n NAMESPACE_NAME
 
@@ -939,6 +941,7 @@ kubectl get service SERVICE_NAME -n NAMESPACE_NAME -o yaml
 kubectl get service SERVICE_NAME -n NAMESPACE_NAME -o yaml > FILE_NAME.yaml
 kubectl get services
 kubectl get services -o wide
+kubectl get services -l KEY=VALUE
 kubectl get services -n NAMESPACE_NAME
 kubectl get services --namespace NAMESPACE_NAME
 kubectl get services --namespace=NAMESPACE_NAME
@@ -1030,6 +1033,7 @@ kubectl create configmap CONFIGMAP_NAME --from-env-file=FOLDER_NAME/FILE_NAME --
 kubectl edit cm CONFIGMAP_NAME
 kubectl edit cm CONFIGMAP_NAME -n NAMESPACE_NAME
 kubectl edit configmap CONFIGMAP_NAME
+kubectl edit configmap CONFIGMAP_NAME -n NAMESPACE_NAME
 kubectl get cm
 kubectl get cm --all-namespaces
 kubectl get cm --all-namespaces -o yaml
