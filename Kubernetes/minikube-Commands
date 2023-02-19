@@ -13,6 +13,8 @@ minikube start -p NAME --kubernetes-version=VERSION_NO
 
 minikube status
 
+minikube ssh
+
 minikube pause
 
 minikube unpause
