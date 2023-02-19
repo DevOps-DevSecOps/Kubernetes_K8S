@@ -45,3 +45,22 @@ NAME           TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
 demo-service   ClusterIP   10.233.62.13   <none>        8080/TCP   43h
 
 [create the Ingress resource]
+$ kubectl create -f Ingress.yaml
+
+[check the detail of an Ingress]
+$ kubectl describe ing springboot-ingress
+Name:             springboot-ingress
+Namespace:        default
+Address:
+Default backend:  default-http-backend:80 (<error: endpoints "default-http-backend" not found>)
+Rules:
+  Host        Path  Backends
+  ----        ----  --------
+  jhooq.demo
+                 demo-service:8080 (10.233.90.4:8080)
+Annotations:  ingress.kubernetes.io/rewrite-target: /
+Events:
+  Type    Reason          Age   From                      Message
+  ----    ------          ----  ----                      -------
+  Normal  AddedOrUpdated  103s  nginx-ingress-controller  Configuration for default/springboot-ingress was added or updated
+  Normal  AddedOrUpdated  103s  nginx-ingress-controller  Configuration for default/springboot-ingress was added or updated
