@@ -1,0 +1,5 @@
+[create a certificates]
+$ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout my_key.key -out my_cert.cert -subj "/CN=gloo.example.com/O=gloo.example.com"
+
+[create a TLS secret in Kubernetes cluster]
+$ kubectl create secret tls my-tls-secret --key my_key.key --cert my_cert.cert
