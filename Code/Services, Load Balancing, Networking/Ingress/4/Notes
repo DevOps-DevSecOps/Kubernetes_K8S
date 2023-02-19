@@ -1,0 +1,47 @@
+[clone the git repo]
+$ git clone https://github.com/nginxinc/kubernetes-ingress.git
+
+[apply YAML files]
+$ kubectl apply -f kubernetes-ingress/deployments/common/ns-and-sa.yaml
+namespace/nginx-ingress created
+serviceaccount/nginx-ingress created
+$ kubectl apply -f kubernetes-ingress/deployments/rbac/rbac.yaml
+clusterrole.rbac.authorization.k8s.io/nginx-ingress created
+clusterrolebinding.rbac.authorization.k8s.io/nginx-ingress created
+$ kubectl apply -f kubernetes-ingress/deployments/rbac/ap-rbac.yaml
+$ kubectl apply -f kubernetes-ingress/deployments/common/default-server-secret.yaml
+secret/default-server-secret created
+$ kubectl apply -f kubernetes-ingress/deployments/common/nginx-config.yaml
+configmap/nginx-config created
+$ kubectl apply -f kubernetes-ingress/deployments/deployment/nginx-ingress.yaml
+deployment.apps/nginx-ingress created
+$ kubectl apply -f kubernetes-ingress/deployments/daemon-set/nginx-ingress.yaml
+daemonset.apps/nginx-ingress
+
+[check all the container images running inside the namespace]
+$ kubectl get all -n nginx-ingress
+NAME                      READY   STATUS    RESTARTS   AGE
+pod/nginx-ingress-hqghc   1/1     Running   0          42s
+pod/nginx-ingress-jcxjv   1/1     Running   0          42s
+NAME                           DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+daemonset.apps/nginx-ingress   2         2         2       2            2           <none>          42s
+
+[deploy spring boot microservice inside kubernetes cluster]
+$ kubectl create deployment demo --image=rahulwagh17/kubernetes:jhooq-k8s-springboot
+
+[check the deployment]
+$ kubectl get deployments
+NAME   READY   UP-TO-DATE   AVAILABLE   AGE
+demo   1/1     1            1           5h20m
+
+[expose the deployment as service]
+created the deployment and exposed the service as ClusterIP running on port 8080.
+$ kubectl expose deployment demo --type=ClusterIP --name=demo-service  --port=8080
+service/demo-service exposed
+
+[view the exposed service]
+$ kubectl get service demo-service
+NAME           TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+demo-service   ClusterIP   10.233.62.13   <none>        8080/TCP   43h
+
+[create the Ingress resource]
