@@ -305,6 +305,7 @@ kubectl get pods --namespace=NAMESPACE_NAME
 kubectl get pods --all-namespaces
 kubectl get pods --all-namespaces -o wide
 kubectl get pods --all-namespaces -o json
+kubectl get pods --all-namespaces -l KEY=VALUE
 kubectl get pods POD_NAME
 kubectl get pods POD_NAME -o yaml
 kubectl get pods/POD_NAME -o yaml
