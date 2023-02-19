@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: springboot-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: jhooq.demo
+    http:
+      paths:
+      - backend:
+          serviceName: demo-service
+          servicePort: 8080
