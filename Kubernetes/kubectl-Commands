@@ -983,6 +983,7 @@ kubectl get ingress
 kubectl get ingress --watch
 kubectl get ingress -n NAMESPACE_NAME
 kubectl get ingress --namespace NAMESPACE_NAME
+kubectl get ingress INGRESS_NAME
 kubectl get ingresses --namespace NAMESPACE_NAME
 kubectl describe ingress INGRESS_NAME
 kubectl describe ingress INGRESS_NAME -n NAMESPACE_NAME
