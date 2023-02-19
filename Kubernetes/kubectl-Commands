@@ -506,6 +506,7 @@ kubectl expose deployment DEPLOYMENT_NAME --name SERVICE_NAME --cluster-ip=None 
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=SERVICE_TYPES --external-ip=IP_ADDRESS --port=SERVICE_PORT_NO
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO
+kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO
 kubectl expose deployment DEPLOYMENT_NAME --name SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=SERVICE_TYPES
@@ -985,6 +986,8 @@ kubectl get ingress -n NAMESPACE_NAME
 kubectl get ingress --namespace NAMESPACE_NAME
 kubectl get ingress INGRESS_NAME
 kubectl get ingresses --namespace NAMESPACE_NAME
+kubectl describe ing
+kubectl describe ing INGRESS_NAME
 kubectl describe ingress INGRESS_NAME
 kubectl describe ingress INGRESS_NAME -n NAMESPACE_NAME
 kubectl delete ing INGRESS_NAME
