@@ -573,6 +573,7 @@ kubectl get deployments -w
 kubectl get deployments -o wide
 kubectl get deployments --show-labels
 kubectl get deployments --all-namespaces
+kubectl get deployments -n NAMESPACE_NAME
 kubectl get deployments --namespace NAMESPACE_NAME
 kubectl get deployments DEPLOYMENT_NAME
 kubectl get deployments DEPLOYMENT_NAME -o yaml
@@ -993,6 +994,8 @@ kubectl get ingress INGRESS_NAME
 kubectl get ingresses --namespace NAMESPACE_NAME
 kubectl describe ing
 kubectl describe ing INGRESS_NAME
+kubectl describe ingress
+kubectl describe ingress -n NAMESPACE_NAME
 kubectl describe ingress INGRESS_NAME
 kubectl describe ingress INGRESS_NAME -n NAMESPACE_NAME
 kubectl delete ing INGRESS_NAME
