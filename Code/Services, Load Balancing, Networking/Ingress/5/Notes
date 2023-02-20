@@ -1,0 +1,7 @@
+[clone the repo]
+$ git clone https://github.com/scriptcamp/nginx-ingress-controller.git
+
+[create a Namespace]
+$ kubectl create ns ingress-nginx
+
+[]
