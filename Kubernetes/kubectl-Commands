@@ -1030,6 +1030,7 @@ kubectl create configmap CONFIGMAP_NAME --from-literal=KEY=VALUE
 kubectl create configmap CONFIGMAP_NAME --from-literal=KEY="VALUE"
 kubectl create configmap CONFIGMAP_NAME --from-literal=KEY=VALUE --from-literal=KEY=VALUE
 kubectl create configmap CONFIGMAP_NAME --from-file=FILE_NAME
+kubectl create configmap CONFIGMAP_NAME --from-file FILE_NAME
 kubectl create configmap CONFIGMAP_NAME --from-file=FOLDER_NAME/FILE_NAME
 kubectl create configmap CONFIGMAP_NAME --from-file=FOLDER_NAME/FILE_NAME --namespace NAMESPACE_NAME
 kubectl create configmap CONFIGMAP_NAME --from-file=FOLDER_NAME/FILE_NAME --namespace NAMESPACE_NAME --dry-run -o yaml
@@ -1060,6 +1061,7 @@ kubectl describe configmaps CONFIGMAP_NAME
 kubectl delete cm --all
 kubectl delete cm CONFIGMAP_NAME
 kubectl delete cm CONFIGMAP_NAME -n NAMESPACE_NAME
+kubectl delete configmap CONFIGMAP_NAME
 kubectl delete configmaps CONFIGMAP_NAME
 
 [Secrets]
