@@ -950,6 +950,7 @@ kubectl get services --namespace=NAMESPACE_NAME -l KEY=VALUE
 kubectl get services --all-namespaces
 kubectl get services SERVICE_NAME
 kubectl get services SERVICE_NAME --namespace=NAMESPACE_NAME
+kubectl get services SERVICE_NAME --namespace NAMESPACE_NAME -o wide -w
 kubectl describe svc
 kubectl describe svc -l KEY=VALUE
 kubectl describe svc SERVICE_NAME
