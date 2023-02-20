@@ -14,4 +14,4 @@ $ kubectl create -f Service.yaml
 $ kubectl create -f Ingress.yaml
 
 [check the brief details of Ingress]
-$ kubectl describe ingress  -n dev
+$ kubectl describe ingress -n dev
