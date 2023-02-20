@@ -1,0 +1,17 @@
+[create a Namespace named dev]
+$ kubectl create namespace dev
+
+[create the Deployment]
+$ kubectl create -f Deployment.yaml
+
+[check the Deployment status]
+$ kubectl get deployments -n dev
+
+[create the Service]
+$ kubectl create -f Service.yaml
+
+[create the Ingress]
+$ kubectl create -f Ingress.yaml
+
+[check the brief details of Ingress]
+$ kubectl describe ingress  -n dev
