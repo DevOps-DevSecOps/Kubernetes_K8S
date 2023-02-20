@@ -4,4 +4,10 @@ $ git clone https://github.com/scriptcamp/nginx-ingress-controller.git
 [create a Namespace]
 $ kubectl create ns ingress-nginx
 
-[]
+[deploy the manifest]
+$ kubectl apply -f admission-service-account.yaml 
+$ kubectl apply -f validating-webhook.yaml
+$ kubectl apply -f jobs.yaml
+$ kubectl apply -f configmap.yaml
+$ kubectl apply -f services.yaml
+$ kubectl apply -f deployment.yaml
