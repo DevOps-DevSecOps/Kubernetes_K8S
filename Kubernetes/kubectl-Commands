@@ -963,6 +963,7 @@ kubectl describe services SERVICE_NAME
 kubectl logs -f service/SERVICE_NAME
 kubectl port-forward svc/SERVICE_NAME HOST_PORT_NO:SERVICE_PORT_NO
 kubectl port-forward service/SERVICE_NAME HOST_PORT_NO:SERVICE_PORT_NO
+kubectl delete svc --all
 kubectl delete svc SERVICE_NAME
 kubectl delete svc SERVICE_NAME -n NAMESPACE_NAME
 kubectl delete svc/SERVICE_NAME
