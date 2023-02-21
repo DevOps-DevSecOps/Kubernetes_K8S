@@ -117,7 +117,7 @@ kops update cluster CLUSTER_NAME
 kops update cluster CLUSTER_NAME --yes
 kops update cluster CLUSTER_NAME --yes --admin
 kops update cluster CLUSTER_NAME --state s3://BUCKET_NAME --yes
-kops update cluster CLUSTER_NAME --yes --state=s3://BUCKET_NAME --yes
+kops update cluster CLUSTER_NAME --state=s3://BUCKET_NAME --yes
 
 [Validate]
 kops validate cluster --name CLUSTER_NAME
