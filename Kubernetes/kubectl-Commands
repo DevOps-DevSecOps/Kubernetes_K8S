@@ -145,6 +145,7 @@ kubectl run -i --tty --rm NAME --image IMAGE_NAME:TAG --restart=Never /bin/sh
 
 [All]
 kubectl get all
+kubectl get all -A
 kubectl get all -o wide
 kubectl get all -l KEY=VALUE
 kubectl get all --show-labels
@@ -417,6 +418,7 @@ kubectl logs pod/POD_NAME -c CONTAINER_NAME
 kubectl logs pod/POD_NAME -c CONTAINER_NAME -n NAMESPACE_NAME
 kubectl top po
 kubectl top pod
+kubectl top pod -A
 kubectl top pod --all-namespaces --containers=true
 kubectl top pod POD_NAME
 kubectl top pod POD_NAME --containers                                                                   # show metrics for a given pod and its containers
