@@ -84,6 +84,7 @@ kops get CLUSTER_NAME
 kops get CLUSTER_NAME -o yaml
 kops get CLUSTER_NAME -o yaml > FILE_NAME.yaml
 kops get cluster
+kops get cluster --state=s3://BUCKET_NAME
 kops get cluster CLUSTER_NAME
 kops get cluster CLUSTER_NAME -o yaml
 kops get cluster CLUSTER_NAME -o yaml > FILE_NAME.yaml
