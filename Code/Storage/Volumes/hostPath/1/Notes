@@ -1,4 +1,7 @@
-move the hello.html file to /data directory.
+[create a directory at the host which will be used as a volume to be mounted]
+$ mkdir /data
+
+[move the hello.html file to /data directory]
 $ mv hello.html /data/
 
 $ kubectl exec -it nginx-pod1 -- ls /usr/share/nginx/html
