@@ -307,6 +307,7 @@ kubectl get pods --all-namespaces
 kubectl get pods --all-namespaces -o wide
 kubectl get pods --all-namespaces -o json
 kubectl get pods --all-namespaces -l KEY=VALUE
+kubectl get pods --all-namespaces --show-labels
 kubectl get pods POD_NAME
 kubectl get pods POD_NAME -o yaml
 kubectl get pods/POD_NAME -o yaml
@@ -428,6 +429,7 @@ kubectl top pod POD_NAME --namespace=NAMESPACE_NAME
 kubectl top pods
 kubectl top pods -n NAMESPACE_NAME
 kubectl top pods --all-namespaces
+kubectl top pods --all-namespaces -l KEY=VALUE
 kubectl top pods POD_NAME -n NAMESPACE_NAME
 kubectl port-forward POD_NAME HOST_PORT_NO:CONTAINER_PORT_NO
 kubectl port-forward POD_NAME HOST_PORT_NO:CONTAINER_PORT_NO --namespace NAMESPACE_NAME
