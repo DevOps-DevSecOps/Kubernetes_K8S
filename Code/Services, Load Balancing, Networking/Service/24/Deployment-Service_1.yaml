@@ -75,4 +75,4 @@ spec:
   ports:
   - targetPort: 80
     port: 8082
-    nodePort: 32600
+    nodePort: 32700
