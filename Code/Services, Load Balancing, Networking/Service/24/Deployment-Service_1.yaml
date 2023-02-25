@@ -60,7 +60,7 @@ spec:
   type: LoadBalancer
   ports:
   - port: 8082
-    nodePort: 32600
+    nodePort: 32540
     protocol: TCP
 ---
 # LoadBalancer 4
@@ -75,4 +75,4 @@ spec:
   ports:
   - targetPort: 80
     port: 8083
-    nodePort: 32700
+    nodePort: 31110
