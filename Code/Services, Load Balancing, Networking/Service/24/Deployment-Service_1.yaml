@@ -20,9 +20,7 @@ spec:
         image: nginx
         ports:
         - containerPort: 80
-
 ---
-
 # LoadBalancer 1
 apiVersion: v1
 kind: Service
@@ -36,9 +34,7 @@ spec:
   - name: nginx 
     port: 8080
     targetPort: 80
-
 ---
-
 # LoadBalancer 2
 apiVersion: v1
 kind: Service
@@ -52,9 +48,7 @@ spec:
   - name: nginx 
     port: 8081
     protocol: TCP
-
 ---
-
 # LoadBalancer 3
 apiVersion: v1
 kind: Service
@@ -68,7 +62,17 @@ spec:
   - port: 8082
     nodePort: 32600
     protocol: TCP
-
 ---
-
 # LoadBalancer 4
+apiVersion: v1
+kind: Service
+metadata:
+  name: loadbalancer-4
+spec:
+  selector:
+    app: nginx
+  type: LoadBalancer
+  ports:
+  - targetPort: 80
+    port: 8082
+    nodePort: 32600
