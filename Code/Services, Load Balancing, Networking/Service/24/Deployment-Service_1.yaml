@@ -43,7 +43,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: loadbalancer-1
+  name: loadbalancer-2
 spec:
   selector:
     app: nginx
