@@ -392,6 +392,7 @@ kubectl annotate pods POD_NAME KEY=VALUE                                        
 kubectl logs POD_NAME
 kubectl logs POD_NAME -f
 kubectl logs POD_NAME -n NAMESPACE_NAME
+kubectl logs POD_NAME -n NAMESPACE_NAME -f
 kubectl logs POD_NAME --namespace NAMESPACE_NAME
 kubectl logs POD_NAME --namespace NAMESPACE_NAME --tail NO
 kubectl logs POD_NAME --namespace=NAMESPACE_NAME
