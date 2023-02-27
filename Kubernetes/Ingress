@@ -17,4 +17,5 @@ Kubernetes Ingress ---------------> Ingress Controller
 It is responsible for storing DNS routing rules in the cluster.
 ● Ingress Controller
 It is responsible for routing by accessing the DNS rules applied through Ingress Resource.
-●
+● Ingress Proxy
+It route external HTTP traffic to services and their endpoints.
