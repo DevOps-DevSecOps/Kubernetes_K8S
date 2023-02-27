@@ -3,3 +3,13 @@ The main features of Ingress are load balancing, name-based virtual hosting, URL
 It exposes one or more services to external clients through a single externally reachable IP address.
 
 Ingress ---> Service ---> Workloads (Pods, Deployments, ReplicaSets, ReplicationController, DaemonSet, StatefulSets, Jobs, CronJob)
+
+
+[]
+                        |---------> Ingress Resource
+                        |
+                        |
+Kubernetes Ingress ---------------> Ingress Controller
+                        |
+                        |
+                        |---------> Ingress Proxy
