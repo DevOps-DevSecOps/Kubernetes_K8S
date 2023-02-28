@@ -18,6 +18,7 @@ The exist running Pod in the container consume to used more ResourceQuotas than 
 
 [Heapster]
 It is a cluster-wide aggregator of monitoring and event data.
+It aggregates monitoring data across all nodes in Kubernetes cluster.
 Heapster runs as a pod in the cluster, similar to how any Kubernetes application would run.
 Heapster pod discovers all nodes in the cluster and queries usage information from the nodes Kubelet.
 It collects metrics and then shows resource usage statistics for your cluster so that you can monitor resource usage for each node and also for each pod.
