@@ -15,3 +15,20 @@ In Kubernetes cluster each Nodes have a set of Memory, CPU, Disk. So whenever a 
 So if the Nodes has no sufficient resources, schedular will avoid placing Pod on that Node will be in pending state.
 The output error for ResourceQuotas will be "FailedScheduling  No nodes are available that match all of the following predicates:: Insufficient memory / cpu". 
 The exist running Pod in the container consume to used more ResourceQuotas than limit will be terminated.
+
+[Heapster]
+It is a cluster-wide aggregator of monitoring and event data.
+Heapster runs as a pod in the cluster, similar to how any Kubernetes application would run.
+Heapster pod discovers all nodes in the cluster and queries usage information from the nodes Kubelet.
+It collects metrics and then shows resource usage statistics for your cluster so that you can monitor resource usage for each node and also for each pod.
+
+[Metrics Server]
+It is a resource metrics monitoring tool for Kubernetes.
+It is a cluster-wide aggregator of resource usage data.
+It measures CPU and Memory usage across the Kubernetes cluster.
+It collects metrics and then shows resource usage statistics for your cluster so that you can monitor resource usage for each node and also for each pod.
+It collects resource metrics from the kubelet running on each worker node and exposes them in the Kubernetes API server through the Kubernetes Metrics API.
+
+So can monitor the resource usage with simple commands using the top command.
+$ kubectl top pods
+$ kubectl top nodes
