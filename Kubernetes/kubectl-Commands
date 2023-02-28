@@ -571,6 +571,7 @@ kubectl get deployment DEPLOYMENT_NAME -n NAMESPACE_NAME
 kubectl get deployment DEPLOYMENT_NAME -o yaml
 kubectl get deployment DEPLOYMENT_NAME -o yaml > FILE_NAME.yaml
 kubectl get deployment DEPLOYMENT_NAME --output yaml
+kubectl get deployment DEPLOYMENT_NAME -n NAMESPACE_NAME
 kubectl get deployment DEPLOYMENT_NAME -n NAMESPACE_NAME -o yaml
 kubectl get deployment DEPLOYMENT_NAME -n NAMESPACE_NAME -o yaml > FILE_NAME.yaml
 kubectl get deployment DEPLOYMENT_NAME --namespace=NAMESPACE_NAME --output=yaml
