@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-world-and-universe
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: 
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: test.example.com
+    http:
+      paths:
+      - path: /hello-world
+        pathType: Prefix
+        backend:
+          service:
+            name: hello-world
+            port:
+              number: 8080
+      - path: /hello-universe
+        pathType: Prefix
+        backend:
+          service:
+            name: hello-universe
+            port:
+              number: 8080
