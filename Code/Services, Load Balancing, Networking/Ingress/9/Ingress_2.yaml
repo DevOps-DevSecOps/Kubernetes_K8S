@@ -1,0 +1,32 @@
+# Host-Based Routing
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: "ingress-webapps"
+spec:
+  rules:
+  - host: "www.web01.com"
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        path: "/"
+        backend:
+          service:
+            name: web01-service
+            port:
+              number: 8080
+  - host: "www.web02.com"
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        path: "/"
+        backend:
+          service:
+            name: web02-service
+            port:
+              number: 8080
