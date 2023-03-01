@@ -62,7 +62,6 @@ kubectl delete -f HTTPS_URL_FILE_NAME.yaml
 
 [Run]
 kubectl run NAME --image=IMAGE_NAME
-kubectl run NAME --image=IMAGE_NAME:TAG
 kubectl run NAME --image IMAGE_NAME
 kubectl run NAME --image IMAGE_NAME -n NAMESPACE_NAME
 kubectl run NAME --image IMAGE_NAME --namespace=NAMESPACE_NAME
@@ -97,6 +96,8 @@ kubectl run NAME --image=IMAGE_NAME --labels=KEY=VALUE --expose --port CONTAINER
 kubectl run NAME --image=IMAGE_NAME --labels=KEY=VALUE --expose --port CONTAINER_PORT_NO --namespace NAMESPACE_NAME
 kubectl run NAME --image=IMAGE_NAME --env="KEY=VALUE" --env="KEY=VALUE"         # set environment variables in the container
 kubectl run NAME --image=IMAGE_NAME --env="KEY=VALUE" --port=CONTAINER_PORT_NO --namespace=NAMESPACE_NAME
+kubectl run NAME --image=IMAGE_NAME:TAG
+kubectl run NAME --image=IMAGE_NAME:TAG --port=CONTAINER_PORT_NO
 kubectl run NAME --image=IMAGE_NAME:TAG --restart=Never -- LINUX_COMMANDS
 kubectl run NAME --image=IMAGE_NAME:TAG --namespace NAMESPACE_NAME --expose --port CONTAINER_PORT_NO
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME
@@ -317,6 +318,7 @@ kubectl describe po -n NAMESPACE_NAME
 kubectl describe po POD_NAME
 kubectl describe po POD_NAME -n NAMESPACE_NAME
 kubectl describe po POD_NAME --namespace NAMESPACE_NAME
+kubectl describe pod
 kubectl describe pod POD_NAME
 kubectl describe pod POD_NAME POD_NAME
 kubectl describe pod/POD_NAME
@@ -939,6 +941,7 @@ kubectl get svc SERVICE_NAME -o yaml
 kubectl get svc SERVICE_NAME -n NAMESPACE_NAME
 kubectl get svc SERVICE_NAME -n NAMESPACE_NAME -o json
 kubectl get service
+kubectl get service -o wide
 kubectl get service -l KEY=VALUE
 kubectl get service --all-namespaces
 kubectl get service --all-namespaces -o yaml > FILE_NAME.yaml
@@ -968,6 +971,7 @@ kubectl describe service SERVICE_NAME
 kubectl describe service SERVICE_NAME -n NAMESPACE_NAME
 kubectl describe service SERVICE_NAME --namespace NAMESPACE_NAME
 kubectl describe service/SERVICE_NAME
+kubectl describe services
 kubectl describe services SERVICE_NAME
 kubectl describe services SERVICE_NAME -n NAMESPACE_NAME
 kubectl logs -f service/SERVICE_NAME
