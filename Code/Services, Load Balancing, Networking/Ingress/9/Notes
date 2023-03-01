@@ -1,0 +1,8 @@
+As can see we have two annotations in the manifest file.
+● kubernetes.io/ingress.class: "gce"
+So the 'kubernetes.io/ingress.class' annotation with value 'gce' tells GKE to create a public Load Balancer. 
+If don’t specify it, it defaults to public only.
+● kubernetes.io/ingress.global-static-ip-name: "ingress-webapps"
+So the 'kubernetes.io/ingress.global-static-ip-name' annotation with value 'ingress-webapps' tells GKE to attach the static IP we created to the ingress Load Balancer.
+
+Creating a http rule to route all the traffic, ie /* to the nginx-service endpoint.
