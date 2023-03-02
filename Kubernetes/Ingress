@@ -25,3 +25,8 @@ Ingress controllers in Kubernetes are resources that accept traffic from the int
 Ingress controllers abstract away the complexity of routing traffic to applications running within a Kubernetes cluster.
 Ingress controller is a daemon running in a Pod that watches the /ingresses endpoint on the API server.
 When a new endpoint is created, the daemon uses the configured set of rules to allow traffic into a service.
+There are several types of Ingress Controllers.
+● Traefik
+● MetalLB
+●
+●
