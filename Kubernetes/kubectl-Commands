@@ -189,6 +189,7 @@ kubectl get po -w
 kubectl get po -A
 kubectl get po -o wide
 kubectl get po -o yaml
+kubectl get po -A -o wide
 kubectl get po -l KEY
 kubectl get po -l KEY=VALUE
 kubectl get po --show-labels
@@ -928,6 +929,7 @@ kubectl edit svc SERVICE_NAME -n NAMESPACE_NAME
 kubectl edit service SERVICE_NAME
 kubectl edit service SERVICE_NAME -n NAMESPACE_NAME
 kubectl get svc
+kubectl get svc -A
 kubectl get svc -o wide
 kubectl get svc -o yaml
 kubectl get svc --show-labels
