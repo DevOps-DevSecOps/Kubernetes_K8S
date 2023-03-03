@@ -30,5 +30,7 @@ There are several types of Ingress Controllers.
 ● Traefik
 ● MetalLB
 It is a project of a load-balancer implementation for bare metal Kubernetes clusters, using standard routing protocols.
+$ helm repo add metallb https://metallb.github.io/metallb
+$ helm install metallb metallb/metallb
 ●
 ●
