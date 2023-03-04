@@ -3,5 +3,10 @@ https://traefik.io/
 https://doc.traefik.io/
 https://doc.traefik.io/traefik/
 
+[HAProxy]
+https://www.haproxy.org/
+https://docs.haproxy.org/
+https://haproxy-ingress.github.io/
+
 [MetalLB]
 https://metallb.universe.tf/
