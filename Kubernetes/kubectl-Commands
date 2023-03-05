@@ -108,6 +108,7 @@ kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --labels KEY=VALUE -
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --requests=cpu=NOm --expose --port=CONTAINER_PORT_NO                       # Pod_Deployment and Service
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME --env="KEY=VALUE" --port=CONTAINER_PORT_NO --namespace=NAMESPACE_NAME
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
+kubectl run NAME --image DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --port=CONTAINER_PORT_NO
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --restart=Never
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --dry-run=client -o yaml > FILE_NAME.yaml
