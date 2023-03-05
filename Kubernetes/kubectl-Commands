@@ -514,6 +514,7 @@ kubectl set resources deployment DEPLOYMENT_NAME --limits cpu=0,memory=0 --reque
 kubectl expose deploy DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO
 kubectl expose deploy DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=SERVICE_TYPES
 kubectl expose deploy DEPLOYMENT_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES
+kubectl expose deploy DEPLOYMENT_NAME --port SERVICE_PORT_NO --type SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --name SERVICE_NAME --cluster-ip=None                                     # expose a Headless service by setting "--cluster-ip=None"
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=SERVICE_TYPES --external-ip=IP_ADDRESS --port=SERVICE_PORT_NO
@@ -1085,6 +1086,7 @@ kubectl delete configmaps CONFIGMAP_NAME
 
 [Secrets]
 kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE                                      
+kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE -n NAMESPACE_NAME
 kubectl create secret generic SECRET_NAME --from-literal=KEY='VALUE'
 kubectl create secret generic SECRET_NAME --from-literal=KEY='VALUE' --namespace=NAMESPACE_NAME
 kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE --from-literal=KEY=VALUE
