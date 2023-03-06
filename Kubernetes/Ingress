@@ -27,10 +27,17 @@ Ingress controllers abstract away the complexity of routing traffic to applicati
 Ingress controller is a daemon running in a Pod that watches the /ingresses endpoint on the API server.
 When a new endpoint is created, the daemon uses the configured set of rules to allow traffic into a service.
 There are several types of Ingress Controllers.
+● Istio
+https://istio.io/v1.3/docs/reference/config/annotations/
+https://istio.io/v1.6/docs/reference/config/annotations/
+https://istio.io/latest/docs/reference/config/annotations/
+● Nginx
+https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-annotations/
+https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md
 ● Traefik
+●
+●
 ● MetalLB
 It is a project of a load-balancer implementation for bare metal Kubernetes clusters, using standard routing protocols.
 $ helm repo add metallb https://metallb.github.io/metallb
 $ helm install metallb metallb/metallb
-●
-●
