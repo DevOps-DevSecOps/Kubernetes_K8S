@@ -1,6 +1,8 @@
 Labels are match up in the Deployment and Service.
 Labels and Selectors to control which pods go to which nodes.
 Labels can also run specific pods on selected nodes.
+It contain identifying information and are a used by selector queries or within selector sections in object definitions.
+The structure of keys as well as values is constrained.
 
 [Labels]
 Labels are "key:value" that are attached to objects like such as pods.
