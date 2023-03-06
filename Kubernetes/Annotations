@@ -1,3 +1,6 @@
 Annotations in Kubernetes provide a place to store non-identifying metadata for Kubernetes Objects which can be used to get a more elaborate context for an object.
+It used for non-identifying information.
+It can’t specify selectors over them within Kubernetes, but they can be used by external tools and libraries.
+Annotation keys and values are not constrained like labels are.
 Annotations are also "key:value" pairs like Labels.
 Annotation keys use the same format as Label keys.
