@@ -838,9 +838,15 @@ kubectl create namespace NAMESPACE_NAME
 kubectl create namespace NAMESPACE_NAME --dry-run -o yaml
 kubectl label ns NAMESPACE_NAME KEY=VALUE
 kubectl label ns NAMESPACE_NAME KEY=VALUE --overwrite
+kubectl label ns NAMESPACE_NAME KEY="VALUE" --overwrite
+kubectl label ns NAMESPACE_NAME KEY-
 kubectl label namespace NAMESPACE_NAME KEY=VALUE
 kubectl label namespace/NAMESPACE_NAME KEY=VALUE
 kubectl label namespaces NAMESPACE_NAME KEY=VALUE
+kubectl annotate ns NAMESPACE_NAME KEY=VALUE                                              # add a annotation for existing Namespace
+kubectl annotate ns NAMESPACE_NAME KEY="VALUE"
+kubectl annotate ns NAMESPACE_NAME KEY="VALUE" --overwrite                                # change a new VALUE to existing KEY for existing Namespace
+kubectl annotate ns NAMESPACE_NAME KEY-                                                   # removing a annotation for existing Namespace
 kubectl get ns
 kubectl get ns -o wide
 kubectl get ns -o yaml
