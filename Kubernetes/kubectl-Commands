@@ -984,6 +984,7 @@ kubectl describe service/SERVICE_NAME
 kubectl describe services
 kubectl describe services SERVICE_NAME
 kubectl describe services SERVICE_NAME -n NAMESPACE_NAME
+kubectl annotate service SERVICE_NAME KEY="VALUE"
 kubectl logs -f service/SERVICE_NAME
 kubectl port-forward svc/SERVICE_NAME HOST_PORT_NO:SERVICE_PORT_NO
 kubectl port-forward service/SERVICE_NAME HOST_PORT_NO:SERVICE_PORT_NO
