@@ -99,6 +99,7 @@ kubectl run NAME --image=IMAGE_NAME --env="KEY=VALUE" --env="KEY=VALUE"         
 kubectl run NAME --image=IMAGE_NAME --env="KEY=VALUE" --port=CONTAINER_PORT_NO --namespace=NAMESPACE_NAME
 kubectl run NAME --image=IMAGE_NAME:TAG
 kubectl run NAME --image=IMAGE_NAME:TAG --port=CONTAINER_PORT_NO
+kubectl run NAME --image=IMAGE_NAME:TAG --restart=Never
 kubectl run NAME --image=IMAGE_NAME:TAG --restart=Never -- LINUX_COMMANDS
 kubectl run NAME --image=IMAGE_NAME:TAG --namespace NAMESPACE_NAME --expose --port CONTAINER_PORT_NO
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME
@@ -114,6 +115,8 @@ kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --port=CONTAINER
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --restart=Never
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --dry-run=client -o yaml > FILE_NAME.yaml
 kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --labels KEY=VALUE --port CONTAINER_PORT_NO --expose
+kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --replicas=NO --labels="KEY=VALUE,KEY=VALUE,KEY=VALUE"
+kubectl run NAME --image=DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG --replicas=NO --port=CONTAINER_PORT_NO --labels="KEY=VALUE,KEY=VALUE,KEY=VALUE"
 kubectl run NAME --image=index.docker.io/DOCKER_HUB_USER_ID/REPOSITORY_NAME --requests=cpu=NOm,memory=NOM --expose --port=CONTAINER_PORT_NO
 kubectl run --rm -it NAME --image=IMAGE_NAME
 kubectl run --rm -it NAME --image=IMAGE_NAME --restart=Never
@@ -166,6 +169,7 @@ kubectl get pods,pv,pvc -o wide
 kubectl get rc,services
 kubectl delete pods,services -l KEY=VALUE
 kubectl delete deployment,services -l KEY=VALUE
+kubectl delete services,deployments -l KEY=VALUE
 kubectl delete configmap,service,pvc -l KEY=VALUE
 kubectl delete po,svc --all -n NAMESPACE_NAME
 kubectl delete pod,svc --all
@@ -260,6 +264,7 @@ kubectl get pods --watch
 kubectl get pods --watch output
 kubectl get pods -o wide
 kubectl get pods -o wide -n NAMESPACE_NAME
+kubectl get pods -o wide --selector=KEY=VALUE,KEY=VALUE --show-labels
 kubectl get pods -a -n NAMESPACE_NAME
 kubectl get pods --show-all -w
 kubectl get pods --show-labels
@@ -267,7 +272,10 @@ kubectl get pods --selector=KEY=VALUE,KEY=VALUE
 kubectl get pods --selector='KEY=VALUE'
 kubectl get pods --selector="KEY=VALUE"
 kubectl get pods --selector="KEY=VALUE" --output=wide
+kubectl get pods --selector="KEY=VALUE" --show-labels
+kubectl get pods --selector="KEY=VALUE,KEY=VALUE" --show-labels
 kubectl get pods --selector="KEY in (VALUE,VALUE)"
+kubectl get pods --selector="KEY in (VALUE,VALUE)" --show-labels
 kubectl get pods --selector="KEY in (VALUE, VALUE)"
 kubectl get pods -L KEY
 kubectl get pods -l="KEY=VALUE"
@@ -594,6 +602,7 @@ kubectl get deployment/DEPLOYMENT_NAME -o yaml > FILE_NAME.yaml
 kubectl get deployments
 kubectl get deployments -w
 kubectl get deployments -o wide
+kubectl get deployments -o wide --show-labels
 kubectl get deployments --show-labels
 kubectl get deployments --all-namespaces
 kubectl get deployments -n NAMESPACE_NAME
@@ -607,6 +616,9 @@ kubectl describe deployment DEPLOYMENT_NAME
 kubectl describe deployment DEPLOYMENT_NAME > FILE_NAME.yaml
 kubectl describe deployments
 kubectl describe deployments DEPLOYMENT_NAME
+kubectl label deployments DEPLOYMENT_NAME "KEY=VALUE"
+kubectl label deployments DEPLOYMENT_NAME "KEY-"
+kubectl annotate deployments DEPLOYMENT_NAME KEY="VALUE"
 kubectl exec deploy/DEPLOYMENT_NAME -- LINUX_COMMANDS
 kubectl exec -it deploy/DEPLOYMENT_NAME -- /bin/bash -n NAMESPACE_NAME
 kubectl exec -it deployment/DEPLOYMENT_NAME --container CONTAINER_NAME bash
