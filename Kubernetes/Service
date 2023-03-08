@@ -93,10 +93,12 @@ In those scenarios a client would need to figure out the endpoint IP (rather tha
 {Port in YAML}
 ● targetPort
 The 'targetPort' will be connect to the Pod Container port number.
+The 'targetPort' on the pod to forward traffic.
 This port on the pod that the request get sent to that pod will be listening on.
 So application in the container will needs to be listening for network requests on this port for the service. 
 ● port
 The 'port' will be connect to the 'targetPort' to the Pod Container port number.
+The port of this service.
 It exposes the service on the specific port internally with in the cluster.
 So other pods with in the cluster can communicate with this server on the specific port.
 ● nodePort
