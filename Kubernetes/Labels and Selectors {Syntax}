@@ -1,8 +1,10 @@
 [Selectors]
 ● matchLabels
-The volume must have a label with this value.
+It consists of key, and value pairs where the values are matched using equality-based requirements that allow filtering by label keys and values.
+Valid operators include =, ==, !=.
 ● matchExpressions
 A list of requirements made by specifying key, list of values, and operator that relates the key and values.
+It consists of a key, operator, and values Set-based label requirements allow filtering keys according to a set of values.
 Valid operators include In, NotIn, Exists, and DoesNotExist.
 
 # EXAMPLE 1 :-
