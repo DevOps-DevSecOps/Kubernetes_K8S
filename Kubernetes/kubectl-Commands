@@ -313,6 +313,7 @@ kubectl get pods --all-namespaces -l KEY=VALUE
 kubectl get pods --all-namespaces --show-labels
 kubectl get pods POD_NAME
 kubectl get pods POD_NAME -o yaml
+kubectl get pods POD_NAME --output=yaml
 kubectl get pods/POD_NAME -o yaml
 kubectl get pods/POD_NAME -o wide
 kubectl describe po
