@@ -86,6 +86,7 @@ kubectl run NAME --image=IMAGE_NAME --replicas=NO --labels="KEY=VALUE"
 kubectl run NAME --image=IMAGE_NAME --replicas=NO --labels="KEY=VALUE,KEY=VALUE"
 kubectl run NAME --image=IMAGE_NAME --replicas=NO --labels="KEY=VALUE" -o yaml
 kubectl run NAME --image=IMAGE_NAME --replicas=NO --labels="KEY=VALUE" -o yaml > FILE_NAME.yaml
+kubectl run NAME --image=IMAGE_NAME -l KEY=VALUE
 kubectl run NAME --image=IMAGE_NAME --labels=KEY=VALUE
 kubectl run NAME --image=IMAGE_NAME --labels="KEY=VALUE"
 kubectl run NAME --image=IMAGE_NAME --labels="KEY=VALUE,KEY=VALUE"
@@ -150,6 +151,7 @@ kubectl get all
 kubectl get all -A
 kubectl get all -o wide
 kubectl get all -l KEY=VALUE
+kubectl get all -l 'KEY in (VALUE,VALUE)'
 kubectl get all --show-labels
 kubectl get all --all-namespaces
 kubectl get all --all-namespaces -o yaml
@@ -270,6 +272,7 @@ kubectl get pods --selector="KEY in (VALUE, VALUE)"
 kubectl get pods -L KEY
 kubectl get pods -l="KEY=VALUE"
 kubectl get pods -l KEY=VALUE
+kubectl get pods -l 'KEY=VALUE'
 kubectl get pods -l KEY=VALUE,KEY=VALUE
 kubectl get pods -l KEY=VALUE -l KEY=VALUE
 kubectl get pods -l KEY!=VALUE
@@ -281,6 +284,7 @@ kubectl get pods -l 'KEY in (VALUE,VALUE)' --show-labels
 kubectl get pods -l 'KEY in (VALUE, VALUE)'
 kubectl get pods -l 'KEY in (VALUE),KEY in (VALUE)'
 kubectl get pods -l 'KEY notin (VALUE)'
+kubectl get pods -l 'KEY notin (VALUE)' --show-labels
 kubectl get pods -l 'KEY notin (VALUE, VALUE)'
 kubectl get pods -l 'KEY,KEY notin (VALUE)'
 kubectl get pods -l 'KEY,KEY notin (VALUE)' --show-labels
@@ -291,6 +295,9 @@ kubectl get pods -l KEY=VALUE -o yaml
 kubectl get pods -l KEY=VALUE -w
 kubectl get pods -l KEY=VALUE --watch
 kubectl get pods -l KEY=VALUE --output=yaml
+kubectl get pods -l 'KEY=VALUE' --show-labels
+kubectl get pods -l "KEY=VALUE" --show-labels
+kubectl get pods -l 'KEY!=VALUE' --show-labels
 kubectl get pods -l KEY=VALUE -n NAMESPACE_NAME
 kubectl get pods -l KEY=VALUE -n=NAMESPACE_NAME
 kubectl get pods -l KEY=VALUE --namespace=NAMESPACE_NAME
@@ -387,6 +394,8 @@ kubectl label pod POD_NAME KEY=VALUE -n NAMESPACE_NAME
 kubectl label pod POD_NAME KEY=VALUE KEY=VALUE
 kubectl label pod POD_NAME KEY=VALUE --overwrite                                # change a new VALUE to existing KEY for existing pod
 kubectl label pod POD_NAME KEY-                                                 # removing a label for existing pod
+kubectl label pod/POD_NAME KEY=VALUE
+kubectl label pod/POD_NAME KEY-
 kubectl label pods POD_NAME KEY=VALUE                                           # add a label for existing pod
 kubectl label pods POD_NAME KEY=VALUE --overwrite                               # change a new VALUE to existing KEY for existing pod
 kubectl label pods POD_NAME KEY-                                                # removing a label for existing pod
