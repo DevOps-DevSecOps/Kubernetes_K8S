@@ -1,11 +1,11 @@
-• Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called namespaces.
-• Namespaces allow you to create virtual clusters within the same physical cluster.
-• Namespaces create virtual clusters within a physical Kubernetes cluster.
-• Namespaces are intended for use in environments with many users spread across multiple teams, or projects.
-• Can have multiple namespaces inside a single Kubernetes cluster, and they are all logically isolated from each other.
-• By default, all resources in a Kubernetes cluster are created in a 'default' namespace.
-• Namespaces are a way to divide cluster resources between multiple users via resource quotas.
-• The default namespace in Kubernetes are
+Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called namespaces.
+Namespaces allow you to create virtual clusters within the same physical cluster.
+Namespaces create virtual clusters within a physical Kubernetes cluster.
+Namespaces are intended for use in environments with many users spread across multiple teams, or projects.
+Can have multiple namespaces inside a single Kubernetes cluster, and they are all logically isolated from each other.
+By default, all resources in a Kubernetes cluster are created in a 'default' namespace.
+Namespaces are a way to divide cluster resources between multiple users via resource quotas.
+The default namespace in Kubernetes are
 
 $ kubectl get namespace (OR) $ kubectl get namespaces
 NAME              STATUS   AGE
@@ -14,11 +14,19 @@ kube-node-lease   Active   1d
 kube-public       Active   1d
 kube-system       Active   1d
 
-• Kubernetes starts with four initial namespaces:
--> default = The default namespace for any objects with no other namespace.
--> kube-system = The namespace for objects created by the Kubernetes system.
--> kube-public = This namespace is created automatically and is readable by all users (including those not authenticated). This namespace is mostly reserved for cluster usage, in case that some resources should be visible and readable publicly throughout the whole cluster. The public aspect of this namespace is only a convention, not a requirement. (OR) Used for public resources. Not recommended for use by users.
--> kube-node-lease = This namespace holds Lease objects associated with each node. Node leases allow the kubelet to send heartbeats so that the control plane can detect node failure.
+Kubernetes starts with four initial namespaces:
+• default 
+The default namespace for any objects with no other namespace.
+• kube-system 
+The namespace for objects created by the Kubernetes system.
+• kube-public 
+This namespace is created automatically and is readable by all users (including those not authenticated). 
+This namespace is mostly reserved for cluster usage, in case that some resources should be visible and readable publicly throughout the whole cluster. 
+The public aspect of this namespace is only a convention, not a requirement. (OR) Used for public resources. Not recommended for use by users.
+Resources that should be made available to all users are created here. Any objects here are available without authentication.
+• kube-node-lease 
+This namespace holds Lease objects associated with each node. 
+Node leases allow the kubelet to send heartbeats so that the control plane can detect node failure.
 
 # Using Kubernetes Namespaces to Manage Environments
 • Kubernetes provides is the ability to manage various environments easier and better than traditional deployment strategies.
