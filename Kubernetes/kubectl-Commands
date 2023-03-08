@@ -168,6 +168,7 @@ kubectl get po,deploy,rs -l KEY=VALUE
 kubectl get pods,deploy
 kubectl get pods,pv,pvc -o wide
 kubectl get rc,services
+kubectl delete all -n NAMESPACE_NAME -l KEY=VALUE
 kubectl delete pods,services -l KEY=VALUE
 kubectl delete deployment,services -l KEY=VALUE
 kubectl delete services,deployments -l KEY=VALUE
@@ -259,6 +260,8 @@ kubectl get pods --user=USER_NAME
 kubectl get pods --context=CONTEXT_NAME
 kubectl get pods --context=CONTEXT_NAME --namespace=NAMESPACE_NAME
 kubectl get pods
+kubectl get pods -A
+kubectl get pods -A --show-labels
 kubectl get pods -w
 kubectl get pods --output=wide
 kubectl get pods --watch
