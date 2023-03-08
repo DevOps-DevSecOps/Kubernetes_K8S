@@ -154,6 +154,7 @@ kubectl get all
 kubectl get all -A
 kubectl get all -o wide
 kubectl get all -l KEY=VALUE
+kubectl get all -l KEY=VALUE -n NAMESPACE_NAME
 kubectl get all -l 'KEY in (VALUE,VALUE)'
 kubectl get all --show-labels
 kubectl get all --all-namespaces
@@ -282,6 +283,7 @@ kubectl get pods -l="KEY=VALUE"
 kubectl get pods -l KEY=VALUE
 kubectl get pods -l 'KEY=VALUE'
 kubectl get pods -l KEY=VALUE,KEY=VALUE
+kubectl get pods -l 'KEY=VALUE, KEY=VALUE'
 kubectl get pods -l KEY=VALUE -l KEY=VALUE
 kubectl get pods -l KEY!=VALUE
 kubectl get pods -l KEY==VALUE
