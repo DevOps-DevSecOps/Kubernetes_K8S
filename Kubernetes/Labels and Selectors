@@ -49,7 +49,6 @@ NAME          READY   STATUS    RESTARTS   AGE
 example-pod2  1/1     Running   0          15m
 example-pod3  1/1     Running   0          14m
 example-pod4  1/1     Running   0          11m
-
 ● Set-Based Requirement
 It allow filtering keys according to a set of values.
 Three kinds of operators are supported: in, notin, exists.
