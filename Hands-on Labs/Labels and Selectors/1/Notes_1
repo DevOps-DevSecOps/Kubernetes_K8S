@@ -1,1 +1,37 @@
+[create a Pod with YAML configuration]
+apiVersion: v1
+kind: Pod
+metadata:
+  name: <name of the pod>
+  labels:
+    environment: dev
+    app: <name of the app>
+spec:
+  containers:
+  - name: <name of the container>
+    image: <name of the image>
+    ports:
+    -  containerPort: 80
 
+[see the labels]
+$ kubectl get pods --show-labels
+NAME     READY     STATUS     RESTARTS     AGE     LABELS
+pod0     1/1       Running    0            20s     app=nginx,environment=dev
+
+[create a Pod with CLI]
+$ kubectl run pod1 --image=ubuntu --labels="environment=production"
+
+[see the labels]
+$ kubectl get pods --show-labels
+NAME     READY     STATUS     RESTARTS     AGE     LABELS
+pod0     1/1       Running    0            20s     app=nginx,environment=dev
+pod1     1/1       Running    0            20s     environment=production
+
+Labels and Selectors
+● Equality-Based Requirement
+It allow filtering by label keys and values.
+The operators are used as =, ==, !=.
+$ kubectl get pods --selector="environment=dev"
+● Set-Based Requirement
+It allow filtering keys according to a set of values.
+The operators are used as in, notin, exists.
