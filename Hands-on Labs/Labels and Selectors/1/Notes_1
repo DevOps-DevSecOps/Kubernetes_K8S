@@ -35,3 +35,4 @@ $ kubectl get pods --selector="environment=dev"
 ● Set-Based Requirement
 It allow filtering keys according to a set of values.
 The operators are used as in, notin, exists.
+$ kubectl get pods --selector="environment in (dev, production)"
