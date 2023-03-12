@@ -1,2 +1,2 @@
 kind create cluster                                              # cluster named will be kind
-kind create cluster --name=CLUSTER_NAME                                  # 
+kind create cluster --name=CLUSTER_NAME                               # custom cluster name will be assign manually 
