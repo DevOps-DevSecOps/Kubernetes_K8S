@@ -1,2 +1,3 @@
 kind create cluster                                              # cluster named will be kind
-kind create cluster --name=CLUSTER_NAME                               # custom cluster name will be assign manually 
+kind create cluster --name=CLUSTER_NAME                          # custom cluster name will be assign manually 
+kind create cluster --image=IMAGE_NAME                           # custom node image for the cluster
