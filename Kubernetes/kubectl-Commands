@@ -1046,6 +1046,7 @@ kubectl describe endpoints SERVICE_NAME
 [Ingress]
 kubectl get ing
 kubectl get ing --all-namespaces
+kubectl get ing --namespace NAMESPACE_NAME
 kubectl get ingress
 kubectl get ingress --watch
 kubectl get ingress -n NAMESPACE_NAME
