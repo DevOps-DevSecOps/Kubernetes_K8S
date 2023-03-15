@@ -231,6 +231,7 @@ kubectl get pod -n NAMESPACE_NAME -w
 kubectl get pod -n NAMESPACE_NAME -o wide
 kubectl get pod -n NAMESPACE_NAME --show-labels
 kubectl get pod -n NAMESPACE_NAME --show-labels -o wide
+kubectl get pod --namespace NAMESPACE_NAME
 kubectl get pod POD_NAME
 kubectl get pod POD_NAME -w
 kubectl get pod POD_NAME -o wide
@@ -268,6 +269,7 @@ kubectl get pods --watch
 kubectl get pods --watch output
 kubectl get pods -o wide
 kubectl get pods -o wide -n NAMESPACE_NAME
+kubectl get pods -o wide --namespace NAMESPACE_NAME
 kubectl get pods -o wide --selector=KEY=VALUE,KEY=VALUE --show-labels
 kubectl get pods -a -n NAMESPACE_NAME
 kubectl get pods --show-all -w
@@ -538,6 +540,7 @@ kubectl expose deploy DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO
 kubectl expose deploy DEPLOYMENT_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO --type=SERVICE_TYPES
 kubectl expose deploy DEPLOYMENT_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES
 kubectl expose deploy DEPLOYMENT_NAME --port SERVICE_PORT_NO --type SERVICE_TYPES
+kubectl expose deploy DEPLOYMENT_NAME --port SERVICE_PORT_NO
 kubectl expose deployment DEPLOYMENT_NAME --name SERVICE_NAME --cluster-ip=None                                     # expose a Headless service by setting "--cluster-ip=None"
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=SERVICE_TYPES
 kubectl expose deployment DEPLOYMENT_NAME --name=SERVICE_NAME --type=SERVICE_TYPES --external-ip=IP_ADDRESS --port=SERVICE_PORT_NO
@@ -972,6 +975,8 @@ kubectl get svc --all-namespaces
 kubectl get svc -l KEY=VALUE
 kubectl get svc -n NAMESPACE_NAME
 kubectl get svc -n NAMESPACE_NAME -o wide --show-labels
+kubectl get svc --namespace NAMESPACE_NAME
+kubectl get svc --namespace=NAMESPACE_NAME
 kubectl get svc SERVICE_NAME
 kubectl get svc/SERVICE_NAME
 kubectl get svc SERVICE_NAME -o yaml
@@ -1049,6 +1054,7 @@ kubectl get ingress INGRESS_NAME
 kubectl get ingresses --namespace NAMESPACE_NAME
 kubectl describe ing
 kubectl describe ing INGRESS_NAME
+kubectl describe ing INGRESS_NAME --namespace NAMESPACE_NAME
 kubectl describe ingress
 kubectl describe ingress -n NAMESPACE_NAME
 kubectl describe ingress INGRESS_NAME
@@ -1110,6 +1116,7 @@ kubectl get configmaps
 kubectl get configmaps CONFIGMAP_NAME -o yaml
 kubectl describe cm CONFIGMAP_NAME
 kubectl describe configmap CONFIGMAP_NAME
+kubectl describe configmap CONFIGMAP_NAME -n NAMESPACE_NAME
 kubectl describe configmap/CONFIGMAP_NAME
 kubectl describe configmaps
 kubectl describe configmaps CONFIGMAP_NAME
