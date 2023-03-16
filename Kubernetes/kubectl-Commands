@@ -882,6 +882,7 @@ kubectl get ns -o wide
 kubectl get ns -o yaml
 kubectl get ns --show-labels
 kubectl get ns NAMESPACE_NAME
+kubectl get ns NAMESPACE_NAME --show-labels
 kubectl get namespace
 kubectl get namespace NAMESPACE_NAME
 Kubectl get namespaces
