@@ -5,4 +5,5 @@ minikube start --cpus=4 --memory=4096 --driver=virtualbox
 minikube config set memory 16384
 
 minikube addons enable ingress
+minikube addons enable ingress -p NAME                              # it enabled ingress addons in another cluster with specific profile name
 minikube addons enable metrics-server
