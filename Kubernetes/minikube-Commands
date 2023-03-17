@@ -8,7 +8,7 @@ minikube start --driver=docker
 minikube start --cpus NO --memory NO
 minikube start --cpus=NO --memory=NO --driver=virtualbox
 minikube start --cpus NO --memory NOg --driver=virtualbox
-minikube start -p NAME                                      # it create another cluster with different profile name
+minikube start -p NAME                                      # it create another cluster with specific profile name
 minikube start -p NAME --kubernetes-version=VERSION_NO
 
 minikube status
@@ -22,6 +22,7 @@ minikube unpause
 minikube stop
 
 minikube ip
+minikube ip -p NAME                                         # fetch the ip address from another cluster with specific profile name
 
 minikube config set memory NO                               # increase/decrease the default memory limit (requires a restart)
 
