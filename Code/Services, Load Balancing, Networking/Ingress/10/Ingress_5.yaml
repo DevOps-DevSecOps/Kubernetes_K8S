@@ -152,3 +152,27 @@ spec:
               port:
                 number: 8080
 ---
+# generate a SSL/TLS Certificates - [$ openssl req -x509 -newkey rsa:4096 -sha256 -nodes -keyout tls.key -out tls.crt -subj "/CN=nginx-demo.com" -days 365]
+
+# create a Secret - [$ kubectl create secret tls nginx-demo-com-tls --cert tls.crt --key tls.key]
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+spec:
+  tls:
+    - secretName: nginx-demo-com-tls
+      hosts:
+        - "nginx-demo.com"
+  rules:
+    - host: nginx-demo.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service: 
+                name: nginx-service
+                port: 
+                  number: 8082
