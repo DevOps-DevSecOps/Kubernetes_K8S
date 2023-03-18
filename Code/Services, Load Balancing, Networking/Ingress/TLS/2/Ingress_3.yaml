@@ -1,0 +1,23 @@
+# generate a SSL/TLS Certificates - [$ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -out knote-ingress-tls.crt -keyout knote-ingress-tls.key -subj "/CN=knote.learnitguide.com/O=knote-ingress-tls"]
+
+# create a Secret - [$ kubectl create secret tls knote-ingress-tls --namespace default --key knote-ingress-tls.key --cert knote-ingress-tls.crt]
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+      - knote.learnitguide.com
+    secretName: my-secret
+  rules:
+  - host: knote.learnitguide.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: knote
+          servicePort: 80
