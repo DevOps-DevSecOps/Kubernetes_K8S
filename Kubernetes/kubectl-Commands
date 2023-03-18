@@ -1193,6 +1193,7 @@ kubectl create secret generic SECRET_NAME --from-file=.dockerconfigjson=/home/US
 kubectl create secret tls SECRET_NAME --cert FILE_NAME.crt --key FILE_NAME.pem
 kubectl create secret tls SECRET_NAME --cert=FILE_NAME.crt --key=FILE_NAME.pem
 kubectl create secret tls SECRET_NAME --cert FILE_NAME.crt --key FILE_NAME.key
+kubectl create secret tls SECRET_NAME --cert FILE_NAME.crt --key FILE_NAME.key --namespace NAMESPACE_NAME
 kubectl create secret tls SECRET_NAME --key /FOLDER_NAME/FILE_NAME.key --cert /FOLDER_NAME/FILE_NAME.crt
 
 [Role-Based Access Control (RBAC)]
