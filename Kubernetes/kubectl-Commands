@@ -1485,6 +1485,7 @@ kubectl auth can-i VERBS_TYPES nodes -n NAMESPACE_NAME --as system:serviceaccoun
 kubectl explain csr
 kubectl get csr
 kubectl describe csr
+kubectl describe certificate -n NAMESPACE_NAME
 kubectl certificate approve CSR_NAME
 kubectl certificate deny CSR_NAME
 
