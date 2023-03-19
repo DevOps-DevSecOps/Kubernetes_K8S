@@ -1,3 +1,6 @@
+# create a Secret - [$ kubectl create secret tls tls1 --cert=john.crt --key=john.key]
+# create a Secret - [$ kubectl create secret tls tls2 --cert=john.crt --key=john.key]
+---
 apiVersion: extensions/v1beta
 kind: Ingress
 metadata:
@@ -9,7 +12,7 @@ spec:
     secretName: tls1
   - hosts:
     - site3.example.com
-    secretName: johnsec
+    secretName: tls2
   rules:
   - host: site1.example.com
     http:
