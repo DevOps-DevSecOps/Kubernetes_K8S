@@ -1,0 +1,47 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: demo-ingress
+spec:
+  rules:
+  - host: Sales.learnitguide.net
+    http:
+      paths:
+      - backend:
+          serviceName: Sales
+          servicePort: 80
+  - host: Purchase.learnitguide.net
+    http:
+      paths:
+      - backend:
+          serviceName: Purchase
+          servicePort: 80
+  - host: Examples.site1.com
+    http:
+      paths:
+      - backend:
+          serviceName: Examples
+          servicePort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: sales.learnitguide.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: sales
+          servicePort: 80
+  - host: purchase.learnitguide.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: purchase
+          servicePort: 80
