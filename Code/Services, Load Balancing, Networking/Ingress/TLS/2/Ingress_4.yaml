@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta
+kind: Ingress
+metadata:
+  name: myingress
+spec:
+  tls:
+  - hosts:
+    - site1.example.com
+    secretName: tls1
+  - hosts:
+    - site3.example.com
+    secretName: johnsec
+  rules:
+  - host: site1.example.com
+    http:
+      paths:
+      - path: /    
+        backend:
+          serviceName: front-svc
+          servicePort: 8181
+      - path: /site1
+        backend:
+          serviceName: front-svc
+          servicePort: 8181
+  - host: site3.example.com
+    http:
+      paths:
+      - path: /site3
+        backend:
+          serviceName: web-svc
+          servicePort: 8282
