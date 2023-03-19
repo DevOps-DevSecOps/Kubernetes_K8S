@@ -12,3 +12,7 @@ ingress_name      <none>      host_name,host_name      ip_address      service_p
 
 $ curl host_name/
 $ curl host_name/path/
+
+$ kubectl get ingress
+NAME              CLASS       HOSTS          ADDRESS         PORTS                AGE
+ingress_name      <none>      host_name      AWS_ELB_ID      service_port_no      xxx
