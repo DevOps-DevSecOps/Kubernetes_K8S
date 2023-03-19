@@ -1,0 +1,14 @@
+$ kubectl get ingress
+NAME              CLASS       HOSTS      ADDRESS         PORTS                AGE
+ingress_name      <none>      *          ip_address      service_port_no      xxx
+
+$ curl INGRESS_IP_ADDRESS
+$ curl INGRESS_IP_ADDRESS/path/
+
+$ kubectl get ingress
+NAME              CLASS       HOSTS                    ADDRESS         PORTS                AGE
+ingress_name      <none>      host_name                ip_address      service_port_no      xxx
+ingress_name      <none>      host_name,host_name      ip_address      service_port_no      xxx
+
+$ curl host_name/
+$ curl host_name/path/
