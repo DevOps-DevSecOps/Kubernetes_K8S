@@ -16,3 +16,11 @@ $ curl host_name/path/
 $ kubectl get ingress
 NAME              CLASS       HOSTS          ADDRESS         PORTS                AGE
 ingress_name      <none>      host_name      AWS_ELB_ID      service_port_no      xxx
+
+[Local DNS]
+To setup a local DNS using the hosts file (/etc/hosts) in Linux systems for local domain resolution or testing the website before taking live.
+To test a website locally with a custom domain name before going live publicly by modifying the /etc/hosts file on your local system to point the domain name to the IP address of the local DNS server you configured.
+$ vi /etc/hosts
+INGRESS_IP_ADDRESS           HOST_NAME
+INGRESS_IP_ADDRESS_1         HOST_NAME_1
+INGRESS_IP_ADDRESS_2         HOST_NAME_2
