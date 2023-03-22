@@ -187,6 +187,7 @@ kubectl expose po POD_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-p
 kubectl expose pod POD_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO
 kubectl expose pod POD_NAME --name SERVICE_NAME --port=SERVICE_PORT_NO --dry-run=client -o yaml
 kubectl expose pod POD_NAME --name=SERVICE_NAME --port=SERVICE_PORT_NO --target-port=CONTAINER_PORT_NO
+kubectl expose pod POD_NAME --name SERVICE_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES
 kubectl expose pod POD_NAME --name SERVICE_NAME --port=SERVICE_PORT_NO --type=SERVICE_TYPES --dry-run=client -o yaml
 kubectl expose pod POD_NAME --type=SERVICE_TYPES
 kubectl expose pod POD_NAME --port=SERVICE_PORT_NO
@@ -982,7 +983,9 @@ kubectl get svc SERVICE_NAME
 kubectl get svc/SERVICE_NAME
 kubectl get svc SERVICE_NAME -o yaml
 kubectl get svc SERVICE_NAME -n NAMESPACE_NAME
+kubectl get svc SERVICE_NAME -n NAMESPACE_NAME -o yaml
 kubectl get svc SERVICE_NAME -n NAMESPACE_NAME -o json
+kubectl get svc | grep SERVICE_NAME
 kubectl get service
 kubectl get service -o wide
 kubectl get service -l KEY=VALUE
@@ -993,6 +996,7 @@ kubectl get service/SERVICE_NAME
 kubectl get service SERVICE_NAME --watch
 kubectl get service SERVICE_NAME -o yaml
 kubectl get service SERVICE_NAME -n NAMESPACE_NAME
+kubectl get service SERVICE_NAME -n NAMESPACE_NAME -o wide
 kubectl get service SERVICE_NAME -n NAMESPACE_NAME -o yaml
 kubectl get service SERVICE_NAME -n NAMESPACE_NAME -o yaml > FILE_NAME.yaml
 kubectl get services
@@ -1010,6 +1014,7 @@ kubectl get services SERVICE_NAME --namespace NAMESPACE_NAME -o wide -w
 kubectl describe svc
 kubectl describe svc -l KEY=VALUE
 kubectl describe svc SERVICE_NAME
+kubectl describe svc/SERVICE_NAME
 kubectl describe service
 kubectl describe service SERVICE_NAME
 kubectl describe service SERVICE_NAME -n NAMESPACE_NAME
