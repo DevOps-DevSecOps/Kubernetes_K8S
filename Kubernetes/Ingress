@@ -33,6 +33,7 @@ https://istio.io/v1.6/docs/reference/config/annotations/
 https://istio.io/latest/docs/reference/config/annotations/
 ● Nginx
 Kubernetes itself implement and maintain an Nginx Ingress Controller. 
+https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/
 https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-annotations/
 https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md
 ● Traefik
