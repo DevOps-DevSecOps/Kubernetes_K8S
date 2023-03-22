@@ -627,6 +627,8 @@ kubectl describe deployments
 kubectl describe deployments DEPLOYMENT_NAME
 kubectl label deployments DEPLOYMENT_NAME "KEY=VALUE"
 kubectl label deployments DEPLOYMENT_NAME "KEY-"
+kubectl annotate deployment/DEPLOYMENT_NAME KEY="VALUE"
+kubectl annotate deployment/DEPLOYMENT_NAME KEY-
 kubectl annotate deployments DEPLOYMENT_NAME KEY="VALUE"
 kubectl exec deploy/DEPLOYMENT_NAME -- LINUX_COMMANDS
 kubectl exec -it deploy/DEPLOYMENT_NAME -- /bin/bash -n NAMESPACE_NAME
