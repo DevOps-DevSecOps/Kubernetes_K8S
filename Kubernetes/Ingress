@@ -38,8 +38,14 @@ https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-conf
 ● Traefik
 ●
 ●
+
+[Load Balancer]
 ● MetalLB
 It is a Load Balancer used for bare metal Kubernetes clusters.
 It is a project of a load-balancer implementation for bare metal Kubernetes clusters, using standard routing protocols.
 $ helm repo add metallb https://metallb.github.io/metallb
 $ helm install metallb metallb/metallb
+
+[Certificates]
+● Cert Manager
+https://cert-manager.io/docs/usage/ingress/
