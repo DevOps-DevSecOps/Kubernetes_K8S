@@ -586,6 +586,7 @@ kubectl get deploy
 kubectl get deploy -o wide
 kubectl get deploy -o yaml
 kubectl get deploy -n NAMESPACE_NAME
+kubectl get deploy -n NAMESPACE_NAME -o wide
 kubectl get deploy --all-namespaces -o yaml > FILE_NAME.yaml
 kubectl get deploy DEPLOYMENT_NAME
 kubectl get deploy DEPLOYMENT_NAME -o yaml > FILE_NAME.yaml
