@@ -1,3 +1,10 @@
 [installation of MetalLB using the official manifests]
 $ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.10.2/manifests/namespace.yaml
 $ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.10.2/manifests/metallb.yaml
+
+[view the details of Service]
+$ kubectl get service -n web
+
+[curl the endpoint]
+$ curl <EXTERNAL-IP>
+<html><body><h1>It works!</h1></body></html>
