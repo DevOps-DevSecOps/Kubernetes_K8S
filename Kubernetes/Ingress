@@ -48,8 +48,9 @@ $ helm install haproxy-ingress haproxy-ingress/haproxy-ingress --create-namespac
 
 [Load Balancer]
 ● MetalLB
-It is a Load Balancer used for bare metal Kubernetes clusters.
+It is a external Load Balancer used for bare metal Kubernetes clusters.
 It is a project of a load-balancer implementation for bare metal Kubernetes clusters, using standard routing protocols.
+When a LoadBalancer service is requested MetalLB allocates an IP address from the configured range and makes the network aware that the IP in the cluster.
 $ helm repo add metallb https://metallb.github.io/metallb
 $ helm repo update
 $ helm install metallb metallb/metallb
