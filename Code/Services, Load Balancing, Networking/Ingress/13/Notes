@@ -2,3 +2,38 @@
 $ helm repo add metallb https://metallb.github.io/metallb
 $ helm repo update
 $ helm install metallb metallb/metallb -f values.yaml
+
+$ kubectl get configmap metallb -o yaml
+
+[view the details of Service]
+$ kubectl get service nginx
+NAME    TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)        AGE
+nginx   LoadBalancer   10.21.82.141   192.168.86.10   80:30967/TCP   4m40s
+
+[curl the endpoint]
+$ curl http://192.168.86.10
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
