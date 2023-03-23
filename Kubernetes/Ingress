@@ -51,6 +51,7 @@ $ helm install haproxy-ingress haproxy-ingress/haproxy-ingress --create-namespac
 It is a Load Balancer used for bare metal Kubernetes clusters.
 It is a project of a load-balancer implementation for bare metal Kubernetes clusters, using standard routing protocols.
 $ helm repo add metallb https://metallb.github.io/metallb
+$ helm repo update
 $ helm install metallb metallb/metallb
 
 [Certificates]
