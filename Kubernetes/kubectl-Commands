@@ -892,6 +892,7 @@ kubectl get namespace NAMESPACE_NAME
 Kubectl get namespaces
 kubectl get namespaces NAMESPACE_NAME
 kubectl get namespaces --show-labels
+kubectl get namespaces -A --show-labels
 kubectl describe ns
 kubectl describe ns NAMESPACE_NAME
 kubectl describe ns NAMESPACE_NAME NAMESPACE_NAME
