@@ -33,6 +33,7 @@ There are several types of Ingress Controllers.
 https://istio.io/v1.3/docs/reference/config/annotations/
 https://istio.io/v1.6/docs/reference/config/annotations/
 https://istio.io/latest/docs/reference/config/annotations/
+$ istioctl install --set profile=PROFILE_NAME -y
 ● Nginx
 Kubernetes itself implement and maintain an Nginx Ingress Controller. 
 https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/
