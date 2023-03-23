@@ -1,0 +1,4 @@
+[create a dev namespace]
+$ kubectl create ns dev
+
+[]
