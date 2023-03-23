@@ -233,6 +233,7 @@ kubectl get pod -n NAMESPACE_NAME -o wide
 kubectl get pod -n NAMESPACE_NAME --show-labels
 kubectl get pod -n NAMESPACE_NAME --show-labels -o wide
 kubectl get pod --namespace NAMESPACE_NAME
+kubectl get pod --namespace NAMESPACE_NAME -w
 kubectl get pod POD_NAME
 kubectl get pod POD_NAME -w
 kubectl get pod POD_NAME -o wide
@@ -435,11 +436,11 @@ kubectl logs POD_NAME > FILE_NAME
 kubectl logs POD_NAME -c CONTAINER_NAME
 kubectl logs POD_NAME -c CONTAINER_NAME --previous
 kubectl logs POD_NAME -c CONTAINER_NAME -n NAMESPACE_NAME
-kubectl logs POD_NAME -c CONTAINER_NAME -n NAMESPACE_NAME -f
 kubectl logs POD_NAME -c CONTAINER_NAME -n NAMESPACE_NAME --previous
 kubectl logs -f POD_NAME
 kubectl logs -f POD_NAME -c CONTAINER_NAME
 kubectl logs -f POD_NAME -c CONTAINER_NAME -n NAMESPACE_NAME
+kubectl logs -f POD_NAME -c CONTAINER_NAME --namespace NAMESPACE_NAME
 kubectl logs -f POD_NAME --tail NO
 kubectl logs -f POD_NAME --tail NO -c CONTAINER_NAME
 kubectl logs --follow POD_NAME
