@@ -1493,6 +1493,7 @@ kubectl auth can-i VERBS_TYPES nodes -n NAMESPACE_NAME --as system:serviceaccoun
 [Certificate Signing Requests (CSR)]
 kubectl explain csr
 kubectl get csr
+kubectl get certificate
 kubectl describe csr
 kubectl describe certificate -n NAMESPACE_NAME
 kubectl certificate approve CSR_NAME
