@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: blog
+  namespace: demo
+spec:
+  rules:
+  - host: mycluster.navratangupta.in
+    http:
+      paths:
+      - backend:
+          service:
+            name: blog
+            port:
+              number: 80
+        path: /blog
+        pathType: ImplementationSpecific
