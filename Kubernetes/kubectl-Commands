@@ -992,6 +992,7 @@ kubectl get svc | grep SERVICE_NAME
 kubectl get service
 kubectl get service -o wide
 kubectl get service -l KEY=VALUE
+kubectl get service -n NAMESPACE_NAME
 kubectl get service --all-namespaces
 kubectl get service --all-namespaces -o yaml > FILE_NAME.yaml
 kubectl get service SERVICE_NAME
