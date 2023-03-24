@@ -1,0 +1,67 @@
+# Default Ingress Resource
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-ingress-example
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: demo-nginx-example
+  rules:
+  - http:
+      paths:
+      - path: /demofilepath
+        pathType: Prefix
+        backend:
+          service:
+            name: demoservice
+            port:
+              number: 99
+---
+# Exposing Services as Externally Usable URLs via Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+ name: demo-Ingress
+ annotations:
+   nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: demo.web.com
+    http:
+      paths:
+      - path: /demo-Ingress
+        pathType: Prefix
+        backend:
+          service:
+            name: demo-Ingress
+            port: 1919
+---
+# Load Balancing Traffic with Kubernetes Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-Ingress-split
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: 
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: demo.web.com
+    http:
+      paths:
+      - path: /demo-Ingress
+        pathType: Prefix
+        backend:
+          service:
+            name: demo-Ingress
+            port:
+              number: 1919
+      - path: /demo-Ingress-split
+        pathType: Prefix
+        backend:
+          service:
+            name: demo-Ingress-split
+            port:
+              number: 2020
