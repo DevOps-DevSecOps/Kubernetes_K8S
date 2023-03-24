@@ -1,0 +1,22 @@
+[install an NGINX Ingress controller using Helm]
+$ helm repo add nginx-stable https://helm.nginx.com/stable
+$ helm repo update
+$ helm install ingress-nginx nginx-stable/nginx-ingress
+$ helm install ingress-nginx nginx-stable/nginx-ingress --set rbac.create=true
+
+[install an NGINX Ingress controller using via CLI]
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/cloud/deploy.yaml
+# LoadBalancer
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/cloud/deploy.yaml
+# NodePort
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/baremetal/deploy.yaml
+
+[validate the NGINX Ingress Controller]
+$ kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx
+NAMESPACE       NAME                                        READY   STATUS      RESTARTS   AGE
+ingress-nginx   ingress-nginx-admission-create-wb4rm        0/1     Completed   0          17m
+ingress-nginx   ingress-nginx-admission-patch-dqsnv         0/1     Completed   2          17m
+ingress-nginx   ingress-nginx-controller-74fd5565fb-lw6nq   1/1     Running     0          17m
+$ kubectl get services ingress-nginx-controller --namespace=ingress-nginx
+NAME                       TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)                      AGE
+ingress-nginx-controller   LoadBalancer   10.21.1.110   10.0.0.3      80:32495/TCP,443:30703/TCP   17m
