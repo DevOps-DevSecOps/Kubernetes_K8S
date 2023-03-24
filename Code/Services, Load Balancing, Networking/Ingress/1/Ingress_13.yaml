@@ -16,3 +16,26 @@ spec:
         backend:
           serviceName: httpbin
           servicePort: 8000
+---
+# generate a SSL/TLS Certificates - [$ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /tmp/tls.key -out /tmp/tls.crt -subj "/CN=foo.bar.com"]
+
+# create a Secret - [$ kubectl create secret tls ingress-secret --key /tmp/tls.key --cert /tmp/tls.crt]
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: secured-ingress
+  annotations:
+    kubernetes.io/ingress.class: istio
+spec:
+  tls:
+    - secretName: ingress-secret
+  rules:
+  - http:
+      paths:
+      - path: /ip
+        backend:
+          serviceName: httpbin
+          servicePort: 8000
+---
+# Playlist :- https://istio-releases.github.io/v0.1/docs/tasks/ingress.html#configuring-secure-ingress-https
