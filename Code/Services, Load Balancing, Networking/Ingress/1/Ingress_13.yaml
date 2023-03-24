@@ -38,4 +38,4 @@ spec:
           serviceName: httpbin
           servicePort: 8000
 ---
-# Playlist :- https://istio-releases.github.io/v0.1/docs/tasks/ingress.html#configuring-secure-ingress-https
+# Playlist :- https://istio-releases.github.io/v0.1/docs/tasks/ingress.html
