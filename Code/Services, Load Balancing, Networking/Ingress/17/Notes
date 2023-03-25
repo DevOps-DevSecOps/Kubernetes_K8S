@@ -1,0 +1,11 @@
+$ kubectl get pods -n kube-system
+NAME                                                   READY   STATUS    RESTARTS   AGE
+traefik-ingress-controller-5599d74798-4nw9w            1/1     Running   0          36m
+
+$ kubectl get deployment -n kube-system
+NAME                            READY   UP-TO-DATE   AVAILABLE   AGE
+traefik-ingress-controller      1/1     1            1           51m
+
+$ kubectl get svc -n kube-system
+NAME                      TYPE           CLUSTER-IP       EXTERNAL-IP                                                                PORT(S)                       AGE
+traefik-ingress-service   LoadBalancer   100.64.144.139   ab690ac82863747738f3d98420cd5a6b-2116167598.ap-south-1.elb.amazonaws.com   80:31424/TCP,8080:30361/TCP   50m
