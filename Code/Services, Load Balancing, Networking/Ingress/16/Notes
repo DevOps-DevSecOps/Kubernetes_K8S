@@ -14,6 +14,31 @@ $ kubectl get services ingress-nginx-controller
 NAME                       TYPE           CLUSTER-IP      EXTERNAL-IP                                                               PORT(S)                      AGE
 ingress-nginx-controller   LoadBalancer   100.65.85.238   a8e1355c94fdd438a9d207181b50ea1d-213346636.ap-south-1.elb.amazonaws.com   80:30710/TCP,443:31894/TCP   5m15s
 
+[check Kubernetes pods]
+$ kubectl get pods
+NAME                                        READY   STATUS    RESTARTS   AGE
+ingress-nginx-controller-6f5454cbfb-2jvcf   1/1     Running   0          41m
+nginx-app-d6ff45774-hp7s4  
+
+[check kubernetes deployments]
+$ kubectl get deploy
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+ingress-nginx-controller   1/1     1            1           42m
+nginx-app                  1/1     1            1           41m
+
+[check Kubernetes service]
+$ kubectl get svc
+NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP                                                                PORT(S)                      AGE
+ingress-nginx-controller             LoadBalancer   100.64.113.132   afbcd905b614842c29702ddd7481784d-1960968212.ap-south-1.elb.amazonaws.com   80:30375/TCP,443:31354/TCP   43m
+ingress-nginx-controller-admission   ClusterIP      100.67.218.51    <none>                                                                     443/TCP                      43m
+kubernetes                           ClusterIP      100.64.0.1       <none>                                                                     443/TCP                      48m
+nginx-app                            ClusterIP      100.68.218.6     <none>                                                                     80/TCP                       42m
+
+[check kubernetes ingress]
+$ kubectl get ingress
+NAME            CLASS    HOSTS                       ADDRESS                                                                    PORTS     AGE
+nginx-ingress   <none>   nginxapp.fosstechnix.info   afbcd905b614842c29702ddd7481784d-1960968212.ap-south-1.elb.amazonaws.com   80, 443   42m
+
 [configure cert-manager for Nginx Ingress]
 Kubernetes version 1.16+
 $ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.1/cert-manager.yaml
