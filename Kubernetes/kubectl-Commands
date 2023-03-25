@@ -1058,6 +1058,7 @@ kubectl describe endpoints ENDPOINT_NAME
 kubectl describe endpoints SERVICE_NAME
 
 [Ingress]
+kubectl edit ingress INGRESS_NAME
 kubectl get ing
 kubectl get ing --all-namespaces
 kubectl get ing --namespace NAMESPACE_NAME
@@ -1501,6 +1502,8 @@ kubectl auth can-i VERBS_TYPES nodes -n NAMESPACE_NAME --as system:serviceaccoun
 kubectl explain csr
 kubectl get csr
 kubectl get certificate
+kubectl get certificates
+kubectl get certificates CERTIFICATE_NAME
 kubectl describe csr
 kubectl describe certificate -n NAMESPACE_NAME
 kubectl certificate approve CSR_NAME
