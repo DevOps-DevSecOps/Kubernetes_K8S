@@ -1059,6 +1059,7 @@ kubectl describe endpoints SERVICE_NAME
 
 [Ingress]
 kubectl edit ingress INGRESS_NAME
+kubectl edit ingress INGRESS_NAME -n NAMESPACE_NAME
 kubectl get ing
 kubectl get ing --all-namespaces
 kubectl get ing --namespace NAMESPACE_NAME
