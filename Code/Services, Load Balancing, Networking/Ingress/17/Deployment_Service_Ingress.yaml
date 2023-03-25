@@ -1,0 +1,52 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nodejs-demo
+  namespace: kube-system
+  labels:
+    app: nodejs-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs-demo
+  template:
+    metadata:
+      labels:
+        app: nodejs-demo
+    spec:
+      containers:
+      - name: nodejs
+        image: "devopshint/nodejsdocker"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-demo
+  namespace: kube-system
+spec:
+  selector:
+    app: nodejs-demo
+  ports:
+  - name: http
+    targetPort: 80
+    port: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  namespace: kube-system
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.passHostHeader: "false"
+    traefik.frontend.priority: "1"
+spec:
+  rules:
+  - host: app2.fosstechnix.info
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nodejs-demo
+          servicePort: 80
