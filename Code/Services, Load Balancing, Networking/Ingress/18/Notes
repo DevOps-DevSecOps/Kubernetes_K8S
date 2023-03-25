@@ -17,3 +17,33 @@ $ helm install --namespace=traefik-v2 traefik traefik/traefik
 $ kubectl get svc
 NAME         TYPE           CLUSTER-IP     EXTERNAL-IP                                                               PORT(S)                      AGE
 traefik      LoadBalancer   100.71.30.91   ad51e01b1a2064541852a2e6e8227e26-764563388.ap-south-1.elb.amazonaws.com   80:30915/TCP,443:32466/TCP   5m21s
+
+[check Kubernetes pods]
+$ kubectl get pods
+NAME                          READY   STATUS    RESTARTS   AGE
+nginx-web-5bf45d88df-zs42j    1/1     Running   0          11m
+nodejs-app-76c4545979-b5jm7   1/1     Running   0          10m
+traefik-5c454b7c44-jwx4j      1/1     Running   0          33m
+
+[check kubernetes deployments]
+$ kubectl get deploy
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-web    1/1     1            1           11m
+nodejs-app   1/1     1            1           10m
+traefik      1/1     1            1           33m
+
+[check Kubernetes service]
+$ kubectl get svc
+NAME         TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)                      AGE
+kubernetes   ClusterIP      100.64.0.1       <none>                                                                    443/TCP                      37m
+nginx-web    ClusterIP      100.64.219.116   <none>                                                                    80/TCP                       11m
+nodejs-app   ClusterIP      100.70.17.76     <none>                                                                    80/TCP                       10m
+traefik      LoadBalancer   100.71.30.91     ad51e01b1a2064541852a2e6e8227e26-764563388.ap-south-1.elb.amazonaws.com   80:30915/TCP,443:32466/TCP   33m
+
+[check kubernetes ingress]
+$ kubectl get ingress
+NAME              CLASS    HOSTS                                                  ADDRESS   PORTS   AGE
+traefik-ingress   <none>   nginxapp.fosstechnix.info,nodejsapp.fosstechnix.info
+
+[accessing the application site in browser]
+nodejsapp.fosstechnix.info
