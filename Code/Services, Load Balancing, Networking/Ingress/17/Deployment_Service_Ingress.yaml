@@ -50,3 +50,31 @@ spec:
         backend:
           serviceName: nodejs-demo
           servicePort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  namespace: kube-system
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.passHostHeader: "false"
+    traefik.frontend.priority: "1"
+spec:
+  rules:
+  - host: app1.fosstechnix.info
+    http:
+      paths:
+      - backend:
+          serviceName: nginx-demo
+          servicePort: 80
+        path: /
+        pathType: ImplementationSpecific
+  - host: app2.fosstechnix.info
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          serviceName: nodejs-demo
+          servicePort: 80
