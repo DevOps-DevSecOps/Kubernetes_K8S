@@ -13,3 +13,28 @@ $ helm install ingress-nginx ingress-nginx/ingress-nginx
 $ kubectl get services ingress-nginx-controller
 NAME                       TYPE           CLUSTER-IP      EXTERNAL-IP                                                               PORT(S)                      AGE
 ingress-nginx-controller   LoadBalancer   100.65.85.238   a8e1355c94fdd438a9d207181b50ea1d-213346636.ap-south-1.elb.amazonaws.com   80:30710/TCP,443:31894/TCP   5m15s
+
+[configure cert-manager for Nginx Ingress]
+Kubernetes version 1.16+
+$ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.1/cert-manager.yaml
+Kubernetes <1.16 version
+$ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.1/cert-manager-legacy.yaml
+
+[lets check the certificate is created]
+$ kubectl get certificates nginxapp.fosstechnix.info
+NAME                        READY   SECRET                          AGE
+nginxapp.fosstechnix.info   True    nginxapp.fosstechnix.info-tls   32s
+
+[let check secrets to check Nginx Ingress letsencrypt TLS]
+$ kubectl get secrets nginxapp.fosstechnix.info-tls
+NAME                            TYPE                DATA   AGE
+nginxapp.fosstechnix.info-tls   kubernetes.io/tls   2      2m50s
+
+[now edit the exist ingress file]
+$ kubectl edit ingress nginx-ingress
+
+[accessing the application site in browser]
+https://nginxapp.fosstechnix.info
+
+[accessing the application site in CLI]
+$ curl https://nginxapp.fosstechnix.info
