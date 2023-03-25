@@ -1,0 +1,15 @@
+[Install Helm 3 on Kubernetes Cluster]
+$ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+$ chmod 700 get_helm.sh
+$ ./get_helm.sh
+$ helm version
+
+[Install an Nginx Ingress Controller on Kubernetes Cluster using Helm]
+$ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+$ helm repo update
+$ helm install ingress-nginx ingress-nginx/ingress-nginx
+
+[to check nginx ingress controller status]
+$ kubectl get services ingress-nginx-controller
+NAME                       TYPE           CLUSTER-IP      EXTERNAL-IP                                                               PORT(S)                      AGE
+ingress-nginx-controller   LoadBalancer   100.65.85.238   a8e1355c94fdd438a9d207181b50ea1d-213346636.ap-south-1.elb.amazonaws.com   80:30710/TCP,443:31894/TCP   5m15s
