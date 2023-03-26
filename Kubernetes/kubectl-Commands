@@ -596,8 +596,10 @@ kubectl get deployment
 kubectl get deployment -o wide
 kubectl get deployment -l KEY=VALUE
 kubectl get deployment -l KEY=VALUE --show-labels
+kubectl get deployment -l KEY=VALUE --namespace=NAMESPACE_NAME
 kubectl get deployment -n NAMESPACE_NAME
 kubectl get deployment -n=NAMESPACE_NAME
+kubectl get deployment --namespace=NAMESPACE_NAME
 kubectl get deployment --all-namespaces
 kubectl get deployment DEPLOYMENT_NAME
 kubectl get deployment DEPLOYMENT_NAME --show-labels
@@ -707,6 +709,7 @@ kubectl get rs -o wide
 kubectl get rs -o yaml
 kubectl get rs --show-labels
 kubectl get rs --all-namespaces
+kubectl get rs --namespace=NAMESPACE_NAME
 kubectl get rs --selector=KEY=VALUE
 kubectl get rs REPLICASET_NAME
 kubectl get rs REPLICASET_NAME -o wide
@@ -1052,6 +1055,7 @@ kubectl get ep
 kubectl get ep ENDPOINT_NAME
 kubectl get endpoints
 kubectl get endpoints ENDPOINT_NAME
+kubectl get endpoints ENDPOINT_NAME --namespace=NAMESPACE_NAME
 kubectl get endpoints SERVICE_NAME
 kubectl get endpoints SERVICE_NAME --namespace NAMESPACE_NAME
 kubectl describe endpoints ENDPOINT_NAME
@@ -1122,6 +1126,7 @@ kubectl edit cm CONFIGMAP_NAME
 kubectl edit cm CONFIGMAP_NAME -n NAMESPACE_NAME
 kubectl edit configmap CONFIGMAP_NAME
 kubectl edit configmap CONFIGMAP_NAME -n NAMESPACE_NAME
+kubectl edit configmap CONFIGMAP_NAME --namespace=NAMESPACE_NAME
 kubectl get cm
 kubectl get cm --all-namespaces
 kubectl get cm --all-namespaces -o yaml
@@ -1131,6 +1136,7 @@ kubectl get cm CONFIGMAP_NAME -o yaml -n NAMESPACE_NAME
 kubectl get configmap
 kubectl get configmap -o yaml
 kubectl get configmap -n NAMESPACE_NAME
+kubectl get configmap --namespace=NAMESPACE_NAME
 kubectl get configmap CONFIGMAP_NAME
 kubectl get configmap CONFIGMAP_NAME -o yaml
 kubectl get configmaps
@@ -1275,6 +1281,7 @@ kubectl create clusterrole CLUSTERROLE_NAME --verb VERBS_TYPES --resource OBJECT
 kubectl create clusterrole CLUSTERROLE_NAME --verb=VERBS_TYPES --verb=VERBS_TYPES --verb=VERBS_TYPES --resource=OBJECTS_NAME
 kubectl create clusterrole CLUSTERROLE_NAME --verb=VERBS_TYPES --resource=OBJECTS_NAME --resource-name=OBJECTS_RESOURCE_NAME --resource-name=OBJECTS_RESOURCE_NAME
 kubectl edit clusterrole CLUSTERROLE_NAME
+kubectl edit clusterrole CLUSTERROLE_NAME -n NAMESPACE_NAME
 kubectl get clusterrole
 kubectl get clusterrole | grep CLUSTERROLE_NAME
 kubectl get clusterrole -n NAMESPACE_NAME
@@ -1286,6 +1293,7 @@ kubectl get clusterroles -n NAMESPACE_NAME
 kubectl get clusterroles --namespace=NAMESPACE_NAME
 kubectl get clusterroles CLUSTERROLE_NAME -o yaml
 kubectl describe clusterrole CLUSTERROLE_NAME
+kubectl describe clusterrole CLUSTERROLE_NAME -n NAMESPACE_NAME
 kubectl delete clusterrole CLUSTERROLE_NAME -n NAMESPACE_NAME
 ● ClusterRoleBinding
 kubectl create clusterrolebinding CLUSTERROLEBINDING_NAME --clusterrole=CLUSTERROLE_NAME --group=system:serviceaccounts
