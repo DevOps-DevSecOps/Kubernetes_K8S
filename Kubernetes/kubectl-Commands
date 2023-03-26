@@ -880,6 +880,8 @@ kubectl label ns NAMESPACE_NAME KEY=VALUE --overwrite
 kubectl label ns NAMESPACE_NAME KEY="VALUE" --overwrite
 kubectl label ns NAMESPACE_NAME KEY-
 kubectl label namespace NAMESPACE_NAME KEY=VALUE
+kubectl label namespace NAMESPACE_NAME KEY=VALUE --overwrite
+kubectl label namespace NAMESPACE_NAME KEY-
 kubectl label namespace/NAMESPACE_NAME KEY=VALUE
 kubectl label namespaces NAMESPACE_NAME KEY=VALUE
 kubectl annotate ns NAMESPACE_NAME KEY=VALUE                                              # add a annotation for existing Namespace
@@ -1076,6 +1078,7 @@ kubectl get ingress INGRESS_NAME
 kubectl get ingress INGRESS_NAME -o wide
 kubectl get ingress INGRESS_NAME -n NAMESPACE_NAME
 kubectl get ingress INGRESS_NAME -n NAMESPACE_NAME -o yaml
+kubectl get ingresses -n NAMESPACE_NAME
 kubectl get ingresses --namespace NAMESPACE_NAME
 kubectl describe ing
 kubectl describe ing INGRESS_NAME
@@ -1086,6 +1089,7 @@ kubectl describe ingress INGRESS_NAME
 kubectl describe ingress INGRESS_NAME -n NAMESPACE_NAME
 kubectl delete ing INGRESS_NAME
 kubectl delete ingress INGRESS_NAME
+kubectl delete ingress INGRESS_NAME -n NAMESPACE_NAME
 
 [Network Policies]
 kubectl edit networkpolicy NETWORKPOLICY_NAME
@@ -1139,6 +1143,8 @@ kubectl get configmap -n NAMESPACE_NAME
 kubectl get configmap --namespace=NAMESPACE_NAME
 kubectl get configmap CONFIGMAP_NAME
 kubectl get configmap CONFIGMAP_NAME -o yaml
+kubectl get configmap CONFIGMAP_NAME -n NAMESPACE_NAME
+kubectl get configmap CONFIGMAP_NAME -n NAMESPACE_NAME -o yaml
 kubectl get configmaps
 kubectl get configmaps CONFIGMAP_NAME -o yaml
 kubectl describe cm CONFIGMAP_NAME
