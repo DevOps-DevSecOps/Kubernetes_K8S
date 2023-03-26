@@ -23,6 +23,12 @@ It is responsible for routing by accessing the DNS rules applied through Ingress
 ● Ingress Proxy
 It route external HTTP traffic to services and their endpoints.
 
+[Types of Routing]
+● Host-based routing
+The routing requests with the host header foo.example.com to one group of services and the host header bar.example.com to another group.
+● Path-based routing
+The routing requests with the URI that starts with /serviceA to service A and requests with the URI that starts with /serviceB to service B.
+
 [Ingress Controllers]
 Ingress controllers in Kubernetes are resources that accept traffic from the internet and load balance it to applications (usually in the form of running pods).
 Ingress controllers abstract away the complexity of routing traffic to applications running within a Kubernetes cluster.
