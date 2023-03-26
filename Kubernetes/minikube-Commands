@@ -37,6 +37,9 @@ minikube service SERVICE_NAME --url
 minikube service SERVICE_NAME --url --namespace NAMESPACE_NAME
 
 minikube addons list
+minikube addons list -p NAME
+minikube addons enable ADDON_NAME
+minikube addons disable ADDON_NAME
 
 minikube delete
 minikube delete --all
