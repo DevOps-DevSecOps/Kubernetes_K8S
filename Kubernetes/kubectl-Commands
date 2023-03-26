@@ -1070,6 +1070,8 @@ kubectl get ingress -n NAMESPACE_NAME --watch
 kubectl get ingress --namespace NAMESPACE_NAME
 kubectl get ingress INGRESS_NAME
 kubectl get ingress INGRESS_NAME -o wide
+kubectl get ingress INGRESS_NAME -n NAMESPACE_NAME
+kubectl get ingress INGRESS_NAME -n NAMESPACE_NAME -o yaml
 kubectl get ingresses --namespace NAMESPACE_NAME
 kubectl describe ing
 kubectl describe ing INGRESS_NAME
@@ -1159,6 +1161,8 @@ kubectl create secret generic SECRET_NAME --from-file=FILE_NAME --from-file=FILE
 kubectl create secret generic SECRET_NAME --from-file FILE_NAME --from-file FILE_NAME --namespace NAMESPACE_NAME
 kubectl create secret generic SECRET_NAME --from-file=./FILE_NAME --from-file=./FILE_NAME
 kubectl create secret generic SECRET_NAME --from-file=KEY=FILE_NAME --from-file=KEY=FILE_NAME
+kubectl create secret generic SECRET_NAME --from-file=KEY=FILE_NAME --from-file=KEY=FILE_NAME -n NAMESPACE_NAME
+kubectl create secret generic SECRET_NAME --from-file=KEY=FOLDER_NAME/FILE_NAME --from-file=KEY=FOLDER_NAME/FILE_NAME -n NAMESPACE_NAME
 kubectl create secret generic SECRET_NAME --from-env-file=./FILE_NAME
 kubectl edit secret SECRET_NAME
 kubectl edit secret SECRET_NAME -n NAMESPACE_NAME
