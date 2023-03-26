@@ -1510,7 +1510,9 @@ kubectl get certificate
 kubectl get certificates
 kubectl get certificates CERTIFICATE_NAME
 kubectl describe csr
+kubectl describe certificate
 kubectl describe certificate -n NAMESPACE_NAME
+kubectl describe certificate CERTIFICATE_NAME
 kubectl certificate approve CSR_NAME
 kubectl certificate deny CSR_NAME
 
