@@ -65,6 +65,7 @@ kubectl get sa --all-namespaces | grep SERVICEACCOUNT_NAME
 kubectl logs --since=1h POD_NAME                                                                        # show all logs from pod in the hour
 kubectl logs -l KEY=VALUE                                                                               # logs with label
 kubectl logs -l KEY=VALUE -n NAMESPACE_NAME
+kubectl logs -l KEY=VALUE --namespace=NAMESPACE_NAME
 kubectl logs -l KEY=VALUE -c CONTAINER_NAME
 kubectl logs -l KEY=VALUE -c CONTAINER_NAME --tail NO                                                   # NO = 10
 kubectl logs -f -l KEY=VALUE
