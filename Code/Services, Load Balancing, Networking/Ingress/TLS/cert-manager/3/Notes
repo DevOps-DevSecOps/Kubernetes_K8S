@@ -1,0 +1,11 @@
+[Install an Nginx Ingress Controller on Kubernetes Cluster using Helm]
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/do/deploy.yaml
+
+[accessing the application site via CLI]
+$ curl echo1.example.com
+$ curl echo2.example.com
+$ curl https://echo1.example.com
+$ curl https://echo2.example.com
+
+[Install an Cert-Manager]
+$ kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.7.1/cert-manager.yaml
