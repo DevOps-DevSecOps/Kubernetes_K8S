@@ -58,7 +58,7 @@ It exposes the Pod to outside the cluster.
 It create a LoadBalancer in cloud.
 It exposes the service via the cloud provider’s load balancer.
 It exposes the service externally using a load balancer.
-It allows to expose the service using a cloud provider’s external load balancer.
+It allows to expose the service using a cloud provider’s external load balancer and automatically creates the necessary NodePorts and ClusterPorts OR ServicePorts (ClusterIPs) to route the desired traffic.
 LoadBalancer builds on NodePort and create an external load-balancer in cloud such as AWS, Azure, GCP.
 * Static IP
 By default it get an ephemeral IP address assigned by the load balancer (GCP).
