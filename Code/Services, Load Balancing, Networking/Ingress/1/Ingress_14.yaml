@@ -1,0 +1,46 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/app-root: /test_app
+  name: testapproot
+  namespace: default
+spec:
+  rules:
+  - host: testapproot.mycluster.com
+    http:
+      paths:
+      - backend:
+          serviceName: http-svc
+          servicePort: 80
+        path: /
+---
+# the “nginx.ingress.kubernetes.io/app-root” option to define the application root that the ingress controller needs to redirect when the root path is called (path: /).
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: myapp
+spec:
+  rules:
+  - host: "app.mycluster.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/home"
+        backend:
+          serviceName: http-app
+          servicePort: 80
+      - pathType: Prefix
+        path: "/admin"
+        backend:
+          serviceName: http-app
+          servicePort: 8080
+  - host: "data.mycluster.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/charts"
+        backend:
+          serviceName: http-charts
+          servicePort: 81
