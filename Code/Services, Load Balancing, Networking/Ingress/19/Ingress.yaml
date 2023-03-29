@@ -1,0 +1,76 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: animals
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: hare.minikube
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: hare
+          servicePort: http
+  - host: bear.minikube
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: bear
+          servicePort: http
+  - host: moose.minikube
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: moose
+          servicePort: http
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: all-animals
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+spec:
+  rules:
+  - host: animals.minikube
+    http:
+      paths:
+      - path: /bear
+        backend:
+          serviceName: bear
+          servicePort: http
+      - path: /moose
+        backend:
+          serviceName: moose
+          servicePort: http
+      - path: /hare
+        backend:
+          serviceName: hare
+          servicePort: http
+---
+# [Implementing Traffic Splitting] - users can split Ingress traffic in a controlled manner between multiple deployments using service weights.
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    traefik.ingress.kubernetes.io/service-weights: |
+      animals-app: 99%
+      animals-app-canary: 1%
+  name: animals-app
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: animals-app
+          servicePort: 80
+        path: /
+      - backend:
+          serviceName: animals-app-canary
+          servicePort: 80
+        path: /
