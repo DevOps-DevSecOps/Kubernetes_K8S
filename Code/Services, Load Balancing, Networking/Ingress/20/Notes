@@ -17,4 +17,16 @@ $ kubectl get service web
 $ minikube service web --url
 
 [create an Ingress]
-$
+$ kubectl apply -f example-ingress.yaml
+
+[verify the Ingress IP Address]
+$ kubectl get ingress
+NAME              CLASS    HOSTS              ADDRESS        PORTS   AGE
+example-ingress   <none>   hello-world.info   172.17.0.15    80      38s
+
+[verify that the Ingress controller is directing traffic]
+$ curl hello-world.info
+Hello, world!
+Version: 1.0.0
+Hostname: web-55b8c6998d-8k564
+
