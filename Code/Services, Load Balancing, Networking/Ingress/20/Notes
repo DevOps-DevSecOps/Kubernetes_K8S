@@ -1,0 +1,20 @@
+[enable the Ingress controller on Minikube]
+$ minikube addons enable ingress
+
+[verify that the NGINX Ingress controller is running]
+$ kubectl get pods -n ingress-nginx
+
+[deploy a hello world application]
+$ kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0
+
+[expose the deployment]
+$ kubectl expose deployment web --type=NodePort --port=8080
+
+[verify the service]
+$ kubectl get service web
+
+[visit the service via NodePort]
+$ minikube service web --url
+
+[create an Ingress]
+$
