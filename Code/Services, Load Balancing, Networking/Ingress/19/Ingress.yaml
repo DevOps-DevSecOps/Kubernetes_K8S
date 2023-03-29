@@ -74,3 +74,29 @@ spec:
           serviceName: animals-app-canary
           servicePort: 80
         path: /
+---
+# Nginx Ingress Controller
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-example
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /microservice1
+        backend:
+          serviceName: test
+          servicePort: 80
+---
+# Basic Ingress
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress
+spec:
+  backend:
+    serviceName: defaultbackend
+    servicePort: 80
