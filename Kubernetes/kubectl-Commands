@@ -1029,6 +1029,7 @@ kubectl describe svc -l KEY=VALUE
 kubectl describe svc SERVICE_NAME
 kubectl describe svc/SERVICE_NAME
 kubectl describe svc SERVICE_NAME -n NAMESPACE_NAME
+kubectl describe svc SERVICE_NAME --namespace=NAMESPACE_NAME
 kubectl describe service
 kubectl describe service SERVICE_NAME
 kubectl describe service SERVICE_NAME -n NAMESPACE_NAME
