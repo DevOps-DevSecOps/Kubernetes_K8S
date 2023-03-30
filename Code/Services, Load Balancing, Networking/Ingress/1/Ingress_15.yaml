@@ -1,0 +1,70 @@
+--- 
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata: 
+  name: app-ingress
+spec: 
+  rules: 
+    - http: 
+        paths: 
+          - backend: 
+              serviceName: app-service
+              servicePort: 80
+            path: /
+--- 
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata: 
+  name: frontend-ingress
+spec: 
+  backend: 
+    serviceName: frontend-service
+    servicePort: 80
+--- 
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata: 
+  name: simple-fanout-example
+spec: 
+  rules: 
+    - host: shopping.example.com
+      http: 
+        paths: 
+          - backend: 
+              serviceName: clothes-service
+              servicePort: 8080
+            path: /clothes
+          - backend: 
+              serviceName: House-service
+              servicePort: 8081
+            path: /kitchen
+--- 
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata: 
+  name: name-virtual-host-ingress
+spec: 
+  rules: 
+    - host: shopping.example.com
+      http: 
+        paths: 
+          - backend: 
+              serviceName: clothes-service
+              servicePort: 8080
+            path: /clothes
+          - backend: 
+              serviceName: House-service
+              servicePort: 8081
+            path: /kitchen
+    - 
+      host: music.example.com
+      http: 
+        paths: 
+          - backend: 
+              serviceName: Hindi-service
+              servicePort: 9090
+            path: /hindhi
+          - backend: 
+              serviceName: English-service
+              servicePort: 9091
+            path: /english
