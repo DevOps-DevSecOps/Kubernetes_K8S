@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta
+kind: Ingress
+metadata:
+  name: nginx-ingress
+spec:
+  rules:
+  - host: host.domain.ext
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx
+          servicePort: 80          
+---
+apiVersion: extensions/v1beta
+kind: Ingress
+metadata:
+  name: nginx-ingress
+spec:
+  rules:
+  - host: host.domain.ext
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx
+          servicePort: 80      
+      - path: /apache
+        backend:
+          serviceName: apache
+          servicePort: 80 
+      - path: /web
+        backend:
+          serviceName: web
+          servicePort: 80 
