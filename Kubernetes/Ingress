@@ -24,10 +24,31 @@ It is responsible for routing by accessing the DNS rules applied through Ingress
 It route external HTTP traffic to services and their endpoints.
 
 [Types of Routing]
-● Host-based routing
+● Single Service Ingress (OR) default backend Ingress
+Where an Ingress has no rules, all traffic is routed to a single default backend. (OR) Ingress by specifying a default backend with no rules.
+If none of the hosts or paths in the Ingress objects meets the HTTP message, the traffic is redirected to the default backend.
+● Simple Fanout Ingress
+It configuration routes traffic from a single IP address to more than one Service, based on the HTTP URI being requested.
+It configuration sends traffic from a single IP address to multiple Services depending on the requested HTTP Uniform Resource Identifier(URI).
+● Host-based routing Ingress (OR) Name-Based Virtual Hosting
+It support routing HTTP traffic to multiple host names at the same IP address.
 The routing requests with the host header foo.example.com to one group of services and the host header bar.example.com to another group.
-● Path-based routing
+● Path-based routing Ingress
 The routing requests with the URI that starts with /serviceA to service A and requests with the URI that starts with /serviceB to service B.
+● TLS
+It secure an Ingress by specifying a Secret that contains a TLS private key and certificate.
+Ingress resource only supports a single TLS port, 443.
+TLS secret must contain keys named tls.crt and tls.key that contain the certificate and private key to use for TLS.
+
+[Types of Path]
+● ImplementationSpecific
+With this path type, matching is up to the IngressClass.
+● Exact
+Matches the URL path exactly and with case sensitivity.
+● Prefix
+Matches based on a URL path prefix split by /.
+Matching is case sensitive and done on a path element by element basis.
+A path element refers to the list of labels in the path split by the / separator.
 
 [Ingress Controllers]
 Ingress controllers in Kubernetes are resources that accept traffic from the internet and load balance it to applications (usually in the form of running pods).
