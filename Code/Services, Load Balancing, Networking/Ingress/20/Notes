@@ -30,3 +30,23 @@ Hello, world!
 Version: 1.0.0
 Hostname: web-55b8c6998d-8k564
 
+[create another deployment]
+$ kubectl create deployment web2 --image=gcr.io/google-samples/hello-app:2.0
+
+[expose the deployment]
+$ kubectl expose deployment web2 --port=8080 --type=NodePort
+
+[edit the existing Ingress and add the following lines at the end]
+$ kubectl apply -f example-ingress.yaml
+
+[access the Ingress]
+● access the 1st version of the Hello World app
+$ curl hello-world.info
+Hello, world!
+Version: 1.0.0
+Hostname: web-55b8c6998d-8k564
+● access the 2nd version of the Hello World app
+$ curl hello-world.info/v2
+Hello, world!
+Version: 2.0.0
+Hostname: web2-75cd47646f-t8cjk
