@@ -20,4 +20,59 @@ kubernetes   ClusterIP      100.64.0.1      <none>                              
 traefik      LoadBalancer   100.68.145.32   a8f0f6c0290354e57a682620757e4271-937262111.ap-south-1.elb.amazonaws.com   80:30088/TCP,443:31429/TCP   55s
 
 [creating an Deployment]
-$
+$ kubectl create -f deployment.yaml
+
+[creating an Service]
+$ kubectl create -f service.yml
+
+[creating an Ingress]
+$ kubectl create -f ingress.yml
+
+[check Kubernetes pods]
+$ kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+nginx-app-d6ff45774-tcslx   1/1     Running   0          93s
+traefik-5d7c8ddd5d-7nqxt    1/1     Running   0          3m34s
+
+[check Kubernetes deployments]
+$ kubectl get deploy
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-app   1/1     1            1           2m5s
+traefik     1/1     1            1           4m6s
+
+[check Kubernetes service]
+$ kubectl get svc
+NAME         TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)                      AGE
+kubernetes   ClusterIP      100.64.0.1       <none>                                                                    443/TCP                      10m
+nginx-app    ClusterIP      100.68.179.217   <none>                                                                    80/TCP                       2m58s
+traefik      LoadBalancer   100.68.145.32    a8f0f6c0290354e57a682620757e4271-937262111.ap-south-1.elb.amazonaws.com   80:30088/TCP,443:31429/TCP   5m4s
+
+[check Kubernetes ingress]
+$ kubectl get ingress
+NAME              CLASS    HOSTS                       ADDRESS   PORTS   AGE
+traefik-ingress   <none>   nginxapp.fosstechnix.info             80      2m2s
+
+[configure a Public/Private DNS]
+
+[Install an cert-manager for Traefik Ingress]
+Kubernetes version 1.16+
+$ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.1/cert-manager.yaml
+Kubernetes <1.16 version
+$ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.1/cert-manager-legacy.yaml
+
+[Kubernetes Traefik Ingress LetsEncrypt]
+$ kubectl apply -f letsencrypt-issuer.yml
+
+[Kubernetes Traefik Ingress Let’s Encrypt TLS Certificate]
+$ kubectl apply -f letsencrypt-cert.yml
+
+[check the certificate is created]
+$ kubectl get certificates nginxapp.fosstechnix.info
+NAME                        READY   SECRET                          AGE
+nginxapp.fosstechnix.info   True    nginxapp.fosstechnix.info-tls   32s
+
+[check secrets to check Traefik Ingress letsencrypt TLS]
+$ kubectl get secrets nginxapp.fosstechnix.info-tls
+NAME                            TYPE                DATA   AGE
+nginxapp.fosstechnix.info-tls   kubernetes.io/tls   2      36s
+
