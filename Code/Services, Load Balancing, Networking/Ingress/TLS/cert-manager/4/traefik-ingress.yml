@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: traefik-ingress
+  namespace: prod
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+  - host: sales.fosstechnix.info
+    http:
+      paths:
+      - backend:
+          serviceName: sales-svcs
+          servicePort: 80
+  tls: 
+  - hosts:
+    - sales.fosstechnix.info
+    secretName: sales.fosstechnix.info-tls
