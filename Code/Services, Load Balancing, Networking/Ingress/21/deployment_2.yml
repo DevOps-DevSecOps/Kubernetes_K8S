@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: nginx
+  name: ft-ingress-demo-deploy-v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: ft-ingress-demo-deploy-v2
+  template:
+    metadata:
+      labels:
+        run: ft-ingress-demo-deploy-v2
+    spec:
+      volumes:
+      - name: webdata
+        emptyDir: {}
+      initContainers:
+      - name: web-content
+        image: busybox
+        volumeMounts:
+        - name: webdata
+          mountPath: "/webdata"
+        command: ["/bin/sh", "-c", 'echo "<h1><font color=green>Welcome to Fosstechnix! It is version 2 of our application!</font></h1>" > /webdata/index.html']
+      containers:
+      - image: nginx
+        name: nginx
+        volumeMounts:
+        - name: webdata
+          mountPath: "/usr/share/nginx/html"
