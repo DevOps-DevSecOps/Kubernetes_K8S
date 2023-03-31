@@ -1,0 +1,16 @@
+[Install an cert-manager]
+Kubernetes version 1.16+
+$ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.1/cert-manager.yaml
+Kubernetes <1.16 version
+$ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.1/cert-manager-legacy.yaml
+
+[check the Traefik Ingress Kubernetes Service]
+$ kubectl get svc -n kube-system
+NAME                      TYPE           CLUSTER-IP       EXTERNAL-IP                                                                PORT(S)                       AGE
+kube-dns                  ClusterIP      100.64.0.10      <none>                                                                     53/UDP,53/TCP                 3h58m
+traefik-ingress-service   LoadBalancer   100.64.144.139   ab690ac82863747738f3d98420cd5a6b-2116167598.ap-south-1.elb.amazonaws.com   80:31424/TCP,8080:30361/TCP   3h51m
+
+[configure a Public/Private DNS]
+
+[access the Ingress]
+https://sales.fosstechnix.info
