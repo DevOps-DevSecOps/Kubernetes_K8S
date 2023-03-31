@@ -12,4 +12,64 @@ $ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/mani
 [create a Secret]
 $ kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 
-[]
+[apply the ConfigMap]
+$ kubectl apply -f configmap.yml
+
+[creating a Deployment]
+$ kubectl create deployment nginx --image=nginx
+
+[exposing the Service]
+$ kubectl expose deployment nginx --port 80 --type LoadBalancer
+
+[verify the details]
+$ kubectl get svc
+NAME             TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)              AGE
+kubernetes       ClusterIP      10.96.0.1        <none>          443/TCP              28d
+nginx            LoadBalancer   10.101.236.126   172.32.32.220   80:30067/TCP   
+
+[Install an Nginx Ingress Controller with Helm]
+$ helm install nginx-ingress stable/nginx-ingress
+
+[create the 1st Deployment]
+$ kubectl apply -f deployment_1.yml
+
+[expose the 1st Deployment]
+$ kubectl expose deployment ft-ingress-demo-deploy-v1 --port 80
+
+[verify the Service]
+$ kubectl get svc
+NAME                            TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                      AGE
+ft-ingress-demo-deploy-v1       ClusterIP      10.108.133.241   <none>          80/TCP                       69s
+kubernetes                      ClusterIP      10.96.0.1        <none>          443/TCP                      30d
+nginx-ingress-controller        LoadBalancer   10.102.111.195   172.32.32.222   80:32164/TCP,443:30799/TCP   2d4h
+nginx-ingress-default-backend   ClusterIP      10.110.8.117     <none>          80/TCP                       2d4h
+
+[create the Ingress]
+$ kubectl apply -f ingress_1.yml
+
+[add the following line to the bottom of the /etc/hosts file]
+172.32.32.222 ft-demo.ingress.example.com
+
+[try accessing it through web browser]
+http://ft-demo.ingress.example.com/
+
+[create the 2nd Deployment]
+$ kubectl apply -f deployment_2.yml
+
+[expose the 2nd Deployment]
+$ kubectl expose deployment ft-ingress-demo-deploy-v2 --port 80
+
+[verify the Service]
+$ kubectl get svc
+NAME                            TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                      AGE
+ft-ingress-demo-deploy-v1       ClusterIP      10.108.133.241   <none>          80/TCP                       20m
+ft-ingress-demo-deploy-v2       ClusterIP      10.100.82.79     <none>          80/TCP                       36s
+kubernetes                      ClusterIP      10.96.0.1        <none>          443/TCP                      30d
+nginx-ingress-controller        LoadBalancer   10.102.111.195   172.32.32.222   80:32164/TCP,443:30799/TCP   2d4h
+nginx-ingress-default-backend   ClusterIP      10.110.8.117     <none>          80/TCP                       2d4h
+
+[create the Ingress]
+$ kubectl apply -f ingress_2.yml
+
+[try accessing it through web browser]
+http://ft-demo.ingress.example.com/v2
