@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: sales.fosstechnix.info
+  namespace: prod
+spec:
+  secretName: sales.fosstechnix.in-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: sales.fosstechnix.info
+  dnsNames:
+  - sales.fosstechnix.info
