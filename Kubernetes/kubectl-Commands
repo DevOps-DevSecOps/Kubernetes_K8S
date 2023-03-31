@@ -1527,6 +1527,7 @@ kubectl get csr
 kubectl get certificate
 kubectl get certificates
 kubectl get certificates CERTIFICATE_NAME
+kubectl get certificates CERTIFICATE_NAME -n NAMESPACE_NAME
 kubectl describe csr
 kubectl describe certificate
 kubectl describe certificate -n NAMESPACE_NAME
