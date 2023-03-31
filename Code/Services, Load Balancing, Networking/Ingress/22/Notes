@@ -1,0 +1,20 @@
+[Install an Nginx Ingress Controller]
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml
+
+[enable the ingress add-on for Minikube]
+$ minikube addons enable ingress
+
+[create the resources]
+$ kubectl apply -f apple.yaml
+$ kubectl apply -f banana.yaml
+
+[create the Ingress]
+$ kubectl create -f ingress.yaml
+
+[access the Ingress through Minikube IP_Address OR LocalHost]
+$ curl -kL http://localhost/apple
+apple
+$ curl -kL http://localhost/banana
+banana
+$ curl -kL http://localhost/notfound
+default backend - 404
