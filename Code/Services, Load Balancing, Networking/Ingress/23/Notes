@@ -1,0 +1,23 @@
+[Install an Helm 3 on Kubernetes Cluster]
+$ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+$ chmod 700 get_helm.sh
+$ ./get_helm.sh
+$ helm version
+
+[Install an Traefik Ingress Controller on Kubernetes using Helm 3]
+$ helm repo add traefik https://helm.traefik.io/traefik
+$ helm repo update
+$ helm install traefik traefik/traefik
+
+[To install Traefik in specific Namespace]
+$ kubectl create ns traefik-v2
+$ helm install --namespace=traefik-v2 traefik traefik/traefik
+
+[check Traefik Ingress Controller Service]
+$ kubectl get svc
+NAME         TYPE           CLUSTER-IP      EXTERNAL-IP                                                               PORT(S)                      AGE
+kubernetes   ClusterIP      100.64.0.1      <none>                                                                    443/TCP                      5m58s
+traefik      LoadBalancer   100.68.145.32   a8f0f6c0290354e57a682620757e4271-937262111.ap-south-1.elb.amazonaws.com   80:30088/TCP,443:31429/TCP   55s
+
+[creating an Deployment]
+$
