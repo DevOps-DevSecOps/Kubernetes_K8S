@@ -1,7 +1,9 @@
 [download an Istio on the cluster]
+$ curl -sL https://istio.io/downloadIstioctl | sh -
 $ curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.13.2 TARGET_ARCH=x86_64 sh -
 
 [install an Istio]
+$ istioctl install
 $ istioctl install --set profile=demo
 $ istioctl install --set profile=demo -y
 
@@ -9,4 +11,8 @@ $ istioctl install --set profile=demo -y
 $ kubectl create ns istio
 
 [label it for automatic injection]
-$ kubectl label ns istio istio-injection=enabled
+$ kubectl label ns istio istio-injection=enabled            (OR)            $ kubectl label namespace default istio-inject=enabled
+
+[Istio with kubectl commands]
+kubectl describe gateway GATEWAY_NAME
+kubectl describe virtualservice VIRTUALSERVICE_NAME
