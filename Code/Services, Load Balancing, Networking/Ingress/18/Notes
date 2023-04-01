@@ -47,3 +47,10 @@ traefik-ingress   <none>   nginxapp.fosstechnix.info,nodejsapp.fosstechnix.info
 
 [accessing the application site in browser]
 nodejsapp.fosstechnix.info
+
+[accessing Traefik Dashboard]
+$ kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/name=traefik" --output=name) --address 0.0.0.0 9000:9000
+
+[access Traefik with IP address of instance]
+http://127.0.0.1:9000/dashboard/                                                        
+http://65.2.81.244:9000/dashboard/#/                                                    Cluster Node IP with port number
