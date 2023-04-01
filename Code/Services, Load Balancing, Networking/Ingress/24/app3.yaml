@@ -1,0 +1,38 @@
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: wiki-fr
+  labels:
+    app: wiki-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wiki-frontend
+  template:
+    metadata:
+      labels:
+        app: wiki-frontend
+        version: v2.1.0
+    spec:
+      containers:
+      - image: mpolinowski/my-docker-image-fr:latest
+        imagePullPolicy: Always
+        name: wiki-frontend
+        ports:
+        - containerPort: 7778
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wiki-fr
+spec:
+  ports:
+  - name: http
+    targetPort: 7778
+    port: 7778
+  selector:
+    app: wiki-frontend
