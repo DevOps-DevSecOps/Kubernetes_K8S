@@ -1,0 +1,29 @@
+# adding TLS - [$ kubectl create secret tls my-secret --key ./privkey.pem --cert ./fullchain.pem]
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+    - my.domain.com
+    secretName: my-domain-secret
+  rules:
+  - host: my.domain.com
+    http:
+      paths:
+        - path: /web
+          backend:
+            serviceName: web-service
+            servicePort: 5678
+        - path: /mobile
+          backend:
+            serviceName: mobile-service
+            servicePort: 5678
+        - path: /test
+          backend:
+            serviceName: test-service
+            servicePort: 3000
