@@ -1,0 +1,24 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: web-app
+  labels:
+    app: web
+spec:
+  containers:
+    - name: web-app
+      image: hashicorp/http-echo
+      args:
+        - "-text=I am the Web API"
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: web-service
+spec:
+  selector:
+    app: web
+  ports:
+    - port: 5678
