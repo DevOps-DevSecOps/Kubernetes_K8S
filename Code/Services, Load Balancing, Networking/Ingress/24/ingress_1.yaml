@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+        - path: /web
+          backend:
+            serviceName: web-service
+            servicePort: 5678
+        - path: /mobile
+          backend:
+            serviceName: mobile-service
+            servicePort: 5678
