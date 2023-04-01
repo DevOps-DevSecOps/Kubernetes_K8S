@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: wiki-frontend
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+spec:
+  rules:
+  - host: my.domain.com
+    http:
+      paths:
+      - path: /de
+        backend:
+          serviceName: wiki-de
+          servicePort: http
+      - path: /en
+        backend:
+          serviceName: wiki-en
+          servicePort: http
+      - path: /fr
+        backend:
+          serviceName: wiki-fr
+          servicePort: http
