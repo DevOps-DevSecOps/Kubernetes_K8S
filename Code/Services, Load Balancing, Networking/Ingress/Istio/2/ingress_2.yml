@@ -40,3 +40,58 @@ spec:
         name: httpbin
         ports:
         - containerPort: 80
+---
+# create a root certificate and private key to sign the certificates for our services = [$ openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -subj '/O=My Company Inc./CN=mydomain.com' -keyout .tls/mydomain.com.key -out .tls/mydomain.com.crt]
+
+# create a certificate and a private key for httpbin.mydomain.com = [$ openssl req -out .tls/httpbin.mydomain.com.csr -newkey rsa:2048 -nodes -keyout .tls/httpbin.mydomain.com.key -subj "/CN=httpbin.mydomain.com/O=httpbin organization"]
+
+#                                                                   [$ openssl x509 -req -days 365 -CA .tls/mydomain.com.crt -CAkey .tls/mydomain.com.key -set_serial 0 -in .tls/httpbin.mydomain.com.csr -out .tls/httpbin.mydomain.com.crt]
+
+# create a secret for the istio ingress gateway = [$ kubectl create secret tls httpbin-tls --key=.tls/httpbin.mydomain.com.key --cert=.tls/httpbin.mydomain.com.crt]
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: httpbin-gateway
+spec:
+  selector:
+    istio: ingressgateway # use Istio default gateway implementation
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: httpbin-tls
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: httpbin
+spec:
+  hosts:
+  - "httpbin.mydomain.com"
+  gateways:
+  - httpbin-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /status
+    - uri:
+        prefix: /delay
+    route:
+    - destination:
+        port:
+          number: 8000
+        host: httpbin
+---
+# Link :- https://itnext.io/deploying-an-istio-gateway-with-tls-in-eks-using-the-aws-load-balancer-controller-448812e081e5
