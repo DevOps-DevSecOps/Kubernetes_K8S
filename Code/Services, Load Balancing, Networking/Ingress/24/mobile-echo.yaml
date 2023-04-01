@@ -1,0 +1,24 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mobile-app
+  labels:
+    app: mobile
+spec:
+  containers:
+    - name: mobile-app
+      image: hashicorp/http-echo
+      args:
+        - "-text=I am the Mobile API"
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: mobile-service
+spec:
+  selector:
+    app: mobile
+  ports:
+    - port: 5678
