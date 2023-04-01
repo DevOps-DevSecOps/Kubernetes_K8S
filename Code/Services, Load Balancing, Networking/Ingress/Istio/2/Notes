@@ -1,0 +1,12 @@
+[download an Istio on the cluster]
+$ curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.13.2 TARGET_ARCH=x86_64 sh -
+
+[install an Istio]
+$ istioctl install --set profile=demo
+$ istioctl install --set profile=demo -y
+
+[create a Namespace]
+$ kubectl create ns istio
+
+[label it for automatic injection]
+$ kubectl label ns istio istio-injection=enabled
