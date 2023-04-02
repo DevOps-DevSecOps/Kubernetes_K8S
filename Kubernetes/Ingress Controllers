@@ -1,18 +1,27 @@
-[Istio]
+● Istio
 https://istio.io/
-
-[Nginx]
-
-
-[Traefik]
+https://istio.io/v1.3/docs/reference/config/annotations/
+https://istio.io/v1.6/docs/reference/config/annotations/
+https://istio.io/latest/docs/reference/config/annotations/
+● Nginx
+https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/
+https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-annotations/
+https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md
+● Traefik
 https://traefik.io/
 https://doc.traefik.io/
 https://doc.traefik.io/traefik/
-
-[HAProxy]
+https://doc.traefik.io/traefik/routing/providers/kubernetes-ingress/
+● HAProxy
 https://www.haproxy.org/
 https://docs.haproxy.org/
 https://haproxy-ingress.github.io/
+https://www.haproxy.com/documentation/kubernetes/latest/community/configuration-reference/ingress/
 
-[MetalLB]
+[Load Balancer]
+● MetalLB
 https://metallb.universe.tf/
+
+[Certificates]
+● Cert Manager
+https://cert-manager.io/docs/usage/ingress/
