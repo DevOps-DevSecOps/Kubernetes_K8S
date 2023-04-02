@@ -14,5 +14,9 @@ $ kubectl create ns istio
 $ kubectl label ns istio istio-injection=enabled            (OR)            $ kubectl label namespace default istio-inject=enabled
 
 [Istio with kubectl commands]
+kubectl get gateway
+kubectl get gateway -n NAMESPACE_NAME
+kubectl get virtualservice
+kubectl get virtualservice -n NAMESPACE_NAME
 kubectl describe gateway GATEWAY_NAME
 kubectl describe virtualservice VIRTUALSERVICE_NAME
