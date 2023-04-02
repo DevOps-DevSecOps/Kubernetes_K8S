@@ -21,6 +21,7 @@ https://www.haproxy.com/documentation/kubernetes/latest/community/configuration-
 [Load Balancer]
 ● MetalLB
 https://metallb.universe.tf/
+https://metallb.universe.tf/usage/
 
 [Certificates]
 ● Cert Manager
