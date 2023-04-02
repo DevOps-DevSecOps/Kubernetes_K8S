@@ -58,18 +58,19 @@ Ingress controller is a daemon running in a Pod that watches the /ingresses endp
 When a new endpoint is created, the daemon uses the configured set of rules to allow traffic into a service.
 There are several types of Ingress Controllers.
 ● Istio
-https://istio.io/v1.3/docs/reference/config/annotations/
-https://istio.io/v1.6/docs/reference/config/annotations/
-https://istio.io/latest/docs/reference/config/annotations/
 $ istioctl install --set profile=PROFILE_NAME -y
 ● Nginx
 Kubernetes itself implement and maintain an Nginx Ingress Controller. 
-https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/
-https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-annotations/
-https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md
 ● Traefik
-$ helm repo add traefik https://helm.traefik.io/traefik
+$ helm repo add traefik https://helm.traefik.io/traefik         (OR)            $ helm repo add traefik https://traefik.github.io/charts
 $ helm repo update
+$ helm install traefik traefik/traefik
+create a Namespace.
+$ kubectl create ns traefik-v2
+install a Traefik in a specific Namespace.
+$ helm install --namespace=traefik-v2 traefik traefik/traefik
+exposing the Traefik dashboard.
+$ kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/name=traefik" --output=name) 9000:9000
 ● HAProxy (High Availability Proxy)
 $ helm repo add haproxy-ingress https://haproxy-ingress.github.io/charts
 $ helm install haproxy-ingress haproxy-ingress/haproxy-ingress --create-namespace --namespace=ingress-controller --version 0.12 -f haproxy-ingress-values.yaml
@@ -85,4 +86,3 @@ $ helm install metallb metallb/metallb
 
 [Certificates]
 ● Cert Manager
-https://cert-manager.io/docs/usage/ingress/
