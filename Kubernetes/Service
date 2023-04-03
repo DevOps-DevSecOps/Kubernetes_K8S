@@ -11,8 +11,8 @@ Services support TCP (default), UDP, and SCTP for protocols.
 Services can be defined with or without a selector.
 It is used to expose an application deployed on a set of pods using a single endpoint. It maps a fixed IP address to a logical group of pods.
 
-          Client 🡪 Worker Node IP 🡪 NodePort 🡪 ClusterIP/ClusterPort Service 🡪 Pod
-          Client 🡪 LoadBalancer (Cloud, External like MetalLB) 🡪 Worker Node IP 🡪 NodePort 🡪 ClusterIP/ClusterPort Service 🡪 Pod
+          Client --> Worker Node IP --> NodePort --> ClusterIP/ClusterPort Service --> Pod
+          Client --> LoadBalancer (Cloud, External like MetalLB) --> Worker Node IP --> NodePort --> ClusterIP/ClusterPort Service --> Pod
 
 [ServiceTypes]
 Kubernetes ServiceTypes allow you to specify what kind of Service you want.
