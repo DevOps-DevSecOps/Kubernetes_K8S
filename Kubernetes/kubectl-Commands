@@ -1166,22 +1166,6 @@ kubectl delete configmap CONFIGMAP_NAME
 kubectl delete configmaps CONFIGMAP_NAME
 
 [Secrets]
-kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE                                      
-kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE -n NAMESPACE_NAME
-kubectl create secret generic SECRET_NAME --from-literal=KEY='VALUE'
-kubectl create secret generic SECRET_NAME --from-literal=KEY='VALUE' --namespace=NAMESPACE_NAME
-kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE --from-literal=KEY=VALUE
-kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE --from-literal=KEY=VALUE -n NAMESPACE_NAME
-kubectl create secret generic SECRET_NAME --from-literal=KEY='VALUE' --from-literal=KEY='VALUE'
-kubectl create secret generic SECRET_NAME --from-literal='KEY=VALUE' --from-literal='KEY=VALUE'
-kubectl create secret generic SECRET_NAME --from-file=./FILE_NAME
-kubectl create secret generic SECRET_NAME --from-file=FILE_NAME --from-file=FILE_NAME
-kubectl create secret generic SECRET_NAME --from-file FILE_NAME --from-file FILE_NAME --namespace NAMESPACE_NAME
-kubectl create secret generic SECRET_NAME --from-file=./FILE_NAME --from-file=./FILE_NAME
-kubectl create secret generic SECRET_NAME --from-file=KEY=FILE_NAME --from-file=KEY=FILE_NAME
-kubectl create secret generic SECRET_NAME --from-file=KEY=FILE_NAME --from-file=KEY=FILE_NAME -n NAMESPACE_NAME
-kubectl create secret generic SECRET_NAME --from-file=KEY=FOLDER_NAME/FILE_NAME --from-file=KEY=FOLDER_NAME/FILE_NAME -n NAMESPACE_NAME
-kubectl create secret generic SECRET_NAME --from-env-file=./FILE_NAME
 kubectl edit secret SECRET_NAME
 kubectl edit secret SECRET_NAME -n NAMESPACE_NAME
 kubectl edit secrets SECRET_NAME
@@ -1216,8 +1200,24 @@ kubectl describe secrets SECRET_NAME
 kubectl describe secrets/SECRET_NAME
 kubectl delete secret SECRET_NAME
 kubectl delete secret SECRET_NAME -n NAMESPACE_NAME
-
-[Secrets with Docker]
+● Generic
+kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE                                      
+kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE -n NAMESPACE_NAME
+kubectl create secret generic SECRET_NAME --from-literal=KEY='VALUE'
+kubectl create secret generic SECRET_NAME --from-literal=KEY='VALUE' --namespace=NAMESPACE_NAME
+kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE --from-literal=KEY=VALUE
+kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE --from-literal=KEY=VALUE -n NAMESPACE_NAME
+kubectl create secret generic SECRET_NAME --from-literal=KEY='VALUE' --from-literal=KEY='VALUE'
+kubectl create secret generic SECRET_NAME --from-literal='KEY=VALUE' --from-literal='KEY=VALUE'
+kubectl create secret generic SECRET_NAME --from-file=./FILE_NAME
+kubectl create secret generic SECRET_NAME --from-file=FILE_NAME --from-file=FILE_NAME
+kubectl create secret generic SECRET_NAME --from-file FILE_NAME --from-file FILE_NAME --namespace NAMESPACE_NAME
+kubectl create secret generic SECRET_NAME --from-file=./FILE_NAME --from-file=./FILE_NAME
+kubectl create secret generic SECRET_NAME --from-file=KEY=FILE_NAME --from-file=KEY=FILE_NAME
+kubectl create secret generic SECRET_NAME --from-file=KEY=FILE_NAME --from-file=KEY=FILE_NAME -n NAMESPACE_NAME
+kubectl create secret generic SECRET_NAME --from-file=KEY=FOLDER_NAME/FILE_NAME --from-file=KEY=FOLDER_NAME/FILE_NAME -n NAMESPACE_NAME
+kubectl create secret generic SECRET_NAME --from-env-file=./FILE_NAME
+● Docker
 kubectl create secret docker-registry SECRET_NAME --docker-server=DOCKER_REGISTRY_SERVER --docker-username=DOCKER_HUB_USER_ID --docker-password=DOCKER_HUB_USER_PASSWORD --docker-email=DOCKER_EMAIL
 kubectl create secret docker-registry SECRET_NAME --docker-server=REGISTRY_HOSTNAME_IPADDRESS:REGISTRY_PORT --docker-username=DOCKER_HUB_USER_ID --docker-password=DOCKER_HUB_USER_PASSWORD --docker-email=DOCKER_EMAIL
 kubectl create secret docker-registry SECRET_NAME -n NAMESPACE_NAME --docker-server=DOCKER_REGISTRY_SERVER --docker-username=DOCKER_HUB_USER_ID --docker-password=DOCKER_HUB_USER_PASSWORD --docker-email=DOCKER_EMAIL
@@ -1227,8 +1227,7 @@ kubectl create secret docker-registry SECRET_NAME --from-file=.dockerconfigjson=
 kubectl create secret generic SECRET_NAME --from-file=.dockerconfigjson=$HOME/.docker/config.json
 kubectl create secret generic SECRET_NAME --from-file=.dockerconfigjson=$HOME/.docker/config.json --type=kubernetes.io/dockerconfigjson
 kubectl create secret generic SECRET_NAME --from-file=.dockerconfigjson=/home/USER_NAME/.docker/config.json --type=kubernetes.io/dockerconfigjson
-
-[Secrets with TLS]
+● TLS
 kubectl create secret tls SECRET_NAME --cert FILE_NAME.crt --key FILE_NAME.pem
 kubectl create secret tls SECRET_NAME --cert=FILE_NAME.crt --key=FILE_NAME.pem
 kubectl create secret tls SECRET_NAME --cert FILE_NAME.crt --key FILE_NAME.key
@@ -1350,6 +1349,7 @@ kubectl get serviceaccounts/SERVICEACCOUNT_NAME
 kubectl get serviceaccounts/SERVICEACCOUNT_NAME -o yaml
 kubectl describe sa SERVICEACCOUNT_NAME
 kubectl describe serviceaccount SERVICEACCOUNT_NAME
+kubectl describe serviceaccount SERVICEACCOUNT_NAME -n NAMESPACE_NAME
 kubectl describe serviceaccount SERVICEACCOUNT_NAME --namespace NAMESPACE_NAME
 kubectl replace serviceaccount SERVICEACCOUNT_NAME -f ./FILE_NAME.yaml
 kubectl edit sa SERVICEACCOUNT_NAME
