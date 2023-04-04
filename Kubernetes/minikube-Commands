@@ -43,3 +43,4 @@ minikube addons disable ADDON_NAME
 
 minikube delete
 minikube delete --all
+minikube delete --all --purge
