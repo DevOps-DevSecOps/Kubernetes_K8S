@@ -374,11 +374,13 @@ kubectl exec -it POD_NAME -c CONTAINER_NAME bash
 kubectl exec -i POD_NAME -- LINUX_COMMANDS -n NAMESPACE_NAME
 kubectl exec -it POD_NAME -- sh
 kubectl exec -it POD_NAME -- sh -n NAMESPACE_NAME
+kubectl exec -it POD_NAME -- sh --namespace=NAMESPACE_NAME
 kubectl exec -it POD_NAME -- bash
 kubectl exec -it POD_NAME -- bash --namespace NAMESPACE_NAME
 kubectl exec -it POD_NAME -- bash --namespace=NAMESPACE_NAME
 kubectl exec -it POD_NAME -- /bin/sh
 kubectl exec -it POD_NAME -- /bin/bash
+kubectl exec -it POD_NAME -- /bin/bash --namespace=NAMESPACE_NAME
 kubectl exec -it POD_NAME -- /bin/bash -c "LINUX_COMMANDS"
 kubectl exec -it POD_NAME -- LINUX_COMMANDS
 kubectl exec -it POD_NAME -- LINUX_COMMANDS -n NAMESPACE_NAME
@@ -1152,6 +1154,7 @@ kubectl get configmap CONFIGMAP_NAME -o yaml
 kubectl get configmap CONFIGMAP_NAME -n NAMESPACE_NAME
 kubectl get configmap CONFIGMAP_NAME -n NAMESPACE_NAME -o yaml
 kubectl get configmaps
+kubectl get configmaps -n NAMESPACE_NAME
 kubectl get configmaps CONFIGMAP_NAME -o yaml
 kubectl describe cm CONFIGMAP_NAME
 kubectl describe configmap CONFIGMAP_NAME
@@ -1159,6 +1162,7 @@ kubectl describe configmap CONFIGMAP_NAME -n NAMESPACE_NAME
 kubectl describe configmap/CONFIGMAP_NAME
 kubectl describe configmaps
 kubectl describe configmaps CONFIGMAP_NAME
+kubectl describe configmaps CONFIGMAP_NAME -n NAMESPACE_NAME
 kubectl delete cm --all
 kubectl delete cm CONFIGMAP_NAME
 kubectl delete cm CONFIGMAP_NAME -n NAMESPACE_NAME
@@ -1193,6 +1197,7 @@ kubectl get secrets/SECRET_NAME
 kubectl describe secret
 kubectl describe secret -n NAMESPACE_NAME
 kubectl describe secret SECRET_NAME
+kubectl describe secret SECRET_NAME -n NAMESPACE_NAME
 kubectl describe secret SECRET_NAME --namespace NAMESPACE_NAME
 kubectl describe secret/SECRET_NAME
 kubectl describe secrets
@@ -1258,6 +1263,7 @@ kubectl get role ROLE_NAME -o yaml
 kubectl get role ROLE_NAME -o yaml > FILE_NAME.yaml
 kubectl get role ROLE_NAME -n NAMESPACE_NAME -o yaml
 kubectl describe role ROLE_NAME
+kubectl describe role ROLE_NAME -n NAMESPACE_NAME
 kubectl delete role ROLE_NAME -n NAMESPACE_NAME
 ● RoleBinding
 kubectl create rolebinding ROLEBINDING_NAME --role=ROLE_NAME --user=USER_NAME
@@ -1282,6 +1288,7 @@ kubectl get rolebindings ROLEBINDING_NAME
 kubectl get rolebindings ROLEBINDING_NAME -n NAMESPACE_NAME
 kubectl get rolebindings ROLEBINDING_NAME -n NAMESPACE_NAME -o yaml
 kubectl describe rolebinding ROLEBINDING_NAME
+kubectl describe rolebindings ROLEBINDING_NAME -n NAMESPACE_NAME
 kubectl delete rolebinding ROLEBINDING_NAME -n NAMESPACE_NAME
 ● ClusterRole
 kubectl create clusterrole CLUSTERROLE_NAME --verb=VERBS_TYPES --resource=OBJECTS_NAME
@@ -1343,6 +1350,7 @@ kubectl get serviceaccount SERVICEACCOUNT_NAME -n NAMESPACE_NAME
 kubectl get serviceaccount SERVICEACCOUNT_NAME -o yaml
 kubectl get serviceaccount SERVICEACCOUNT_NAME -o json
 kubectl get serviceaccounts
+kubectl get serviceaccounts -n NAMESPACE_NAME
 kubectl get serviceaccounts SERVICEACCOUNT_NAME -o yaml
 kubectl get serviceaccounts SERVICEACCOUNT_NAME -o yaml > ./FILE_NAME.yaml
 kubectl get serviceaccounts/SERVICEACCOUNT_NAME
