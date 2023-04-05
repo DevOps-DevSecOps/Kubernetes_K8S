@@ -1,0 +1,44 @@
+● Minikube Tunnel
+It creates a network route on the host to the service using the cluster’s IP address as a gateway.
+It exposes the external IP directly to running on the host operating system.
+It is used to expose the service from inside of Instance (OR) VM where minikube is running to the host machine’s network.
+
+---
+
+[create a Kubernetes deployment]
+$ kubectl create deployment hello-minikube1 --image=k8s.gcr.io/echoserver:1.4
+
+[create a Kubernetes service type NodePort]
+$ kubectl expose deployment hello-minikube1 --type=NodePort --port=8080
+
+[check the details of Service]
+$ kubectl get svc
+NAME              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+hello-minikube1   NodePort    10.100.238.34   <none>        8080:31389/TCP   3s
+
+[run service tunnel]
+$ minikube service hello-minikube1 --url
+
+[access the application in browser]
+http://127.0.0.1:NODE_PORT_NO
+
+---
+
+[run the "minikube tunnel" in a separate terminal, It will ask for a password to prompt]
+$ minikube tunnel
+
+[create a Kubernetes deployment]
+$ kubectl create deployment hello-minikube1 --image=k8s.gcr.io/echoserver:1.4
+
+[create a Kubernetes service]
+$ kubectl expose deployment hello-minikube1 --type=LoadBalancer --port=8080
+
+[check the details of Service]
+$ kubectl get svc
+NAME              TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)          AGE
+hello-minikube1   LoadBalancer   10.96.184.178   10.96.184.178   8080:30791/TCP   40s
+
+[access the application in browser]
+http://EXTERNAL_IP:NODE_PORT_NO                 --->                   http://10.96.184.178:30791
+
+Then each service will get its own EXTERNAL_IP.
