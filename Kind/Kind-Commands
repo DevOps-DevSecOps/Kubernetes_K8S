@@ -1,6 +1,11 @@
 kind create cluster                                                        # cluster named will be kind
 kind create cluster --name=CLUSTER_NAME                                    # custom cluster name will be assign manually 
 kind create cluster --image=IMAGE_NAME                                     # custom node image for the cluster
+kind create cluster --image IMAGE_NAME:TAG
+kind create cluster --image DOCKER_HUB_USER_ID/REPOSITORY_NAME
 kind create cluster --image DOCKER_HUB_USER_ID/REPOSITORY_NAME:TAG
 kind get clusters                                                          # list of running clusters
+kind delete cluster
 kind delete cluster --name CLUSTER_NAME                                    # delete a cluster
+
+kubectl cluster-info --context kind-CLUSTER_NAME                           #
