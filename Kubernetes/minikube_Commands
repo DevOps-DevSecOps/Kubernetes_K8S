@@ -2,6 +2,10 @@ minikube start --cpus 4 --memory 8192
 minikube start --cpus 4 --memory 5g --driver=virtualbox
 minikube start --cpus=4 --memory=4096 --driver=virtualbox
 
+# install calico on standard k8s cluster OR minikube k8s cluster - [$ curl https://docs.projectcalico.org/manifests/calico-typha.yaml -o calico.yaml]
+# install calico on cluster - [$ kubectl apply -f calico.yaml]
+minikube start --memory 6144 --cpus 4 --network-plugin=cni --cni=calico                                                     # --network-plugin=cni - specify to use cni as the k8s network plugin, --cni=calico - specify calico as the cni plugin
+
 minikube config set memory 16384
 
 minikube addons enable ingress
