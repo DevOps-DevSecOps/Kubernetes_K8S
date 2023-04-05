@@ -42,6 +42,7 @@ minikube service SERVICE_NAME --url
 minikube service SERVICE_NAME --url --namespace NAMESPACE_NAME
 
 minikube tunnel                                            # run this command in seperate terminal, to expose services to host 
+minikube tunnel --cleanup                                  # to remove orphaned routes, flag’s default value is 'true'
 
 minikube addons list
 minikube addons list -p NAME
