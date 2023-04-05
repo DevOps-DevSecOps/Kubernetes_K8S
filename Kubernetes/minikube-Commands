@@ -11,6 +11,11 @@ minikube start --cpus NO --memory NOg --driver=virtualbox
 minikube start -p NAME                                      # it create another cluster with specific profile name
 minikube start -p NAME --kubernetes-version=VERSION_NO
 
+minikube config set cpus NO                                 # existing minikube to allocate more cpu
+minikube config set memory NO                               # existing minikube to allocate more memory
+minikube config get cpus                                    # view minikube config current cpu NO
+minikube config get memory                                  # view minikube config current memory NO
+
 minikube status
 
 minikube ssh
@@ -35,6 +40,8 @@ minikube dashboard --url
 minikube service SERVICE_NAME
 minikube service SERVICE_NAME --url
 minikube service SERVICE_NAME --url --namespace NAMESPACE_NAME
+
+minikube tunnel                                            # run this command in seperate terminal, to expose services to host 
 
 minikube addons list
 minikube addons list -p NAME
