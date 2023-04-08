@@ -112,6 +112,7 @@ kops update cluster --name CLUSTER_NAME
 kops update cluster --name CLUSTER_NAME --yes
 kops update cluster --name CLUSTER_NAME --yes --admin
 kops update cluster --name CLUSTER_NAME --state s3://BUCKET_NAME --yes
+kops update cluster --name CLUSTER_NAME --state s3://BUCKET_NAME --yes --admin
 kops update cluster
 kops update cluster --yes
 kops update cluster CLUSTER_NAME
@@ -121,14 +122,14 @@ kops update cluster CLUSTER_NAME --state s3://BUCKET_NAME --yes
 kops update cluster CLUSTER_NAME --state=s3://BUCKET_NAME --yes
 
 [Validate]
-kops validate cluster --name CLUSTER_NAME
 kops validate cluster
+kops validate cluster --wait MINUTES                                                        # MINUTES = 10m, Kops will try for 10 minutes to validate the cluster
+kops validate cluster --wait MINUTES --count NO                                             # MINUTES = 10m & NO = 3, Kops will try for 10 minutes to validate the cluster 3 times
+kops validate cluster --name CLUSTER_NAME
 kops validate cluster --state s3://BUCKET_NAME
 kops validate cluster --state=s3://BUCKET_NAME
 kops vaildate cluster CLUSTER_NAME
 kops validate cluster CLUSTER_NAME --state s3://BUCKET_NAME
-kops validate cluster --wait MINUTES                                                        # MINUTES = 10m, Kops will try for 10 minutes to validate the cluster
-kops validate cluster --wait MINUTES --count NO                                             # MINUTES = 10m & NO = 3, Kops will try for 10 minutes to validate the cluster 3 times
 
 [Upgrade]
 # Upgrade a kubernetes cluster, After this command is run, use "kops update cluster" and "kops rolling-update cluster" to finish a cluster upgrade
