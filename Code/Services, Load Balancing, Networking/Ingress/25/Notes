@@ -1,0 +1,5 @@
+[Install an NGINX ingress controller for Kubernetes]
+$ wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/aws/deploy.yaml
+
+[Install an NGINX ingress controller TLS termination on Network Load Balancer]
+$ wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/aws/nlb-with-tls-termination/deploy.yaml
