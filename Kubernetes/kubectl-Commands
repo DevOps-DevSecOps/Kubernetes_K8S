@@ -161,6 +161,7 @@ kubectl get all --all-namespaces
 kubectl get all --all-namespaces -o yaml
 kubectl get all --all-namespaces -o yaml > FILE_NAME.yaml
 kubectl get all -n NAMESPACE_NAME
+kubectl get all -n NAMESPACE_NAME --selector KEY=VALUE
 kubectl get all --namespace NAMESPACE_NAME
 kubectl get po,svc
 kubectl get po,svc -n NAMESPACE_NAME
