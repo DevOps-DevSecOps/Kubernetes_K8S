@@ -442,6 +442,7 @@ kubectl logs POD_NAME -c CONTAINER_NAME
 kubectl logs POD_NAME -c CONTAINER_NAME --previous
 kubectl logs POD_NAME -c CONTAINER_NAME -n NAMESPACE_NAME
 kubectl logs POD_NAME -c CONTAINER_NAME -n NAMESPACE_NAME --previous
+kubectl logs POD_NAME --container CONTAINER_NAME
 kubectl logs -f POD_NAME
 kubectl logs -f POD_NAME -c CONTAINER_NAME
 kubectl logs -f POD_NAME -c CONTAINER_NAME -n NAMESPACE_NAME
