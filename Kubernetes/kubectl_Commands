@@ -38,6 +38,8 @@ kubectl exec -it POD_NAME -- /bin/bash -c "ls -la /FOLDER_NAME/FOLDER_NAME"
 kubectl exec POD_NAME -c CONTAINER_NAME -- ls /
 kubectl exec POD_NAME -c CONTAINER_NAME -- cat /FOLDER_NAME/FILE_NAME
 kubectl exec POD_NAME -c CONTAINER_NAME -- mv /FOLDER_NAME/FILE_NAME:original /FOLDER_NAME/FILE_NAME:rename
+kubectl annotate pod POD_NAME kubectl.kubernetes.io/default-exec-container=CONTAINER_NAME
+kubectl annotate pod POD_NAME kubectl.kubernetes.io/default-logs-container=CONTAINER_NAME
 kubectl port-forward pod/mypod :5000                                            # Listen on a random host port no locally
 kubectl port-forward --address localhost,10.19.21.23 pod/mypod 8888:5000        # Listen on host port with selected IP
 
