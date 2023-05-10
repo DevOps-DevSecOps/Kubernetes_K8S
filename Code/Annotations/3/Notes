@@ -1,0 +1,24 @@
+If pod contains multiple containers, running kubectl logs command will result in an error asking to select one container as follows.
+
+$ kubectl logs nginx
+error: a container name must be specified for pod nginx, choose one of: [app sidecar]
+
+Use the --container OR -c flag to specify the target container with kubectl logs command.
+
+$ kubectl logs nginx -c app
+$ kubectl logs nginx --container app
+
+In code itself use the 'kubectl.kubernetes.io/default-logs-container' in annotation to specify the default container for logs.
+
+....
+....
+....
+  annotations:
+    kubectl.kubernetes.io/default-logs-container: CONTAINER_NAME
+....
+....
+....
+
+Now run the kubectl logs command without specifying a flag of container as follows, the app container is selected by default it specified in annotations block.
+
+$ kubectl logs nginx
