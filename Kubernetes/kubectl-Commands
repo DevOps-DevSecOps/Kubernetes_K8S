@@ -288,6 +288,7 @@ kubectl get pods --selector="KEY in (VALUE,VALUE)"
 kubectl get pods --selector="KEY in (VALUE,VALUE)" --show-labels
 kubectl get pods --selector="KEY in (VALUE, VALUE)"
 kubectl get pods -L KEY
+kubectl get pods -L KEY -L KEY
 kubectl get pods -l="KEY=VALUE"
 kubectl get pods -l KEY=VALUE
 kubectl get pods -l 'KEY=VALUE'
