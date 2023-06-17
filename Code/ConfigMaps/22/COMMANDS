@@ -1,0 +1,5 @@
+[create the ServiceAccount]
+$ kubectl create sa internal-app
+
+[check the data is available within the running Pod]
+$ kubectl exec vault-agent-example --container nginx-container -- cat /usr/share/nginx/html/index.html
