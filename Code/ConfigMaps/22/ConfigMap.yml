@@ -1,0 +1,40 @@
+apiVersion: v1
+data:
+vault-agent-config.hcl: |
+  # Comment this out if running as sidecar instead of initContainer
+  exit_after_auth = true
+
+  pid_file = "/home/vault/pidfile"
+
+  auto_auth {
+      method "kubernetes" {
+          mount_path = "auth/kubernetes"
+          config = {
+              role = "internal-app"
+          }
+      }
+
+      sink "file" {
+          config = {
+              path = "/home/vault/.vault-token"
+          }
+      }
+  }
+
+  template {
+  destination = "/etc/secrets/index.html"
+  contents = <<EOT
+  <html>
+  <body>
+  <p>DB Connection String:</p>
+  {{- with secret "internal/data/database/config" -}}
+  postgresql://{{ .Data.data.username }}:{{ .Data.data.password }}@postgres:5432/wizard
+  {{- end -}}
+  </body>
+  </html>
+  EOT
+  }
+kind: ConfigMap
+metadata:
+name: example-vault-agent-config
+namespace: default
