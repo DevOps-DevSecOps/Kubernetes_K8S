@@ -12,6 +12,7 @@ kubectl exec -it POD_NAME ping IP_ADDRESS
 kubectl exec -it POD_NAME -- ping IP_ADDRESS
 kubectl exec -it POD_NAME -- cat /FOLDER_NAME/FILE_NAME
 kubectl exec -it POD_NAME -- ls -l /FOLDER_NAME/FOLDER_NAME
+kubectl exec -it POD_NAME -- /bin/bash -c "ls -la /FOLDER_NAME/FOLDER_NAME"
 kubectl exec POD_NAME env                            # list the environment variables in the running container
 kubectl exec POD_NAME date
 kubectl exec POD_NAME ls /FOLDER_NAME/
@@ -34,10 +35,10 @@ kubectl exec POD_NAME -- curl IP_ADDRESS:PORT_NO
 kubectl exec POD_NAME -- curl https://IP_ADDRESS:PORT_NO
 kubectl exec POD_NAME -- nslookup SERVICE_NAME
 kubectl exec POD_NAME -- sh -c "echo $PATH"
-kubectl exec -it POD_NAME -- /bin/bash -c "ls -la /FOLDER_NAME/FOLDER_NAME"
 kubectl exec POD_NAME -c CONTAINER_NAME -- ls /
 kubectl exec POD_NAME -c CONTAINER_NAME -- cat /FOLDER_NAME/FILE_NAME
 kubectl exec POD_NAME -c CONTAINER_NAME -- mv /FOLDER_NAME/FILE_NAME:original /FOLDER_NAME/FILE_NAME:rename
+kubectl exec POD_NAME --container CONTAINER_NAME -- cat /FOLDER_NAME/FOLDER_NAME/FOLDER_NAME/FILE_NAME
 kubectl annotate pod POD_NAME kubectl.kubernetes.io/default-exec-container=CONTAINER_NAME
 kubectl annotate pod POD_NAME kubectl.kubernetes.io/default-logs-container=CONTAINER_NAME
 kubectl port-forward pod/mypod :5000                                            # Listen on a random host port no locally
