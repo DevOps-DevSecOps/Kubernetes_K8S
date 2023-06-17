@@ -36,5 +36,5 @@ vault-agent-config.hcl: |
   }
 kind: ConfigMap
 metadata:
-name: example-vault-agent-config
-namespace: default
+  name: example-vault-agent-config
+  namespace: default
