@@ -1,0 +1,10 @@
+$ kind create cluster --name kubernetes
+Creating cluster "kubernetes"
+Set kubectl context to "kind-kubernetes"
+You can now use your cluster with:
+kubectl cluster-info --context kind-kubernetes
+
+$ kind get clusters
+kubernetes
+
+$ kubectl cluster-info --context kind-kubernetes
