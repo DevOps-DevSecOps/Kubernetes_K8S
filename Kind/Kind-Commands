@@ -10,3 +10,4 @@ kind delete cluster
 kind delete cluster --name CLUSTER_NAME                                    # delete a cluster
 
 kubectl cluster-info --context kind-CLUSTER_NAME                           # specific cluster details
+kubectl cluster-info --context=kind-CLUSTER_NAME
