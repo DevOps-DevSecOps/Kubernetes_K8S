@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: react-ui-config
+  labels:
+    app: react-ui
+    env: prod
+data:
+  config.yaml: |
+    database:
+      ip: 10.20.30.20
+      name: ui-dev
+    logfile: /app/var/log.txt
+    timeout: 10s
