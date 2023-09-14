@@ -19,13 +19,11 @@ spec:
       containers:
         - name: react-ui
           image: deekshithsn/ui
-          ports:
-          - name: http 
-            containerPort: 8080
+          imagePullPolicy: IfNotPresent
           resources:
-            requests:
-              memory: "1Gi"
-              cpu: "500m"
             limits:
-              memory: "1Gi"
-              cpu: "500m"
+              cpu: 1
+              memory: 2Gi
+            requests:
+              memory: 2Gi
+              cpu: 1
