@@ -2,7 +2,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: pod-with-annotation
-  annotation:
+  annotations:
     commit-message: testign for nginx
     owner: Nidhi
 spec:
