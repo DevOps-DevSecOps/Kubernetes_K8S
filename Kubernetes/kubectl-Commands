@@ -207,6 +207,7 @@ kubectl get po -l KEY=VALUE
 kubectl get po --show-labels
 kubectl get po --all-namespaces
 kubectl get po -n NAMESPACE_NAME
+kubectl get po -n NAMESPACE_NAME -w
 kubectl get po -n NAMESPACE_NAME -o wide
 kubectl get po -n NAMESPACE_NAME --show-labels
 kubectl get po --namespace=NAMESPACE_NAME
