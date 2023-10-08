@@ -23,7 +23,7 @@ The above syntax a job if want to run 6 pods and run 2 pods in parallel.
 The job will run 2 pods in parallell for 3 times to achieve 6 completions.
 
 * backoffLimit
-If it fails to create a Pod, then depend on 'backoffLimit' count number will tell to re-create another Pod until either successfully OR failure.
+If it fails to create a Pod, then depend on 'backoffLimit' count number will tell to re-create another Pod until upto create successfully.
 It help us to limit the pod creation when job fails to create successfully.
 When a pod doesn’t create properly, it will go to the Error status and initiate another pod and this process continues until you get a successfully created pod.
 Suppose if job contains something(ex: command error) that doesn’t allow your job to create successfully, it tries creating pods continuously.
