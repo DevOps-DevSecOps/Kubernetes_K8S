@@ -37,7 +37,13 @@ minikube logs --file=FILE_NAME
 minikube dashboard
 minikube dashboard --url
 
+minikube service list
+minikube service list -n NAMESPACE_NAME
+minikube service list --namespace NAMESPACE_NAME
+
 minikube service SERVICE_NAME
+minikube service SERVICE_NAME -n NAMESPACE_NAME
+minikube service SERVICE_NAME --namespace NAMESPACE_NAME
 minikube service SERVICE_NAME --url
 minikube service SERVICE_NAME --url --namespace NAMESPACE_NAME
 
