@@ -219,6 +219,7 @@ kubectl get po/POD_NAME
 kubectl get po/POD_NAME -o yaml
 kubectl get pod -A                                                             # list pods in all namespaces 
 kubectl get pod
+kubectl get pod -w
 kubectl get pod --watch
 kubectl get pod --output=wide
 kubectl get pod --output=wide -n NAMESPACE_NAME
