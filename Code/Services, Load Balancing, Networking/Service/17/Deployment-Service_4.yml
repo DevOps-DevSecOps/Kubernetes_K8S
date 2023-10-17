@@ -10,7 +10,7 @@ spec:
     metadata:
       name: pod-nginx
       labels:
-        name: nginx-app
+        name: nginx
         tier: web
     spec:
       containers:
@@ -22,3 +22,18 @@ spec:
       name: nginx
       tier: web
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+  labels:
+    name: nginx-app
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30010
+  selector:
+    name: nginx
+    tier: web
