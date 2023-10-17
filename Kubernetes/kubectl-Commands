@@ -34,6 +34,7 @@ kubectl apply -f FOLDER_NAME/FILE_NAME.yaml
 kubectl apply -f /FOLDER_NAME/FILE_NAME.yaml --namespace=NAMESPACE_NAME
 kubectl apply -f ./FOLDER_NAME/FILE_NAME.yaml
 kubectl apply -f HTTPS_URL_FILE_NAME.yaml                           # create resources from URL
+kubectl apply -f HTTPS_URL_FILE_NAME.yaml -n NAMESPACE_NAME
 kubectl apply -f HTTPS_URL_FILE_NAME.yaml --namespace=NAMESPACE_NAME
 kubectl apply -f HTTPS_URL_/FOLDER_NAME/FILE_NAME.yaml
 kubectl apply --filename=FILE_NAME.yaml --record=true
