@@ -5,3 +5,20 @@ metadata:
   labels:
     tier: web
     name: nginx-app
+spec:
+  template:
+    metadata:
+      name: pod-nginx
+      labels:
+        name: nginx-app
+        tier: web
+    spec:
+      containers:
+        - name: nginximage
+          image: nginx
+  replicas: 3
+  selector:
+    matchLabels:
+      name: nginx
+      tier: web
+---
