@@ -11,6 +11,7 @@ minikube start --cpus NO --memory NOg --driver=virtualbox
 minikube start -p NAME                                      # it create another cluster with specific profile name
 minikube start -p NAME --kubernetes-version=VERSION_NO
 
+minikube config set driver docker
 minikube config set cpus NO                                 # existing minikube to allocate more cpu
 minikube config set memory NO                               # existing minikube to allocate more memory
 minikube config get cpus                                    # view minikube config current cpu NO
