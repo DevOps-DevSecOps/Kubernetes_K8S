@@ -501,6 +501,7 @@ kubectl delete pods POD_NAME --user=USER_NAME
 kubectl delete pods POD_NAME
 kubectl delete pods/POD_NAME
 KUBECONFIG=FILE_NAME kubectl get pods
+KUBECONFIG=/FOLDER_NAME/FILE_NAME kubectl get pods
 
 [Deployments]
 kubectl explain deploy
