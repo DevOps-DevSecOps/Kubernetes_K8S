@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  labels:
+    app: web
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 1
+  timeoutSeconds: 100
+  intervalSeconds: 5
+  updatePeriodSeconds: 5
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      terminationGracePeriodSeconds: 40
+      containers:
+      - name: front-end
+        image: nginx
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
