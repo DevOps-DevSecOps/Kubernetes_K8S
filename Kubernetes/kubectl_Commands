@@ -46,6 +46,7 @@ kubectl port-forward --address localhost,10.19.21.23 pod/mypod 8888:5000        
 
 [Deployments]
 kubectl create deployment nginx --image=nginx
+kubectl set image deployment DEPLOYMENT_NAME CONTAINER_NAME=nginx:1.22.1
 kubectl set resources deployment DEPLOYMENT_NAME --limits cpu=200m,memory=512Mi --requests cpu=100m,memory=256Mi                    # add ResourceQuota to Deployment
 kubectl set resources deployment DEPLOYMENT_NAME --limits=cpu=200m,memory=512Mi --requests=cpu=100m,memory=256Mi
 kubectl expose deployment DEPLOYMENT_NAME --port=SERVICE_PORT_NO --type=NodePort                                                    # random port no for NodePort
