@@ -1,0 +1,32 @@
+[Imperative]
+$ kubectl create deployment DEPLOYMENT_NAME --image=IMAGE_NAME
+  kubectl create deployment mywebsite --image=nginx
+$ kubectl get deployment mywebsite
+$ kubectl delete deployment/mywebsite
+
+[Declarative]
+It can define a Deployment in a YAML file
+$ kubectl apply -f Deployment_1.yaml
+To update a Deployment from nginx version 1.22.0 to 1.22.1
+$ kubectl set image deployment mywebsite nginx=nginx:1.22.1
+$ kubectl rollout status deployment mywebsite
+$ kubectl rollout pause deployment mywebsite
+$ kubectl rollout resume deployment mywebsite
+$ kubectl rollout history deployment mywebsite
+$ kubectl rollout history deployment mywebsite --revision 1
+$ kubectl rollout undo deployment mywebsite
+$ kubectl rollout undo deployment mywebsite --to-revision 1
+$ kubectl scale deployment mywebsite --replicas=3
+To deleting all Pods in the Deployment without deleting the Deployment
+$ kubectl scale deployment mywebsite --replicas=0
+$ kubectl get deployment mywebsite
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+mywebsite   0/0     0            0           7m48s
+then enable the horizontal pod autoscaler
+$ kubectl autoscale deployment mywebsite --cpu-percent=50 --min=1 --max=10
+$ kubectl get hpa
+NAME         REFERENCE                    TARGET   CURRENT   MINPODS   MAXPODS   AGE
+mywebsite    Deployment/mywebsite/scale   50%      310%      1         10        2m
+
+[LINKS]
+https://kodekloud.com/blog/kubernetes-deployments/
