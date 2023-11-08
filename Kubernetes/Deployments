@@ -5,25 +5,37 @@ Deployments can both control the ReplicaSet i.e number of replicas and the templ
 [Strategies]
 ● RollingUpdate
 It is the default strategy for update.
+It replaces pods, one by one, of the previous version of our application with pods of the new version without any cluster downtime.
 It will delete one Pod and creates a new Pod. This will be repeated for the other Pods one-by-one.
 The update is applied Pod-by-Pod. (OR) It update one-by-one from the old Pods to the new Pods.
 It minimizes downtime. (OR) It ensuring no downtime. (OR) There is no downtime.
-
+maxSurge: The number of pods that can be created above the desired amount of pods during an update.
+          This can be an absolute number or percentage of the replicas count.
+          The default is 25%.
+maxUnavailable: The number of pods that can be unavailable during the update process.
+                This can be an absolute number or a percentage of the replicas count.
+                The default is 25%.
 ● Recreate
+It shuts down the old version of the application entirely, deploys the new version, and then reboots the whole system.
+It creates a system downtime between shutting down the old software and booting the new one.
 Deleting all existing Pods and creating new Pods will cause downtime to access the application to the user.
 All existing Pods are deleted before the new Pods are created.
 All old Pods are terminated before any new Pods are added.
 It causes downtime but updates quickly.
-
 ● Canary
 The new version rolls out incrementally to a subset of users, then is released to all users.
 when it make new software features available to a limited selection of users ahead of a wider release.
 The new application version is available to a limited OR few selection of users before making it available to everybody.
-
-● Blue-Green
+The deployment team sets up the new version and then gradually shifts the production traffic from the older version to the newer version.
+The deployment process, older version might retain 90% of all traffic for the software while the newer version hosts 10% of the traffic. 
+● Blue/Green
 It is two separate identical environments.
-Blue - Blue environment is running the current application version.
+The new version of the software runs alongside the old version.
+After the new version has been tested and certified to meet all the requirements, the load balancer automatically switches the traffic from the older version to the newer version.
+Blue - Blue environment is running the current old application version.
 Green - Green environment is running the new application version.
+The advantage of this strategy is that it avails a quick update or rollout of a new application version.
+The disadvantage is that it is costly because you must run both the new and old versions concurrently.
 
 # Links :- https://medium.com/codex/kubernetes-deployment-rolling-updates-and-rollbacks-explained-e3efa6557368
            https://www.bluematador.com/blog/kubernetes-deployments-rolling-update-configuration
