@@ -1,4 +1,4 @@
-It support for both kops and kubeadm.
+It support for both 'kops' and 'kubeadm'.
 
 ● ACI
 It provides integrated container networking and network security with Cisco ACI.
