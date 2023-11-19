@@ -12,6 +12,8 @@ The kubelet is responsible to watch each static Pod and restart it if it crashes
 The Kubelet also ensures that the Pod stays alive. If the application crashes, the kubelet attempts to restart it.
 The kubelet agent that allows each worker node to communicate with the API Server running on the master node.
 The kubelet agent is also responsible for setting up pod requirements, such as mounting volumes, starting containers and reporting status.
+The kubelet to boot up the control plane as static pods from directory "/etc/kubernetes/manifests/".
+Can see kind of static pod logs while initializig/creating of the cluster.
 
 The Kubelet periodically checks this directory for files, reads these files and creates Pods on the host.
 The default location path for kubelet configuration file, which periodically scans the directory and creates/deletes static Pods as YAML/JSON files.
