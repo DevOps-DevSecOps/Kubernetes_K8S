@@ -230,6 +230,7 @@ kubectl get pod -o wide
 kubectl get pod -o wide -l KEY=VALUE
 kubectl get pod -l KEY=VALUE
 kubectl get pod -l KEY=VALUE -w
+kubectl get pod -l KEY=VALUE -n NAMESPACE_NAME
 kubectl get pod -l 'KEY in (VALUE)'
 kubectl get pod -l 'KEY in (VALUE,VALUE)'
 kubectl get pod -l 'KEY in (VALUE),KEY in (VALUE)'
@@ -642,6 +643,7 @@ kubectl describe deploy DEPLOYMENT_NAME
 kubectl describe deployment
 kubectl describe deployment DEPLOYMENT_NAME
 kubectl describe deployment DEPLOYMENT_NAME > FILE_NAME.yaml
+kubectl describe deployment DEPLOYMENT_NAME --namespace NAMESPACE_NAME
 kubectl describe deployments
 kubectl describe deployments DEPLOYMENT_NAME
 kubectl label deployments DEPLOYMENT_NAME "KEY=VALUE"
