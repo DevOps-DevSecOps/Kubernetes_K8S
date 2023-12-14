@@ -1404,6 +1404,7 @@ kubectl get nodes --context=CONTEXT_NAME
 kubectl get nodes
 kubectl get nodes -o wide
 kubectl get nodes -o yaml
+kubectl get nodes --watch
 kubectl get nodes --show-labels
 kubectl get nodes -L KEY
 kubectl get nodes -l KEY=VALUE
