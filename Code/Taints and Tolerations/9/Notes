@@ -1,0 +1,22 @@
+$ kubectl get nodes
+NAME                                STATUS       ROLES       AGE       VERSION
+ip-172-31-32-233.ec2.internal       READY        <none>      23m       v1.25.7-eks-a59e1f0
+ip-172-31-66-57.ec2.internal        READY        <none>      23m       v1.25.7-eks-a59e1f0
+
+$ kubectl taint nodes ip-172-31-32-233.ec2.internal type=gpu:NoSchedule
+node/ip-172-31-32-233.ec2.internal tainted
+
+$ kubectl create -f Taints-Tolerations_1.yml
+pod/appone created
+
+$ kubectl get pods -o wide
+NAME      READY    STATUS     RESTARTS    AGE    IP                NODE                             NOMINATED NODE    READINESS GATES
+appone    1/1      Running    0           10m    172.31.74.92      ip-172-31-66-57.ec2.internal     <none>            <none>
+
+$ kubectl create -f Taints-Tolerations_2.yml
+pod/apptwo created
+
+$ kubectl get pods -o wide
+NAME      READY    STATUS     RESTARTS    AGE    IP                NODE                             NOMINATED NODE    READINESS GATES
+appone    1/1      Running    0           10m    172.31.74.92      ip-172-31-66-57.ec2.internal     <none>            <none>
+apptwo    1/1      Running    0           3m     172.31.46.189     ip-172-31-32-233.ec2.internal    <none>            <none>
