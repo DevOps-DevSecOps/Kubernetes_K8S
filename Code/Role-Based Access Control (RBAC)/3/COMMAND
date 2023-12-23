@@ -1,0 +1,3 @@
+[Role_3.yml RoleBinding_3.yml]
+$ kubectl auth can-i get pods --namespace=stage --as alice
+yes
