@@ -63,6 +63,9 @@ kubectl expose deployment/DEPLOYMENT_NAME --name SERVICE_NAME --type LoadBalance
 kubectl scale deployment DEPLOYMENT_NAME --replicas=0                                       # deleting all Pods in the Deployment without deleting the Deployment
 kubectl autoscale deployment DEPLOYMENT_NAME --cpu-percent=50 --min=1 --max=10              # CPU utilization across all Pods of 50% then Pods maintains between 1 and 10 replicas
 
+[Service]
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'               # edit the service can change the service type from ClusterIP to NodePort
+
 [Service Accounts]
 kubectl get sa --all-namespaces | grep SERVICEACCOUNT_NAME
 
@@ -88,11 +91,11 @@ kubectl logs -f deployment/DEPLOYMENT_NAME --all-containers=true -n NAMESPACE_NA
 kubectl create configmap CONFIGMAP_NAME --from-literal=url="http://example.com"
 
 [Secrets]
+● Generic
 kubectl create secret generic SECRET_NAME --from-literal=username=USERNAME --from-literal=password=PASSWORD
 kubectl create secret generic SECRET_NAME --from-literal=username=USERNAME --from-literal=password='PASSWORD'
 kubectl create secret generic SECRET_NAME --from-literal='username=USERNAME' --from-literal='password=PASSWORD'
-
-[Secrets with Docker]
+● Docker
 kubectl create secret docker-registry SECRET_NAME --docker-server=https://index.docker.io/ --docker-username=DOCKER_HUB_USER_ID --docker-password=DOCKER_HUB_USER_PASSWORD --docker-email=DOCKER_EMAIL
 kubectl create secret docker-registry SECRET_NAME --docker-server=https://index.docker.io/v1/ --docker-username=DOCKER_HUB_USER_ID --docker-password=DOCKER_HUB_USER_PASSWORD --docker-email=DOCKER_EMAIL
 kubectl create secret docker-registry SECRET_NAME --docker-server=https://gcr.io/ --docker-username=DOCKER_HUB_USER_ID --docker-password=DOCKER_HUB_USER_PASSWORD --docker-email=DOCKER_EMAIL
