@@ -810,6 +810,7 @@ kubectl rollout history daemonset DAEMONSET_NAME
 kubectl rollout history daemonset DAEMONSET_NAME --revision=NO
 kubectl rollout undo daemonset DAEMONSET_NAME --to-revision=NO
 kubectl rollout restart daemonset DAEMONSET_NAME -n NAMESPACE_NAME
+kubectl delete daemonset -l KEY=VALUE
 kubectl delete ds DAEMONSET_NAME
 kubectl delete ds DAEMONSET_NAME -n NAMESPACE_NAME
 
