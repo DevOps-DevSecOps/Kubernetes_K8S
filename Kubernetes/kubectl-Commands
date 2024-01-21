@@ -7,6 +7,7 @@ kubectl version --client --output=yaml
 kubectl version --output=yaml
 
 [YAML]
+kubectl create -f .
 kubectl create -f FILE_NAME.yaml
 kubectl create -f FILE_NAME.yaml --record
 kubectl create -f FILE_NAME.yaml -n NAMESPACE_NAME
