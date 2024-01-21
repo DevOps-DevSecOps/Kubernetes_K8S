@@ -17,6 +17,8 @@ minikube config set memory NO                               # existing minikube 
 minikube config get cpus                                    # view minikube config current cpu NO
 minikube config get memory                                  # view minikube config current memory NO
 
+minikube update-context
+
 minikube status
 
 minikube ssh
