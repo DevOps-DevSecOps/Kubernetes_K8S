@@ -8,7 +8,7 @@ minikube start --driver=docker
 minikube start --cpus NO --memory NO
 minikube start --cpus=NO --memory=NO --driver=virtualbox
 minikube start --cpus NO --memory NOg --driver=virtualbox
-minikube start -p NAME                                      # it create another cluster with specific profile name
+minikube start -p NAME                                      # it create a cluster with specific profile name
 minikube start -p NAME --kubernetes-version=VERSION_NO
 
 minikube config set driver docker
