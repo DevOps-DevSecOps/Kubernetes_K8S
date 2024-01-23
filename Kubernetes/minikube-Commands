@@ -48,6 +48,7 @@ minikube service SERVICE_NAME
 minikube service SERVICE_NAME -n NAMESPACE_NAME
 minikube service SERVICE_NAME --namespace NAMESPACE_NAME
 minikube service SERVICE_NAME --url
+minikube service SERVICE_NAME --url -n NAMESPACE_NAME
 minikube service SERVICE_NAME --url --namespace NAMESPACE_NAME
 
 minikube tunnel                                            # run this command in seperate terminal, to expose services to host 
