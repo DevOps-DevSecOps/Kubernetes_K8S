@@ -1,0 +1,9 @@
+[creating a label to a node by using a key-value pair]
+$ kubectl label nodes NODE_NAME app=nginx
+
+[verify the pod on which node it scheduled]
+$ kubectl get pods -o wide
+
+[Logs]
+$ kubectl logs nginx
+$ kubectl logs nginx -c nginx
